@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-api
+  namespace: autolearnpro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lms-api
+  template:
+    metadata:
+      labels:
+        app: lms-api
+    spec:
+      containers:
+        - name: lms-api
+          # image built for the long-term-fix patch
+          image: autolearnpro/lms-api:long-term-fix
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MIX_ENV
+              value: "prod"
+          envFrom:
+            - secretRef:
+                name: lms-api-secrets
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lms-api
+  namespace: autolearnpro
+spec:
+  type: ClusterIP
+  ports:
+    - port: 4000
+      targetPort: 4000
+  selector:
+    app: lms-api
