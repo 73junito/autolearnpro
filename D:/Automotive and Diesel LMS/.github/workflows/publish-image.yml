@@ -42,16 +42,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: ./backend/lms_api
-          file: ./backend/lms_api/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/lms-api:latest
-            ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
+      - name: Build and push (explicit buildx)
+        run: |
+          set -e
+          # Use absolute path to the Dockerfile to avoid any action-relative resolution issues
+          docker buildx build \
+            --file "${{ github.workspace }}/backend/lms_api/Dockerfile" \
+            --platform linux/amd64,linux/arm64 \
+            --tag ghcr.io/${{ github.repository_owner }}/lms-api:latest \
+            --tag ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }} \
+            --push ./backend/lms_api
 
       - name: Output image
         run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
