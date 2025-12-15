@@ -48,6 +48,9 @@ jobs:
           # Use the service folder as the build context. Omit `file:` so
           # buildx will automatically use `backend/lms_api/Dockerfile`.
           context: ./backend/lms_api
+          # Use a repo-relative path without './' to avoid a known
+          # build-push-action transfer bug with leading './' paths.
+          file: backend/lms_api/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
