@@ -42,28 +42,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Stage Dockerfile at repo root for builder
-        run: |
-          # Some buildx invocations pass `--file Dockerfile` relative to
-          # the runner workspace; ensure a copy exists at the repo root so
-          # BuildKit can always read it.
-          cp backend/lms_api/Dockerfile ./Dockerfile || true
-        shell: bash
-
-      - name: Build and push (manual buildx)
-        run: |
-          # Ensure a builder is available and bootstrapped
-          docker buildx create --use --name ci-builder || true
-          docker buildx inspect --bootstrap
-
-          # Build and push multi-arch image — explicitly pass the repo-relative
-          # Dockerfile path so buildx reads it correctly from the runner.
-          docker buildx build \
-            --platform linux/amd64,linux/arm64 \
-            --file backend/lms_api/Dockerfile \
-            --tag ghcr.io/${{ github.repository_owner }}/lms-api:latest \
-            --tag ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }} \
-            --push ./backend/lms_api
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend/lms_api
+          file: ./backend/lms_api/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/lms-api:latest
+            ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
 
       - name: Output image
         run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
@@ -72,7 +60,7 @@ jobs:
     name: Deploy to Kubernetes
     needs: build-and-push
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/')
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/k8s/')
     permissions:
       contents: read
 
