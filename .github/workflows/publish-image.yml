@@ -2,7 +2,7 @@ name: Build and publish Docker image to GHCR
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, 'k8s/**' ]
   workflow_dispatch:
 
 jobs:
@@ -23,6 +23,15 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Show build context (diagnostic)
+        run: |
+          echo "Listing repo root"
+          ls -la
+          echo "Listing backend/lms_api"
+          ls -la backend/lms_api || true
+          echo "Dockerfile preview (if present)"
+          sed -n '1,200p' backend/lms_api/Dockerfile || true
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -33,8 +42,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: backend/lms_api
-          file: backend/lms_api/Dockerfile
+          # build from the lms_api folder so the runner's Docker context
+          # contains the Dockerfile at the expected path
+          context: ./backend/lms_api
+          file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -43,3 +54,36 @@ jobs:
 
       - name: Output image
         run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
+
+  deploy:
+    name: Deploy to Kubernetes
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/')
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: '1.30.0'
+
+      - name: Decode kubeconfig
+        env:
+          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
+        run: |
+          if [ -z "$KUBECONFIG_DATA" ]; then
+            echo "KUBECONFIG_DATA secret is not set; failing deploy"; exit 1
+          fi
+          echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig
+
+      - name: Deploy lms-api image
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+        run: |
+          kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/${{ github.repository_owner }}/lms-api:latest
+          kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
