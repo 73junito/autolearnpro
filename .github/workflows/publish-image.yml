@@ -49,4 +49,45 @@ jobs:
           # Dockerfile explicitly so buildx can find it regardless of
           # how the CLI constructs the build command.
           context: ./backend/lms_api
-          file: Dockerfile
+          file: ./backend/lms_api/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/lms-api:latest
+            ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
+
+      - name: Output image
+        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
+
+  deploy:
+    name: Deploy to Kubernetes
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/')
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Decode kubeconfig
+        env:
+          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
+        run: |
+          if [ -z "$KUBECONFIG_DATA" ]; then
+            echo "KUBECONFIG_DATA secret is not set; failing deploy"; exit 1
+          fi
+          echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig
+
+      - name: Deploy lms-api image
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+        run: |
+          kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/${{ github.repository_owner }}/lms-api:latest
+          kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
