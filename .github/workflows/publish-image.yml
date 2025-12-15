@@ -48,7 +48,7 @@ jobs:
           # Use the repository root as the build context and point the
           # Dockerfile explicitly so buildx can find it regardless of
           # how the CLI constructs the build command.
-          context: .
+          context: ./backend/lms_api
           file: ./backend/lms_api/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
