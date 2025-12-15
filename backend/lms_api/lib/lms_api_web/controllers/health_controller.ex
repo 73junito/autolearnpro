@@ -1,5 +1,8 @@
 defmodule LmsApiWeb.HealthController do
-  use LmsApiWeb, :controller
+  use Phoenix.Controller, namespace: LmsApiWeb
+  import Plug.Conn
+  alias LmsApiWeb.Router.Helpers, as: Routes
+
   @doc "Return a JSON health status including DB connectivity"
   def index(conn, _params) do
     db_status = check_db()
