@@ -42,6 +42,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Stage Dockerfile at repo root for builder
+        run: |
+          # Some buildx invocations pass `--file Dockerfile` relative to
+          # the runner workspace; ensure a copy exists at the repo root so
+          # BuildKit can always read it.
+          cp backend/lms_api/Dockerfile ./Dockerfile || true
+        shell: bash
+
       - name: Build and push (manual buildx)
         run: |
           # Ensure a builder is available and bootstrapped
