@@ -119,8 +119,9 @@ defmodule LmsApi.Media do
   """
   def upload_file(%Plug.Upload{} = upload, attrs) do
     with {:ok, file_path, file_name, file_size} <- save_uploaded_file(upload),
+         sanitized_name = LmsApi.Redactor.redact_string(file_name),
          {:ok, file_upload} <- create_file_upload(Map.merge(attrs, %{
-           file_name: file_name,
+           file_name: sanitized_name,
            file_path: file_path,
            file_size: file_size,
            content_type: upload.content_type,
