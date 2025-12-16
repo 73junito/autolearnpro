@@ -207,9 +207,13 @@ def get_or_create_bank(category, difficulty, pg_pod):
         bank_id = result.stdout.strip()
         if bank_id and bank_id.isdigit():
             return int(bank_id)
-    except Exception:
-        # ignore and fall through to create
-        pass
+        # If psql returned something but not a digit, log for diagnosis
+        if result.stderr:
+            log(f"get_or_create_bank check stderr: {result.stderr[:2000]}", "WARN")
+        if result.stdout and not bank_id:
+            log(f"get_or_create_bank check stdout (no id): {result.stdout[:2000]}", "WARN")
+    except Exception as e:
+        log(f"get_or_create_bank check failed: {e}", "WARN")
 
     # Create new
     insert_sql = (
@@ -220,35 +224,54 @@ def get_or_create_bank(category, difficulty, pg_pod):
         "RETURNING id;"
     )
 
-    try:
-        result = subprocess.run(
-            [
-                "kubectl",
-                "exec",
-                "-n",
-                "autolearnpro",
-                pg_pod,
-                "--",
-                "psql",
-                "-U",
-                "postgres",
-                "-d",
-                "lms_api_prod",
-                "-t",
-                "-c",
-                insert_sql,
-            ],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=10,
-        )
+    # Retry creation in case of transient failures
+    attempts = 3
+    for attempt in range(1, attempts + 1):
+        try:
+            timeout_sec = 15 * attempt
+            result = subprocess.run(
+                [
+                    "kubectl",
+                    "exec",
+                    "-n",
+                    "autolearnpro",
+                    pg_pod,
+                    "--",
+                    "psql",
+                    "-U",
+                    "postgres",
+                    "-d",
+                    "lms_api_prod",
+                    "-t",
+                    "-c",
+                    insert_sql,
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=timeout_sec,
+            )
 
-        bank_id = result.stdout.strip()
-        return int(bank_id) if bank_id.isdigit() else None
-    except Exception:
-        return None
+            bank_id = result.stdout.strip()
+            if bank_id and bank_id.isdigit():
+                return int(bank_id)
+
+            log(f"get_or_create_bank create attempt {attempt} failed; returncode={result.returncode}", "WARN")
+            if result.stdout:
+                log(f"create stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
+            if result.stderr:
+                log(f"create stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
+
+        except subprocess.TimeoutExpired:
+            log(f"get_or_create_bank create attempt {attempt} timed out after {timeout_sec}s", "WARN")
+        except Exception as e:
+            log(f"get_or_create_bank create exception on attempt {attempt}: {e}", "WARN")
+
+        if attempt < attempts:
+            sleep(5 * attempt)
+
+    return None
 
 def insert_question(question, bank_id, pg_pod):
     """Insert single question with error handling"""
