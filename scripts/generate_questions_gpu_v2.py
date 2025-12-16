@@ -17,7 +17,7 @@ import shutil
 import platform
 from datetime import datetime
 from pathlib import Path
-from time import time
+from time import time, sleep
 import re
 
 # ============================================================================
@@ -201,7 +201,7 @@ def get_or_create_bank(category, difficulty, pg_pod):
             text=True,
             encoding="utf-8",
             errors="replace",
-            timeout=10,
+            timeout=30,
         )
 
         bank_id = result.stdout.strip()
@@ -270,12 +270,52 @@ def insert_question(question, bank_id, pg_pod):
             '{data_json}'::jsonb, '{explanation}', true, NOW(), NOW()
         );"""
 
-        result = subprocess.run([
-            "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
-            "psql", "-U", "postgres", "-d", "lms_api_prod", "-c", sql
-        ], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+        # Retry on transient failures (timeouts, brief DB load)
+        attempts = 3
+        for attempt in range(1, attempts + 1):
+            try:
+                timeout_sec = 60 * attempt if attempt <= 2 else 120
+                result = subprocess.run(
+                    [
+                        "kubectl",
+                        "exec",
+                        "-n",
+                        "autolearnpro",
+                        pg_pod,
+                        "--",
+                        "psql",
+                        "-U",
+                        "postgres",
+                        "-d",
+                        "lms_api_prod",
+                        "-c",
+                        sql,
+                    ],
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=timeout_sec,
+                )
 
-        return result.returncode == 0
+                if result.returncode == 0 and "INSERT 0 1" in result.stdout:
+                    return True
+
+                log(f"Insert attempt {attempt} failed: returncode={result.returncode}", "WARN")
+                if result.stdout:
+                    log(f"psql stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
+                if result.stderr:
+                    log(f"psql stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
+
+            except subprocess.TimeoutExpired:
+                log(f"Insert attempt {attempt} timed out after {timeout_sec}s", "WARN")
+
+            # Backoff before next attempt
+            if attempt < attempts:
+                sleep(5 * attempt)
+
+        # All attempts failed
+        return False
     except Exception as e:
         log(f"Insert error: {e}", "ERROR")
         return False
