@@ -226,9 +226,12 @@ defmodule LmsApi.AI do
         {"Content-Type", "application/json"}
       ]
 
+      # Sanitize prompt to avoid leaking PII to external services
+      sanitized_prompt = sanitize_prompt(prompt)
+
       body = Jason.encode!(%{
         model: "gpt-3.5-turbo",
-        messages: [%{role: "user", content: prompt}],
+        messages: [%{role: "user", content: sanitized_prompt}],
         max_tokens: 1000,
         temperature: 0.7
       })
@@ -248,6 +251,12 @@ defmodule LmsApi.AI do
       end
     end
   end
+
+  @doc "Sanitize a prompt string by redacting PII (emails etc.) before sending to external models."
+  def sanitize_prompt(prompt) when is_binary(prompt) do
+    LmsApi.Redactor.redact_string(prompt)
+  end
+  def sanitize_prompt(other), do: other
 
   defp parse_quiz_questions(response) do
     case Jason.decode(response) do
