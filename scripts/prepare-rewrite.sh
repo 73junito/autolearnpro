@@ -30,7 +30,7 @@ while IFS= read -r p; do
   p_trimmed=$(echo "$p" | sed 's/^\s*//;s/\s*$//')
   [ -z "$p_trimmed" ] && continue
   args+=(--invert-paths --paths "$p_trimmed")
-done < ../working-copy/scripts/paths-to-remove.txt
+done < ../scripts/paths-to-remove.txt
 
 # If git-filter-repo not available, exit with a message
 if ! command -v git-filter-repo >/dev/null 2>&1; then
@@ -39,6 +39,7 @@ if ! command -v git-filter-repo >/dev/null 2>&1; then
 fi
 
 # Run git-filter-repo
+# shellcheck disable=SC2086
 git filter-repo "${args[@]}"
 
 # Cleanup and push
