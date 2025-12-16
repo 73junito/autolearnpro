@@ -1,0 +1,71 @@
+Command: pwsh -NoProfile -ExecutionPolicy Bypass -File "D:\Automotive and Diesel LMS\scripts\add-file-via-gitdata.ps1" -DryRun 
+Fetching base branch main ref...
+DRYRUN: GET https://api.github.com/repos/73junito/autolearnpro/git/ref/heads/main
+Base branch sha: dryrun-base-sha (dryrun)
+Creating new branch add/dockerfile-20251215154118...
+DRYRUN: POST https://api.github.com/repos/73junito/autolearnpro/git/refs (body length: 86)
+DRYRUN: Created branch add/dockerfile-20251215154118
+Reading local file backend/lms_api/Dockerfile...
+Creating blob for new content...
+DRYRUN: POST https://api.github.com/repos/73junito/autolearnpro/git/blobs (body length: 2721)
+DRYRUN: Created blob: dryrun-c3c54c9f-865e-460e-87a8-c370a74157e1
+Fetching base commit and tree...
+DRYRUN: GET https://api.github.com/repos/73junito/autolearnpro/git/commits/dryrun-base-sha
+Base tree: dryrun-tree-sha (dryrun)
+Creating new tree with updated file path backend/lms_api/Dockerfile...
+DRYRUN: POST https://api.github.com/repos/73junito/autolearnpro/git/trees (body length: 224)
+DRYRUN: Created tree: dryrun-tree-4dcae033-2886-4cbd-b552-6ad9a4af81f9
+Creating commit...
+DRYRUN: POST https://api.github.com/repos/73junito/autolearnpro/git/commits (message length: 184)
+DRYRUN: Created commit: dryrun-commit-c7b9f7ad-45a8-4aca-ae41-510eb8be6689
+Updating branch ref to new commit...
+DRYRUN: PATCH https://api.github.com/repos/73junito/autolearnpro/git/refs/heads/add/dockerfile-20251215154118 (sha: dryrun-commit-c7b9f7ad-45a8-4aca-ae41-510eb8be6689)
+DRYRUN: Branch add/dockerfile-20251215154118 updated to commit dryrun-commit-c7b9f7ad-45a8-4aca-ae41-510eb8be6689
+Creating pull request from add/dockerfile-20251215154118 into main...
+DRYRUN: POST https://api.github.com/repos/73junito/autolearnpro/pulls (title: chore: add Dockerfile for CI build)
+DRYRUN: PR created: https://github.com/73junito/autolearnpro/pull/dryrun
+Exit: Success
+Command: pwsh -NoProfile -ExecutionPolicy Bypass -File "D:\Automotive and Diesel LMS\scripts\add-lib-to-branch.ps1" -DryRun 
+ParserError: D:\Automotive and Diesel LMS\scripts\add-lib-to-branch.ps1:51:48
+Line |
+  51 |          Write-Error "Failed to create blob for $rel: $($_.Exception.M .
+     |                                                 ~~~~~
+     | Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+Exit: Success
+Command: pwsh -NoProfile -ExecutionPolicy Bypass -File "D:\Automotive and Diesel LMS\scripts\commit-file-to-branch.ps1" -DryRun 
+Reading D:/Automotive and Diesel LMS/backend/lms_api/Dockerfile...
+Creating blob for D:/Automotive and Diesel LMS/backend/lms_api/Dockerfile...
+Blob created: 1e8765f398ac048f8e6a030f7aa75bfefa47ea2b
+Fetching target branch ref k8s/env-from-health...
+Target branch sha: 2022b1e14bb318ab9f32406ee57d6a8760806ec0
+Fetching base commit and tree...
+Base tree: 474881e9f92956365f3f528acfac6f31492a331a
+Creating new tree with updated file...
+Created tree: 474881e9f92956365f3f528acfac6f31492a331a
+Creating commit on branch k8s/env-from-health...
+Created commit: 5e323d345042552206dc806c1fc8e78c17feee8d
+Updating branch ref to new commit...
+
+[32;1mref                           [0m[32;1m node_id                                                [0m[32;1m url                                                                                  [0m[32;1m object[0m
+[32;1m---                           [0m [32;1m-------                                                [0m [32;1m---                                                                                  [0m [32;1m------[0m
+refs/heads/k8s/env-from-health REF_kwDOQorprb5yZWZzL2hlYWRzL2s4cy9lbnYtZnJvbS1oZWFsdGg https://api.github.com/repos/73junito/autolearnpro/git/refs/heads/k8s/env-from-health @{sha.
+Branch k8s/env-from-health updated to commit 5e323d345042552206dc806c1fc8e78c17feee8d
+Done - file committed to k8s/env-from-health.
+
+Exit: Success
+Command: pwsh -NoProfile -ExecutionPolicy Bypass -File "D:\Automotive and Diesel LMS\scripts\dispatch-pr.ps1" -DryRun 
+Dispatching workflow publish-image.yml on branch add/dockerfile-20251215135348...
+
+Dispatch requested.
+Exit: Success
+Command: pwsh -NoProfile -ExecutionPolicy Bypass -File "D:\Automotive and Diesel LMS\scripts\monitor-pr-workflow.ps1" -DryRun 
+Fetching PR #14 info...
+PR branch: add/dockerfile-20251215135348
+Waiting for a workflow run for workflow 'publish-image.yml' on branch 'add/dockerfile-20251215135348'...
+Found run id 20248392833: https://github.com/73junito/autolearnpro/actions/runs/20248392833
+Run status: in_progress - conclusion: 
+Run status: in_progress - conclusion: 
+Run status: completed - conclusion: failure
+Workflow finished with conclusion: failure; downloading logs...
+Downloaded and extracted logs to D:\Automotive and Diesel LMS\actions-20248392833-logs
+Exit: Success
