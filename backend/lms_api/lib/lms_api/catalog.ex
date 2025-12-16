@@ -372,4 +372,31 @@ defmodule LmsApi.Catalog do
       {:ok, new_module}
     end
   end
+
+  @doc """
+  Gets the course_id for a given lesson_id.
+
+  Returns `{:ok, course_id}` if the lesson exists and has a valid course module.
+  Returns `{:error, :lesson_not_found}` if the lesson doesn't exist or has no associated module.
+
+  ## Examples
+
+      iex> get_course_id_for_lesson(123)
+      {:ok, 1}
+
+      iex> get_course_id_for_lesson(999)
+      {:error, :lesson_not_found}
+
+  """
+  def get_course_id_for_lesson(lesson_id) do
+    query = from l in ModuleLesson,
+      where: l.id == ^lesson_id,
+      join: m in assoc(l, :course_module),
+      select: m.course_id
+    
+    case Repo.one(query) do
+      nil -> {:error, :lesson_not_found}
+      course_id -> {:ok, course_id}
+    end
+  end
 end
