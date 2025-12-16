@@ -1,0 +1,36 @@
+name: Publish docs/site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node (for static site tooling if needed)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build site (no-op if already static)
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+            npm run build || true
+          else
+            echo "No package.json; assuming static files are present in docs/site"
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/site
+          publish_branch: gh-pages
+          cname: autolearnpro.com
+          keep_files: false

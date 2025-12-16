@@ -15,19 +15,17 @@ read -r -d '' PAYLOAD <<'JSON'
 {
   "required_status_checks": {
     "strict": true,
-    "contexts": ["Elixir CI", "Redaction Unit Tests", "Trivy Image Scan"]n  },
+    "contexts": ["Elixir CI", "Redaction Unit Tests", "Trivy Image Scan"]
+  },
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "dismiss_stale_reviews": true,
-    "require_code_owner_reviews": false,
+    "require_code_owner_reviews": true,
     "required_approving_review_count": 1
   },
   "restrictions": null
 }
 JSON
-
-# The PAYLOAD above contains a small intentional placeholder newline; fix it
-PAYLOAD=$(echo "$PAYLOAD" | sed 's/\n  },/  },/')
 
 curl -sS -X PUT "$API" \
   -H "Accept: application/vnd.github+json" \

@@ -1,0 +1,53 @@
+name: Deploy (OIDC example)
+
+# Example workflow showing how to deploy to Kubernetes using GitHub Actions OIDC
+# This is an example for GKE (Google Kubernetes Engine) using Workload Identity Federation.
+# Adjust provider and actions for your cloud (EKS/AKS) as needed.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-oidc:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud using Workload Identity
+        uses: google-github-actions/auth@v1
+        with:
+          # Replace these placeholders with your workload identity provider and service account
+          workload_identity_provider: 'projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL/providers/PROVIDER'
+          service_account: 'svc-account@PROJECT_ID.iam.gserviceaccount.com'
+
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v1
+        with:
+          cluster_name: 'YOUR_GKE_CLUSTER_NAME'
+          location: 'YOUR_CLUSTER_ZONE_OR_REGION'
+
+      - name: Deploy image (immutable tag)
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:${IMAGE_TAG}
+          echo "Updating deployment lms-api to image $IMAGE in namespace autolearnpro"
+          kubectl -n autolearnpro set image deployment/lms-api lms-api=$IMAGE
+          kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
+
+      - name: Optional post-deploy smoke test
+        run: |
+          SMOKE_MANIFEST="k8s/autolearnpro/09-smoke-test-idempotent.yaml"
+          if [ -f "$SMOKE_MANIFEST" ]; then
+            kubectl -n autolearnpro delete job smoke-test-idempotent --ignore-not-found
+            kubectl -n autolearnpro apply -f "$SMOKE_MANIFEST"
+            kubectl -n autolearnpro wait --for=condition=complete job/smoke-test-idempotent --timeout=300s || echo "Smoke job did not complete within timeout"
+            kubectl -n autolearnpro logs -l job-name=smoke-test-idempotent --tail=200 || true
+          else
+            echo "No smoke manifest found; skipping"
+          fi

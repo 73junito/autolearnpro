@@ -197,10 +197,9 @@ defmodule LmsApi.Media do
       # Create unique filename
       extension = Path.extname(upload.filename)
       unique_name = "#{Ecto.UUID.generate()}#{extension}"
-      file_path = Path.join([@upload_dir, unique_name])
-
-      # Ensure upload directory exists
-      File.mkdir_p!(@upload_dir)
+      upload_dir = System.get_env("UPLOAD_DIR") || @upload_dir
+      File.mkdir_p!(upload_dir)
+      file_path = Path.join([upload_dir, unique_name])
 
       # Copy file to destination
       case File.cp(upload.path, file_path) do
@@ -223,4 +222,4 @@ defmodule LmsApi.Media do
     extension = Path.extname(filename) |> String.downcase()
     extension in @allowed_extensions
   end
-end
+endend
