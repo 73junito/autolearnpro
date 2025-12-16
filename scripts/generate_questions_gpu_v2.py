@@ -21,6 +21,10 @@ from pathlib import Path
 from time import time, sleep
 import re
 
+# Direct DB globals (defined at module scope so DB helpers can reference them)
+DIRECT_DB = False
+_psycopg2 = None
+
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
@@ -539,7 +543,7 @@ def _parse_json_from_response(response: str):
             end = response.rindex("]") + 1
             json_str = response[start:end]
             parsed = json.loads(json_str)
-            return parsed if isinstance(parsed, list) else [parsed]
+            return parsed if isinstance(parsed, list) : [parsed]
         elif "{" in response:
             start = response.index("{")
             end = response.rindex("}") + 1
