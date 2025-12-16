@@ -22,6 +22,7 @@ import json
 import os
 import re
 import sys
+import subprocess
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -94,6 +95,42 @@ def read_input(path: Optional[str]) -> List[Dict[str, str]]:
     return items
 
 
+def fetch_from_db(sql: str, pg_pod: Optional[str], namespace: str = "autolearnpro") -> List[Dict[str, str]]:
+    """Run SQL via kubectl exec into postgres pod and parse tab-separated output (id\ttitle)."""
+    if not pg_pod:
+        # discover pod
+        try:
+            r = subprocess.run(
+                ["kubectl", "get", "pod", "-n", namespace, "-l", "app=postgres", "-o", "jsonpath={.items[0].metadata.name}"],
+                capture_output=True, text=True, timeout=10
+            )
+            pg_pod = r.stdout.strip()
+        except Exception as e:
+            raise RuntimeError(f"Failed to find postgres pod: {e}")
+
+    cmd = [
+        "kubectl", "exec", "-n", namespace, pg_pod, "--",
+        "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-A", "-F", "\t", "-c", sql
+    ]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        if r.returncode != 0:
+            raise RuntimeError(f"psql error: {r.stderr.strip()}")
+        out = r.stdout.strip()
+        items: List[Dict[str, str]] = []
+        if not out:
+            return items
+        for i, line in enumerate(out.splitlines(), 1):
+            parts = line.split("\t")
+            if len(parts) >= 2:
+                items.append({"id": parts[0], "title": parts[1]})
+            else:
+                items.append({"id": str(i), "title": parts[0]})
+        return items
+    except Exception as e:
+        raise RuntimeError(f"Failed to fetch from DB: {e}")
+
+
 def build_prompt(title: str, size: int) -> str:
     # Prompt tailored to Flux_AI image model; adjust as needed for your model
     prompt = (
@@ -146,6 +183,9 @@ def main(argv: List[str] = None):
     parser.add_argument("--outdir", default="thumbnails", help="Output directory")
     parser.add_argument("--size", type=int, default=512, help="Square size in pixels")
     parser.add_argument("--limit", type=int, default=0, help="Limit number of thumbnails (0 = all)")
+    parser.add_argument("--db", action="store_true", help="Fetch titles from Postgres in cluster (requires kubectl access)")
+    parser.add_argument("--pg-pod", required=False, help="Postgres pod name (optional, auto-discovered)")
+    parser.add_argument("--namespace", default="autolearnpro", help="K8s namespace for postgres (default autolearnpro)")
     args = parser.parse_args(argv)
 
     # Resolve model: CLI -> env -> known local manifest -> error
@@ -161,8 +201,13 @@ def main(argv: List[str] = None):
         print("Example: --model 'registry.ollama.ai/Flux_AI/Flux_AI:latest'")
         return 2
 
+    items = []
     try:
-        items = read_input(args.input)
+        if args.db:
+            sql = "SELECT id, title FROM courses WHERE title IS NOT NULL;"
+            items = fetch_from_db(sql, args.pg_pod, args.namespace)
+        else:
+            items = read_input(args.input)
     except Exception as e:
         print(f"Failed to read input: {e}")
         return 2
