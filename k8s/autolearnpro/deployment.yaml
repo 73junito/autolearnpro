@@ -31,6 +31,8 @@ spec:
               value: "4000"
             - name: UPLOAD_DIR
               value: "/app/uploads"
+            - name: TRUST_CF
+              value: "false"
           resources:
             requests:
               cpu: "100m"
