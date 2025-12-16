@@ -1,0 +1,67 @@
+name: Nightly image build & security scan
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # daily at 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build backend image (no push)
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend/lms_api
+          file: Dockerfile
+          platforms: linux/amd64
+          push: false
+          tags: |
+            lms-api:nightly-${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@v0.22.0
+        with:
+          image-ref: lms-api:nightly-${{ github.sha }}
+          format: json
+          output: trivy-nightly-${{ github.sha }}.json
+          severity: CRITICAL,HIGH,MEDIUM
+          exit-code: '0' # do not fail scheduled run, just report
+
+      - name: Upload Trivy report
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-nightly-report-${{ github.sha }}
+          path: trivy-nightly-${{ github.sha }}.json
+
+      - name: Run Docker Scout quickview (optional)
+        run: |
+          if command -v docker-scout >/dev/null 2>&1; then
+            docker scout quickview lms-api:nightly-${{ github.sha }} > docker-scout-nightly-${{ github.sha }}.txt || true
+            ls -la docker-scout-nightly-*.txt || true
+          else
+            echo 'docker scout not available on runner; skipping quickview'
+          fi
+
+      - name: Upload Docker Scout report (if created)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-scout-nightly-${{ github.sha }}
+          path: docker-scout-nightly-${{ github.sha }}.txt
+          if-no-files-found: ignore
