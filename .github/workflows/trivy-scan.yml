@@ -30,9 +30,22 @@ jobs:
           severity: CRITICAL,HIGH
           exit-code: '1'
 
-      - name: Upload Trivy JSON report
+      - name: Encrypt Trivy report (optional)
+        if: secrets.ARTIFACT_ENCRYPTION_KEY != ''
+        env:
+          ARTIFACT_KEY: ${{ secrets.ARTIFACT_ENCRYPTION_KEY }}
+        run: |
+          set -euo pipefail
+          # Use AES-256-CBC with passphrase from secret to encrypt report
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in trivy-report.json -out trivy-report.json.enc -pass pass:"$ARTIFACT_KEY"
+          # remove plaintext
+          rm -f trivy-report.json
+
+      - name: Upload Trivy JSON report (encrypted if key present)
         uses: actions/upload-artifact@v4
         with:
           name: trivy-report
-          path: trivy-report.json
+          path: |
+            trivy-report.json.enc
+            trivy-report.json
           retention-days: 7
