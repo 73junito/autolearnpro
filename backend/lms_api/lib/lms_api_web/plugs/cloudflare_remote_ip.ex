@@ -12,24 +12,32 @@ defmodule LmsApiWeb.Plugs.CloudflareRemoteIp do
   def init(opts), do: opts
 
   def call(%Plug.Conn{} = conn, _opts) do
-    headers = conn.req_headers |> Enum.into(%{})
+    # Only trust Cloudflare headers when explicitly enabled via env var.
+    case System.get_env("TRUST_CF") do
+      v when v in ["1", "true", "TRUE", "True"] ->
+        headers = conn.req_headers |> Enum.into(%{})
 
-    ip_str =
-      case Map.get(headers, "cf-connecting-ip") do
-        nil ->
-          case Map.get(headers, "x-forwarded-for") do
-            nil -> nil
-            v -> String.split(v, ",") |> List.first() |> String.trim()
+        ip_str =
+          case Map.get(headers, "cf-connecting-ip") do
+            nil ->
+              case Map.get(headers, "x-forwarded-for") do
+                nil -> nil
+                vv -> String.split(vv, ",") |> List.first() |> String.trim()
+              end
+            v -> String.trim(v)
           end
-        v -> String.trim(v)
-      end
 
-    cond do
-      is_binary(ip_str) and ip_tuple(ip_str) ->
-        {:ok, tuple} = ip_tuple(ip_str)
-        %{conn | remote_ip: tuple}
+        cond do
+          is_binary(ip_str) and ip_tuple(ip_str) ->
+            {:ok, tuple} = ip_tuple(ip_str)
+            %{conn | remote_ip: tuple}
 
-      true -> conn
+          true -> conn
+        end
+
+      _ ->
+        # Not enabled; do nothing
+        conn
     end
   end
 
