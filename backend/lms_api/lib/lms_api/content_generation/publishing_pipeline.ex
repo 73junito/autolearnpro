@@ -360,4 +360,11 @@ defmodule LmsApi.ContentGeneration.PublishingPipeline do
     # Send failure notifications
     LmsApi.Notifications.notify_publication_failure(pipeline_id, error)
   end
+
+  @doc "Sanitize draft map's content_data using Redactor. Returns updated draft map." 
+  def sanitize_draft_data(%{content_data: content_data} = draft) do
+    Map.put(draft, :content_data, LmsApi.Redactor.sanitize(content_data || %{}))
+  end
+
+  def sanitize_draft_data(draft), do: draft
 end
