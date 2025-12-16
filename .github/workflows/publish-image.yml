@@ -97,7 +97,7 @@ jobs:
       - name: Post-deploy smoke test (if manifest exists)
         env:
           KUBECONFIG: ${{ github.workspace }}/kubeconfig
-        run: |
+        run: |-
           SMOKE_MANIFEST="k8s/autolearnpro/09-smoke-test-idempotent.yaml"
           if [ -f "$SMOKE_MANIFEST" ]; then
             echo "Running smoke test job from $SMOKE_MANIFEST"
@@ -107,4 +107,17 @@ jobs:
             kubectl -n autolearnpro logs -l job-name=smoke-test-idempotent --tail=200 || true
           else
             echo "No smoke manifest found at $SMOKE_MANIFEST; skipping smoke test"
+          fi
+
+      - name: Cluster service connectivity tests
+        if: always()
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+        run: |-
+          if [ -f "${{ github.workspace }}/kubeconfig" ]; then
+            echo "Running cluster service connectivity tests"
+            chmod +x scripts/test-services.sh || true
+            ./scripts/test-services.sh autolearnpro || echo "Service tests failed (see logs)"
+          else
+            echo "Kubeconfig not available; skipping cluster service connectivity tests"
           fi
