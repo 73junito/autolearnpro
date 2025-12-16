@@ -15,6 +15,7 @@ import signal
 from datetime import datetime
 from pathlib import Path
 from time import time
+import re
 
 # ============================================================================
 # CONFIGURATION
@@ -212,32 +213,59 @@ def generate_with_ollama(prompt):
         
         response = result.stdout.strip()
         
-        # Extract JSON (handle both array and object)
-        if '{' in response:
-            # Find JSON boundaries
-            if '[' in response and response.index('[') < response.index('{'):
-                # Array format
-                json_start = response.index('[')
-                json_end = response.rindex(']') + 1
-            else:
-                # Object format - wrap in array
-                json_start = response.index('{')
-                json_end = response.rindex('}') + 1
-            
-            json_str = response[json_start:json_end]
-            
+        # Try to extract a balanced JSON array/object from the response robustly
+        def _extract_balanced(text: str, open_ch: str = '[', close_ch: str = ']') -> str:
+            start = None
+            depth = 0
+            for i, ch in enumerate(text):
+                if ch == open_ch:
+                    if start is None:
+                        start = i
+                    depth += 1
+                elif ch == close_ch and start is not None:
+                    depth -= 1
+                    if depth == 0:
+                        return text[start:i+1]
+            return ''
+        
+        json_str = ''
+        # Prefer array extraction
+        if '[' in response:
+            json_str = _extract_balanced(response, '[', ']')
+        # Fallback to object
+        if not json_str and '{' in response:
+            json_str = _extract_balanced(response, '{', '}')
+        
+        if not json_str:
+            log("No JSON found in response", "WARN")
+            return None
+        
+        # Try parsing, with small sanitization fallbacks
+        try:
+            parsed = json.loads(json_str)
+            questions = parsed if isinstance(parsed, list) else [parsed]
+            return questions
+        except json.JSONDecodeError as e:
+            # Attempt gentle fixes: remove control chars, replace trailing commas
+            cleaned = json_str
+            # remove common non-printables
+            cleaned = re.sub(r"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "", cleaned)
+            # remove trailing commas before } or ]
+            cleaned = re.sub(r",\s*(\}|\])", r"\1", cleaned)
+            # replace single quotes with double quotes when safe (heuristic)
+            if "'" in cleaned and '"' not in cleaned:
+                cleaned = cleaned.replace("'", '"')
+        
             try:
-                parsed = json.loads(json_str)
-                # Ensure it's a list
+                parsed = json.loads(cleaned)
                 questions = parsed if isinstance(parsed, list) else [parsed]
+                log("Parsed JSON after sanitization", "WARN")
                 return questions
-            except json.JSONDecodeError as e:
-                log(f"JSON parse error: {e}", "ERROR")
+            except Exception as e2:
+                log(f"JSON parse error: {e} ; sanitization failed: {e2}", "ERROR")
+                # dump raw response for debugging
+                log(f"Raw response (truncated 2000 chars): {response[:2000]}", "ERROR")
                 return None
-        
-        log("No JSON found in response", "WARN")
-        return None
-        
     except subprocess.TimeoutExpired:
         log("[WARN] Ollama timeout (120s) - skipping batch", "WARN")
         return None
