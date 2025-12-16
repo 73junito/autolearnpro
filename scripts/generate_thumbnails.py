@@ -240,6 +240,7 @@ def main(argv: List[str] = None):
     parser.add_argument("--db", action="store_true", help="Fetch titles from Postgres in cluster (requires kubectl access)")
     parser.add_argument("--pg-pod", required=False, help="Postgres pod name (optional, auto-discovered)")
     parser.add_argument("--namespace", default="autolearnpro", help="K8s namespace for postgres (default autolearnpro)")
+    parser.add_argument("--force-cli", action="store_true", help="Force using ollama CLI instead of REST API")
     args = parser.parse_args(argv)
 
     # Resolve model: CLI -> env -> known local manifest -> error
@@ -282,7 +283,14 @@ def main(argv: List[str] = None):
         outpath = outdir / outname
         prompt = build_prompt(title, args.size)
         print(f"Generating thumbnail for: {title} -> {outpath}")
-        b64 = generate_image_base64(model, prompt)
+        if args.force_cli:
+            print("[INFO] Using ollama CLI (forced)")
+            b64 = _generate_image_cli(model, prompt)
+        else:
+            b64 = generate_image_base64(model, prompt)
+            if not b64:
+                print("[WARN] REST API returned no image; attempting ollama CLI fallback")
+                b64 = _generate_image_cli(model, prompt)
         if not b64:
             print(f"Failed to generate image for: {title}")
             continue
