@@ -449,7 +449,7 @@ def calculate_batches():
 
     return batches
 
-def check_gpu_status():
+def check_gpu_status() -> bool:
     try:
         # Prefer explicit detection first (supports Windows paths and env overrides)
         gpu_available = detect_gpu_available()
@@ -463,14 +463,15 @@ def check_gpu_status():
         )
         # Ollama may report GPU in its output; combine both signals
         ollama_sees_gpu = "GPU" in result.stdout
-        use_gpu = gpu_available or ollama_sees_gpu
+        use_gpu = bool(gpu_available or ollama_sees_gpu)
         if use_gpu:
             print("[OK] GPU acceleration ENABLED (detected)")
         else:
             print("[WARN] Running on CPU (GPU not detected)")
+        return use_gpu
     except Exception:
         print("[WARN] Could not check GPU status; defaulting to CPU")
-        use_gpu = False
+        return False
 
 def _run_batches(batches, pg_pod):
     run_generated = 0
@@ -534,7 +535,7 @@ def main():
     print("=" * 70)
 
     # Check GPU
-    check_gpu_status()
+    use_gpu = check_gpu_status()
 
     # Database
     pg_pod = get_postgres_pod()
