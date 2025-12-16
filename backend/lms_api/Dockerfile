@@ -37,10 +37,9 @@ FROM debian:stable-slim AS runtime
 # Pin the runtime base and install only the packages required at runtime.
 # Keep only the minimal C libs the release needs; avoid adding `curl`
 # to reduce transitive packages (libcurl/libldap) pulled into the image.
-# Include `tar` explicitly so the package is upgraded to the distro's latest fixed version.
+# Do not install `tar` in the runtime image to avoid the reported CVE when tar is not required at runtime.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-    tar \
     openssl \
     ca-certificates \
     libncurses6 \
