@@ -2,6 +2,7 @@ defmodule LmsApiWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :lms_api
 
   plug Plug.RequestId
+  plug LmsApiWeb.Plugs.RedactionPlug
   plug Plug.Logger
 
   plug Plug.Parsers,
