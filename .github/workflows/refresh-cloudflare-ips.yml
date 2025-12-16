@@ -1,0 +1,42 @@
+name: Refresh Cloudflare IPs (daily)
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # daily at 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  refresh-cloudflare-ips:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure kubectl is available
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Decode kubeconfig
+        env:
+          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
+        run: |
+          if [ -z "$KUBECONFIG_DATA" ]; then
+            echo "KUBECONFIG_DATA secret not set; skipping Cloudflare IP refresh"; exit 0
+          fi
+          echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig
+          export KUBECONFIG=$PWD/kubeconfig
+          chmod +x ./scripts/fetch-and-patch-cloudflare-ips.sh
+          ./scripts/fetch-and-patch-cloudflare-ips.sh ingress-nginx nginx-configuration
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-refresh-logs-${{ github.run_id }}
+          path: |
+            /tmp/nginx-cm-patch.yaml
+          if-no-files-found: ignore
