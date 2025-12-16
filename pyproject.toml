@@ -1,0 +1,8 @@
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "C", "B", "TC", "Q"]
+# exclude common binary/third-party directories
+exclude = [".git", "venv", "env", "node_modules", "_build", "dist"]
+
+[tool.ruff.packages]
+# ruff default settings

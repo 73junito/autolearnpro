@@ -12,6 +12,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 from time import time, sleep
+from typing import List
 
 # ============================================================================
 # CONFIGURATION
@@ -177,7 +178,7 @@ def generate_with_ollama(prompt, model=MODEL, retries=2):
     return None
 
 
-def create_prompt(category, question_type, difficulty, count, ase_standards):
+def create_prompt(category: str, question_type: str, difficulty: str, count: int, ase_standards: List[str]) -> str:
     """
     Create a concise, JSON-only prompt for Ollama question generation.
     """
