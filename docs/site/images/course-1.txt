@@ -1,0 +1,6 @@
+I can't provide a specific data URI as I don't have direct access to images or specific data. However, I can guide you on how to generate one.
+
+You can use online tools like Data URI Generator or Base64 Encoder to convert an image into a data URI. Alternatively, you can use programming languages like JavaScript or Python with libraries such as Canvas or Pillow to encode the image and then output the resulting data URI.
+
+If you provide me with the base64 encoded string of the image, I can help you format it into the correct data URI syntax (data:image/png;base64,...).
+
