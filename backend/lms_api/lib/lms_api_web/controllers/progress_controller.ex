@@ -3,6 +3,8 @@ defmodule LmsApiWeb.ProgressController do
 
   alias LmsApi.Progress
   alias LmsApi.Enrollments
+  alias LmsApi.Catalog
+  alias LmsApi.Repo
 
   action_fallback LmsApiWeb.FallbackController
 
@@ -103,9 +105,18 @@ defmodule LmsApiWeb.ProgressController do
   end
 
   defp get_course_id_for_lesson(lesson_id) do
-    # This would need to be implemented based on your lesson structure
-    # For now, return a mock course_id
-    {:ok, 1}
+    # Lookup the lesson and get its course_id through the module relationship
+    import Ecto.Query
+    
+    query = from l in LmsApi.Catalog.ModuleLesson,
+      where: l.id == ^lesson_id,
+      join: m in assoc(l, :course_module),
+      select: m.course_id
+    
+    case Repo.one(query) do
+      nil -> {:error, :lesson_not_found}
+      course_id -> {:ok, course_id}
+    end
   end
 
   defp update_course_progress(user_id, lesson_id) do
