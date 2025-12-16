@@ -442,6 +442,42 @@ def _sanitize_and_parse(json_str: str, response: str):
         cleaned = re.sub(r",\s*(\}|\])", r"\1", cleaned)
         if "'" in cleaned and '"' not in cleaned:
             cleaned = cleaned.replace("'", '"')
+        # Attempt targeted repairs for common model output issues
+        # 1) Fix sequences like: ["A"] Text, ["B"] Text, ...
+        def _repair_options(text: str) -> str:
+            # Find a question_data/options block and try to repair labeled options
+            # This looks for patterns like: ["A"] Text, ["B"] Text, ...
+            pattern = re.compile(r"\[\s*\"?A\"?\s*\]\s*[^\[\{\}\]]+\[\s*\"?B\"?", re.IGNORECASE)
+            if not pattern.search(text):
+                return text
+
+            # Try to extract the region between 'options' and the next key (often 'correct')
+            m = re.search(r'\"options\"\s*:\s*\[.*?\](.*?)((,\s*\"correct\"\s*:)|\})', text, flags=re.S)
+            if not m:
+                return text
+
+            region = m.group(0)
+            # Extract all labeled segments like ["A"] some text
+            items = re.findall(r'\[\s*\"?([A-Za-z0-9])\"?\s*\]\s*([^\[\]\{\},]+)', region)
+            if not items:
+                return text
+
+            # Build a JSON array of option texts
+            opts = []
+            for label, opt_text in items:
+                o = opt_text.strip().rstrip(',')
+                # Remove stray quotes
+                o = o.strip()
+                # Ensure inner quotes are escaped
+                o = o.replace('"', '\\"')
+                opts.append(o)
+
+            new_opts = '"options": [' + ', '.join(f'"{o}"' for o in opts) + '],'
+            # Replace the region's options and any trailing malformed text up to '"correct"' or closing brace
+            repaired = re.sub(r'\"options\"\s*:\s*\[.*?\](.*?)(,\s*\"correct\"\s*:|\})', lambda mm: new_opts + (mm.group(2) if mm.group(2) else ''), text, flags=re.S)
+            return repaired
+
+        cleaned = _repair_options(cleaned)
         try:
             parsed = json.loads(cleaned)
             log("Parsed JSON after sanitization", "WARN")
@@ -543,7 +579,7 @@ def _parse_json_from_response(response: str):
             end = response.rindex("]") + 1
             json_str = response[start:end]
             parsed = json.loads(json_str)
-            return parsed if isinstance(parsed, list) : [parsed]
+            return parsed if isinstance(parsed, list) else [parsed]
         elif "{" in response:
             start = response.index("{")
             end = response.rindex("}") + 1
