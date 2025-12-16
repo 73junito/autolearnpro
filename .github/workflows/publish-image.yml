@@ -65,6 +65,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/')
     permissions:
       contents: read
+      id-token: write  # Required for OIDC authentication
 
     steps:
       - name: Checkout
@@ -74,6 +75,11 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: 'latest'
+
+      # ============================================================
+      # Cloud OIDC Authentication (GKE / EKS / AKS)
+      # See docs/CI_OIDC_SETUP.md for detailed setup instructions
+      # ============================================================
 
       - name: Authenticate to GKE via Workload Identity (optional)
         if: secrets.GKE_WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GKE_SERVICE_ACCOUNT != ''
@@ -89,8 +95,42 @@ jobs:
           cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
           location: ${{ secrets.GKE_CLUSTER_LOCATION }}
 
-      - name: Decode kubeconfig
-        if: secrets.GKE_WORKLOAD_IDENTITY_PROVIDER == '' || secrets.GKE_SERVICE_ACCOUNT == ''
+      - name: Authenticate to AWS via OIDC (optional, for EKS)
+        if: secrets.AWS_ROLE_TO_ASSUME != '' && secrets.EKS_CLUSTER_NAME != ''
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: github-actions-deploy
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Update kubeconfig for EKS (if AWS OIDC used)
+        if: secrets.AWS_ROLE_TO_ASSUME != '' && secrets.EKS_CLUSTER_NAME != ''
+        run: |
+          aws eks update-kubeconfig \
+            --name ${{ secrets.EKS_CLUSTER_NAME }} \
+            --region ${{ secrets.AWS_REGION || 'us-east-1' }} \
+            --kubeconfig ${{ github.workspace }}/kubeconfig
+
+      - name: Authenticate to Azure via OIDC (optional, for AKS)
+        if: secrets.AZURE_CLIENT_ID != '' && secrets.AZURE_TENANT_ID != '' && secrets.AZURE_SUBSCRIPTION_ID != ''
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set AKS context (if Azure OIDC used)
+        if: secrets.AZURE_CLIENT_ID != '' && secrets.AZURE_TENANT_ID != '' && secrets.AZURE_SUBSCRIPTION_ID != ''
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+          cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+
+      - name: Decode kubeconfig (fallback if no cloud OIDC configured)
+        if: |
+          (secrets.GKE_WORKLOAD_IDENTITY_PROVIDER == '' || secrets.GKE_SERVICE_ACCOUNT == '') &&
+          (secrets.AWS_ROLE_TO_ASSUME == '' || secrets.EKS_CLUSTER_NAME == '') &&
+          (secrets.AZURE_CLIENT_ID == '' || secrets.AZURE_TENANT_ID == '')
         env:
           KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
         run: |
