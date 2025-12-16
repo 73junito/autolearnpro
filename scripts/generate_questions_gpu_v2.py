@@ -80,9 +80,17 @@ def load_progress():
     if PROGRESS_FILE.exists():
         try:
             with open(PROGRESS_FILE, "r") as f:
-                return json.load(f)
-        except:
-            pass
+                data = json.load(f)
+                # Defensive: ensure required keys exist
+                if not isinstance(data, dict):
+                    data = {}
+                if "total_generated" not in data:
+                    data["total_generated"] = 0
+                if "last_updated" not in data:
+                    data["last_updated"] = None
+                return data
+        except Exception as e:
+            log(f"Failed to load progress file: {e}", "WARN")
     return {"total_generated": 0, "last_updated": None}
 
 def save_progress(progress):
@@ -334,7 +342,10 @@ def main():
     
     # Progress
     progress = load_progress()
-    total_generated = progress["total_generated"]
+    # Support legacy progress files that may use 'total' key
+    total_generated = progress.get("total_generated", progress.get("total", 0))
+    # Ensure progress dict uses canonical key for future runs
+    progress["total_generated"] = total_generated
     print(f"Resuming: {total_generated}/{TOTAL_TARGET} completed\n")
     
     # Generate batches
