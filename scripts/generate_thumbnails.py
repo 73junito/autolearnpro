@@ -23,10 +23,10 @@ import os
 import re
 import sys
 import subprocess
+import urllib.request
+import urllib.error
 from pathlib import Path
 from typing import List, Dict, Optional
-
-import urllib.request
 
 
 API_URL = "http://localhost:11434/api/generate"
@@ -137,9 +137,45 @@ def build_prompt(title: str, size: int) -> str:
         f"Create a clean, professional square thumbnail (PNG) for an online course titled '{title}'. "
         "Use bold readable title text over a simple illustrative background that hints at the topic. "
         "Avoid small details. Use a limited color palette and high contrast. "
-        f"Output the PNG image as a base64 string only — no extra text. Size: {size}x{size}."
+        f"Output the PNG image as a base64 string only. No extra text. Size: {size}x{size}."
     )
     return prompt
+
+
+def _generate_image_cli(model: str, prompt: str) -> Optional[str]:
+    """Fallback: call `ollama run <model>` via subprocess and extract base64 from stdout."""
+    try:
+        result = subprocess.run(
+            ["ollama", "run", model, "--nowordwrap"],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=120,
+        )
+        if result.returncode != 0:
+            print(f"ollama CLI failed: {result.stderr}")
+            return None
+        text = result.stdout or ""
+        m = BASE64_RE.search(text)
+        if m:
+            return m.group(1)
+        if re.fullmatch(r"[A-Za-z0-9+/=\n\r]+", text.strip()):
+            return text.strip().replace("\n", "")
+        # Try parsing JSON body if present
+        try:
+            obj = json.loads(text)
+            t = obj.get("response") or obj.get("output") or ""
+            m2 = BASE64_RE.search(t)
+            if m2:
+                return m2.group(1)
+        except Exception:
+            pass
+        return None
+    except Exception as e:
+        print(f"Error calling ollama CLI: {e}")
+        return None
 
 
 def generate_image_base64(model: str, prompt: str) -> Optional[str]:
@@ -152,7 +188,6 @@ def generate_image_base64(model: str, prompt: str) -> Optional[str]:
             # Try to parse JSON first
             try:
                 obj = json.loads(body)
-                # Common key used earlier was 'response'
                 text = obj.get("response") or obj.get("output") or ""
             except Exception:
                 text = body
@@ -165,9 +200,28 @@ def generate_image_base64(model: str, prompt: str) -> Optional[str]:
             if re.fullmatch(r"[A-Za-z0-9+/=\n\r]+", text.strip()):
                 return text.strip().replace("\n", "")
             return None
+    except urllib.error.HTTPError as e:
+        # If REST endpoint disallows POST (405) or similar, fall back to CLI
+        try:
+            body = e.read().decode("utf-8", errors="replace")
+            try:
+                obj = json.loads(body)
+                text = obj.get("response") or obj.get("output") or ""
+            except Exception:
+                text = body
+            m = BASE64_RE.search(text)
+            if m:
+                return m.group(1)
+        except Exception:
+            pass
+        if e.code == 405:
+            print("[WARN] Ollama REST API returned 405 Method Not Allowed - falling back to ollama CLI")
+            return _generate_image_cli(model, prompt)
+        print(f"HTTP error calling Ollama REST API: {e}")
+        return _generate_image_cli(model, prompt)
     except Exception as e:
-        print(f"Error calling Ollama REST API: {e}")
-        return None
+        print(f"Error calling Ollama REST API: {e}\nFalling back to ollama CLI")
+        return _generate_image_cli(model, prompt)
 
 
 def save_image_b64(b64: str, outpath: Path):
