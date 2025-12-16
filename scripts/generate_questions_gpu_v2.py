@@ -170,6 +170,9 @@ def get_postgres_pod():
             return pod
     except Exception as _:
         pass
+    # If direct DB mode is enabled, do not require a pod
+    if DIRECT_DB and _psycopg2:
+        return None
     log("Failed to find postgres pod", "ERROR")
     sys.exit(1)
 
@@ -177,58 +180,30 @@ def get_or_create_bank(category, difficulty, pg_pod):
     """Get or create question bank"""
     name = f"{category.upper()} - {difficulty.upper()}"
 
-    # Check existing
+    # Check existing (direct DB mode uses psycopg2)
     check_sql = f"SELECT id FROM question_banks WHERE name = '{name}' LIMIT 1;"
-    try:
-        result = subprocess.run(
-            [
-                "kubectl",
-                "exec",
-                "-n",
-                "autolearnpro",
-                pg_pod,
-                "--",
-                "psql",
-                "-U",
-                "postgres",
-                "-d",
-                "lms_api_prod",
-                "-t",
-                "-c",
-                check_sql,
-            ],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=30,
-        )
-
-        bank_id = result.stdout.strip()
-        if bank_id and bank_id.isdigit():
-            return int(bank_id)
-        # If psql returned something but not a digit, log for diagnosis
-        if result.stderr:
-            log(f"get_or_create_bank check stderr: {result.stderr[:2000]}", "WARN")
-        if result.stdout and not bank_id:
-            log(f"get_or_create_bank check stdout (no id): {result.stdout[:2000]}", "WARN")
-    except Exception as e:
-        log(f"get_or_create_bank check failed: {e}", "WARN")
-
-    # Create new
-    insert_sql = (
-        "INSERT INTO question_banks (name, description, category, difficulty, "
-        "inserted_at, updated_at)\n"
-        f"VALUES ('{name}', 'Questions for {category} at {difficulty} level', "
-        f"'{category}', '{difficulty}', NOW(), NOW())\n"
-        "RETURNING id;"
-    )
-
-    # Retry creation in case of transient failures
-    attempts = 3
-    for attempt in range(1, attempts + 1):
+    if DIRECT_DB and _psycopg2:
+        # Use psycopg2 direct connection
         try:
-            timeout_sec = 15 * attempt
+            conn = _psycopg2.connect(
+                host=os.getenv("PGHOST"),
+                port=os.getenv("PGPORT", "5432"),
+                user=os.getenv("PGUSER", "postgres"),
+                password=os.getenv("PGPASSWORD"),
+                dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                connect_timeout=5,
+            )
+            cur = conn.cursor()
+            cur.execute(check_sql)
+            row = cur.fetchone()
+            cur.close()
+            conn.close()
+            if row and row[0]:
+                return int(row[0])
+        except Exception as e:
+            log(f"get_or_create_bank direct DB check failed: {e}", "WARN")
+    else:
+        try:
             result = subprocess.run(
                 [
                     "kubectl",
@@ -244,29 +219,100 @@ def get_or_create_bank(category, difficulty, pg_pod):
                     "lms_api_prod",
                     "-t",
                     "-c",
-                    insert_sql,
+                    check_sql,
                 ],
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
                 errors="replace",
-                timeout=timeout_sec,
+                timeout=30,
             )
 
             bank_id = result.stdout.strip()
             if bank_id and bank_id.isdigit():
                 return int(bank_id)
-
-            log(f"get_or_create_bank create attempt {attempt} failed; returncode={result.returncode}", "WARN")
-            if result.stdout:
-                log(f"create stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
+            # If psql returned something but not a digit, log for diagnosis
             if result.stderr:
-                log(f"create stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
-
-        except subprocess.TimeoutExpired:
-            log(f"get_or_create_bank create attempt {attempt} timed out after {timeout_sec}s", "WARN")
+                log(f"get_or_create_bank check stderr: {result.stderr[:2000]}", "WARN")
+            if result.stdout and not bank_id:
+                log(f"get_or_create_bank check stdout (no id): {result.stdout[:2000]}", "WARN")
         except Exception as e:
-            log(f"get_or_create_bank create exception on attempt {attempt}: {e}", "WARN")
+            log(f"get_or_create_bank check failed: {e}", "WARN")
+
+    # Create new
+    insert_sql = (
+        "INSERT INTO question_banks (name, description, category, difficulty, "
+        "inserted_at, updated_at)\n"
+        f"VALUES ('{name}', 'Questions for {category} at {difficulty} level', "
+        f"'{category}', '{difficulty}', NOW(), NOW())\n"
+        "RETURNING id;"
+    )
+
+    # Retry creation in case of transient failures
+    attempts = 3
+    for attempt in range(1, attempts + 1):
+        if DIRECT_DB and _psycopg2:
+            try:
+                conn = _psycopg2.connect(
+                    host=os.getenv("PGHOST"),
+                    port=os.getenv("PGPORT", "5432"),
+                    user=os.getenv("PGUSER", "postgres"),
+                    password=os.getenv("PGPASSWORD"),
+                    dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                    connect_timeout=5 + attempt * 5,
+                )
+                cur = conn.cursor()
+                cur.execute(insert_sql)
+                row = cur.fetchone()
+                conn.commit()
+                cur.close()
+                conn.close()
+                if row and row[0]:
+                    return int(row[0])
+                log(f"get_or_create_bank create attempt {attempt} returned no id", "WARN")
+            except Exception as e:
+                log(f"get_or_create_bank create exception on attempt {attempt}: {e}", "WARN")
+        else:
+            try:
+                timeout_sec = 15 * attempt
+                result = subprocess.run(
+                    [
+                        "kubectl",
+                        "exec",
+                        "-n",
+                        "autolearnpro",
+                        pg_pod,
+                        "--",
+                        "psql",
+                        "-U",
+                        "postgres",
+                        "-d",
+                        "lms_api_prod",
+                        "-t",
+                        "-c",
+                        insert_sql,
+                    ],
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=timeout_sec,
+                )
+
+                bank_id = result.stdout.strip()
+                if bank_id and bank_id.isdigit():
+                    return int(bank_id)
+
+                log(f"get_or_create_bank create attempt {attempt} failed; returncode={result.returncode}", "WARN")
+                if result.stdout:
+                    log(f"create stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
+                if result.stderr:
+                    log(f"create stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
+
+            except subprocess.TimeoutExpired:
+                log(f"get_or_create_bank create attempt {attempt} timed out after {timeout_sec}s", "WARN")
+            except Exception as e:
+                log(f"get_or_create_bank create exception on attempt {attempt}: {e}", "WARN")
 
         if attempt < attempts:
             sleep(5 * attempt)
@@ -296,42 +342,61 @@ def insert_question(question, bank_id, pg_pod):
         # Retry on transient failures (timeouts, brief DB load)
         attempts = 3
         for attempt in range(1, attempts + 1):
-            try:
-                timeout_sec = 60 * attempt if attempt <= 2 else 120
-                result = subprocess.run(
-                    [
-                        "kubectl",
-                        "exec",
-                        "-n",
-                        "autolearnpro",
-                        pg_pod,
-                        "--",
-                        "psql",
-                        "-U",
-                        "postgres",
-                        "-d",
-                        "lms_api_prod",
-                        "-c",
-                        sql,
-                    ],
-                    capture_output=True,
-                    text=True,
-                    encoding="utf-8",
-                    errors="replace",
-                    timeout=timeout_sec,
-                )
-
-                if result.returncode == 0 and "INSERT 0 1" in result.stdout:
+            if DIRECT_DB and _psycopg2:
+                try:
+                    conn = _psycopg2.connect(
+                        host=os.getenv("PGHOST"),
+                        port=os.getenv("PGPORT", "5432"),
+                        user=os.getenv("PGUSER", "postgres"),
+                        password=os.getenv("PGPASSWORD"),
+                        dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                        connect_timeout=5 + attempt * 5,
+                    )
+                    cur = conn.cursor()
+                    cur.execute(sql)
+                    conn.commit()
+                    cur.close()
+                    conn.close()
                     return True
+                except Exception as e:
+                    log(f"Insert attempt {attempt} direct DB failed: {e}", "WARN")
+            else:
+                try:
+                    timeout_sec = 60 * attempt if attempt <= 2 else 120
+                    result = subprocess.run(
+                        [
+                            "kubectl",
+                            "exec",
+                            "-n",
+                            "autolearnpro",
+                            pg_pod,
+                            "--",
+                            "psql",
+                            "-U",
+                            "postgres",
+                            "-d",
+                            "lms_api_prod",
+                            "-c",
+                            sql,
+                        ],
+                        capture_output=True,
+                        text=True,
+                        encoding="utf-8",
+                        errors="replace",
+                        timeout=timeout_sec,
+                    )
 
-                log(f"Insert attempt {attempt} failed: returncode={result.returncode}", "WARN")
-                if result.stdout:
-                    log(f"psql stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
-                if result.stderr:
-                    log(f"psql stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
+                    if result.returncode == 0 and "INSERT 0 1" in result.stdout:
+                        return True
 
-            except subprocess.TimeoutExpired:
-                log(f"Insert attempt {attempt} timed out after {timeout_sec}s", "WARN")
+                    log(f"Insert attempt {attempt} failed: returncode={result.returncode}", "WARN")
+                    if result.stdout:
+                        log(f"psql stdout (attempt {attempt}): {result.stdout[:2000]}", "WARN")
+                    if result.stderr:
+                        log(f"psql stderr (attempt {attempt}): {result.stderr[:2000]}", "WARN")
+
+                except subprocess.TimeoutExpired:
+                    log(f"Insert attempt {attempt} timed out after {timeout_sec}s", "WARN")
 
             # Backoff before next attempt
             if attempt < attempts:
