@@ -261,6 +261,33 @@ Requirements:
 
 NO extra text. JSON only."""
 
+def _parse_json_from_response(response: str):
+    """Extract and parse JSON from model response text."""
+    if not response:
+        return None
+    try:
+        if '[' in response:
+            start = response.index('[')
+            end = response.rindex(']') + 1
+            json_str = response[start:end]
+            parsed = json.loads(json_str)
+            return parsed if isinstance(parsed, list) else [parsed]
+        elif '{' in response:
+            start = response.index('{')
+            end = response.rindex('}') + 1
+            json_str = response[start:end]
+            parsed = json.loads(json_str)
+            return [parsed]
+    except Exception:
+        return None
+
+def validate_question(q: dict) -> bool:
+    required = ["question_type", "question_text", "difficulty", "question_data"]
+    for r in required:
+        if r not in q:
+            return False
+    return True
+
 # ============================================================================
 # MAIN GENERATION LOOP
 # ============================================================================
