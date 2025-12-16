@@ -30,46 +30,21 @@ RUN mix compile
 RUN MIX_ENV=prod mix release --overwrite
 
 #### Runtime image
-FROM debian:12.12-slim AS runtime
+FROM debian:bookworm-slim AS runtime
 
-# Pin the runtime base and install only the packages required at runtime.
-# Keep only the minimal C libs the release needs; avoid adding `curl`
-# to reduce transitive packages (libcurl/libldap) pulled into the image.
+# Install runtime dependencies
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    openssl \
-    ca-certificates \
-    libncurses6 \
-    zlib1g \
-  && apt-get clean \
+  && apt-get install -y --no-install-recommends openssl ca-certificates libncurses6 \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copy the built release from the build stage
+# Copy the built release
 COPY --from=build /app/_build/prod/rel/lms_api .
 
-# Runtime environment tweaks
 ENV HOME=/app
 ENV MIX_ENV=prod
-# Ensure the Erlang VM uses UTF-8 native name encoding to avoid encoding warnings
-ENV ELIXIR_ERL_OPTIONS="+fnu"
-ENV LANG=C.UTF-8
 
 EXPOSE 4000
-
-# Create a non-root user to run the app and give it ownership of /app
-RUN mkdir -p /app \
-  && echo 'lms:x:1000:' >> /etc/group \
-  && echo 'lms:x:1000:1000::/app:/usr/sbin/nologin' >> /etc/passwd \
-  && chown -R 1000:1000 /app
-
-# Use a lightweight TCP healthcheck to avoid installing `curl` in the runtime image.
-# This verifies the HTTP port is listening; follow-up smoke-tests will verify endpoints.
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD bash -c 'cat < /dev/tcp/localhost/4000 >/dev/null 2>&1 || exit 1'
-
-# Run as non-root user
-USER 1000
 
 CMD ["./bin/lms_api", "start"]
