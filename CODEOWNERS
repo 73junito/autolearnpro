@@ -1,0 +1,14 @@
+# Code owners for repository
+# Require reviews from security and platform teams for infra and sensitive code
+
+# Global owners
+* @73junito
+
+# Security-sensitive code
+backend/lms_api/lib/lms_api_web/plugs/* @security-team
+backend/lms_api/lib/lms_api/redactor.ex @security-team
+backend/lms_api/lib/lms_api/ai.ex @security-team
+
+# CI and infra
+.github/workflows/* @platform-team
+scripts/* @platform-team
