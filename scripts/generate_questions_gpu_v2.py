@@ -14,7 +14,6 @@ import sys
 import signal
 from datetime import datetime
 from pathlib import Path
-from time import time
 import re
 
 # ============================================================================
@@ -62,13 +61,13 @@ def log(message, level="INFO"):
     """Thread-safe logging"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_msg = f"[{timestamp}] [{level}] {message}"
-    
+
     try:
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(log_msg + "\n")
     except:
         pass
-    
+
     colors = {"ERROR": "\033[91m", "WARN": "\033[93m", "SUCCESS": "\033[92m", "INFO": "\033[0m"}
     print(f"{colors.get(level, '')}{message}\033[0m")
 
@@ -113,7 +112,7 @@ def get_postgres_pod():
         result = subprocess.run([
             "kubectl", "get", "pod", "-n", "autolearnpro", "-l", "app=postgres",
             "-o", "jsonpath={.items[0].metadata.name}"
-        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
+        ], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10)
         pod = result.stdout.strip()
         if pod:
             return pod
@@ -125,32 +124,32 @@ def get_postgres_pod():
 def get_or_create_bank(category, difficulty, pg_pod):
     """Get or create question bank"""
     name = f"{category.upper()} - {difficulty.upper()}"
-    
+
     # Check existing
     check_sql = f"SELECT id FROM question_banks WHERE name = '{name}' LIMIT 1;"
     try:
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-c", check_sql
-        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
-        
+        ], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10)
+
         bank_id = result.stdout.strip()
         if bank_id and bank_id.isdigit():
             return int(bank_id)
     except:
         pass
-    
+
     # Create new
     insert_sql = f"""INSERT INTO question_banks (name, description, category, difficulty, inserted_at, updated_at)
 VALUES ('{name}', 'Questions for {category} at {difficulty} level', '{category}', '{difficulty}', NOW(), NOW())
 RETURNING id;"""
-    
+
     try:
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-c", insert_sql
-        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
-        
+        ], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10)
+
         bank_id = result.stdout.strip()
         return int(bank_id) if bank_id.isdigit() else None
     except:
@@ -160,12 +159,12 @@ def insert_question(question, bank_id, pg_pod):
     """Insert single question with error handling"""
     try:
         # Escape SQL
-        text = question.get('question_text', '').replace("'", "''")
-        topic = question.get('topic', '').replace("'", "''")
-        objective = question.get('learning_objective', '').replace("'", "''")
-        explanation = question.get('explanation', '').replace("'", "''")
-        data_json = json.dumps(question.get('question_data', {})).replace("'", "''")
-        
+        text = question.get("question_text", "").replace("'", "''")
+        topic = question.get("topic", "").replace("'", "''")
+        objective = question.get("learning_objective", "").replace("'", "''")
+        explanation = question.get("explanation", "").replace("'", "''")
+        data_json = json.dumps(question.get("question_data", {})).replace("'", "''")
+
         sql = f"""INSERT INTO questions (
             question_bank_id, question_type, question_text, difficulty, topic,
             learning_objective, ase_standard, question_data, explanation,
@@ -175,12 +174,12 @@ def insert_question(question, bank_id, pg_pod):
             '{topic}', '{objective}', '{question.get('ase_standard', '')}',
             '{data_json}'::jsonb, '{explanation}', true, NOW(), NOW()
         );"""
-        
+
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-c", sql
-        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=15)
-        
+        ], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+
         return result.returncode == 0
     except Exception as e:
         log(f"Insert error: {e}", "ERROR")
@@ -202,19 +201,19 @@ def generate_with_ollama(prompt):
             input=prompt,
             capture_output=True,
             text=True,
-            encoding='utf-8',
-            errors='replace',
+            encoding="utf-8",
+            errors="replace",
             timeout=120  # 2 minute hard limit
         )
-        
+
         if result.returncode != 0:
             log(f"Ollama failed: {result.stderr}", "ERROR")
             return None
-        
+
         response = result.stdout.strip()
-        
+
         # Try to extract a balanced JSON array/object from the response robustly
-        def _extract_balanced(text: str, open_ch: str = '[', close_ch: str = ']') -> str:
+        def _extract_balanced(text: str, open_ch: str = "[", close_ch: str = "]") -> str:
             start = None
             depth = 0
             for i, ch in enumerate(text):
@@ -226,20 +225,20 @@ def generate_with_ollama(prompt):
                     depth -= 1
                     if depth == 0:
                         return text[start:i+1]
-            return ''
-        
-        json_str = ''
+            return ""
+
+        json_str = ""
         # Prefer array extraction
-        if '[' in response:
-            json_str = _extract_balanced(response, '[', ']')
+        if "[" in response:
+            json_str = _extract_balanced(response, "[", "]")
         # Fallback to object
-        if not json_str and '{' in response:
-            json_str = _extract_balanced(response, '{', '}')
-        
+        if not json_str and "{" in response:
+            json_str = _extract_balanced(response, "{", "}")
+
         if not json_str:
             log("No JSON found in response", "WARN")
             return None
-        
+
         # Try parsing, with small sanitization fallbacks
         try:
             parsed = json.loads(json_str)
@@ -255,7 +254,7 @@ def generate_with_ollama(prompt):
             # replace single quotes with double quotes when safe (heuristic)
             if "'" in cleaned and '"' not in cleaned:
                 cleaned = cleaned.replace("'", '"')
-        
+
             try:
                 parsed = json.loads(cleaned)
                 questions = parsed if isinstance(parsed, list) else [parsed]
@@ -277,13 +276,13 @@ def generate_with_ollama(prompt):
 
 def create_prompt(category, question_type, difficulty, ase_std):
     """Create concise prompt"""
-    
+
     type_specs = {
         "multiple_choice": 'Format: {"options": ["A", "B", "C", "D"], "correct": 0}',
         "true_false": 'Format: {"correct": true}',
         "fill_blank": 'Format: {"correct_answers": ["answer1", "answer2"]}'
     }
-    
+
     return f"""Generate EXACTLY 1 {question_type.replace('_', ' ')} question.
 Category: {category.replace('_', ' ').title()}
 Difficulty: {difficulty}
@@ -304,15 +303,15 @@ def _parse_json_from_response(response: str):
     if not response:
         return None
     try:
-        if '[' in response:
-            start = response.index('[')
-            end = response.rindex(']') + 1
+        if "[" in response:
+            start = response.index("[")
+            end = response.rindex("]") + 1
             json_str = response[start:end]
             parsed = json.loads(json_str)
             return parsed if isinstance(parsed, list) else [parsed]
-        elif '{' in response:
-            start = response.index('{')
-            end = response.rindex('}') + 1
+        elif "{" in response:
+            start = response.index("{")
+            end = response.rindex("}") + 1
             json_str = response[start:end]
             parsed = json.loads(json_str)
             return [parsed]
@@ -334,7 +333,7 @@ def calculate_batches():
     """Calculate how many of each type to generate"""
     batches = []
     total_questions = QUESTIONS_PER_RUN
-    
+
     for cat, cat_pct in DISTRIBUTION["categories"].items():
         for qtype, type_pct in DISTRIBUTION["question_types"].items():
             for diff, diff_pct in DISTRIBUTION["difficulties"].items():
@@ -345,31 +344,31 @@ def calculate_batches():
                     "difficulty": diff,
                     "count": count
                 })
-    
+
     return batches
 
 def main():
     global interrupted
-    
+
     print("=" * 70)
     print("  GPU-ACCELERATED QUESTION GENERATION v2")
     print(f"  Model: {MODEL} | Hard limit: 200 tokens | Timeout: 120s")
     print("=" * 70)
-    
+
     # Check GPU
     try:
-        result = subprocess.run(["ollama", "ps"], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=5)
+        result = subprocess.run(["ollama", "ps"], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5)
         if "GPU" in result.stdout:
             print("[OK] GPU acceleration ENABLED")
         else:
             print("[WARN] Running on CPU")
     except:
         print("[WARN] Could not check GPU status")
-    
+
     # Database
     pg_pod = get_postgres_pod()
     print(f"[OK] Connected to: {pg_pod}")
-    
+
     # Progress
     progress = load_progress()
     # Support legacy progress files that may use 'total' key
@@ -377,42 +376,53 @@ def main():
     # Ensure progress dict uses canonical key for future runs
     progress["total_generated"] = total_generated
     print(f"Resuming: {total_generated}/{TOTAL_TARGET} completed\n")
-    
+
     # Generate batches
     batches = calculate_batches()
     print(f"Generation plan: {len(batches)} batches\n")
-    
+
     run_generated = 0
     run_failed = 0
-    
+
     for idx, batch in enumerate(batches, 1):
         if interrupted:
             break
-        
-        print(f"[{idx}/{len(batches)}] {batch['category']} | {batch['question_type']} | {batch['difficulty']} ({batch['count']}q)")
-        
+
+        idx_str = f"[{idx}/{len(batches)}]"
+        cat = batch['category']
+        qtype = batch['question_type']
+        diff = batch['difficulty']
+        count = batch['count']
+        print(f"{idx_str} {cat} | {qtype} | {diff} ({count}q)")
+
         # Get bank ID
-        bank_id = get_or_create_bank(batch['category'], batch['difficulty'], pg_pod)
+        bank_id = get_or_create_bank(batch["category"], batch["difficulty"], pg_pod)
         if not bank_id:
             print("  [FAIL] Failed to get question bank")
-            run_failed += batch['count']
+            run_failed += batch["count"]
             continue
-        
+
         # Generate each question individually (safer)
-        for q_num in range(batch['count']):
+        for q_num in range(batch["count"]):
             if interrupted:
                 break
-            
-            ase_std = ASE_STANDARDS[batch['category']][q_num % len(ASE_STANDARDS[batch['category']])]
-            prompt = create_prompt(batch['category'], batch['question_type'], batch['difficulty'], ase_std)
-            
+
+            standards = ASE_STANDARDS[batch["category"]]
+            ase_std = standards[q_num % len(standards)]
+            prompt = create_prompt(
+                batch["category"],
+                batch["question_type"],
+                batch["difficulty"],
+                ase_std,
+            )
+
             # Call Ollama with defensive measures
             questions = generate_with_ollama(prompt)
-            
+
             if not questions:
                 run_failed += 1
                 continue
-            
+
             # Insert
             success = insert_question(questions[0], bank_id, pg_pod)
             if success:
@@ -421,21 +431,26 @@ def main():
                 print(f"  [OK] Generated {run_generated}/{QUESTIONS_PER_RUN}")
             else:
                 run_failed += 1
-        
+
         # Save checkpoint after each batch
         progress["total_generated"] = total_generated
         save_progress(progress)
-        
+
         if run_generated >= QUESTIONS_PER_RUN:
             break
-    
+
     # Summary
     print("\n" + "=" * 70)
     print(f"Run complete: {run_generated} generated, {run_failed} failed")
-    print(f"Total progress: {total_generated}/{TOTAL_TARGET} ({100*total_generated/TOTAL_TARGET:.1f}%)")
-    print(f"Runs remaining: ~{(TOTAL_TARGET-total_generated)//QUESTIONS_PER_RUN}")
+    pct = 100 * total_generated / TOTAL_TARGET
+    print(
+        f"Total progress: {total_generated}/{TOTAL_TARGET} "
+        f"({pct:.1f}%)"
+    )
+    remaining_runs = (TOTAL_TARGET - total_generated) // QUESTIONS_PER_RUN
+    print(f"Runs remaining: ~{remaining_runs}")
     print("=" * 70)
-    
+
     if not interrupted and total_generated < TOTAL_TARGET:
         print("\n[TIP] Run again to continue:")
         print("   python scripts/generate_questions_gpu_v2.py")
