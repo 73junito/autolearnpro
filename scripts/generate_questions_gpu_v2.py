@@ -663,15 +663,16 @@ def main():
     parser.add_argument("--direct-db", action="store_true", help="Use direct Postgres connection (requires PGHOST/PGPASSWORD)")
     args, _unknown = parser.parse_known_args()
 
-    if args.direct_db:
+    # Determine direct DB mode: flag or env
+    if args.direct_db or os.getenv("DIRECT_DB") or os.getenv("PGHOST"):
         DIRECT_DB = True
-        # Attempt to load psycopg2 if not already
-        if _psycopg2 is None:
-            try:
-                import psycopg2 as _tmp  # type: ignore
-                _psycopg2 = _tmp
-            except Exception:
-                log("Direct DB requested but psycopg2 not available; will fall back to kubectl exec.", "WARN")
+        # psycopg2 is required in direct DB mode
+        try:
+            import psycopg2 as _tmp  # type: ignore
+            _psycopg2 = _tmp
+        except Exception:
+            print("Error: direct DB mode requested but 'psycopg2' is not installed.\nInstall with: pip install psycopg2-binary")
+            sys.exit(1)
 
     print("=" * 70)
     print("  GPU-ACCELERATED QUESTION GENERATION v2")
