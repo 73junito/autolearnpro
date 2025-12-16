@@ -112,7 +112,7 @@ def get_postgres_pod():
         result = subprocess.run([
             "kubectl", "get", "pod", "-n", "autolearnpro", "-l", "app=postgres",
             "-o", "jsonpath={.items[0].metadata.name}"
-        ], capture_output=True, text=True, timeout=10)
+        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         pod = result.stdout.strip()
         if pod:
             return pod
@@ -131,7 +131,7 @@ def get_or_create_bank(category, difficulty, pg_pod):
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-c", check_sql
-        ], capture_output=True, text=True, timeout=10)
+        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         
         bank_id = result.stdout.strip()
         if bank_id and bank_id.isdigit():
@@ -148,7 +148,7 @@ RETURNING id;"""
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-c", insert_sql
-        ], capture_output=True, text=True, timeout=10)
+        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         
         bank_id = result.stdout.strip()
         return int(bank_id) if bank_id.isdigit() else None
@@ -178,7 +178,7 @@ def insert_question(question, bank_id, pg_pod):
         result = subprocess.run([
             "kubectl", "exec", "-n", "autolearnpro", pg_pod, "--",
             "psql", "-U", "postgres", "-d", "lms_api_prod", "-c", sql
-        ], capture_output=True, text=True, timeout=15)
+        ], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=15)
         
         return result.returncode == 0
     except Exception as e:
@@ -201,6 +201,8 @@ def generate_with_ollama(prompt):
             input=prompt,
             capture_output=True,
             text=True,
+            encoding='utf-8',
+            errors='replace',
             timeout=120  # 2 minute hard limit
         )
         
@@ -328,7 +330,7 @@ def main():
     
     # Check GPU
     try:
-        result = subprocess.run(["ollama", "ps"], capture_output=True, text=True, timeout=5)
+        result = subprocess.run(["ollama", "ps"], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=5)
         if "GPU" in result.stdout:
             print("[OK] GPU acceleration ENABLED")
         else:
