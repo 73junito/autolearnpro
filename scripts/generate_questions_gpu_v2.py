@@ -15,6 +15,7 @@ import signal
 import os
 import shutil
 import platform
+import argparse
 from datetime import datetime
 from pathlib import Path
 from time import time, sleep
@@ -656,6 +657,21 @@ def _run_batches(batches, pg_pod):
 
 def main():
     global interrupted
+    global DIRECT_DB, _psycopg2
+
+    parser = argparse.ArgumentParser(description="GPU-accelerated question generator")
+    parser.add_argument("--direct-db", action="store_true", help="Use direct Postgres connection (requires PGHOST/PGPASSWORD)")
+    args, _unknown = parser.parse_known_args()
+
+    if args.direct_db:
+        DIRECT_DB = True
+        # Attempt to load psycopg2 if not already
+        if _psycopg2 is None:
+            try:
+                import psycopg2 as _tmp  # type: ignore
+                _psycopg2 = _tmp
+            except Exception:
+                log("Direct DB requested but psycopg2 not available; will fall back to kubectl exec.", "WARN")
 
     print("=" * 70)
     print("  GPU-ACCELERATED QUESTION GENERATION v2")
