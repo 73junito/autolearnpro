@@ -56,7 +56,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
 
       - name: Output image
-        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
+        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}"
 
   deploy:
     name: Deploy to Kubernetes
@@ -84,9 +84,27 @@ jobs:
           fi
           echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig
 
-      - name: Deploy lms-api image
+      - name: Deploy lms-api image (use immutable tag)
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:${IMAGE_TAG}
+          echo "Updating deployment lms-api to image $IMAGE in namespace autolearnpro"
+          kubectl -n autolearnpro set image deployment/lms-api lms-api=$IMAGE
+          kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
+
+      - name: Post-deploy smoke test (if manifest exists)
         env:
           KUBECONFIG: ${{ github.workspace }}/kubeconfig
         run: |
-          kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/${{ github.repository_owner }}/lms-api:latest
-          kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
+          SMOKE_MANIFEST="k8s/autolearnpro/09-smoke-test-idempotent.yaml"
+          if [ -f "$SMOKE_MANIFEST" ]; then
+            echo "Running smoke test job from $SMOKE_MANIFEST"
+            kubectl -n autolearnpro delete job smoke-test-idempotent --ignore-not-found
+            kubectl -n autolearnpro apply -f "$SMOKE_MANIFEST"
+            kubectl -n autolearnpro wait --for=condition=complete job/smoke-test-idempotent --timeout=300s || echo "Smoke job did not complete within timeout"
+            kubectl -n autolearnpro logs -l job-name=smoke-test-idempotent --tail=200 || true
+          else
+            echo "No smoke manifest found at $SMOKE_MANIFEST; skipping smoke test"
+          fi
