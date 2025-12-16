@@ -80,6 +80,8 @@ defmodule LmsApi.ContentGeneration.PublishingPipeline do
   def execute_publish(pipeline_id) do
     pipeline = Repo.get(__MODULE__, pipeline_id)
     draft = Repo.get(ContentDraft, pipeline.content_draft_id)
+    # Sanitize draft content to avoid leaking PII during publishing
+    draft = Map.update!(draft, :content_data, fn data -> LmsApi.Redactor.sanitize(data || %{}) end)
 
     try do
       results = %{}
@@ -176,7 +178,7 @@ defmodule LmsApi.ContentGeneration.PublishingPipeline do
 
   defp publish_lesson(draft, course, options) do
     content_data = draft.content_data
-
+     
     # Create or update module
     module = get_or_create_module(course.id, content_data["module_title"] || draft.title)
 
