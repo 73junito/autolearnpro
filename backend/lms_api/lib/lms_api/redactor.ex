@@ -2,6 +2,7 @@ defmodule LmsApi.Redactor do
   @moduledoc """
   Centralized redaction utilities used by request plugs and exporters.
   Provides `sanitize/1` which recursively redacts sensitive keys and patterns.
+  Also provides `redact_string/1` for basic string redaction (emails).
   """
 
   @blocklist_keys [
@@ -64,4 +65,11 @@ defmodule LmsApi.Redactor do
   end
 
   defp looks_like_email?(_), do: false
+
+  @doc "Redact email addresses in an arbitrary string by replacing them with [REDACTED]."
+  def redact_string(str) when is_binary(str) do
+    Regex.replace(~r/[\w.+\-]+@[\w\-]+\.[\w.\-]+/u, str, @redaction_text)
+  end
+
+  def redact_string(other), do: other
 end
