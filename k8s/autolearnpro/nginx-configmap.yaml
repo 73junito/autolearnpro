@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configuration
+  namespace: ingress-nginx
+data:
+  use-forwarded-headers: "true"
+  real-ip-header: "CF-Connecting-IP"
+  # set-real-ip-from should contain the Cloudflare IP ranges (one per line)
+  set-real-ip-from: |
+    # This file will be populated by scripts/update-nginx-cloudflare-ips.sh
+    # Example:
+    # 173.245.48.0/20
+    # 103.21.244.0/22
+    # (managed by fetch-and-patch script)
