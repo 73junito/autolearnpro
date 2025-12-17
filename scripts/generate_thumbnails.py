@@ -32,6 +32,10 @@ from typing import List, Dict, Optional
 API_URL = "http://localhost:11434/api/generate"
 BASE64_RE = re.compile(r"([A-Za-z0-9+/]{100,}=*)")
 
+# Default local Stable Diffusion WebUI model path (Windows)
+SD_WEBUI_DEFAULT = Path(r"C:\stable-diffusion-webui\stable-diffusion-webui\models\Stable-diffusion\dreamshaper_8.safetensors")
+SD_WEBUI_API = os.getenv("SD_WEBUI_API", "http://127.0.0.1:7860")
+
 
 def slugify(s: str) -> str:
     s = s.lower()
@@ -178,50 +182,48 @@ def _generate_image_cli(model: str, prompt: str) -> Optional[str]:
         return None
 
 
-def generate_image_base64(model: str, prompt: str) -> Optional[str]:
-    payload = {"model": model, "prompt": prompt, "stream": False, "options": {}}
-    data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(API_URL, data=data, headers={"Content-Type": "application/json"})
+def generate_image_sdwebui(model_path: str, prompt: str, size: int) -> Optional[str]:
+    """Use Stable Diffusion WebUI's /sdapi/v1/txt2img endpoint. Returns base64 PNG string or None."""
     try:
+        model_name = Path(model_path).name
+        url = f"{SD_WEBUI_API.rstrip('/')}/sdapi/v1/txt2img"
+        payload = {
+            "prompt": prompt,
+            "width": size,
+            "height": size,
+            "steps": 20,
+            "cfg_scale": 7.5,
+            "sampler_name": "Euler a",
+            "sd_model_checkpoint": model_name,
+        }
+        data = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req, timeout=120) as resp:
             body = resp.read().decode("utf-8", errors="replace")
-            # Try to parse JSON first
-            try:
-                obj = json.loads(body)
-                text = obj.get("response") or obj.get("output") or ""
-            except Exception:
-                text = body
-
-            # Search for a long base64 blob
-            m = BASE64_RE.search(text)
-            if m:
-                return m.group(1)
-            # If the whole text looks like base64, return it
-            if re.fullmatch(r"[A-Za-z0-9+/=\n\r]+", text.strip()):
-                return text.strip().replace("\n", "")
-            return None
-    except urllib.error.HTTPError as e:
-        # If REST endpoint disallows POST (405) or similar, fall back to CLI
-        try:
-            body = e.read().decode("utf-8", errors="replace")
-            try:
-                obj = json.loads(body)
-                text = obj.get("response") or obj.get("output") or ""
-            except Exception:
-                text = body
-            m = BASE64_RE.search(text)
-            if m:
-                return m.group(1)
-        except Exception:
-            pass
-        if e.code == 405:
-            print("[WARN] Ollama REST API returned 405 Method Not Allowed - falling back to ollama CLI")
-            return _generate_image_cli(model, prompt)
-        print(f"HTTP error calling Ollama REST API: {e}")
-        return _generate_image_cli(model, prompt)
+            obj = json.loads(body)
+            images = obj.get("images") or []
+            if images:
+                # images[0] is a base64 PNG
+                return images[0]
+        return None
     except Exception as e:
-        print(f"Error calling Ollama REST API: {e}\nFalling back to ollama CLI")
-        return _generate_image_cli(model, prompt)
+        print(f"Error calling Stable Diffusion WebUI API: {e}")
+        return None
+
+
+def generate_image_base64(model: str, prompt: str, size: int) -> Optional[str]:
+    # If model refers to a local Stable Diffusion checkpoint file, prefer SD WebUI API
+    try:
+        pm = Path(model)
+        if pm.exists():
+            return generate_image_sdwebui(str(pm), prompt, size)
+        # If default SD path exists and no explicit model provided, use it
+        if not model and SD_WEBUI_DEFAULT.exists():
+            return generate_image_sdwebui(str(SD_WEBUI_DEFAULT), prompt, size)
+    except Exception:
+        pass
+    # Fallback to ollama CLI
+    return _generate_image_cli(model, prompt)
 
 
 def save_image_b64(b64: str, outpath: Path):
