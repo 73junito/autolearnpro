@@ -1,0 +1,119 @@
+-- Seed script to populate LMS with Automotive & Diesel courses
+-- Run this script to create the initial course catalog
+
+-- LOWER DIVISION COURSES (100-200 Level)
+
+-- Automotive Technology Core
+INSERT INTO courses (code, title, description, credits, delivery_mode, level, duration_hours, active, inserted_at, updated_at)
+VALUES 
+('AUT-120', 'Brake Systems (ASE A5)', 
+'Comprehensive course covering hydraulic and electronic brake systems including ABS, traction control, and stability systems. Covers disc and drum brakes, master cylinder operation, and diagnostic procedures.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('AUT-140', 'Engine Performance I', 
+'Introduction to internal combustion engine theory, four-stroke cycle, engine measurements, compression testing, and basic diagnostics. Foundation for ASE A8 certification.', 
+5.0, 'hybrid', 'lower_division', 75, true, NOW(), NOW()),
+
+('AUT-150', 'Electrical Systems Fundamentals', 
+'Foundation course in automotive electrical theory, including circuit analysis, battery testing, starting and charging systems, and basic wiring diagnostics.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('AUT-160', 'Suspension & Steering', 
+'Study of automotive suspension systems, steering geometry, wheel alignment, and tire service. Prepares for ASE A4 certification.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('AUT-180', 'Automatic Transmissions', 
+'Introduction to automatic transmission operation, fluid service, electronic controls, and basic diagnostics. Covers planetary gears, torque converters, and shift quality analysis.', 
+5.0, 'hybrid', 'lower_division', 75, true, NOW(), NOW()),
+
+-- Diesel Fundamentals
+('DSL-160', 'Diesel Engine Operation', 
+'Introduction to diesel engine principles, fuel systems, combustion characteristics, and maintenance procedures. Covers direct and indirect injection, glow plugs, and diesel-specific diagnostic techniques.', 
+5.0, 'hybrid', 'lower_division', 75, true, NOW(), NOW()),
+
+('DSL-170', 'Diesel Fuel Systems', 
+'Comprehensive study of diesel fuel injection systems including mechanical, electronic, and common rail systems. Includes fuel filtration, injection timing, and injector testing.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('DSL-180', 'Air Intake & Exhaust Systems', 
+'Study of turbochargers, intercoolers, exhaust systems, and emissions control. Covers boost pressure testing, EGR systems, and diesel particulate filters.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+-- EV & Hybrid Foundations
+('EV-150', 'Electric Vehicle Fundamentals', 
+'Introduction to electric vehicle technology including battery systems, electric motors, charging infrastructure, and high-voltage safety protocols.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('EV-160', 'Hybrid Vehicle Systems', 
+'Study of hybrid electric vehicle architectures including series, parallel, and series-parallel designs. Covers regenerative braking, battery management, and hybrid control strategies.', 
+4.0, 'hybrid', 'lower_division', 60, true, NOW(), NOW()),
+
+('EV-170', 'EV Battery Technology', 
+'Comprehensive coverage of lithium-ion battery technology, battery management systems, thermal management, and battery testing procedures.', 
+3.0, 'hybrid', 'lower_division', 45, true, NOW(), NOW()),
+
+-- Virtual Lab Foundations
+('VLB-100', 'Virtual Lab Safety & Tools', 
+'Introduction to virtual diagnostic tools, safety procedures, and shop operations in VR environment. Covers tool identification and proper usage.', 
+2.0, 'online', 'lower_division', 30, true, NOW(), NOW()),
+
+('VLB-110', 'Virtual Diagnostic Procedures', 
+'Hands-on virtual labs teaching systematic diagnostic approaches, scan tool operation, and data interpretation in simulated environments.', 
+3.0, 'online', 'lower_division', 45, true, NOW(), NOW()),
+
+-- UPPER DIVISION COURSES (300-400 Level)
+
+-- Advanced Diagnostics & Electronics
+('AUT-320', 'Advanced Engine Diagnostics', 
+'Advanced study of fuel injection systems, ignition systems, emission controls, and drivability diagnosis. Prepares for ASE A8 Master certification.', 
+5.0, 'hybrid', 'upper_division', 75, true, NOW(), NOW()),
+
+('AUT-340', 'Automotive Network Systems', 
+'Study of automotive communication networks including CAN, LIN, and FlexRay. Covers network diagnostics, module programming, and advanced electrical troubleshooting.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+('AUT-360', 'ADAS & Driver Assistance', 
+'Advanced driver assistance systems including adaptive cruise control, lane keeping, automatic emergency braking, and camera/radar calibration.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+-- Diesel Emissions & Heavy Equipment
+('DSL-360', 'Diesel Emissions Control', 
+'Advanced study of diesel emission systems including SCR, DPF regeneration, NOx sensors, and emission compliance. Covers EPA regulations and emission testing.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+('DSL-380', 'Heavy Duty Truck Systems', 
+'Comprehensive coverage of heavy-duty truck systems including air brakes, hydraulic systems, and truck-specific diagnostics.', 
+5.0, 'hybrid', 'upper_division', 75, true, NOW(), NOW()),
+
+-- EV High-Voltage & Battery Systems
+('EV-350', 'High-Voltage Systems Service', 
+'Advanced electric vehicle service including high-voltage component replacement, electrical safety, and EV-specific diagnostic procedures.', 
+5.0, 'hybrid', 'upper_division', 75, true, NOW(), NOW()),
+
+('EV-360', 'EV Charging Infrastructure', 
+'Study of EV charging systems including Level 1/2/3 charging, DC fast charging, charging station installation, and grid integration.', 
+3.0, 'hybrid', 'upper_division', 45, true, NOW(), NOW()),
+
+('EV-370', 'Advanced Battery Management', 
+'Advanced battery diagnostics, cell balancing, state of health testing, and battery pack repair/refurbishment procedures.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+-- Fleet Operations & Capstone
+('AUT-480', 'Fleet Management & Operations', 
+'Study of fleet maintenance management, preventive maintenance programs, cost analysis, and fleet operations software.', 
+3.0, 'online', 'upper_division', 45, true, NOW(), NOW()),
+
+('AUT-490', 'Capstone Project', 
+'Comprehensive capstone project demonstrating mastery of automotive diagnostics and repair. Students complete a complex diagnostic case and present findings.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+('DSL-490', 'Diesel Technology Capstone', 
+'Advanced diesel diagnostic project demonstrating expertise in diesel systems. Includes performance testing, emission analysis, and comprehensive repair procedures.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW()),
+
+('EV-490', 'Electric Vehicle Capstone', 
+'Comprehensive EV project including battery system analysis, high-voltage diagnostics, and EV conversion or repair project.', 
+4.0, 'hybrid', 'upper_division', 60, true, NOW(), NOW());
+
+-- Verify insertion
+SELECT code, title, credits, level FROM courses ORDER BY code;

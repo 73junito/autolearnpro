@@ -53,7 +53,7 @@ defmodule LmsApi.AI do
 
   """
   def get_learning_recommendations(user_id, course_id) do
-    user = Accounts.get_user!(user_id)
+    user = LmsApi.Accounts.get_user!(user_id)
     course = Catalog.get_course_with_structure!(course_id)
 
     # Get student's progress
@@ -80,7 +80,7 @@ defmodule LmsApi.AI do
 
   """
   def generate_study_plan(user_id, course_id, weeks \\ 4) do
-    user = Accounts.get_user!(user_id)
+    user = LmsApi.Accounts.get_user!(user_id)
     course = Catalog.get_course_with_structure!(course_id)
 
     progress = Progress.get_course_progress(user_id, course_id)

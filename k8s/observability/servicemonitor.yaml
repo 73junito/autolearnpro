@@ -1,0 +1,36 @@
+---
+# ServiceMonitor for LMS API - Prometheus metrics collection
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: lms-api-monitor
+  namespace: autolearnpro
+  labels:
+    app: lms-api
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: lms-api
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s
+---
+# ServiceMonitor for ingress-nginx metrics
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx-monitor
+  namespace: ingress-nginx
+  labels:
+    app: ingress-nginx
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx
+  endpoints:
+  - port: metrics
+    interval: 30s

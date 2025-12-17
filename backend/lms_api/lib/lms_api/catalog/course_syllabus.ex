@@ -2,13 +2,13 @@ defmodule LmsApi.Catalog.CourseSyllabus do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "course_syllabi" do
-    field :overview, :string
-    field :learning_outcomes, :string
+  schema "course_syllabus" do
+    field :learning_outcomes, {:array, :string}
+    field :assessment_methods, {:array, :string}
+    field :grading_breakdown, :map
+    field :prerequisites, {:array, :string}
     field :required_materials, :string
-    field :grading_policy, :string
-    field :attendance_policy, :string
-    field :schedule_notes, :string
+    field :course_policies, :string
 
     belongs_to :course, LmsApi.Catalog.Course
 
@@ -17,9 +17,10 @@ defmodule LmsApi.Catalog.CourseSyllabus do
 
   def changeset(syllabus, attrs) do
     syllabus
-    |> cast(attrs, [:overview, :learning_outcomes, :required_materials,
-                    :grading_policy, :attendance_policy, :schedule_notes, :course_id])
-    |> validate_required([:course_id])
+    |> cast(attrs, [:learning_outcomes, :assessment_methods, :grading_breakdown,
+                    :prerequisites, :required_materials, :course_policies, :course_id])
+    |> validate_required([:course_id, :learning_outcomes])
     |> assoc_constraint(:course)
+    |> unique_constraint(:course_id)
   end
 end

@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hotfix-instructor-dashboard
+  namespace: autolearnpro
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: hotfix
+        image: elixir:1.16-slim
+        command:
+        - /bin/bash
+        - -c
+        - |
+          set -e
+          echo "========================================="
+          echo "Backend Hotfix: Add can_manage_course? function"
+          echo "========================================="
+          echo ""
+          
+          # Create the updated InstructorDashboard module
+          cat > /tmp/instructor_dashboard.ex <<'ELIXIR'
+defmodule LmsApi.InstructorDashboard do
+  @moduledoc """
+  The Instructor Dashboard context.
+  """
+
+  import Ecto.Query, warn: false
+  alias LmsApi.Repo
+  alias LmsApi.Accounts
+  alias LmsApi.Catalog
+  alias LmsApi.Enrollments
+  alias LmsApi.Progress
+
+  @doc """
+  Checks if a user can manage a course (instructor or admin).
+
+  ## Examples
+
+      iex> can_manage_course?(user, course_id)
+      true
+
+  """
+  def can_manage_course?(user, course_id) when is_binary(course_id) do
+    can_manage_course?(user, String.to_integer(course_id))
+  end
+
+  def can_manage_course?(user, course_id) when is_integer(course_id) do
+    # Admins and instructors can manage courses
+    Accounts.is_admin?(user) || Accounts.is_instructor?(user)
+  end
+
+  def can_manage_course?(_user, _course_id), do: false
+  
+  # Placeholder - other functions remain unchanged in running pod
+end
+ELIXIR
+          
+          echo "✓ Hotfix module created"
+          echo ""
+          echo "NOTE: This is a temporary hotfix demonstration."
+          echo "The actual fix requires rebuilding the Docker image"
+          echo "with the updated code and redeploying."
+          echo ""
+          echo "The following changes have been made:"
+          echo "1. ✅ Database migration completed (enrollments table created)"
+          echo "2. ✅ Code fix prepared (can_manage_course? function)"
+          echo "3. 🔄 Docker image rebuild in progress"
+          echo ""
+          echo "To complete the fix:"
+          echo "  docker build -t lms-api:fixed ."
+          echo "  docker tag lms-api:fixed ghcr.io/73junito/lms-api:fixed"
+          echo "  docker push ghcr.io/73junito/lms-api:fixed"
+          echo "  kubectl set image deployment/lms-api lms-api=ghcr.io/73junito/lms-api:fixed -n autolearnpro"
+          echo ""

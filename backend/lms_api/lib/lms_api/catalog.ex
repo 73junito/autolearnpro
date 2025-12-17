@@ -108,10 +108,25 @@ defmodule LmsApi.Catalog do
     |> Repo.preload([
       :syllabus,
       modules: from(m in CourseModule,
-        order_by: m.position,
-        preload: [lessons: ^from(l in ModuleLesson, order_by: l.position)]
+        order_by: m.sequence_number,
+        preload: [lessons: ^from(l in ModuleLesson, order_by: l.sequence_number)]
       )
     ])
+  end
+
+  @doc """
+  Creates a course syllabus.
+
+  ## Examples
+
+      iex> create_course_syllabus(%{field: value})
+      {:ok, %CourseSyllabus{}}
+
+  """
+  def create_course_syllabus(attrs \\ %{}) do
+    %CourseSyllabus{}
+    |> CourseSyllabus.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """

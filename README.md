@@ -1,5 +1,8 @@
 # autolearnpro
 
+[![Test Coverage](https://github.com/73junito/autolearnpro/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/73junito/autolearnpro/actions/workflows/test-coverage.yml)
+[![codecov](https://codecov.io/gh/73junito/autolearnpro/branch/main/graph/badge.svg)](https://codecov.io/gh/73junito/autolearnpro)
+
 Automotive & Diesel LMS — backend + frontend for learning management and adaptive content.
 
 This repository contains the LMS API (Elixir/Phoenix), frontend, deployment manifests, and CI workflows.

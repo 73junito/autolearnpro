@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: autolearnpro
+  labels:
+    name: autolearnpro
+    environment: production
+    app: lms
+    managed-by: github-actions
+  annotations:
+    description: "AutoLearnPro LMS - Automotive & Diesel Learning Management System"

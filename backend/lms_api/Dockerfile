@@ -11,15 +11,14 @@ WORKDIR /app
 # Install hex & rebar (non-interactive)
 RUN mix local.hex --force && mix local.rebar --force
 
-# Copy mix files and fetch dependencies first (leverage Docker layer cache)
-# Do not copy `mix.lock` from the host to allow the container to generate a lock
-# that includes any newly-added deps (useful in CI/builds).
-COPY mix.exs ./
+# Copy mix files and lock for deterministic dependency resolution
+# Including mix.lock ensures reproducible builds across CI/dev environments
+COPY mix.exs mix.lock ./
 COPY config ./config
 
 # Fetch and compile all dependencies (ensure compile-time deps are present)
 ENV MIX_ENV=prod
-RUN mix deps.get
+RUN mix deps.get --only prod
 RUN mix deps.compile
 
 # Copy the rest of the app

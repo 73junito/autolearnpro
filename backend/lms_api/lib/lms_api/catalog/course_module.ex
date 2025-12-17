@@ -3,12 +3,12 @@ defmodule LmsApi.Catalog.CourseModule do
   import Ecto.Changeset
 
   schema "course_modules" do
-    field :position, :integer
     field :title, :string
-    field :summary, :string
-    field :start_date, :date
-    field :end_date, :date
-    field :published, :boolean, default: true
+    field :description, :string
+    field :sequence_number, :integer
+    field :duration_weeks, :integer
+    field :objectives, {:array, :string}
+    field :active, :boolean, default: true
 
     belongs_to :course, LmsApi.Catalog.Course
     has_many :lessons, LmsApi.Catalog.ModuleLesson
@@ -18,8 +18,9 @@ defmodule LmsApi.Catalog.CourseModule do
 
   def changeset(module, attrs) do
     module
-    |> cast(attrs, [:position, :title, :summary, :start_date, :end_date, :published, :course_id])
-    |> validate_required([:position, :title, :course_id])
+    |> cast(attrs, [:title, :description, :sequence_number, :duration_weeks,
+                    :objectives, :active, :course_id])
+    |> validate_required([:title, :sequence_number, :course_id])
     |> assoc_constraint(:course)
   end
 end

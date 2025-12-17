@@ -249,4 +249,26 @@ defmodule LmsApi.InstructorDashboard do
     |> where([p, lesson, module], module.course_id == ^course_id and p.status in ["completed", "passed"])
     |> Repo.aggregate(:count, :id)
   end
+
+  @doc """
+  Checks if a user can manage a course (instructor or admin).
+
+  ## Examples
+
+      iex> can_manage_course?(user, course_id)
+      true
+
+  """
+  def can_manage_course?(user, course_id) when is_binary(course_id) do
+    can_manage_course?(user, String.to_integer(course_id))
+  end
+
+  def can_manage_course?(user, course_id) when is_integer(course_id) do
+    # Admins and instructors can manage courses
+    # In a real application, you might want to check if the instructor
+    # is specifically assigned to this course
+    Accounts.is_admin?(user) || Accounts.is_instructor?(user)
+  end
+
+  def can_manage_course?(_user, _course_id), do: false
 end

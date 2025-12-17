@@ -56,7 +56,10 @@ prompt = """Create 1 automotive true/false question in JSON format:
   "learning_objective": "Understand alternator function",
   "ase_standard": "A6.A.1",
   "points": 1,
-  "explanation": "The alternator uses engine rotation to generate AC current which is then converted to DC",
+  "explanation": (
+      "The alternator uses engine rotation to generate AC current "
+      "which is then converted to DC"
+  ),
   "reference_material": "ASE A6 Study Guide",
   "correct_feedback": "Correct! The alternator is the primary charging system component",
   "incorrect_feedback": "Review alternator operation and charging system basics"

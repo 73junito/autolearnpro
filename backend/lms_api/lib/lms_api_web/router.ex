@@ -39,11 +39,25 @@ defmodule LmsApiWeb.Router do
     # Instructor dashboard endpoints
     get "/instructor/dashboard", InstructorDashboardController, :dashboard
     get "/instructor/courses", InstructorDashboardController, :courses
-    get "/instructor/courses/:course_id/analytics", InstructorDashboardController, :course_analytics
-    get "/instructor/courses/:course_id/students", InstructorDashboardController, :student_progress
+    get "/instructor/courses/:course_id/analytics", AnalyticsController, :course_analytics
+    get "/instructor/courses/:course_id/students", AnalyticsController, :student_list
+    get "/instructor/courses/:course_id/enrollment-stats", AnalyticsController, :enrollment_stats
+    get "/instructor/courses/:course_id/assessment-performance", AnalyticsController, :assessment_performance
+    get "/instructor/courses/:course_id/trends", AnalyticsController, :trending_metrics
+    get "/instructor/assessments/:assessment_id/grade-distribution", AnalyticsController, :grade_distribution
     post "/instructor/courses", InstructorDashboardController, :create_course
     put "/instructor/courses/:id", InstructorDashboardController, :update_course
     delete "/instructor/courses/:id", InstructorDashboardController, :delete_course
+
+    # Gradebook endpoints
+    get "/instructor/courses/:course_id/gradebook", GradebookController, :course_gradebook
+    get "/instructor/courses/:course_id/gradebook/export", GradebookController, :export_csv
+    get "/instructor/courses/:course_id/grading-queue", GradebookController, :grading_queue
+    get "/instructor/assessments/:assessment_id/grading-queue", GradebookController, :assessment_grading_queue
+    get "/instructor/assessments/:assessment_id/grade-stats", GradebookController, :grade_stats
+    put "/instructor/assessment-attempts/:attempt_id/grade", GradebookController, :update_grade
+    post "/instructor/grades/bulk-update", GradebookController, :bulk_update
+    get "/instructor/students/:user_id/courses/:course_id/final-grade", GradebookController, :final_grade
 
     # Content management endpoints
     get "/courses/:course_id/structure", ContentController, :course_structure

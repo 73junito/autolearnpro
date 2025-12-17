@@ -1,8 +1,83 @@
 Deployment notes / checklist
 
-- Use environment variables via Secret + ConfigMap / envFrom for runtime secrets. Example secret at `k8s/autolearnpro/secret-envfrom-example.yaml`.
+## Quick Start
+
+Use the automated deployment script for easy setup:
+```bash
+# Bash (Linux/Mac/WSL)
+./scripts/deploy-k8s.sh
+
+# PowerShell (Windows)
+.\scripts\deploy-k8s.ps1
+```
+
+For detailed step-by-step instructions, see: **[docs/KUBERNETES_DEPLOYMENT_GUIDE.md](../../docs/KUBERNETES_DEPLOYMENT_GUIDE.md)**
+
+## Configuration Files
+
+**Active manifests (use these):**
+- `namespace.yaml` - Namespace with labels
+- `deployment.yaml` - Production deployment (2+ replicas, HA)
+- `service.yaml` - ClusterIP service
+- `hpa.yaml` - Horizontal Pod Autoscaler (2-6 replicas)
+- `pdb.yaml` - Pod Disruption Budget
+- `ingress.yaml` - Nginx ingress with TLS
+- `clusterissuer.yaml` - Let's Encrypt TLS automation
+- `networkpolicy.yaml` - Network security policies
+- `resource-limits.yaml` - ResourceQuota + LimitRange
+- `09-smoke-test-idempotent.yaml` - Post-deployment health check
+
+**Archived/Legacy:**
+- `04-lms-api.yaml.archived` - Old deployment config (superseded by deployment.yaml)
+
+## Manual Deployment Steps
+
+1. **Prerequisites:**
+   - cert-manager installed
+   - ingress-nginx installed
+   - kubectl configured
+
+2. **Create resources:**
+   ```bash
+   kubectl apply -f namespace.yaml
+   kubectl apply -f resource-limits.yaml
+   kubectl apply -f clusterissuer.yaml
+   ```
+
+3. **Create secrets:**
+   ```bash
+   kubectl -n autolearnpro create secret generic lms-api-secrets \
+     --from-literal=DATABASE_URL='postgresql://...' \
+     --from-literal=SECRET_KEY_BASE='...' \
+     --from-literal=GUARDIAN_SECRET_KEY='...'
+   ```
+
+4. **Deploy application:**
+   ```bash
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
+   kubectl apply -f hpa.yaml
+   kubectl apply -f pdb.yaml
+   kubectl apply -f networkpolicy.yaml
+   ```
+
+5. **Configure ingress:**
+   - Update domain in `ingress.yaml`
+   - `kubectl apply -f ingress.yaml`
+
+6. **Update Cloudflare IPs:**
+   ```bash
+   ./scripts/fetch-and-patch-cloudflare-ips.sh
+   # or PowerShell: .\scripts\update-cloudflare-ips.ps1
+   ```
+
+## Best Practices
+
+- Use environment variables via Secret + ConfigMap / envFrom for runtime secrets. Example secret at `secret-envfrom-example.yaml`.
 - CI should update deployment image by SHA, not `latest`. Example:
-  kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/<owner>/lms-api:<sha>
+  ```bash
+  kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/73junito/lms-api:<sha>
+  ```
 - If using local uploads, mount `lms-api-uploads-pvc` at `/app/uploads` and update `Media` code to use the mount path.
 - Prefer OIDC for GitHub Actions to authenticate to cluster; use short-lived service account tokens and RBAC.
 - Tune resource requests/limits based on load testing and observability.
