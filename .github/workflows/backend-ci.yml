@@ -1,0 +1,47 @@
+name: Backend CI (Elixir)
+
+on:
+  push:
+    paths:
+      - 'backend/lms_api/**'
+    branches: [ main ]
+  pull_request:
+    paths:
+      - 'backend/lms_api/**'
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-22
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.15'
+          otp-version: '26'
+          install-hex: true
+          install-rebar: true
+
+      - name: Cache deps
+        uses: actions/cache@v4
+        with:
+          path: _build deps
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
+
+      - name: Install deps
+        working-directory: backend/lms_api
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
+          mix deps.get
+
+      - name: Run tests
+        working-directory: backend/lms_api
+        run: |
+          MIX_ENV=test mix test --no-start

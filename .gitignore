@@ -30,6 +30,7 @@ mix.lock
 .idea/
 *.sublime-workspace
 *.sublime-project
+.vs/
 
 # OS files
 .DS_Store
