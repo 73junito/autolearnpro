@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate thumbnails for course catalog using an Ollama image model (local REST API).
+
+Generate thumbnails for course catalog using an Ollama image model (Ollama CLI only; REST API not required).
 
 Usage examples:
   python scripts/generate_thumbnails.py --model "registry.ollama.ai/Flux_AI/Flux_AI:latest" --input courses.json --outdir thumbnails --size 512
@@ -11,9 +12,7 @@ Input formats supported:
 - CSV with header containing 'id' and 'title' columns
 - Plain newline-separated titles (each line is a title)
 
-The script calls the local Ollama REST API at http://localhost:11434/api/generate and expects
-the model to return a JSON with a base64-encoded PNG string in the response text or a raw
-base64 blob. The script will attempt to extract base64 and write PNG files named
+The script uses the Ollama CLI (not the REST API) to generate images. It expects the CLI to return a base64-encoded PNG string in the response text or a raw base64 blob. The script will attempt to extract base64 and write PNG files named
 "<id>_<slugified-title>.png" or sequential indices when id unavailable.
 """
 import argparse
@@ -28,8 +27,9 @@ import urllib.error
 from pathlib import Path
 from typing import List, Dict, Optional
 
+from scripts.config import validate, ollama_available
 
-API_URL = "http://localhost:11434/api/generate"
+# REST API is not used; CLI only
 BASE64_RE = re.compile(r"([A-Za-z0-9+/]{100,}=*)")
 
 # Default local Stable Diffusion WebUI model path (Windows)
@@ -233,6 +233,9 @@ def save_image_b64(b64: str, outpath: Path):
 
 
 def main(argv: List[str] = None):
+    # Validate environment
+    validate(require_db=False, require_ollama=False)
+
     parser = argparse.ArgumentParser(description="Generate course thumbnails via Ollama image model")
     parser.add_argument("--model", required=False, help="Ollama model identifier or path (eg registry.ollama.ai/Flux_AI/Flux_AI:latest)")
     parser.add_argument("--input", required=False, help="Input file (json/csv/txt). If omitted, reads stdin")
@@ -257,6 +260,10 @@ def main(argv: List[str] = None):
         print("Model not specified. Provide --model or set IMAGE_MODEL env var.")
         print("Example: --model 'registry.ollama.ai/Flux_AI/Flux_AI:latest'")
         return 2
+
+    # Warn if ollama CLI not found and user didn't force a different backend
+    if not ollama_available() and not args.force_cli:
+        print("Warning: 'ollama' CLI not found. Use --force-cli to bypass or install ollama.")
 
     items = []
     try:
