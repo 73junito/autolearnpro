@@ -22,8 +22,9 @@ import os
 import re
 import sys
 import subprocess
-import urllib.request
-import urllib.error
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -196,15 +197,20 @@ def generate_image_sdwebui(model_path: str, prompt: str, size: int) -> Optional[
             "sampler_name": "Euler a",
             "sd_model_checkpoint": model_name,
         }
-        data = json.dumps(payload).encode("utf-8")
-        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            body = resp.read().decode("utf-8", errors="replace")
-            obj = json.loads(body)
-            images = obj.get("images") or []
-            if images:
-                # images[0] is a base64 PNG
-                return images[0]
+
+        # Create a requests session with retries/backoff
+        session = requests.Session()
+        retries = Retry(total=3, backoff_factor=1, status_forcelist=(500, 502, 503, 504))
+        adapter = HTTPAdapter(max_retries=retries)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+
+        resp = session.post(url, json=payload, timeout=120)
+        resp.raise_for_status()
+        obj = resp.json()
+        images = obj.get("images") or []
+        if images:
+            return images[0]
         return None
     except Exception as e:
         print(f"Error calling Stable Diffusion WebUI API: {e}")
