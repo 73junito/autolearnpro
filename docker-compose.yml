@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lms_api_dev
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend/lms_api
+    command: sh -c "mix local.rebar --force && mix local.hex --force && mix deps.get && mix ecto.setup || true; MIX_ENV=dev mix phx.server"
+    environment:
+      DATABASE_URL: "ecto://postgres:postgres@db:5432/lms_api_dev"
+      MIX_ENV: dev
+      SECRET_KEY_BASE: "dev_secret"
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
