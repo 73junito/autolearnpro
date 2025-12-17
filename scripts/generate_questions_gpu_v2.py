@@ -24,6 +24,8 @@ import re
 # Direct DB globals (defined at module scope so DB helpers can reference them)
 DIRECT_DB = False
 _psycopg2 = None
+# psycopg2 connection pool (initialized when DIRECT_DB mode is active)
+_db_pool = None
 
 # ============================================================================
 # CONFIGURATION
@@ -198,19 +200,25 @@ def get_or_create_bank(category, difficulty, pg_pod):
     if DIRECT_DB and _psycopg2:
         # Use psycopg2 direct connection with parameterized query
         try:
-            conn = _psycopg2.connect(
-                host=os.getenv("PGHOST"),
-                port=os.getenv("PGPORT", "5432"),
-                user=os.getenv("PGUSER", "postgres"),
-                password=os.getenv("PGPASSWORD"),
-                dbname=os.getenv("PGDATABASE", "lms_api_prod"),
-                connect_timeout=5,
-            )
+            if _db_pool:
+                conn = _db_pool.getconn()
+            else:
+                conn = _psycopg2.connect(
+                    host=os.getenv("PGHOST"),
+                    port=os.getenv("PGPORT", "5432"),
+                    user=os.getenv("PGUSER", "postgres"),
+                    password=os.getenv("PGPASSWORD"),
+                    dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                    connect_timeout=5,
+                )
             cur = conn.cursor()
             cur.execute("SELECT id FROM question_banks WHERE name = %s LIMIT 1;", (name,))
             row = cur.fetchone()
             cur.close()
-            conn.close()
+            if _db_pool:
+                _db_pool.putconn(conn)
+            else:
+                conn.close()
             if row and row[0]:
                 return int(row[0])
         except Exception as e:
@@ -266,14 +274,17 @@ def get_or_create_bank(category, difficulty, pg_pod):
     for attempt in range(1, attempts + 1):
         if DIRECT_DB and _psycopg2:
             try:
-                conn = _psycopg2.connect(
-                    host=os.getenv("PGHOST"),
-                    port=os.getenv("PGPORT", "5432"),
-                    user=os.getenv("PGUSER", "postgres"),
-                    password=os.getenv("PGPASSWORD"),
-                    dbname=os.getenv("PGDATABASE", "lms_api_prod"),
-                    connect_timeout=5 + attempt * 5,
-                )
+                if _db_pool:
+                    conn = _db_pool.getconn()
+                else:
+                    conn = _psycopg2.connect(
+                        host=os.getenv("PGHOST"),
+                        port=os.getenv("PGPORT", "5432"),
+                        user=os.getenv("PGUSER", "postgres"),
+                        password=os.getenv("PGPASSWORD"),
+                        dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                        connect_timeout=5 + attempt * 5,
+                    )
                 cur = conn.cursor()
                 cur.execute(
                     "INSERT INTO question_banks (name, description, category, difficulty, inserted_at, updated_at) VALUES (%s, %s, %s, %s, NOW(), NOW()) RETURNING id;",
@@ -282,7 +293,10 @@ def get_or_create_bank(category, difficulty, pg_pod):
                 row = cur.fetchone()
                 conn.commit()
                 cur.close()
-                conn.close()
+                if _db_pool:
+                    _db_pool.putconn(conn)
+                else:
+                    conn.close()
                 if row and row[0]:
                     return int(row[0])
                 log(f"get_or_create_bank create attempt {attempt} returned no id", "WARN")
@@ -360,14 +374,17 @@ def insert_question(question, bank_id, pg_pod):
         for attempt in range(1, attempts + 1):
             if DIRECT_DB and _psycopg2:
                 try:
-                    conn = _psycopg2.connect(
-                        host=os.getenv("PGHOST"),
-                        port=os.getenv("PGPORT", "5432"),
-                        user=os.getenv("PGUSER", "postgres"),
-                        password=os.getenv("PGPASSWORD"),
-                        dbname=os.getenv("PGDATABASE", "lms_api_prod"),
-                        connect_timeout=5 + attempt * 5,
-                    )
+                    if _db_pool:
+                        conn = _db_pool.getconn()
+                    else:
+                        conn = _psycopg2.connect(
+                            host=os.getenv("PGHOST"),
+                            port=os.getenv("PGPORT", "5432"),
+                            user=os.getenv("PGUSER", "postgres"),
+                            password=os.getenv("PGPASSWORD"),
+                            dbname=os.getenv("PGDATABASE", "lms_api_prod"),
+                            connect_timeout=5 + attempt * 5,
+                        )
                     cur = conn.cursor()
                     # Parameterized insert to avoid SQL injection and quoting issues
                     insert_q = (
@@ -389,7 +406,10 @@ def insert_question(question, bank_id, pg_pod):
                     cur.execute(insert_q, params)
                     conn.commit()
                     cur.close()
-                    conn.close()
+                    if _db_pool:
+                        _db_pool.putconn(conn)
+                    else:
+                        conn.close()
                     return True
                 except Exception as e:
                     log(f"Insert attempt {attempt} direct DB failed: {e}", "WARN")
@@ -737,9 +757,38 @@ def main():
         # psycopg2 is required in direct DB mode
         try:
             import psycopg2 as _tmp  # type: ignore
+            from psycopg2 import pool as _ps_pool  # type: ignore
             _psycopg2 = _tmp
         except Exception:
             print("Error: direct DB mode requested but 'psycopg2' is not installed.\nInstall with: pip install psycopg2-binary")
+            sys.exit(1)
+        # Create a threaded connection pool
+        try:
+            pg_host = os.getenv("PGHOST")
+            pg_port = os.getenv("PGPORT", "5432")
+            pg_user = os.getenv("PGUSER", "postgres")
+            pg_password = os.getenv("PGPASSWORD")
+            pg_db = os.getenv("PGDATABASE", "lms_api_prod")
+            # Minimal health-check: build a small pool and test a connection
+            _db_pool = _ps_pool.ThreadedConnectionPool(
+                1,
+                int(os.getenv("PG_POOL_MAX", "10")),
+                host=pg_host,
+                port=pg_port,
+                user=pg_user,
+                password=pg_password,
+                dbname=pg_db,
+                connect_timeout=5,
+            )
+            # Test connection
+            conn = _db_pool.getconn()
+            cur = conn.cursor()
+            cur.execute("SELECT 1;")
+            cur.fetchone()
+            cur.close()
+            _db_pool.putconn(conn)
+        except Exception as e:
+            print(f"Error: could not initialize DB connection pool: {e}")
             sys.exit(1)
 
     print("=" * 70)
