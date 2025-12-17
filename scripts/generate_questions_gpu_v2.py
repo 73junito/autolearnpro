@@ -89,6 +89,14 @@ def log(message, level="INFO"):
         pass
 
     colors = {"ERROR": "\033[91m", "WARN": "\033[93m", "SUCCESS": "\033[92m", "INFO": "\033[0m"}
+    # Optional structured JSON output for logging systems
+    if os.getenv("LOG_JSON", "0") in ("1", "true", "True"):
+        try:
+            json_msg = {"timestamp": timestamp, "level": level, "message": message}
+            print(json.dumps(json_msg))
+            return
+        except Exception:
+            pass
     print(f"{colors.get(level, '')}{message}\033[0m")
 
 def detect_gpu_available() -> bool:
@@ -188,7 +196,7 @@ def get_or_create_bank(category, difficulty, pg_pod):
     # Check existing (direct DB mode uses psycopg2)
     check_sql = f"SELECT id FROM question_banks WHERE name = '{name}' LIMIT 1;"
     if DIRECT_DB and _psycopg2:
-        # Use psycopg2 direct connection
+        # Use psycopg2 direct connection with parameterized query
         try:
             conn = _psycopg2.connect(
                 host=os.getenv("PGHOST"),
@@ -199,7 +207,7 @@ def get_or_create_bank(category, difficulty, pg_pod):
                 connect_timeout=5,
             )
             cur = conn.cursor()
-            cur.execute(check_sql)
+            cur.execute("SELECT id FROM question_banks WHERE name = %s LIMIT 1;", (name,))
             row = cur.fetchone()
             cur.close()
             conn.close()
@@ -267,7 +275,10 @@ def get_or_create_bank(category, difficulty, pg_pod):
                     connect_timeout=5 + attempt * 5,
                 )
                 cur = conn.cursor()
-                cur.execute(insert_sql)
+                cur.execute(
+                    "INSERT INTO question_banks (name, description, category, difficulty, inserted_at, updated_at) VALUES (%s, %s, %s, %s, NOW(), NOW()) RETURNING id;",
+                    (name, f"Questions for {category} at {difficulty} level", category, difficulty),
+                )
                 row = cur.fetchone()
                 conn.commit()
                 cur.close()
@@ -358,7 +369,24 @@ def insert_question(question, bank_id, pg_pod):
                         connect_timeout=5 + attempt * 5,
                     )
                     cur = conn.cursor()
-                    cur.execute(sql)
+                    # Parameterized insert to avoid SQL injection and quoting issues
+                    insert_q = (
+                        "INSERT INTO questions (question_bank_id, question_type, question_text, difficulty, topic, "
+                        "learning_objective, ase_standard, question_data, explanation, active, inserted_at, updated_at) "
+                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s, true, NOW(), NOW());"
+                    )
+                    params = (
+                        bank_id,
+                        question.get("question_type"),
+                        question.get("question_text"),
+                        question.get("difficulty"),
+                        question.get("topic"),
+                        question.get("learning_objective"),
+                        question.get("ase_standard", ""),
+                        json.dumps(question.get("question_data", {})),
+                        question.get("explanation"),
+                    )
+                    cur.execute(insert_q, params)
                     conn.commit()
                     cur.close()
                     conn.close()
