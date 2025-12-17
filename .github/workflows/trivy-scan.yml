@@ -22,7 +22,7 @@ jobs:
           docker build -t lms-api:pr-${{ github.sha }} -f backend/lms_api/Dockerfile ./backend/lms_api
 
       - name: Run Trivy (vuln scan)
-        uses: aquasecurity/trivy-action@v0.22.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: lms-api:pr-${{ github.sha }}
           format: json
