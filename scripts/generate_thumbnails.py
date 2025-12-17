@@ -27,6 +27,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from pathlib import Path
 from typing import List, Dict, Optional
+from scripts.net import get_session, post_json
 
 from scripts.config import validate, ollama_available
 
@@ -198,16 +199,7 @@ def generate_image_sdwebui(model_path: str, prompt: str, size: int) -> Optional[
             "sd_model_checkpoint": model_name,
         }
 
-        # Create a requests session with retries/backoff
-        session = requests.Session()
-        retries = Retry(total=3, backoff_factor=1, status_forcelist=(500, 502, 503, 504))
-        adapter = HTTPAdapter(max_retries=retries)
-        session.mount("http://", adapter)
-        session.mount("https://", adapter)
-
-        resp = session.post(url, json=payload, timeout=120)
-        resp.raise_for_status()
-        obj = resp.json()
+        obj = post_json(url, payload, timeout=120)
         images = obj.get("images") or []
         if images:
             return images[0]
