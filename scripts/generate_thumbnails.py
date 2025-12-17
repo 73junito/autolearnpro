@@ -214,10 +214,14 @@ def generate_image_base64(model: str, prompt: str, size: int) -> Optional[str]:
     try:
         pm = Path(model)
         if pm.exists():
-            return generate_image_sdwebui(str(pm), prompt, size)
+            img = generate_image_sdwebui(str(pm), prompt, size)
+            if img:
+                return img
         # If default SD path exists and no explicit model provided, use it
         if not model and SD_WEBUI_DEFAULT.exists():
-            return generate_image_sdwebui(str(SD_WEBUI_DEFAULT), prompt, size)
+            img = generate_image_sdwebui(str(SD_WEBUI_DEFAULT), prompt, size)
+            if img:
+                return img
     except Exception:
         pass
     # Fallback to ollama CLI
