@@ -63,3 +63,14 @@ Icon?
 # ignore compiled frontend artifacts
 frontend/web/.next
 frontend/web/.cache
+
+# Ignore CI run logs and extracted workflow logs
+run_logs_*/
+run_*.zip
+run_*.json
+
+# Ignore downloaded model blobs and manifests
+ollama_models/
+
+# Ignore local extracted run artifacts
+run_*/
