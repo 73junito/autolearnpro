@@ -37,18 +37,24 @@ jobs:
           docker buildx version
           docker info
 
-      - name: Build and push image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: docker/lms-api/Dockerfile.release
-          # Show plain BuildKit progress to capture verbose logs for troubleshooting
-          progress: plain
-          # Force pull base images and avoid cached layers to surface build errors
-          pull: true
-          no-cache: true
-          push: true
-          platforms: linux/amd64
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/lms-api:latest
-            ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
+      - name: Build and push image (manual buildx)
+        env:
+          IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/lms-api
+          TAGS: "latest,${{ github.sha }}"
+        run: |
+          set -eo pipefail
+          docker --version
+          docker buildx version
+          # create or reuse a builder instance
+          docker buildx create --use --name=ci-builder || true
+          # show verbose build output and push to GHCR
+          docker buildx build \
+            --file docker/lms-api/Dockerfile.release \
+            --platform linux/amd64 \
+            --push \
+            --progress=plain \
+            --pull \
+            --no-cache \
+            --tag ${IMAGE_NAME}:latest \
+            --tag ${IMAGE_NAME}:${GITHUB_SHA} \
+            .
