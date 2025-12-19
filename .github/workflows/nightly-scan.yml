@@ -44,7 +44,7 @@ jobs:
           exit-code: '0' # do not fail scheduled run, just report
 
       - name: Upload Trivy report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: trivy-nightly-report-${{ github.sha }}
           path: trivy-nightly-${{ github.sha }}.json
@@ -60,7 +60,7 @@ jobs:
 
       - name: Upload Docker Scout report (if created)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: docker-scout-nightly-${{ github.sha }}
           path: docker-scout-nightly-${{ github.sha }}.txt

@@ -42,7 +42,7 @@ jobs:
           rm -f trivy-report.json
 
       - name: Upload Trivy JSON report (encrypted if key present)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: trivy-report
           path: |
