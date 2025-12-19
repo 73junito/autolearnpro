@@ -40,7 +40,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v4
         with:
-          context: backend/lms_api
+          context: .
           file: docker/lms-api/Dockerfile.release
           # Show plain BuildKit progress to capture verbose logs for troubleshooting
           progress: plain
