@@ -1,5 +1,5 @@
 # Use Elixir 1.16 for compatibility with some deps (phoenix_swagger)
-FROM elixir:1.16-slim AS build
+FROM elixir:1.19-slim AS build
 
 # Install build-time tools (node/npm if you build assets here)
 RUN apt-get update \
