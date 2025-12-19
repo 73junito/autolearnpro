@@ -6,7 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends build-essential git curl ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+COPY backend/lms_api .
 
 RUN mix local.hex --force && mix local.rebar --force
 RUN MIX_ENV=prod mix deps.get --only prod
