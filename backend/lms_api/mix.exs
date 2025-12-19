@@ -42,7 +42,7 @@ defmodule LmsApi.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.6"},
-      {:httpoison, "~> 1.8"},
+      {:httpoison, "~> 2.3"},
       {:guardian, "~> 2.0"},
       {:bcrypt_elixir, "~> 3.0"},
       {:redix, "~> 1.3"},
