@@ -37,6 +37,31 @@ jobs:
           docker buildx version
           docker info
 
+      - name: Debug - show workspace and Dockerfile path
+        run: |
+          echo "PWD:"
+          pwd
+          echo ""
+          echo "GITHUB_WORKSPACE:"
+          echo "$GITHUB_WORKSPACE"
+          echo ""
+          echo "Top-level files:"
+          ls -la || true
+          echo ""
+          echo "docker/ tree:"
+          ls -la docker || true
+          echo ""
+          echo "docker/lms-api tree:"
+          ls -la docker/lms-api || true
+
+      - name: Debug - check Dockerfile existence
+        run: |
+          if [ -f docker/lms-api/Dockerfile.release ]; then
+            echo "Dockerfile.release FOUND"
+          else
+            echo "Dockerfile.release MISSING"
+          fi
+
       - name: Build and push image (manual buildx)
         env:
           IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/lms-api
