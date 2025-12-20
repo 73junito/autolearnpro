@@ -41,14 +41,17 @@ services:
   ollama:
     image: ollama/ollama:latest
     restart: unless-stopped
-    # Pull specific models on startup then run the Ollama server
-    command: sh -c "ollama pull deepseek-r1:1.5b || true; ollama pull qwen3:1.7b || true; /bin/ollama serve"
+    # Use the image entrypoint; run model pulls manually or via an init container/job
     ports:
       - "11435:11434"
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
       - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_MAX_LOADED_MODELS=2
+      - OLLAMA_LOAD_TIMEOUT=300s
+      - OLLAMA_NUM_PARALLEL=1
+      - OLLAMA_DEBUG=INFO
     volumes:
       - ./ollama_models:/root/.ollama/models
     healthcheck:
