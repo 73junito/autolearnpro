@@ -1,0 +1,3 @@
+[submodule "lib/ollama-python"]
+	path = lib/ollama-python
+	url = https://github.com/ollama/ollama-python.git
