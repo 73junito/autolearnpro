@@ -1,0 +1,9 @@
+[submodule "lib/ollama-python"]
+	path = lib/ollama-python
+	url = https://github.com/ollama/ollama-python.git
+[submodule "lib/ollama-js"]
+	path = lib/ollama-js
+	url = https://github.com/ollama/ollama-js.git
+[submodule "lib/rust-sdk"]
+	path = lib/rust-sdk
+	url = https://github.com/modelcontextprotocol/rust-sdk.git

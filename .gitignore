@@ -74,3 +74,5 @@ ollama_models/
 
 # Ignore local extracted run artifacts
 run_*/
+cleanup/
+.mypy_cache/
