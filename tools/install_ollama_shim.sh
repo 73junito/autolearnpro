@@ -24,8 +24,17 @@ case "$cmd" in
     exit 2
     ;;
   list|ps)
-    # Some CI checks call `ollama ps` to see loaded models — return empty success.
-    echo "[]"
+    # Some CI checks call `ollama ps` or `ollama list` to see models/runs.
+    # Mimic real behavior:
+    #   - default: no output (empty list)
+    #   - with --json: return an empty JSON array
+    for arg in "$@"; do
+      if [ "$arg" = "--json" ]; then
+        echo "[]"
+        exit 0
+      fi
+    done
+    # No --json requested: succeed with no output
     exit 0
     ;;
   *)
