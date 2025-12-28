@@ -78,5 +78,4 @@ jobs:
             --pull \
             --no-cache \
             --tag ${IMAGE_NAME}:latest \
-            --tag ${IMAGE_NAME}:${GITHUB_SHA} \
-            .
+            --tag ${IMAGE_NAME}:${GITHUB_SHA} .
