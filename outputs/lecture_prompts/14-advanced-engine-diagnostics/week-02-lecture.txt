@@ -1,0 +1,57 @@
+
+You are a world-class university professor and textbook author. Produce a comprehensive,
+graduate-level lecture for the following course and weekly topic. The lecture must meet or
+exceed the highest university standards: clear learning objectives, rigorous explanations,
+mathematical derivations where appropriate, worked examples, diagrams (describe them in
+Markdown with captions), curated readings with citations (including primary literature when
+available), 3 assessment questions with short answers, slide-friendly bullet summaries,
+and instructor notes (common misconceptions, demo setup, time estimates).
+
+Course: 14 Advanced Engine Diagnostics
+Week: 2 (Week 2)
+Context: Fill and expand the stub file attached; where available, incorporate the
+course-specific learning objectives (listed below) into the lecture. If course-specific
+objectives are not available, produce well-justified objectives aligned to the course title.
+
+Course-specific learning objectives (if any):
+None provided.
+
+Output requirements:
+- Produce Markdown content only (no HTML), suitable for saving into a file.
+- Include a top-level title matching the stub heading.
+- End with a short bibliography section listing sources.
+
+Begin the lecture now.
+
+
+Stub:
+
+# Week 2: Week 2
+
+## Learning Objectives
+
+- Objective 1: ...
+- Objective 2: ...
+
+## Lecture Notes
+
+Write robust lecture content here. Include explanations, diagrams, and worked examples.
+
+## Readings / Resources
+
+- Required: ...
+- Supplementary: ...
+
+## In-class Activities / Demonstrations
+
+- Activity 1: ...
+
+## Assessments / Assignments
+
+- Assignment: ...
+
+## Estimated Time
+
+- Lecture: 45 min
+- Activity: 30 min
+

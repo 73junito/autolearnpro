@@ -1,0 +1,43 @@
+{
+  "written_steps": "1. Before starting the vehicle, ensure all brakes are in good working condition and properly inflated.\n\n2. Familiarize yourself with the brake warning lights on your dashboard and their corresponding meanings.\n\n3. Always check the parking brake is fully disengaged before shifting into gear.\n\n4. When driving downhill, use gentle pressure on the brake pedal to avoid overheating the brakes.\n\n5. Regularly inspect brake pads for wear and tear, and replace them as needed.\n\n6. Perform a pre-trip inspection of the vehicle's braking system to ensure all components are secure.",
+  "audio_script": "Welcome to Brake Safety. In this lesson, we'll cover essential safety procedures for operating your vehicle's brakes. Can you tell me what the brake warning lights on your dashboard indicate? (pause) That's right. If any of these lights come on while driving, pull over and investigate immediately. Now, let's move on to proper brake maintenance. How often should you check your brake pads? (pause) Exactly. Regular inspections can help prevent costly repairs down the road. Remember, brake safety is crucial for safe driving practices.",
+  "practice_activities": [
+    {
+      "type": "scenario",
+      "title": "Brake Failure Scenario",
+      "description": "You're driving on a wet road when your brake light comes on. What do you do?",
+      "questions": [
+        "What's the first step in addressing this issue?",
+        "How will you ensure your safety and the safety of others?"
+      ]
+    }
+  ],
+  "visual_diagrams": [
+    {
+      "type": "diagram",
+      "description": "Brake System Components",
+      "labels": [
+        "Brake Master Cylinder",
+        "Brake Lines",
+        "Wheel Cylinders"
+      ]
+    },
+    {
+      "type": "diagram",
+      "description": "Pre-Drive Brake Inspection Checklist",
+      "labels": [
+        "Brake Pads",
+        "Rotors",
+        "Brake Fluid Level"
+      ]
+    }
+  ],
+  "_meta": {
+    "numbered_steps": 6,
+    "audio_word_count": 88,
+    "visuals_count": 2,
+    "qa_reasons": [
+      "audio_words<90 (88)"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#fff;
+  --muted:#6b7280;
+  --accent:#0b63d6;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#111}
+.container{max-width:900px;margin:0 auto;padding:24px}
+.site-header{background:var(--card);border-bottom:1px solid #e6e7eb}
+.site-header .container{display:flex;align-items:center;gap:16px}
+.site-header h1{font-size:18px;margin:12px 0}
+.site-header nav{margin-left:auto}
+.site-header nav a{margin-left:12px;color:var(--accent);text-decoration:none}
+.hero{padding:32px;background:linear-gradient(90deg,#fff,#f9fbff);border-radius:8px;margin:18px 0}
+.btn{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none}
+.card{background:var(--card);padding:12px;border-radius:6px;margin:8px 0}
+.thumb{width:120px;height:80px;object-fit:cover;border-radius:6px;margin-right:12px}
+.course-row{display:flex;align-items:center}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.course-list{list-style:none;padding:0}
+.course-list li{background:var(--card);margin:10px 0;padding:12px;border-radius:6px}
+.muted{color:var(--muted);font-size:13px;margin:6px 0}
+.site-footer{padding:18px;color:var(--muted);text-align:center}
+
+@media (max-width:640px){.container{padding:14px}.site-header .container{flex-direction:column;align-items:flex-start}}

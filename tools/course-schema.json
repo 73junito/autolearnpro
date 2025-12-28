@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Course folder schema",
+  "type": "object",
+  "required": ["metadata.json", "syllabus.md", "assessment.md", "practice-test.md", "final-exam.md", "modules"],
+  "properties": {
+    "metadata.json": { "type": "object" },
+    "syllabus.md": { "type": "string" },
+    "assessment.md": { "type": "string" },
+    "practice-test.md": { "type": "string" },
+    "final-exam.md": { "type": "string" },
+    "modules": { "type": "object" }
+  },
+  "additionalProperties": true
+}

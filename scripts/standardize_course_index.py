@@ -35,7 +35,7 @@ SIDEBAR_INNER = (
 )
 
 # Nav-builder script copied from the reference course (keeps the same logic)
-NAV_SCRIPT = '''
+NAV_SCRIPT = r'''
 <script>
 document.addEventListener('DOMContentLoaded', function(){
     try{

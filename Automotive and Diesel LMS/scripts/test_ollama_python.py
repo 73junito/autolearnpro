@@ -13,7 +13,15 @@ import sys
 # have Ollama installed.
 if shutil.which("ollama") is None:
     print("ollama CLI not found in PATH; skipping ollama-dependent script.")
-    sys.exit(0)
+    # Try to tell pytest to skip the test if pytest is available. Importing
+    # pytest is more reliable than checking sys.modules during collection.
+    try:
+        import pytest  # type: ignore
+        pytest.skip("ollama CLI not found, skipping ollama-dependent tests")
+    except Exception:
+        # Not running under pytest (or pytest import failed) — exit
+        # successfully for manual invocation.
+        sys.exit(0)
 
 # Configuration
 MODEL = "qwen3:1.7b"

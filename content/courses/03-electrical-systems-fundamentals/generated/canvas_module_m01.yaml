@@ -1,0 +1,42 @@
+module_title: "Module 1 — Hydraulics & Brake Fundamentals"
+module_slug: "m01-hydraulics-brake-fundamentals"
+items:
+  - type: Page
+    title: "Module 1 Overview"
+    path: "generated/module1_overview.md"
+  - type: Page
+    title: "Warm-Up: Diagnostic Scenario"
+    path: "generated/module1_warmup.md"
+  - type: Page
+    title: "Lesson 1 — Hydraulic Principles & Brake Components"
+    path: "generated/module1_lesson1.md"
+  - type: Page
+    title: "Lesson 2 — Fluids, Maintenance & Safety"
+    path: "generated/module1_lesson2.md"
+  - type: Page
+    title: "Guided Practice"
+    path: "generated/module1_guided_practice.md"
+  - type: Assignment
+    title: "Lab: Brake System Inspection & Bleeding"
+    path: "generated/module1_assignment.md"
+    due: "[Instructor sets due date]"
+    points: 100
+    submission_types: ["online_upload"]
+    rubric:
+      - criterion: "Safety & PPE"
+        points: 10
+      - criterion: "Procedure accuracy"
+        points: 40
+      - criterion: "Documentation"
+        points: 30
+      - criterion: "Reflection"
+        points: 20
+  - type: Quiz
+    title: "Module 1 — Self-Check"
+    path: "generated/module1_selfcheck.md"
+  - type: Page
+    title: "Wrap-Up & Extensions"
+    path: "generated/module1_wrapup.md"
+
+# Notes: This YAML is a Canvas-friendly manifest that maps module items to files in the course repository.
+# To import into Canvas: create Pages/Assignments/Quiz items and paste file contents or use Canvas API to create items and attach content from these markdown files.

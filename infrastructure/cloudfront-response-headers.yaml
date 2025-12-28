@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create a CloudFront ResponseHeadersPolicy for the Catalog template (mirrors app-layer headers)
+
+Parameters:
+  PolicyName:
+    Type: String
+    Default: Catalog-Security-Headers
+    Description: Name for the CloudFront Response Headers Policy
+
+  ContentSecurityPolicy:
+    Type: String
+    Default: "default-src 'self'; script-src 'self' https://cdn.example.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://images.example.com; frame-ancestors 'none';"
+    Description: Content-Security-Policy string. Replace allowed hosts as needed.
+
+Resources:
+  CatalogResponseHeadersPolicy:
+    Type: AWS::CloudFront::ResponseHeadersPolicy
+    Properties:
+      ResponseHeadersPolicyConfig:
+        Name: !Ref PolicyName
+        Comment: "Mirrors app-layer security headers from frontend/web/next.config.js"
+        SecurityHeadersConfig:
+          ContentSecurityPolicy:
+            ContentSecurityPolicy: !Ref ContentSecurityPolicy
+            Override: true
+          StrictTransportSecurity:
+            AccessControlMaxAgeSec: 63072000
+            IncludeSubdomains: true
+            Preload: true
+            Override: true
+          FrameOptions:
+            FrameOption: DENY
+            Override: true
+          XContentTypeOptions:
+            Override: true
+          ReferrerPolicy:
+            ReferrerPolicy: no-referrer-when-downgrade
+            Override: true
+          CrossOriginOpenerPolicy:
+            CrossOriginOpenerPolicy: same-origin
+            Override: true
+
+Outputs:
+  ResponseHeadersPolicyId:
+    Description: ID of the created ResponseHeadersPolicy
+    Value: !Ref CatalogResponseHeadersPolicy
+    Export:
+      Name: CatalogResponseHeadersPolicyId
+
+  ResponseHeadersPolicyArn:
+    Description: ARN of the created ResponseHeadersPolicy
+    Value: !GetAtt CatalogResponseHeadersPolicy.Arn
+    Export:
+      Name: CatalogResponseHeadersPolicyArn

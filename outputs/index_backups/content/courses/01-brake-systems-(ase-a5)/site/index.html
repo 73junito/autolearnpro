@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>01-brake-systems-(ase-a5) — Course Site</title>
+    <link rel="stylesheet" href="../../theme/student-dashboard/style.css">
+</head>
+<body>
+<div class="sd-app">
+    <aside class="sd-side"><div class="sd-side-inner">
+        <input class="nav-search" placeholder="Search nav…" aria-label="Search course navigation" />
+        <div id="nav-root"></div>
+</div></aside>
+    <div class="sd-content">
+        <header class="sd-header"><h1>01-brake-systems-(ase-a5) — Course Site</h1></header>
+        <main class="sd-main"><h2>Contents</h2>
+
+            <div class="course-hero" role="region" aria-label="Course hero">
+                <div class="hero-body">
+                    <h3 class="hero-title">01-brake-systems-(ase-a5) — Course Site</h3>
+                    <div class="hero-sub"></div>
+                </div>
+                <div class="hero-cta"><a class="cta-btn" href="modules/week-01-introduction/overview.html">Start Module 1</a></div>
+            </div>
+<ul></ul></main>
+    </div>
+</div>
+
+<script>
+// Build left-nav accordion and wire search for course site
+document.addEventListener('DOMContentLoaded', function(){
+    try{
+        const sideInner = document.querySelector('.sd-side-inner');
+        const navRoot = document.getElementById('nav-root');
+        // collect anchors from the main contents if sidebar has none
+        let anchors = Array.from(document.querySelectorAll('.sd-side-inner a'));
+        if(!anchors.length){ anchors = Array.from(document.querySelectorAll('.sd-main a')); }
+        // Group anchors so module folders (modules/<week>) become their own accordion
+        const groups = {};
+        function prettifyLabel(s){ return (s||'').replace(/[-_]/g,' ').replace(/\w/g,c=>c.toUpperCase()); }
+        anchors.forEach(a=>{
+            const href = a.getAttribute('href') || a.href || '';
+            const parts = href.split('/').filter(Boolean);
+            let key = parts[0] || 'misc';
+            let display = key;
+            if(key === 'modules' && parts[1]){ // modules/week-01-intro -> group by week
+                key = `modules/${parts[1]}`;
+                display = parts[1];
+            }
+            groups[key] = groups[key] || { display: display, items: [] };
+            groups[key].items.push({ text: a.textContent.trim() || href, href });
+        });
+
+        Object.keys(groups).sort().forEach(groupName=>{
+            const g = groups[groupName];
+            const div = document.createElement('div'); div.className='nav-group';
+            const btn = document.createElement('button'); btn.className='nav-toggle'; btn.setAttribute('aria-expanded','false'); btn.innerHTML = `<span>${prettifyLabel(g.display)}</span><span aria-hidden>▸</span>`;
+            const ul = document.createElement('ul'); ul.className='nav-list';
+            g.items.forEach(item=>{
+                const li = document.createElement('li');
+                const link = document.createElement('a'); link.href = item.href; link.textContent = item.text;
+                li.appendChild(link); ul.appendChild(li);
+            });
+            btn.addEventListener('click', function(){
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                if(!expanded){ ul.classList.add('expanded'); } else { ul.classList.remove('expanded'); }
+            });
+            div.appendChild(btn); div.appendChild(ul); navRoot.appendChild(div);
+        });
+
+        const search = sideInner.querySelector('.nav-search');
+        search.addEventListener('input', function(){
+            const q = this.value.trim().toLowerCase();
+            document.querySelectorAll('.sd-side .nav-list li').forEach(li=>{
+                const t = li.textContent.toLowerCase();
+                li.style.display = !q || t.includes(q) ? '' : 'none';
+            });
+            document.querySelectorAll('.sd-side .nav-group').forEach(g=>{
+                const anyVisible = Array.from(g.querySelectorAll('li')).some(li=> li.style.display !== 'none');
+                const ul = g.querySelector('.nav-list');
+                if(anyVisible){ ul.classList.add('expanded'); g.querySelector('.nav-toggle').setAttribute('aria-expanded','true'); } else { ul.classList.remove('expanded'); g.querySelector('.nav-toggle').setAttribute('aria-expanded','false'); }
+            });
+        });
+    }catch(e){console.warn('Nav build failed',e)}
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-coverage:
+    name: Test Coverage Report
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lms_api_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MIX_ENV: test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/lms_api_test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.16'
+          otp-version: '26'
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            backend/lms_api/deps
+            backend/lms_api/_build
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
+          restore-keys: ${{ runner.os }}-mix-
+
+      - name: Install dependencies
+        working-directory: backend/lms_api
+        run: mix deps.get
+
+      - name: Compile dependencies
+        working-directory: backend/lms_api
+        run: mix deps.compile
+
+      - name: Run database migrations
+        working-directory: backend/lms_api
+        run: mix ecto.setup
+
+      - name: Run tests with coverage
+        working-directory: backend/lms_api
+        run: mix coveralls.json
+        continue-on-error: false
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: backend/lms_api/cover/excoveralls.json
+          flags: backend
+          name: backend-coverage
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        working-directory: backend/lms_api
+        run: |
+          if [ ! -f cover/excoveralls.json ]; then
+            echo "Coverage JSON not found"; exit 1
+          fi
+          COVERAGE=$(python3 -c "import json;print(json.load(open('cover/excoveralls.json'))['coverage'])")
+          echo "Current coverage: $COVERAGE%"
+          THRESHOLD=70
+          export COVERAGE
+          export THRESHOLD
+          python3 - <<'PY'
+import os,sys
+c = float(os.environ.get('COVERAGE',0))
+t = float(os.environ.get('THRESHOLD',0))
+if c < t:
+    print(f"❌ Coverage ({c}%) is below threshold ({t}%)")
+    sys.exit(1)
+else:
+    print(f"✅ Coverage ({c}%) meets threshold ({t}%)")
+PY
+
+      - name: Comment PR with coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'backend/lms_api/cover/excoveralls.json';
+            const coverage = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
+            const coveragePercent = (coverage.coverage || 0).toFixed(2);
+            const comment = `## 📊 Test Coverage Report
+
+**Overall Coverage:** ${coveragePercent}%
+
+| Metric | Value |
+|--------|-------|
+| Lines Covered | ${coverage.covered_lines || 'N/A'} |
+| Total Lines | ${coverage.total_lines || 'N/A'} |
+| Coverage % | ${coveragePercent}% |
+
+${coveragePercent >= 70 ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Generate HTML coverage report
+        if: always()
+        working-directory: backend/lms_api
+        run: mix coveralls.html
+
+      - name: Upload HTML coverage report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: backend/lms_api/cover/
+          retention-days: 30
+

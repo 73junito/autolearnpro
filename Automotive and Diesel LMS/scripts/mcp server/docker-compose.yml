@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  mcp:
+    build: .
+    image: course-mcp-server:latest
+    stdin_open: true
+    tty: true
+    restart: "no"
+    # MCP uses stdio; keep interactive attachment when running

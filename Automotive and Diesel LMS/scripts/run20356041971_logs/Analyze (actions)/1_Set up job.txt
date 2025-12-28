@@ -1,0 +1,33 @@
+﻿2025-12-19T00:48:33.4790742Z Current runner version: '2.330.0'
+2025-12-19T00:48:33.4825692Z ##[group]Runner Image Provisioner
+2025-12-19T00:48:33.4826917Z Hosted Compute Agent
+2025-12-19T00:48:33.4827835Z Version: 20251211.462
+2025-12-19T00:48:33.4828957Z Commit: 6cbad8c2bb55d58165063d031ccabf57e2d2db61
+2025-12-19T00:48:33.4830098Z Build Date: 2025-12-11T16:28:49Z
+2025-12-19T00:48:33.4831116Z Worker ID: {b57f3c4d-cbc7-47e3-b92b-804446967b7f}
+2025-12-19T00:48:33.4832398Z ##[endgroup]
+2025-12-19T00:48:33.4833453Z ##[group]Operating System
+2025-12-19T00:48:33.4834432Z Ubuntu
+2025-12-19T00:48:33.4835303Z 24.04.3
+2025-12-19T00:48:33.4836053Z LTS
+2025-12-19T00:48:33.4836745Z ##[endgroup]
+2025-12-19T00:48:33.4837728Z ##[group]Runner Image
+2025-12-19T00:48:33.4838752Z Image: ubuntu-24.04
+2025-12-19T00:48:33.4839661Z Version: 20251215.174.1
+2025-12-19T00:48:33.4841600Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251215.174/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-19T00:48:33.4844183Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251215.174
+2025-12-19T00:48:33.4846122Z ##[endgroup]
+2025-12-19T00:48:33.4848140Z ##[group]GITHUB_TOKEN Permissions
+2025-12-19T00:48:33.4851213Z Actions: read
+2025-12-19T00:48:33.4852046Z Contents: read
+2025-12-19T00:48:33.4852797Z Metadata: read
+2025-12-19T00:48:33.4853975Z Packages: read
+2025-12-19T00:48:33.4854765Z SecurityEvents: write
+2025-12-19T00:48:33.4855562Z ##[endgroup]
+2025-12-19T00:48:33.4858748Z Secret source: Actions
+2025-12-19T00:48:33.4860275Z Prepare workflow directory
+2025-12-19T00:48:33.5308087Z Prepare all required actions
+2025-12-19T00:48:33.5363808Z Getting action download info
+2025-12-19T00:48:33.8195671Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-19T00:48:33.9336069Z Download action repository 'github/codeql-action@v4' (SHA:5d4e8d1aca955e8d8589aabd499c5cae939e33c7)
+2025-12-19T00:48:34.6642600Z Complete job name: Analyze (actions)

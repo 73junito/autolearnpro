@@ -1,0 +1,12 @@
+{
+  "leftNav": [
+    {"id": "home", "label": "Home", "permission": "student|instructor|admin", "order": 1},
+    {"id": "announcements", "label": "Announcements", "permission": "student|instructor|admin", "order": 2},
+    {"id": "modules", "label": "Modules", "permission": "student|instructor|admin", "order": 3},
+    {"id": "labs", "label": "Labs", "permission": "student|instructor", "order": 4},
+    {"id": "assessments", "label": "Assessments", "permission": "student|instructor", "order": 5},
+    {"id": "grades", "label": "Grades", "permission": "student", "order": 6},
+    {"id": "competencies", "label": "Competencies", "permission": "student|instructor|admin", "order": 7},
+    {"id": "standards", "label": "Standards Mapping", "permission": "instructor|admin", "order": 8}
+  ]
+}
