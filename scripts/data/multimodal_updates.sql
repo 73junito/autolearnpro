@@ -1,6 +1,5 @@
 -- Generated on 2025-12-19T06:16:20.127007+00:00
-UPDATE module_lessons SET written_steps = $__MD__$```markdown
-1. Inspect the brake system for visible leaks, rust, or damage.
+UPDATE module_lessons SET written_steps = $__MD__$1. Inspect the brake system for visible leaks, rust, or damage.
 2. Check the parking brake is securely engaged and can be easily disengaged.
 3. Test the emergency brake by applying it firmly while the vehicle is stationary.
 4. Inspect the brake pedal for any softness or excessive travel.
