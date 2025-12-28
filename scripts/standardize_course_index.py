@@ -155,7 +155,7 @@ def process_index(path: Path) -> bool:
             modified = True
 
     # Ensure nav script exists
-    if 'Nav build failed' not in text and "document.addEventListener('DOMContentLoaded'" not in text:
+    if NAV_SCRIPT not in text and "document.addEventListener('DOMContentLoaded'" not in text:
         # Append script before </body>
         if '</body>' in text:
             text = text.replace('</body>', NAV_SCRIPT + '\n</body>')
