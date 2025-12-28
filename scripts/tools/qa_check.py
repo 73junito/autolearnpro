@@ -1,19 +1,21 @@
-import json
+#!/usr/bin/env python3
+"""Quality assurance check script."""
+
 import sys
-p = 'scripts/data/multimodal/auto-diesel/brakes/brake-safety.json'
-try:
-    js = json.load(open(p, encoding='utf-8'))
-except Exception as e:
-    print('ERROR', e)
-    sys.exit(2)
-ws = js.get('written_steps', '')
-num_steps = sum(1 for l in ws.splitlines() if l.strip() and l.strip()[0].isdigit())
-checklist_lines = [l for l in ws.splitlines() if l.strip().startswith('- ')]
-word_count = len(js.get('audio_script', '').split())
-practice = len(js.get('practice_activities', []))
-visuals = len(js.get('visual_diagrams', []))
-print(f'Numbered steps: {num_steps}')
-print(f'Checklist items: {len(checklist_lines)}')
-print(f'Audio word count: {word_count}')
-print(f'Practice activities: {practice}')
-print(f'Visual diagrams: {visuals}')
+
+def check_file(filepath):
+    """Check a file for quality issues."""
+    with open(filepath) as f:
+        for line_num, line in enumerate(f, 1):
+            if len(line.rstrip()) > 100:
+                print(f"{filepath}:{line_num}: Line too long ({len(line.rstrip())} > 100)")
+                return False
+    return True
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: qa_check.py <file>")
+        sys.exit(1)
+    
+    success = check_file(sys.argv[1])
+    sys.exit(0 if success else 1)
