@@ -38,12 +38,6 @@ def main(argv):
     try:
         with open(path, "r", encoding="utf-8") as fh:
             data = json.load(fh)
-    except FileNotFoundError:
-        print(f"Coverage JSON not found at {path} (FileNotFoundError).")
-        if os.environ.get("COVERAGE_OPTIONAL", "0") == "1":
-            print("Skipping coverage threshold check (COVERAGE_OPTIONAL=1)")
-            return 0
-        return 1
     except json.JSONDecodeError as e:
         print(f"Coverage JSON malformed: {e}")
         return 1
