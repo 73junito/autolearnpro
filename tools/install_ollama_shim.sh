@@ -41,8 +41,13 @@ chmod +x "$DEST"
 if [ -n "${GITHUB_PATH:-}" ]; then
   echo "$DEST_DIR" >> "$GITHUB_PATH"
 else
-  # Fallback for local runs: export PATH in current shell
+  # Fallback for local runs: export PATH in current shell.
+  # Note: when this script is executed (not sourced), this change does not
+  # persist in the parent shell. To use the shim in new shells, add $DEST_DIR
+  # to your PATH in your shell profile (e.g. ~/.bashrc, ~/.zshrc).
   export PATH="$DEST_DIR:$PATH"
+  echo "For future shells, add the following to your shell profile (e.g. ~/.bashrc):"
+  echo "  export PATH=\"$DEST_DIR:\$PATH\""
 fi
 
 echo "Installed ollama shim to $DEST"
