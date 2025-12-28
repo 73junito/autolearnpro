@@ -34,29 +34,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Ensure ollama shim is available on runner
+      - name: Detect ollama on runner
         run: |
-          if ! command -v ollama >/dev/null 2>&1; then
-            echo 'Creating ollama shim at /usr/local/bin/ollama'
-            cat > /usr/local/bin/ollama <<'SCRIPT'
-            #!/usr/bin/env bash
-            case "$1" in
-              run|generate|chat|list)
-                echo "[ollama stub] $@"
-                exit 0
-                ;;
-              *)
-                echo "[ollama stub] unknown command: $@"
-                exit 0
-                ;;
-            esac
-            SCRIPT
-            chmod +x /usr/local/bin/ollama
+          if command -v ollama >/dev/null 2>&1; then
+            echo "OLLAMA_AVAILABLE=1" >> $GITHUB_ENV
+            echo "Found ollama: $(which ollama)"
           else
-            echo "ollama already present: $(which ollama)"
+            echo "OLLAMA_AVAILABLE=0" >> $GITHUB_ENV
+            echo "ollama not found on runner; tests will skip ollama-dependent tests."
           fi
-          # Export flag for downstream steps
-          echo "OLLAMA_AVAILABLE=1" >> $GITHUB_ENV
 
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
