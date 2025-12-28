@@ -86,11 +86,14 @@ jobs:
               with open('cover/excoveralls.json', 'r') as f:
                   data = json.load(f)
           except FileNotFoundError:
-              print("Coverage JSON not found")
+              print("Coverage JSON not found at cover/excoveralls.json")
               sys.exit(1)
           
           # Parse coverage and threshold
-          coverage = float(data.get('coverage', 0))
+          if 'coverage' not in data:
+              print("Coverage key not found in JSON data")
+              sys.exit(1)
+          coverage = float(data['coverage'])
           threshold = 70.0
           
           print(f"Current coverage: {coverage}%")
