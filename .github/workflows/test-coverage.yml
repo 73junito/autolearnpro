@@ -103,10 +103,6 @@ PY
           script: |
             const fs = require('fs');
             const path = 'backend/lms_api/cover/excoveralls.json';
-            if (!fs.existsSync(path)) {
-              console.log('Coverage file not found, skipping PR comment.');
-              return;
-            }
             const coverage = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
             const coveragePercent = (coverage.coverage || 0).toFixed(2);
             const comment = `## 📊 Test Coverage Report
