@@ -46,7 +46,7 @@ jobs:
           path: |
             backend/lms_api/deps
             backend/lms_api/_build
-          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.lock') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
           restore-keys: ${{ runner.os }}-mix-
 
       - name: Install dependencies
