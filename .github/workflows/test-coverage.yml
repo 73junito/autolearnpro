@@ -86,17 +86,28 @@ jobs:
           
           THRESHOLD = 70
           
-          with open("cover/excoveralls.json") as f:
-              coverage_data = json.load(f)
-          
-          coverage = float(coverage_data["coverage"])
-          print(f"Current coverage: {coverage}%")
-          
-          if coverage < THRESHOLD:
-              print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
+          try:
+              with open("cover/excoveralls.json") as f:
+                  coverage_data = json.load(f)
+              
+              if "coverage" not in coverage_data:
+                  print("❌ Error: 'coverage' key not found in JSON file")
+                  sys.exit(1)
+              
+              coverage = float(coverage_data["coverage"])
+              print(f"Current coverage: {coverage}%")
+              
+              if coverage < THRESHOLD:
+                  print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
+                  sys.exit(1)
+              else:
+                  print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
+          except (json.JSONDecodeError, ValueError) as e:
+              print(f"❌ Error parsing coverage data: {e}")
               sys.exit(1)
-          else:
-              print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
+          except FileNotFoundError:
+              print("❌ Error: coverage file not found")
+              sys.exit(1)
           EOF
 
       - name: Comment PR with coverage
