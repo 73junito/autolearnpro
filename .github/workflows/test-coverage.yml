@@ -77,24 +77,31 @@ jobs:
       - name: Check coverage threshold
         working-directory: backend/lms_api
         run: |
-          if [ ! -f cover/excoveralls.json ]; then
-            echo "Coverage JSON not found"; exit 1
-          fi
-          COVERAGE=$(python3 -c "import json;print(json.load(open('cover/excoveralls.json'))['coverage'])")
-          echo "Current coverage: $COVERAGE%"
-          THRESHOLD=70
-          export COVERAGE
-          export THRESHOLD
           python3 - <<'PY'
-import os,sys
-c = float(os.environ.get('COVERAGE',0))
-t = float(os.environ.get('THRESHOLD',0))
-if c < t:
-    print(f"❌ Coverage ({c}%) is below threshold ({t}%)")
-    sys.exit(1)
-else:
-    print(f"✅ Coverage ({c}%) meets threshold ({t}%)")
-PY
+          import json
+          import sys
+          
+          # Check if coverage file exists
+          try:
+              with open('cover/excoveralls.json', 'r') as f:
+                  data = json.load(f)
+          except FileNotFoundError:
+              print("Coverage JSON not found")
+              sys.exit(1)
+          
+          # Parse coverage and threshold
+          coverage = float(data.get('coverage', 0))
+          threshold = 70.0
+          
+          print(f"Current coverage: {coverage}%")
+          
+          # Compare and exit with appropriate code
+          if coverage < threshold:
+              print(f"❌ Coverage ({coverage}%) is below threshold ({threshold}%)")
+              sys.exit(1)
+          else:
+              print(f"✅ Coverage ({coverage}%) meets threshold ({threshold}%)")
+          PY
 
       - name: Comment PR with coverage
         if: github.event_name == 'pull_request'
