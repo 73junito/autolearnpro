@@ -80,21 +80,24 @@ jobs:
           if [ ! -f cover/excoveralls.json ]; then
             echo "Coverage JSON not found"; exit 1
           fi
-          COVERAGE=$(python3 -c "import json;print(json.load(open('cover/excoveralls.json'))['coverage'])")
-          echo "Current coverage: $COVERAGE%"
-          THRESHOLD=70
-          export COVERAGE
-          export THRESHOLD
-          python3 - <<'PY'
-import os,sys
-c = float(os.environ.get('COVERAGE',0))
-t = float(os.environ.get('THRESHOLD',0))
-if c < t:
-    print(f"❌ Coverage ({c}%) is below threshold ({t}%)")
-    sys.exit(1)
-else:
-    print(f"✅ Coverage ({c}%) meets threshold ({t}%)")
-PY
+          python3 <<'EOF'
+          import json
+          import sys
+          
+          THRESHOLD = 70
+          
+          with open("cover/excoveralls.json") as f:
+              coverage_data = json.load(f)
+          
+          coverage = float(coverage_data["coverage"])
+          print(f"Current coverage: {coverage}%")
+          
+          if coverage < THRESHOLD:
+              print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
+              sys.exit(1)
+          else:
+              print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
+          EOF
 
       - name: Comment PR with coverage
         if: github.event_name == 'pull_request'

@@ -76,3 +76,4 @@ ollama_models/
 run_*/
 cleanup/
 .mypy_cache/
+actionlint
