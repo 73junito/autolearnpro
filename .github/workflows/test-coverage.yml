@@ -38,20 +38,19 @@ jobs:
         run: |
           if ! command -v ollama >/dev/null 2>&1; then
             echo 'Creating ollama shim at /usr/local/bin/ollama'
-            cat > /usr/local/bin/ollama <<'SH'
-#!/usr/bin/env bash
-case "$1" in
-  run|generate|chat|list)
-    # Minimal stub: echo invocation and exit 0 so tests that call the CLI don't fail with FileNotFoundError
-    echo "[ollama stub] $@"
-    exit 0
-    ;;
-  *)
-    echo "[ollama stub] unknown command: $@"
-    exit 0
-    ;;
-esac
-SH
+            cat > /usr/local/bin/ollama <<'SCRIPT'
+            #!/usr/bin/env bash
+            case "$1" in
+              run|generate|chat|list)
+                echo "[ollama stub] $@"
+                exit 0
+                ;;
+              *)
+                echo "[ollama stub] unknown command: $@"
+                exit 0
+                ;;
+            esac
+            SCRIPT
             chmod +x /usr/local/bin/ollama
           else
             echo "ollama already present: $(which ollama)"
@@ -117,65 +116,25 @@ SH
             echo "Coverage JSON not found; skipping coverage threshold check."; exit 0
           fi
           # Safely parse coverage from JSON and enforce numeric coercion inside Python
-          python3 - <<'PY'
-import json,sys
-try:
-    data = json.load(open('cover/excoveralls.json'))
-    cov = data.get('coverage') or data.get('coverage_percent') or data.get('total_coverage') or 0
-    cov = float(cov)
-except Exception as e:
-    print('Failed to parse coverage JSON, skipping threshold check:', e)
-    sys.exit(0)
-print(f'Current coverage: {cov}%')
-threshold = 70.0
-if cov < threshold:
-    print(f'❌ Coverage ({cov}%) is below threshold ({threshold}%)')
-    sys.exit(1)
-else:
-    print(f'✅ Coverage ({cov}%) meets threshold ({threshold}%)')
-PY
+            python3 - <<'PY'
+            import json,sys
+            try:
+              data = json.load(open('cover/excoveralls.json'))
+              cov = data.get('coverage') or data.get('coverage_percent') or data.get('total_coverage') or 0
+              cov = float(cov)
+            except Exception as e:
+              print('Failed to parse coverage JSON, skipping threshold check:', e)
+              sys.exit(0)
+            print(f'Current coverage: {cov}%')
+            threshold = 70.0
+            if cov < threshold:
+              print(f'❌ Coverage ({cov}%) is below threshold ({threshold}%)')
+              sys.exit(1)
+            else:
+              print(f'✅ Coverage ({cov}%) meets threshold ({threshold}%)')
+            PY
 
-      - name: Comment PR with coverage
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs');
-            const path = 'backend/lms_api/cover/excoveralls.json';
-            if (!fs.existsSync(path)) {
-              console.log('Coverage file not found, skipping PR comment.');
-              return;
-            }
-            let data = {};
-            try {
-              data = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
-            } catch (e) {
-              console.log('Failed to parse coverage JSON, skipping PR comment:', e);
-              return;
-            }
-            const raw = data.coverage || data.coverage_percent || data.total_coverage || 0;
-            const coveragePercent = Number(raw) || 0;
-            const covered_lines = data.covered_lines || 'N/A';
-            const total_lines = data.total_lines || 'N/A';
-            const meets = coveragePercent >= 70;
-            const comment = `## 📊 Test Coverage Report
-
-**Overall Coverage:** ${coveragePercent.toFixed(2)}%
-
-| Metric | Value |
-|--------|-------|
-| Lines Covered | ${covered_lines} |
-| Total Lines | ${total_lines} |
-| Coverage % | ${coveragePercent.toFixed(2)}% |
-
-${meets ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+      # PR comment step removed to avoid YAML parsing issues in actions script block
 
       - name: Generate HTML coverage report
         if: always()
