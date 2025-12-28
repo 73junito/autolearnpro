@@ -9,15 +9,12 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-try:
-    import openai
-    import requests
-    from sqlalchemy import create_engine
-    from sqlalchemy.orm import sessionmaker
-except ImportError:
-    print("Error: Required packages not installed.")
-    print("Please run: pip install openai requests sqlalchemy psycopg2-binary")
-    sys.exit(1)
+# Import third-party and local modules after path setup
+# ruff: noqa: E402
+import openai
+import requests
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from app.models import Course
 
