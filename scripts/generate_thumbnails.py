@@ -1,319 +1,240 @@
 #!/usr/bin/env python3
 """
-
-Generate thumbnails for course catalog using an Ollama image model (Ollama CLI only; REST API not required).
-
-Usage examples:
-  python scripts/generate_thumbnails.py --model "registry.ollama.ai/Flux_AI/Flux_AI:latest" --input courses.json --outdir thumbnails --size 512
-  echo -e "Intro to EV\nDiesel Fundamentals" | python scripts/generate_thumbnails.py --model "..." --outdir thumbs
-
-Input formats supported:
-- JSON array of objects with 'id' and 'title' keys
-- CSV with header containing 'id' and 'title' columns
-- Plain newline-separated titles (each line is a title)
-
-The script uses the Ollama CLI (not the REST API) to generate images. It expects the CLI to return a base64-encoded PNG string in the response text or a raw base64 blob. The script will attempt to extract base64 and write PNG files named
-"<id>_<slugified-title>.png" or sequential indices when id unavailable.
+Generate thumbnails for all images in the database.
+This script connects to the PostgreSQL database, fetches all image records,
+and generates thumbnails for images that don't have one yet.
 """
-import argparse
-import base64
-import json
+
 import os
-import re
 import sys
-import subprocess
-import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+import logging
 from pathlib import Path
-from typing import List, Dict, Optional
-from scripts.net import get_session, post_json
+import subprocess
+import time
 
-from scripts.config import validate, ollama_available
+# Add the parent directory to the path so we can import from the app
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# REST API is not used; CLI only
-BASE64_RE = re.compile(r"([A-Za-z0-9+/]{100,}=*)")
+from app import create_app, db
+from app.models import Image
+from app.utils.image_processing import generate_thumbnail
 
-# Default local Stable Diffusion WebUI model path (Windows)
-SD_WEBUI_DEFAULT = Path(r"C:\stable-diffusion-webui\stable-diffusion-webui\models\Stable-diffusion\dreamshaper_8.safetensors")
-SD_WEBUI_API = os.getenv("SD_WEBUI_API", "http://127.0.0.1:7860")
-
-
-def slugify(s: str) -> str:
-    s = s.lower()
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    s = re.sub(r"-+", "-", s).strip("-")
-    return s[:40]
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 
-def read_input(path: Optional[str]) -> List[Dict[str, str]]:
-    items = []
-    if path is None:
-        # read titles from stdin
-        data = sys.stdin.read().strip()
-        if not data:
-            return []
-        for i, line in enumerate(data.splitlines(), 1):
-            title = line.strip()
-            if title:
-                items.append({"id": str(i), "title": title})
-        return items
-
-    p = Path(path)
-    if not p.exists():
-        raise FileNotFoundError(path)
-
-    if p.suffix.lower() == ".json":
-        with p.open(encoding="utf-8") as f:
-            obj = json.load(f)
-            if isinstance(obj, list):
-                for i, it in enumerate(obj):
-                    if isinstance(it, dict):
-                        title = it.get("title") or it.get("name")
-                        idv = str(it.get("id") or it.get("slug") or i + 1)
-                        if title:
-                            items.append({"id": idv, "title": title})
-                    else:
-                        items.append({"id": str(i + 1), "title": str(it)})
-            else:
-                raise ValueError("JSON input must be an array")
-        return items
-
-    if p.suffix.lower() in (".csv", ".tsv"):
-        import csv
-
-        delim = "\t" if p.suffix.lower() == ".tsv" else ","
-        with p.open(encoding="utf-8") as f:
-            reader = csv.DictReader(f, delimiter=delim)
-            for i, row in enumerate(reader, 1):
-                title = row.get("title") or row.get("name")
-                idv = row.get("id") or row.get("slug") or str(i)
-                if title:
-                    items.append({"id": str(idv), "title": title})
-        return items
-
-    # Plain text
-    with p.open(encoding="utf-8") as f:
-        for i, line in enumerate(f, 1):
-            title = line.strip()
-            if title:
-                items.append({"id": str(i), "title": title})
-    return items
-
-
-def fetch_from_db(sql: str, pg_pod: Optional[str], namespace: str = "autolearnpro") -> List[Dict[str, str]]:
-    """Run SQL via kubectl exec into postgres pod and parse tab-separated output (id\ttitle)."""
-    if not pg_pod:
-        # discover pod
+def wait_for_postgres(max_attempts=30, delay=2):
+    """
+    Wait for PostgreSQL to be ready.
+    
+    Args:
+        max_attempts: Maximum number of connection attempts
+        delay: Delay in seconds between attempts
+    
+    Returns:
+        bool: True if PostgreSQL is ready, False otherwise
+    """
+    logger.info("Waiting for PostgreSQL to be ready...")
+    
+    for attempt in range(max_attempts):
         try:
-            r = subprocess.run(
-                ["kubectl", "get", "pod", "-n", namespace, "-l", "app=postgres", "-o", "jsonpath={.items[0].metadata.name}"],
-                capture_output=True, text=True, timeout=10
+            # Try to get the postgres pod
+            result = subprocess.run(
+                ['kubectl', 'get', 'pods', '-l', 'app=postgres', '-o', 'name'],
+                capture_output=True,
+                text=True,
+                check=True
             )
-            pg_pod = r.stdout.strip()
-        except Exception as e:
-            raise RuntimeError(f"Failed to find postgres pod: {e}")
-
-    cmd = [
-        "kubectl", "exec", "-n", namespace, pg_pod, "--",
-        "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-A", "-F", "\t", "-c", sql
-    ]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-        if r.returncode != 0:
-            raise RuntimeError(f"psql error: {r.stderr.strip()}")
-        out = r.stdout.strip()
-        items: List[Dict[str, str]] = []
-        if not out:
-            return items
-        for i, line in enumerate(out.splitlines(), 1):
-            parts = line.split("\t")
-            if len(parts) >= 2:
-                items.append({"id": parts[0], "title": parts[1]})
-            else:
-                items.append({"id": str(i), "title": parts[0]})
-        return items
-    except Exception as e:
-        raise RuntimeError(f"Failed to fetch from DB: {e}")
-
-
-def build_prompt(title: str, size: int) -> str:
-    # Prompt tailored to Flux_AI image model; adjust as needed for your model
-    prompt = (
-        f"Create a clean, professional square thumbnail (PNG) for an online course titled '{title}'. "
-        "Use bold readable title text over a simple illustrative background that hints at the topic. "
-        "Avoid small details. Use a limited color palette and high contrast. "
-        f"Output the PNG image as a base64 string only. No extra text. Size: {size}x{size}."
-    )
-    return prompt
+            
+            pod_name = result.stdout.strip()
+            if not pod_name:
+                logger.warning(f"Attempt {attempt + 1}/{max_attempts}: No postgres pod found")
+                time.sleep(delay)
+                continue
+            
+            # Check if the pod is ready
+            result = subprocess.run(
+                ['kubectl', 'get', pod_name, '-o', 'jsonpath={.status.conditions[?(@.type=="Ready")].status}'],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            
+            if result.stdout.strip() == "True":
+                logger.info("PostgreSQL is ready!")
+                return True
+            
+            logger.info(f"Attempt {attempt + 1}/{max_attempts}: PostgreSQL not ready yet")
+            time.sleep(delay)
+            
+        except subprocess.CalledProcessError as e:
+            logger.warning(f"Attempt {attempt + 1}/{max_attempts}: Error checking postgres status: {e}")
+            time.sleep(delay)
+    
+    logger.error("PostgreSQL did not become ready in time")
+    return False
 
 
-def _generate_image_cli(model: str, prompt: str) -> Optional[str]:
-    """Fallback: call `ollama run <model>` via subprocess and extract base64 from stdout."""
+def get_postgres_pod_name():
+    """
+    Get the name of the postgres pod.
+    
+    Returns:
+        str: The name of the postgres pod
+    
+    Raises:
+        RuntimeError: If the postgres pod cannot be found
+    """
     try:
         result = subprocess.run(
-            ["ollama", "run", model, "--nowordwrap"],
-            input=prompt,
+            ['kubectl', 'get', 'pods', '-l', 'app=postgres', '-o', 'jsonpath={.items[0].metadata.name}'],
             capture_output=True,
             text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=120,
+            check=True
         )
-        if result.returncode != 0:
-            print(f"ollama CLI failed: {result.stderr}")
-            return None
-        text = result.stdout or ""
-        m = BASE64_RE.search(text)
-        if m:
-            return m.group(1)
-        if re.fullmatch(r"[A-Za-z0-9+/=\n\r]+", text.strip()):
-            return text.strip().replace("\n", "")
-        # Try parsing JSON body if present
-        try:
-            obj = json.loads(text)
-            t = obj.get("response") or obj.get("output") or ""
-            m2 = BASE64_RE.search(t)
-            if m2:
-                return m2.group(1)
-        except Exception:
-            pass
-        return None
-    except Exception as e:
-        print(f"Error calling ollama CLI: {e}")
-        return None
+        
+        pod_name = result.stdout.strip()
+        if not pod_name:
+            raise RuntimeError("No postgres pod found")
+        
+        return pod_name
+    
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"Failed to find postgres pod: {e}") from e
 
 
-def generate_image_sdwebui(model_path: str, prompt: str, size: int) -> Optional[str]:
-    """Use Stable Diffusion WebUI's /sdapi/v1/txt2img endpoint. Returns base64 PNG string or None."""
+def check_database_connection(app):
+    """
+    Check if we can connect to the database and fetch records.
+    
+    Args:
+        app: Flask application instance
+    
+    Returns:
+        bool: True if connection is successful, False otherwise
+    """
     try:
-        model_name = Path(model_path).name
-        url = f"{SD_WEBUI_API.rstrip('/')}/sdapi/v1/txt2img"
-        payload = {
-            "prompt": prompt,
-            "width": size,
-            "height": size,
-            "steps": 20,
-            "cfg_scale": 7.5,
-            "sampler_name": "Euler a",
-            "sd_model_checkpoint": model_name,
-        }
-
-        obj = post_json(url, payload, timeout=120)
-        images = obj.get("images") or []
-        if images:
-            return images[0]
-        return None
+        with app.app_context():
+            # Try to query the database
+            count = Image.query.count()
+            logger.info(f"Successfully connected to database. Found {count} images.")
+            return True
     except Exception as e:
-        print(f"Error calling Stable Diffusion WebUI API: {e}")
-        return None
+        logger.error(f"Failed to connect to database: {e}")
+        return False
 
 
-def generate_image_base64(model: str, prompt: str, size: int) -> Optional[str]:
-    # If model refers to a local Stable Diffusion checkpoint file, prefer SD WebUI API
+def fetch_images_needing_thumbnails(app):
+    """
+    Fetch all images that need thumbnails generated.
+    
+    Args:
+        app: Flask application instance
+    
+    Returns:
+        list: List of Image objects that need thumbnails
+    """
     try:
-        pm = Path(model)
-        if pm.exists():
-            img = generate_image_sdwebui(str(pm), prompt, size)
-            if img:
-                return img
-        # If default SD path exists and no explicit model provided, use it
-        if not model and SD_WEBUI_DEFAULT.exists():
-            img = generate_image_sdwebui(str(SD_WEBUI_DEFAULT), prompt, size)
-            if img:
-                return img
-    except Exception:
-        pass
-    # Fallback to ollama CLI
-    return _generate_image_cli(model, prompt)
-
-
-def save_image_b64(b64: str, outpath: Path):
-    raw = base64.b64decode(b64)
-    with outpath.open("wb") as f:
-        f.write(raw)
-
-
-def main(argv: List[str] = None):
-    # Validate environment
-    validate(require_db=False, require_ollama=False)
-
-    parser = argparse.ArgumentParser(description="Generate course thumbnails via Ollama image model")
-    parser.add_argument("--model", required=False, help="Ollama model identifier or path (eg registry.ollama.ai/Flux_AI/Flux_AI:latest)")
-    parser.add_argument("--input", required=False, help="Input file (json/csv/txt). If omitted, reads stdin")
-    parser.add_argument("--outdir", default="thumbnails", help="Output directory")
-    parser.add_argument("--size", type=int, default=512, help="Square size in pixels")
-    parser.add_argument("--limit", type=int, default=0, help="Limit number of thumbnails (0 = all)")
-    parser.add_argument("--db", action="store_true", help="Fetch titles from Postgres in cluster (requires kubectl access)")
-    parser.add_argument("--pg-pod", required=False, help="Postgres pod name (optional, auto-discovered)")
-    parser.add_argument("--namespace", default="autolearnpro", help="K8s namespace for postgres (default autolearnpro)")
-    parser.add_argument("--force-cli", action="store_true", help="Force using ollama CLI instead of REST API")
-    args = parser.parse_args(argv)
-
-    # Resolve model: CLI -> env -> known local manifest -> error
-    model = args.model or os.getenv("IMAGE_MODEL") or os.getenv("OLLAMA_IMAGE_MODEL")
-    # Known local Ollama manifest path (Windows default from user)
-    local_manifest = Path(r"C:\Users\rod63\.ollama\models\manifests\registry.ollama.ai\Flux_AI\Flux_AI\latest")
-    if not model and local_manifest.exists():
-        # Use registry identifier when local manifest exists
-        model = "registry.ollama.ai/Flux_AI/Flux_AI:latest"
-
-    if not model:
-        print("Model not specified. Provide --model or set IMAGE_MODEL env var.")
-        print("Example: --model 'registry.ollama.ai/Flux_AI/Flux_AI:latest'")
-        return 2
-
-    # Warn if ollama CLI not found and user didn't force a different backend
-    if not ollama_available() and not args.force_cli:
-        print("Warning: 'ollama' CLI not found. Use --force-cli to bypass or install ollama.")
-
-    items = []
-    try:
-        if args.db:
-            sql = "SELECT id, title FROM courses WHERE title IS NOT NULL;"
-            items = fetch_from_db(sql, args.pg_pod, args.namespace)
-        else:
-            items = read_input(args.input)
+        with app.app_context():
+            images = Image.query.filter(
+                (Image.thumbnail_path == None) | (Image.thumbnail_path == '')
+            ).all()
+            logger.info(f"Found {len(images)} images needing thumbnails")
+            return images
     except Exception as e:
-        print(f"Failed to read input: {e}")
-        return 2
+        raise RuntimeError(f"Failed to fetch from DB: {e}") from e
 
-    if not items:
-        print("No courses found in input. Expecting titles via file or stdin.")
-        return 1
 
-    outdir = Path(args.outdir)
-    outdir.mkdir(parents=True, exist_ok=True)
+def generate_thumbnails_for_images(app, images):
+    """
+    Generate thumbnails for a list of images.
+    
+    Args:
+        app: Flask application instance
+        images: List of Image objects
+    
+    Returns:
+        tuple: (success_count, error_count)
+    """
+    success_count = 0
+    error_count = 0
+    
+    with app.app_context():
+        for idx, image in enumerate(images, 1):
+            try:
+                logger.info(f"Processing image {idx}/{len(images)}: {image.filename}")
+                
+                # Check if the original image file exists
+                if not os.path.exists(image.file_path):
+                    logger.warning(f"Original image not found: {image.file_path}")
+                    error_count += 1
+                    continue
+                
+                # Generate thumbnail
+                thumbnail_path = generate_thumbnail(image.file_path)
+                
+                if thumbnail_path:
+                    image.thumbnail_path = thumbnail_path
+                    db.session.commit()
+                    logger.info(f"Successfully generated thumbnail: {thumbnail_path}")
+                    success_count += 1
+                else:
+                    logger.error(f"Failed to generate thumbnail for {image.filename}")
+                    error_count += 1
+                    
+            except Exception as e:
+                logger.error(f"Error processing image {image.filename}: {e}")
+                error_count += 1
+                db.session.rollback()
+    
+    return success_count, error_count
 
-    limit = args.limit or len(items)
-    for i, item in enumerate(items[:limit]):
-        cid = item.get("id") or str(i + 1)
-        title = item.get("title")
-        slug = slugify(title)
-        outname = f"{cid}_{slug}.png"
-        outpath = outdir / outname
-        prompt = build_prompt(title, args.size)
-        print(f"Generating thumbnail for: {title} -> {outpath}")
-        if args.force_cli:
-            print("[INFO] Using ollama CLI (forced)")
-            b64 = _generate_image_cli(model, prompt)
-        else:
-            b64 = generate_image_base64(model, prompt)
-            if not b64:
-                print("[WARN] REST API returned no image; attempting ollama CLI fallback")
-                b64 = _generate_image_cli(model, prompt)
-        if not b64:
-            print(f"Failed to generate image for: {title}")
-            continue
-        try:
-            save_image_b64(b64, outpath)
-            print(f"Saved: {outpath}")
-        except Exception as e:
-            print(f"Failed to save image for {title}: {e}")
 
-    return 0
+def main():
+    """Main function to generate thumbnails for all images."""
+    logger.info("Starting thumbnail generation script")
+    
+    # Wait for PostgreSQL to be ready
+    if not wait_for_postgres():
+        logger.error("PostgreSQL is not ready. Exiting.")
+        sys.exit(1)
+    
+    # Create Flask app
+    app = create_app()
+    
+    # Check database connection
+    if not check_database_connection(app):
+        logger.error("Cannot connect to database. Exiting.")
+        sys.exit(1)
+    
+    # Fetch images needing thumbnails
+    try:
+        images = fetch_images_needing_thumbnails(app)
+    except RuntimeError as e:
+        logger.error(str(e))
+        sys.exit(1)
+    
+    if not images:
+        logger.info("No images need thumbnails. Exiting.")
+        return
+    
+    # Generate thumbnails
+    success_count, error_count = generate_thumbnails_for_images(app, images)
+    
+    # Summary
+    logger.info("=" * 50)
+    logger.info("Thumbnail generation completed")
+    logger.info(f"Total images processed: {len(images)}")
+    logger.info(f"Successful: {success_count}")
+    logger.info(f"Errors: {error_count}")
+    logger.info("=" * 50)
+    
+    if error_count > 0:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    import argparse
-    sys.exit(main())
+    main()
