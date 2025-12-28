@@ -100,7 +100,6 @@ PY
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             const path = 'backend/lms_api/cover/excoveralls.json';
