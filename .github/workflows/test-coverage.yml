@@ -58,7 +58,7 @@ jobs:
           path: |
             backend/lms_api/deps
             backend/lms_api/_build
-          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.lock') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
           restore-keys: ${{ runner.os }}-mix-
 
       - name: Install dependencies
@@ -68,16 +68,6 @@ jobs:
       - name: Compile dependencies
         working-directory: backend/lms_api
         run: mix deps.compile
-
-      - name: Wait for Postgres
-        run: |
-          for i in $(seq 1 30); do
-            pg_isready -h localhost -p 5432 && { echo 'Postgres ready'; exit 0; }
-            echo "Waiting for Postgres ($i/30)..."
-            sleep 2
-          done
-          echo "Postgres did not become ready in time"
-          exit 1
 
       - name: Run database migrations
         working-directory: backend/lms_api
