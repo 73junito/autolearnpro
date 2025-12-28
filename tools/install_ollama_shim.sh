@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Small ollama shim installer for CI runners.
+# Installs a lightweight shell stub at $HOME/bin/ollama and adds $HOME/bin to $GITHUB_PATH.
+
+set -euo pipefail
+
+DEST_DIR="$HOME/bin"
+DEST="$DEST_DIR/ollama"
+
+mkdir -p "$DEST_DIR"
+
+cat > "$DEST" <<'SH'
+#!/usr/bin/env bash
+# Minimal ollama shim used on CI when the real `ollama` binary is not available.
+# This intentionally provides a small, predictable surface so tests that call
+# `ollama` don't fail the whole job when the binary is optional.
+
+cmd="$1"
+shift || true
+
+case "$cmd" in
+  run|generate|chat)
+    echo "ollama: command '$cmd' is not available on this runner (shim)" >&2
+    exit 2
+    ;;
+  list|ps)
+    # Some CI checks call `ollama ps` to see loaded models — return empty success.
+    echo "[]"
+    exit 0
+    ;;
+  *)
+    echo "ollama: shim received unsupported subcommand: $cmd" >&2
+    exit 2
+    ;;
+esac
+SH
+
+chmod +x "$DEST"
+
+# Add $HOME/bin to PATH for the remainder of the job via GITHUB_PATH
+if [ -n "${GITHUB_PATH:-}" ]; then
+  echo "$DEST_DIR" >> "$GITHUB_PATH"
+else
+  # Fallback for local runs: export PATH in current shell
+  export PATH="$DEST_DIR:$PATH"
+fi
+
+echo "Installed ollama shim to $DEST"
