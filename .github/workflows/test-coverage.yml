@@ -116,19 +116,29 @@ PY
               console.log('Coverage file not found, skipping PR comment.');
               return;
             }
-            const coverage = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
-            const coveragePercent = (coverage.coverage || 0).toFixed(2);
+            let data = {};
+            try {
+              data = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
+            } catch (e) {
+              console.log('Failed to parse coverage JSON, skipping PR comment:', e);
+              return;
+            }
+            const raw = data.coverage || data.coverage_percent || data.total_coverage || 0;
+            const coveragePercent = Number(raw) || 0;
+            const covered_lines = data.covered_lines || 'N/A';
+            const total_lines = data.total_lines || 'N/A';
+            const meets = coveragePercent >= 70;
             const comment = `## 📊 Test Coverage Report
 
-**Overall Coverage:** ${coveragePercent}%
+**Overall Coverage:** ${coveragePercent.toFixed(2)}%
 
 | Metric | Value |
 |--------|-------|
-| Lines Covered | ${coverage.covered_lines || 'N/A'} |
-| Total Lines | ${coverage.total_lines || 'N/A'} |
-| Coverage % | ${coveragePercent}% |
+| Lines Covered | ${covered_lines} |
+| Total Lines | ${total_lines} |
+| Coverage % | ${coveragePercent.toFixed(2)}% |
 
-${coveragePercent >= 70 ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
+${meets ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
