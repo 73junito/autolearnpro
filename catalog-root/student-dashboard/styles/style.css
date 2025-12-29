@@ -32,6 +32,13 @@ ul{ padding-left:1.2rem }
 .tile{ background:var(--surface); border-radius:10px; padding:16px; box-shadow:0 8px 26px rgba(3,22,66,0.06); display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .14s ease, box-shadow .14s ease; min-height:160px }
 .tile:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(3,22,66,0.10) }
 
+/* Keyboard focus support for tiles */
+.tile:focus,
+.tile:focus-within{
+	outline:3px solid rgba(43,124,255,0.14);
+	transform:translateY(-6px);
+}
+
 /* Course card badges and chips */
 .tile .badges { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap }
 .chip { display:inline-block; background:#eef5ff; color:#0b4da8; padding:6px 12px; border-radius:999px; font-size:12px; margin-right:6px; font-weight:600; max-width:160px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
@@ -47,7 +54,7 @@ ul{ padding-left:1.2rem }
 .tile .meta{ font-size:13px; color:var(--muted); margin-top:auto }
 
 @media (max-width:720px){
-	.tiles{ gap:12px }
+	.tiles{ gap:12px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
 	.tile{ padding:12px; min-height:0 }
 	.tile .title{ font-size:15px }
 }
