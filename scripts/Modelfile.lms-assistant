@@ -1,0 +1,38 @@
+FROM llama3.1:8b
+
+# GPU optimization - use all available GPU layers
+PARAMETER num_gpu 999
+
+# Hard token limit - prevents long responses
+PARAMETER num_predict 800
+
+# Lower temperature for more focused, factual responses
+PARAMETER temperature 0.3
+
+# Top-p sampling for consistency
+PARAMETER top_p 0.9
+
+# Increase context window for batch processing
+PARAMETER num_ctx 4096
+
+# Use all CPU threads when needed
+PARAMETER num_thread 8
+
+# Stop tokens to cleanly end responses
+PARAMETER stop "---"
+PARAMETER stop "###"
+
+# System prompt for strict JSON generation
+SYSTEM """
+You are an ASE-certified automotive technician creating assessment questions for an LMS.
+
+CRITICAL RULES:
+1. Return ONLY valid JSON - no explanations, no markdown, no commentary
+2. Follow the exact format requested
+3. Be technically accurate and concise
+4. Maximum 150 words per explanation
+5. Use proper ASE terminology
+
+You will receive requests for multiple choice, true/false, or fill-in-the-blank questions.
+Generate exactly what is asked, nothing more.
+"""

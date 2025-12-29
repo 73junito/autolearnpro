@@ -1,0 +1,74 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: smoke-test-idempotent
+  namespace: autolearnpro
+  labels:
+    app: smoke-test
+    type: post-deploy
+spec:
+  # Don't keep old job history (idempotent - delete before apply)
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        app: smoke-test
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: smoke-test
+        image: curlimages/curl:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          set -e
+          echo "===== AutoLearnPro LMS Smoke Test ====="
+          echo "Starting post-deployment health verification..."
+          
+          SERVICE_URL="http://lms-api.autolearnpro.svc.cluster.local/api/health"
+          MAX_RETRIES=30
+          RETRY_DELAY=5
+          
+          echo "Testing health endpoint: $SERVICE_URL"
+          
+          for i in $(seq 1 $MAX_RETRIES); do
+            echo "Attempt $i/$MAX_RETRIES..."
+            
+            if curl -fsS --max-time 10 "$SERVICE_URL" -o /tmp/health.json; then
+              echo "✅ Health check passed!"
+              echo "Response:"
+              cat /tmp/health.json
+              echo ""
+              
+              # Verify JSON response structure
+              if grep -q "status" /tmp/health.json; then
+                echo "✅ Health response contains expected 'status' field"
+              else
+                echo "⚠️  Health response missing 'status' field"
+              fi
+              
+              echo ""
+              echo "===== Smoke Test PASSED ====="
+              exit 0
+            else
+              echo "❌ Health check failed (attempt $i/$MAX_RETRIES)"
+              
+              if [ $i -lt $MAX_RETRIES ]; then
+                echo "Retrying in ${RETRY_DELAY}s..."
+                sleep $RETRY_DELAY
+              fi
+            fi
+          done
+          
+          echo "❌ Health check failed after $MAX_RETRIES attempts"
+          echo "===== Smoke Test FAILED ====="
+          exit 1
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi

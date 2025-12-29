@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: autolearnpro-quota
+  namespace: autolearnpro
+spec:
+  hard:
+    # Limit total CPU and memory requests/limits
+    requests.cpu: "4"
+    requests.memory: "8Gi"
+    limits.cpu: "8"
+    limits.memory: "16Gi"
+    
+    # Limit number of resources
+    pods: "20"
+    services: "10"
+    persistentvolumeclaims: "5"
+    
+    # Limit storage
+    requests.storage: "50Gi"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: autolearnpro-limits
+  namespace: autolearnpro
+spec:
+  limits:
+  # Default limits for containers
+  - type: Container
+    default:
+      cpu: "500m"
+      memory: "512Mi"
+    defaultRequest:
+      cpu: "100m"
+      memory: "256Mi"
+    max:
+      cpu: "2"
+      memory: "2Gi"
+    min:
+      cpu: "10m"
+      memory: "32Mi"
+  
+  # Limits for PVCs
+  - type: PersistentVolumeClaim
+    max:
+      storage: "20Gi"
+    min:
+      storage: "1Gi"

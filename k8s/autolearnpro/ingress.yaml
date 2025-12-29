@@ -1,0 +1,58 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lms-ingress
+  namespace: autolearnpro
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    # Use cert-manager to provision TLS via Let's Encrypt (create ClusterIssuer first)
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # Preserve client IP headers for Cloudflare/Nginx chain
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header CF-Connecting-IP $http_cf_connecting_ip;
+      proxy_set_header X-Real-IP $remote_addr;
+spec:
+  tls:
+    - hosts:
+        - autolearnpro.com
+      secretName: lms-tls
+  rules:
+    - host: autolearnpro.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lms-api
+                port:
+                  number: 80
+---
+# Optional: example redirect from www to root host using a second ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lms-ingress-www
+  namespace: autolearnpro
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://autolearnpro.com$request_uri"
+spec:
+  rules:
+    - host: www.autolearnpro.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lms-api
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - www.autolearnpro.com
+      secretName: lms-tls-www

@@ -1,0 +1,33 @@
+# ExCoveralls configuration
+skip_files: [
+  # Test files
+  "test/",
+  
+  # Auto-generated files
+  "_build/",
+  "deps/",
+  
+  # Application startup
+  "lib/lms_api/application.ex",
+  
+  # Phoenix framework files (boilerplate)
+  "lib/lms_api_web/telemetry.ex",
+  "lib/lms_api_web/gettext.ex",
+  
+  # Views (mostly boilerplate)
+  "lib/lms_api_web/views/error_helpers.ex",
+  "lib/lms_api_web/views/error_view.ex",
+  
+  # Migration files
+  "priv/repo/migrations/",
+  "priv/repo/seeds.exs"
+]
+
+# Coverage thresholds
+coverage_options:
+  treat_no_relevant_lines_as_covered: true
+  minimum_coverage: 70
+  
+# Output options
+terminal_options:
+  file_column_width: 60

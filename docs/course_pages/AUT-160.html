@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUT-160 - Suspension & Steering | Automotive & Diesel LMS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+        }
+        .course-code {
+            font-size: 1.2em;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        .course-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .course-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .meta-icon {
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        .info-value {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .badge.lower {
+            background: #48bb78;
+        }
+        .badge.upper {
+            background: #ed8936;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← Back to Catalog</a>
+            <div class="course-code">AUT-160</div>
+            <h1 class="course-title">Suspension & Steering</h1>
+            <div class="course-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">📚</span>
+                    <span>4 Credits</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">⏱️</span>
+                    <span>60 Hours</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">📍</span>
+                    <span>Lower Division</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Course Description</h2>
+                <p class="description">Study of automotive suspension systems, steering geometry, wheel alignment, and tire service. Prepares for ASE A4 certification.</p>
+                <span class="badge lower">Automotive Technology Core</span>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Prerequisites</div>
+                    <div class="info-value">None</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Delivery Mode</div>
+                    <div class="info-value">Hybrid</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Course Level</div>
+                    <div class="info-value">Lower Division</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Duration</div>
+                    <div class="info-value">60 Hours</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Learning Outcomes</h2>
+                <p class="description">Upon successful completion of this course, students will be able to:</p>
+                <ul style="margin-top: 15px; margin-left: 25px; line-height: 2;">
+                    <li>Demonstrate safe and professional shop practices</li>
+                    <li>Identify and explain key system components and operation</li>
+                    <li>Perform systematic diagnostic procedures</li>
+                    <li>Apply industry-standard service and repair techniques</li>
+                    <li>Interpret technical data and service information</li>
+                </ul>
+            </div>
+            
+            <a href="index.html" class="btn">View All Courses</a>
+        </div>
+    </div>
+</body>
+</html>

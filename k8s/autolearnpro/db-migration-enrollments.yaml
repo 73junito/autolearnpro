@@ -1,0 +1,75 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration-enrollments
+  namespace: autolearnpro
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migration
+        image: postgres:15
+        command:
+        - /bin/bash
+        - -c
+        - |
+          echo "========================================="
+          echo "Database Migration: Create Enrollments Table"
+          echo "========================================="
+          echo ""
+          
+          # Run the migration SQL
+          psql -h postgres -U $PGUSER -d lms_api_prod <<'EOF'
+          -- Create enrollments table
+          CREATE TABLE IF NOT EXISTS enrollments (
+            id SERIAL PRIMARY KEY,
+            status VARCHAR(255) NOT NULL DEFAULT 'enrolled',
+            enrolled_at TIMESTAMP NOT NULL DEFAULT NOW(),
+            completed_at TIMESTAMP,
+            progress_percentage INTEGER NOT NULL DEFAULT 0,
+            user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            course_id INTEGER NOT NULL,
+            inserted_at TIMESTAMP NOT NULL DEFAULT NOW(),
+            updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+            CONSTRAINT enrollments_user_id_course_id_unique UNIQUE (user_id, course_id)
+          );
+          
+          -- Create indexes
+          CREATE INDEX IF NOT EXISTS enrollments_user_id_index ON enrollments (user_id);
+          CREATE INDEX IF NOT EXISTS enrollments_course_id_index ON enrollments (course_id);
+          
+          -- Insert migration record
+          INSERT INTO schema_migrations (version, inserted_at) 
+          VALUES (20251216000001, NOW())
+          ON CONFLICT (version) DO NOTHING;
+          
+          -- Verify the table was created
+          SELECT 'Enrollments table created successfully!' as status;
+          \d enrollments
+          EOF
+          
+          if [ $? -eq 0 ]; then
+            echo ""
+            echo "✓ Migration completed successfully"
+            echo ""
+            echo "Enrollments table structure:"
+            psql -h postgres -U $PGUSER -d lms_api_prod -c "\d enrollments"
+            exit 0
+          else
+            echo ""
+            echo "✗ Migration failed"
+            exit 1
+          fi
+        env:
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lms-api-secrets
+              key: POSTGRES_PASSWORD
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: lms-api-secrets
+              key: POSTGRES_USER

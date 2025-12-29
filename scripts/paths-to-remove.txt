@@ -1,0 +1,16 @@
+.vs
+.vs/**
+frontend/web/.next
+frontend/web/.next/**
+frontend/web/node_modules
+frontend/web/node_modules/**
+downloads/pgadmin4.zip
+downloads/**
+frontend/web/.next/cache
+frontend/web/.next/static
+frontend/web/node_modules/@next/swc-linux-x64-gnu/next-swc.linux-x64-gnu.node
+frontend/web/node_modules/@next/swc-linux-x64-musl/next-swc-linux-x64-musl.node
+frontend/web/node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node
+.vs/*.slnx
+.vs/**/FileContentIndex
+.vs/**/CopilotSnapshots

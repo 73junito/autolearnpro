@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brake System Hydraulics - Lesson | Automotive LMS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .lesson-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .lesson-title {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .lesson-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .tab-btn:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .tab-icon {
+            font-size: 1.3em;
+        }
+        .content-panel {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s;
+        }
+        .content-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Visual Diagrams Panel */
+        .diagram-grid {
+            display: grid;
+            gap: 30px;
+        }
+        .diagram-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+        }
+        .diagram-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #666;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .diagram-info {
+            padding: 25px;
+        }
+        .diagram-title {
+            font-size: 1.5em;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        .diagram-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .diagram-annotations {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .annotation {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .annotation-label {
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+        
+        /* Written Steps Panel */
+        .steps-content {
+            line-height: 1.8;
+        }
+        .steps-content h2 {
+            color: #1e3c72;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .steps-content h3 {
+            color: #2a5298;
+            margin: 20px 0 10px 0;
+        }
+        .steps-content ol {
+            margin-left: 25px;
+            counter-reset: step-counter;
+        }
+        .steps-content ol li {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+        .steps-content ul {
+            margin-left: 25px;
+        }
+        .steps-content ul li {
+            margin: 8px 0;
+        }
+        .safety-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        /* Audio Explanation Panel */
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            color: #667eea;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: white;
+            transition: width 0.3s;
+        }
+        .audio-script {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+        .script-section {
+            margin: 20px 0;
+        }
+        .script-marker {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        /* Interactive Practice Panel */
+        .practice-grid {
+            display: grid;
+            gap: 25px;
+        }
+        .practice-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        .practice-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        .practice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .practice-title {
+            font-size: 1.5em;
+            color: #1e3c72;
+        }
+        .practice-badge {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        .practice-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .practice-instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .practice-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .option-btn {
+            padding: 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+        .option-btn:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        .option-btn.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        .option-btn.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        .feedback-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback-box.show {
+            display: block;
+        }
+        .feedback-box.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        .feedback-box.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .start-practice-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        .start-practice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="lesson-header">
+            <div class="lesson-title">🔧 Brake System Hydraulics</div>
+            <div class="lesson-meta">
+                <span>⏱️ 45 minutes</span>
+                <span>📚 AUT-120: Brake Systems</span>
+                <span>📊 Intermediate</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('visual')" id="tab-visual">
+                <span class="tab-icon">📊</span>
+                <span>Visual Diagrams</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('steps')" id="tab-steps">
+                <span class="tab-icon">📝</span>
+                <span>Written Steps</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('audio')" id="tab-audio">
+                <span class="tab-icon">🎧</span>
+                <span>Audio Explanation</span>
+            </button>
+            <button class="tab-btn" onclick="showTab('practice')" id="tab-practice">
+                <span class="tab-icon">🎯</span>
+                <span>Interactive Practice</span>
+            </button>
+        </div>
+
+        <!-- Visual Diagrams Panel -->
+        <div class="content-panel active" id="panel-visual">
+            <div class="diagram-grid">
+                <div class="diagram-card">
+                    <div class="diagram-image">
+                        <div>🖼️ Hydraulic Brake System Overview</div>
+                    </div>
+                    <div class="diagram-info">
+                        <div class="diagram-title">Complete Brake System Layout</div>
+                        <div class="diagram-description">
+                            This diagram shows the complete hydraulic brake system from pedal to wheels, 
+                            illustrating how force is transmitted through the hydraulic circuit.
+                        </div>
+                        <div class="diagram-annotations">
+                            <div class="annotation">
+                                <div class="annotation-label">Master Cylinder</div>
+                                <div>Converts pedal force into hydraulic pressure (Pascal's principle)</div>
+                            </div>
+                            <div class="annotation">
+                                <div class="annotation-label">Brake Lines</div>
+                                <div>High-pressure steel tubes carry brake fluid throughout the system</div>
+                            </div>
+                            <div class="annotation">
+                                <div class="annotation-label">Calipers</div>
+                                <div>Convert hydraulic pressure back to mechanical force at wheels</div>
+                            </div>
+                            <div class="annotation">
+                                <div class="annotation-label">Brake Fluid</div>
+                                <div>DOT 3/4 hydraulic fluid transmits force incompressibly</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-card">
+                    <div class="diagram-image">
+                        <div>🔍 Master Cylinder Cutaway</div>
+                    </div>
+                    <div class="diagram-info">
+                        <div class="diagram-title">Master Cylinder Internal Components</div>
+                        <div class="diagram-description">
+                            Detailed view of master cylinder internals showing primary and secondary pistons, 
+                            return springs, and reservoir connection.
+                        </div>
+                        <div class="diagram-annotations">
+                            <div class="annotation">
+                                <div class="annotation-label">Primary Piston</div>
+                                <div>First piston activated by brake pedal pushrod</div>
+                            </div>
+                            <div class="annotation">
+                                <div class="annotation-label">Secondary Piston</div>
+                                <div>Second piston for redundant braking circuit</div>
+                            </div>
+                            <div class="annotation">
+                                <div class="annotation-label">Return Springs</div>
+                                <div>Return pistons to rest position when pedal is released</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Written Steps Panel -->
+        <div class="content-panel" id="panel-steps">
+            <div class="steps-content">
+                <h2>🔒 Safety Precautions</h2>
+                <div class="safety-box">
+                    <strong>⚠️ Critical Safety Items:</strong>
+                    <ul>
+                        <li>Wear safety glasses when working with brake fluid</li>
+                        <li>Brake fluid is corrosive - avoid contact with paint and skin</li>
+                        <li>Ensure vehicle is properly supported on jack stands</li>
+                    </ul>
+                </div>
+
+                <h2>🔧 Required Tools & Materials</h2>
+                <ul>
+                    <li>Brake fluid (DOT 3 or DOT 4 as specified)</li>
+                    <li>Brake bleeder wrench or box wrench (typically 10mm)</li>
+                    <li>Clear plastic tubing (1/4" diameter)</li>
+                    <li>Catch bottle for old fluid</li>
+                    <li>Jack and jack stands</li>
+                    <li>Torque wrench</li>
+                </ul>
+
+                <h2>📋 Step-by-Step Procedure</h2>
+                <ol>
+                    <li>
+                        <strong>Check fluid level in master cylinder reservoir</strong><br>
+                        Remove reservoir cap and verify fluid is between MIN and MAX marks. 
+                        Low fluid indicates worn pads or possible leak.
+                    </li>
+                    <li>
+                        <strong>Inspect brake lines for damage or leaks</strong><br>
+                        Look for corrosion, kinks, or wet spots along steel brake lines. 
+                        Pay special attention to connections at master cylinder and calipers.
+                        <div class="tip-box">
+                            💡 <strong>Tip:</strong> Use a flashlight to check lines near the fuel tank 
+                            where road salt often causes corrosion.
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Test pedal feel and travel</strong><br>
+                        With engine running, press brake pedal firmly. Pedal should feel solid 
+                        and stop 1-2 inches from floor. Spongy feel indicates air in system.
+                    </li>
+                    <li>
+                        <strong>Bleed brake system if necessary</strong><br>
+                        Start with wheel furthest from master cylinder (typically right rear). 
+                        Attach tubing to bleeder valve and submerge other end in catch bottle.
+                    </li>
+                    <li>
+                        <strong>Verify repair and test drive</strong><br>
+                        Road test in safe area. Check for proper pedal feel, straight stops, 
+                        and no pulling to one side.
+                    </li>
+                </ol>
+
+                <h2>❌ Common Mistakes to Avoid</h2>
+                <ul>
+                    <li>Don't let master cylinder run dry during bleeding</li>
+                    <li>Don't mix DOT 3 and DOT 5 brake fluids</li>
+                    <li>Don't reuse old brake fluid</li>
+                </ul>
+
+                <h2>✅ Verification & Testing</h2>
+                <p>
+                    Final verification should include: firm pedal feel, no leaks at connections, 
+                    proper fluid level, and successful road test with straight stops at various speeds.
+                </p>
+            </div>
+        </div>
+
+        <!-- Audio Explanation Panel -->
+        <div class="content-panel" id="panel-audio">
+            <div class="audio-player">
+                <h2 style="margin-bottom: 20px;">🎧 Audio Lesson</h2>
+                <div class="audio-controls">
+                    <button class="play-btn" onclick="togglePlay()">▶</button>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress"></div>
+                    </div>
+                    <span>3:24</span>
+                </div>
+            </div>
+
+            <div class="audio-script">
+                <div class="script-section">
+                    <strong>Introduction (0:00-0:20)</strong><br><br>
+                    Welcome to this lesson on brake system hydraulics! I'm excited to guide you through 
+                    one of the most critical safety systems in any vehicle. By the end of this lesson, 
+                    you'll understand how hydraulic pressure transmits force from the brake pedal to 
+                    the wheels, and why this system is so reliable.
+                    <span class="script-marker">PAUSE</span>
+                </div>
+
+                <div class="script-section">
+                    <strong>Main Content (0:20-2:50)</strong><br><br>
+                    Let's start with the foundation: Pascal's principle. <span class="script-marker">REFERENCE DIAGRAM 1</span> 
+                    When you press the brake pedal, you're pushing a piston in the master cylinder. 
+                    This creates pressure in the brake fluid, and here's the brilliant part - that 
+                    pressure is transmitted equally throughout the entire hydraulic system.
+                    <span class="script-marker">PAUSE</span><br><br>
+                    
+                    Think of it like squeezing a water balloon. When you squeeze one side, the whole 
+                    balloon feels the pressure, not just where you're squeezing. That's exactly how 
+                    your brake system works! <span class="script-marker">REFERENCE DIAGRAM 2</span><br><br>
+                    
+                    Now, let's look at the master cylinder in detail. Modern vehicles use a dual-circuit 
+                    design with primary and secondary pistons. This is a critical safety feature. If one 
+                    circuit fails, you still have braking on at least two wheels. Pretty smart engineering!
+                    <span class="script-marker">PAUSE</span><br><br>
+                    
+                    One common issue students ask about is spongy brake pedal feel. This almost always 
+                    indicates air in the hydraulic system. Remember - air is compressible, but brake 
+                    fluid isn't. When air gets in, you're compressing the air instead of transmitting 
+                    force to the brakes. That's why proper bleeding procedure is so important.
+                </div>
+
+                <div class="script-section">
+                    <strong>Summary & Next Steps (2:50-3:24)</strong><br><br>
+                    Let's recap the key points: hydraulic systems use Pascal's principle to multiply force, 
+                    the master cylinder has redundant circuits for safety, and brake fluid must be 
+                    incompressible to work properly. <span class="script-marker">PAUSE</span><br><br>
+                    
+                    Next, you'll complete a hands-on troubleshooting activity where you'll diagnose 
+                    brake system issues. Don't hesitate to review this lesson or ask questions. 
+                    Understanding hydraulics is fundamental to being a great technician. Good luck!
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Practice Panel -->
+        <div class="content-panel" id="panel-practice">
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-title">🔍 Troubleshooting Scenario</div>
+                        <div class="practice-badge">Intermediate</div>
+                    </div>
+                    <div class="practice-meta">
+                        <span>⏱️ 10 minutes</span>
+                        <span>🎯 Diagnostic Skills</span>
+                    </div>
+                    <div class="practice-instructions">
+                        <strong>Scenario:</strong><br>
+                        A customer reports their 2018 Honda Accord has a brake pedal that goes nearly 
+                        to the floor. There are no warning lights, and the fluid level appears normal 
+                        in the reservoir. Using your knowledge of hydraulic brake systems, identify 
+                        the most likely cause.
+                    </div>
+                    <div class="practice-options">
+                        <button class="option-btn" onclick="checkAnswer(this, 'correct')">
+                            <strong>A)</strong> Air in the hydraulic system
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, 'incorrect')">
+                            <strong>B)</strong> Worn brake pads
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, 'incorrect')">
+                            <strong>C)</strong> Failed master cylinder
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, 'incorrect')">
+                            <strong>D)</strong> Warped brake rotors
+                        </button>
+                    </div>
+                    <div class="feedback-box" id="feedback">
+                        <strong>Feedback will appear here after selection</strong>
+                    </div>
+                </div>
+
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-title">📐 Calculation Exercise</div>
+                        <div class="practice-badge">Intermediate</div>
+                    </div>
+                    <div class="practice-meta">
+                        <span>⏱️ 5 minutes</span>
+                        <span>🔢 Applied Mathematics</span>
+                    </div>
+                    <div class="practice-instructions">
+                        <strong>Problem:</strong><br>
+                        A master cylinder has a piston diameter of 1 inch. The caliper piston has a 
+                        diameter of 2 inches. If you apply 100 pounds of force to the master cylinder 
+                        piston, how much force is transmitted to the caliper piston?<br><br>
+                        <em>Hint: Force is proportional to area (πr²), and pressure is equal throughout 
+                        the system.</em>
+                    </div>
+                    <button class="start-practice-btn">Start Calculation</button>
+                </div>
+
+                <div class="practice-card">
+                    <div class="practice-header">
+                        <div class="practice-title">🎯 Component Identification</div>
+                        <div class="practice-badge">Beginner</div>
+                    </div>
+                    <div class="practice-meta">
+                        <span>⏱️ 8 minutes</span>
+                        <span>🔍 Visual Recognition</span>
+                    </div>
+                    <div class="practice-instructions">
+                        <strong>Activity:</strong><br>
+                        Identify all major components in the brake system diagram. Click on each 
+                        component to reveal its function and common failure modes.
+                    </div>
+                    <button class="start-practice-btn">Start Activity</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all panels
+            document.querySelectorAll('.content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected panel
+            document.getElementById('panel-' + tabName).classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        function togglePlay() {
+            const btn = document.querySelector('.play-btn');
+            if (btn.textContent === '▶') {
+                btn.textContent = '⏸';
+                startProgress();
+            } else {
+                btn.textContent = '▶';
+            }
+        }
+
+        function startProgress() {
+            const progress = document.getElementById('progress');
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 0.5;
+                progress.style.width = width + '%';
+                if (width >= 100) {
+                    clearInterval(interval);
+                    document.querySelector('.play-btn').textContent = '▶';
+                }
+            }, 100);
+        }
+
+        function checkAnswer(btn, result) {
+            const feedback = document.getElementById('feedback');
+            const allBtns = document.querySelectorAll('.option-btn');
+            
+            // Disable all buttons
+            allBtns.forEach(b => b.style.pointerEvents = 'none');
+            
+            if (result === 'correct') {
+                btn.classList.add('correct');
+                feedback.className = 'feedback-box correct show';
+                feedback.innerHTML = '<strong>✅ Correct!</strong><br>Air in the hydraulic system causes a spongy pedal feel because air is compressible, unlike brake fluid. With normal fluid level and no warning lights, this is the most likely diagnosis. The next step would be to properly bleed the brake system.';
+            } else {
+                btn.classList.add('incorrect');
+                feedback.className = 'feedback-box incorrect show';
+                if (btn.textContent.includes('Worn brake pads')) {
+                    feedback.innerHTML = '<strong>❌ Not quite.</strong><br>While worn pads can lower pedal height, they don\'t typically cause the pedal to go to the floor or feel spongy. Think about what could make the system feel compressible.';
+                } else if (btn.textContent.includes('Failed master cylinder')) {
+                    feedback.innerHTML = '<strong>❌ Close, but not the best answer.</strong><br>A failed master cylinder is possible, but with normal fluid level, air in the system is more likely. Internal master cylinder failure would typically show fluid loss.';
+                } else {
+                    feedback.innerHTML = '<strong>❌ Not correct.</strong><br>Warped rotors cause pulsation during braking, not low pedal height. Focus on what could affect the hydraulic pressure transmission.';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: lms-api-netpol
+  namespace: autolearnpro
+spec:
+  podSelector:
+    matchLabels:
+      app: lms-api
+  policyTypes:
+  - Ingress
+  - Egress
+  
+  ingress:
+  # Allow traffic from ingress-nginx
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 4000
+  
+  # Allow traffic from within same namespace (for debugging/admin tools)
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: autolearnpro
+    ports:
+    - protocol: TCP
+      port: 4000
+  
+  egress:
+  # Allow DNS resolution via kube-system
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+    ports:
+    - protocol: UDP
+      port: 53
+  
+  # Allow egress to PostgreSQL (if in-cluster)
+  - to:
+    - podSelector:
+        matchLabels:
+          app: postgres
+    ports:
+    - protocol: TCP
+      port: 5432
+  
+  # Allow egress to Redis (if in-cluster)
+  - to:
+    - podSelector:
+        matchLabels:
+          app: redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  
+  # Allow outbound HTTPS/HTTP to any external host (restrict further via IPBlocks if needed)
+  - to:
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80
+---
+# NetworkPolicy for allowing ingress-nginx to reach services
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-to-lms
+  namespace: autolearnpro
+spec:
+  podSelector:
+    matchLabels:
+      app: lms-api
+  policyTypes:
+  - Ingress
+  
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          app.kubernetes.io/name: ingress-nginx
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 4000

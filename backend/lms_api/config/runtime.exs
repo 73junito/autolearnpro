@@ -43,3 +43,13 @@ http_port = String.to_integer(System.get_env("PORT") || "4000")
 config :lms_api, LmsApiWeb.Endpoint,
   http: [port: http_port],
   server: true
+
+# Ollama AI integration (local instance accessible from Docker)
+ollama_url = System.get_env("OLLAMA_URL") || "http://host.docker.internal:11434"
+config :lms_api, :ollama_url, ollama_url
+
+# AI model names for different tasks
+config :lms_api, :ai_models,
+  content_generation: "qwen3-vl:8b",      # Vision-language model for course content
+  image_generation: "Flux_AI/Flux_AI:latest",  # Image generation for diagrams
+  default: "llama3.1:8b"                  # Fallback general-purpose model

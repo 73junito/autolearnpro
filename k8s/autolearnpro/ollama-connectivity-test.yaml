@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ollama-test
+  namespace: autolearnpro
+spec:
+  containers:
+  - name: test
+    image: curlimages/curl:latest
+    command: 
+    - sh
+    - -c
+    - |
+      echo "Testing Ollama connectivity from cluster..."
+      echo ""
+      echo "1. Testing from localhost (inside pod):"
+      curl -v http://localhost:11434/api/tags 2>&1 | head -20 || true
+      echo ""
+      echo "2. Testing from host.docker.internal:"
+      curl -v http://host.docker.internal:11434/api/tags 2>&1 | head -20 || true
+      echo ""
+      echo "3. Testing from Docker host IP:"
+      curl -v http://192.168.65.254:11434/api/tags 2>&1 | head -20 || true
+      echo ""
+      echo "Sleeping to allow log inspection..."
+      sleep 300
+  restartPolicy: Never

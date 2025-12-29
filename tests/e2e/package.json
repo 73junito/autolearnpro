@@ -1,0 +1,21 @@
+{
+  "name": "autolearnpro-e2e",
+  "version": "1.0.0",
+  "description": "End-to-end tests for AutoLearnPro LMS",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:codegen": "playwright codegen"
+  },
+  "keywords": ["e2e", "playwright", "testing"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  }
+}

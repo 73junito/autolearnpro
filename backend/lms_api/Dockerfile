@@ -11,30 +11,32 @@ WORKDIR /app
 # Install hex & rebar (non-interactive)
 RUN mix local.hex --force && mix local.rebar --force
 
-# Copy mix files and fetch dependencies first (leverage Docker layer cache)
-# Do not copy `mix.lock` from the host to allow the container to generate a lock
-# that includes any newly-added deps (useful in CI/builds).
-COPY mix.exs ./
+# Copy mix files and lock for deterministic dependency resolution
+# Including mix.lock ensures reproducible builds across CI/dev environments
+COPY mix.exs mix.lock ./
 COPY config ./config
 
 # Fetch and compile all dependencies (ensure compile-time deps are present)
 ENV MIX_ENV=prod
-RUN mix deps.get
+RUN mix deps.get --only prod
 RUN mix deps.compile
 
 # Copy the rest of the app
 COPY . .
 
 # Compile and build a release
-RUN mix compile
+# Force a compile pass so macro modules (like LmsApiWeb) are available
+RUN mix compile --force
 RUN MIX_ENV=prod mix release --overwrite
 
 #### Runtime image
-FROM debian:12.12-slim AS runtime
+# Use a stable slim Debian base (recommended by Docker Scout) to reduce exposure
+FROM debian:stable-slim AS runtime
 
 # Pin the runtime base and install only the packages required at runtime.
 # Keep only the minimal C libs the release needs; avoid adding `curl`
 # to reduce transitive packages (libcurl/libldap) pulled into the image.
+# Do not install `tar` in the runtime image to avoid the reported CVE when tar is not required at runtime.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     openssl \

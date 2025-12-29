@@ -8,7 +8,15 @@ defmodule LmsApi.MixProject do
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "coveralls.json": :test
+      ]
     ]
   end
 
@@ -42,7 +50,8 @@ defmodule LmsApi.MixProject do
       {:oban, "~> 2.14"},
       {:phoenix_swagger, "~> 0.8.3"},
       {:phoenix_live_view, "~> 0.20.0"},
-      {:benchee, "~> 1.1", only: :dev}
+      {:benchee, "~> 1.1", only: :dev},
+      {:excoveralls, "~> 0.18", only: :test}
     ]
   end
 end

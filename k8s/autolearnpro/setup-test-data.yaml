@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: setup-test-data
+  namespace: autolearnpro
+spec:
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: setup
+        image: postgres:15
+        command:
+        - /bin/bash
+        - -c
+        - |
+          echo "========================================="
+          echo "Setting Up Test Data for AI Workloads"
+          echo "========================================="
+          echo ""
+          
+          psql -h postgres -U $PGUSER -d lms_api_prod <<'EOF'
+          -- Get test user ID and create enrollment
+          INSERT INTO enrollments (user_id, course_id, status, enrolled_at, progress_percentage, inserted_at, updated_at)
+          SELECT id, 1, 'enrolled', NOW(), 0, NOW(), NOW()
+          FROM users 
+          WHERE email = 'ai-test@example.com'
+          ON CONFLICT (user_id, course_id) DO NOTHING;
+          
+          -- Verify enrollment
+          SELECT 'User enrollment:' as status;
+          SELECT u.email, u.role, e.course_id, e.status, e.enrolled_at
+          FROM enrollments e
+          JOIN users u ON u.id = e.user_id
+          WHERE u.email = 'ai-test@example.com';
+          EOF
+          
+          echo ""
+          echo "✓ Test data setup complete"
+        env:
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lms-api-secrets
+              key: POSTGRES_PASSWORD
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: lms-api-secrets
+              key: POSTGRES_USER

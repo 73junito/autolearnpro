@@ -1,0 +1,17 @@
+{
+  "generated_at": "2025-12-19T06:16:20.127268+00:00",
+  "lesson_count": 1,
+  "lessons": [
+    {
+      "course": "auto-diesel",
+      "module": "brakes",
+      "lesson": "brake-safety",
+      "lesson_id": "1001",
+      "status": "ai",
+      "model": "mistral:7b",
+      "logs": [
+        "scripts\\data\\logs\\2025-12-19T06-16-20.125046+00-00.attempt1.mistral_7b.log"
+      ]
+    }
+  ]
+}

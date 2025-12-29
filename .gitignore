@@ -1,0 +1,78 @@
+# Node
+node_modules/
+frontend/web/node_modules/
+mobile/node_modules/
+# Next.js
+.next/
+.turbo/
+/.vite/
+dist/
+build/
+
+# Elixir / Phoenix
+_build/
+deps/
+/rel/
+/release/
+/erl_crash.dump
+tmp/
+*.ez
+*.beam
+
+# Mix & OTP
+mix.lock
+
+# Erlang LS
+/.elixir_ls/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Python
+venv/
+env/
+__pycache__/
+
+# macOS
+._*
+
+# Windows
+ehthumbs.db
+Icon?
+
+# JetBrains
+.idea/
+
+# Ignore local environment files
+.env
+.env.local
+.env.*.local
+
+# ignore compiled frontend artifacts
+frontend/web/.next
+frontend/web/.cache
+
+# Ignore CI run logs and extracted workflow logs
+run_logs_*/
+run_*.zip
+run_*.json
+
+# Ignore downloaded model blobs and manifests
+ollama_models/
+
+# Ignore local extracted run artifacts
+run_*/
+cleanup/
+.mypy_cache/

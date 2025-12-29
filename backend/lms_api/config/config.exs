@@ -4,7 +4,7 @@ import Config
 # Real app should override secrets and DB config via runtime.exs or environment.
 
 config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
+  format: "{\"time\": \"$time\",\"level\": \"$level\",\"msg\": \"$message\",\"metadata\": \"$metadata\"}\n",
   metadata: [:request_id]
 import Config
 
