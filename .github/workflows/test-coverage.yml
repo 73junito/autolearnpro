@@ -117,15 +117,15 @@ jobs:
             const coveragePercent = (coverage.coverage || 0).toFixed(2);
             const comment = `## 📊 Test Coverage Report
 
-**Overall Coverage:** ${coveragePercent}%
+**Overall Coverage:** ${coveragePercent.toFixed(2)}%
 
 | Metric | Value |
 |--------|-------|
-| Lines Covered | ${coverage.covered_lines || 'N/A'} |
-| Total Lines | ${coverage.total_lines || 'N/A'} |
-| Coverage % | ${coveragePercent}% |
+| Lines Covered | ${covered_lines} |
+| Total Lines | ${total_lines} |
+| Coverage % | ${coveragePercent.toFixed(2)}% |
 
-${coveragePercent >= 70 ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
+${meets ? '✅ Coverage meets threshold (70%)' : '❌ Coverage below threshold (70%)'}`;
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
