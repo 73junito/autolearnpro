@@ -24,8 +24,17 @@ case "$cmd" in
     exit 2
     ;;
   list|ps)
-    # Some CI checks call `ollama ps` to see loaded models — return empty success.
-    echo "[]"
+    # Some CI checks call `ollama ps` or `ollama list` to see models/runs.
+    # Mimic real behavior:
+    #   - default: no output (empty list)
+    #   - with --json: return an empty JSON array
+    for arg in "$@"; do
+      if [ "$arg" = "--json" ]; then
+        echo "[]"
+        exit 0
+      fi
+    done
+    # No --json requested: succeed with no output
     exit 0
     ;;
   *)
@@ -41,8 +50,13 @@ chmod +x "$DEST"
 if [ -n "${GITHUB_PATH:-}" ]; then
   echo "$DEST_DIR" >> "$GITHUB_PATH"
 else
-  # Fallback for local runs: export PATH in current shell
+  # Fallback for local runs: export PATH in current shell.
+  # Note: when this script is executed (not sourced), this change does not
+  # persist in the parent shell. To use the shim in new shells, add $DEST_DIR
+  # to your PATH in your shell profile (e.g. ~/.bashrc, ~/.zshrc).
   export PATH="$DEST_DIR:$PATH"
+  echo "For future shells, add the following to your shell profile (e.g. ~/.bashrc):"
+  echo "  export PATH=\"$DEST_DIR:\$PATH\""
 fi
 
 echo "Installed ollama shim to $DEST"
