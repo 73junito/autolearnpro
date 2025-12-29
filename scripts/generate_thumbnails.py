@@ -41,9 +41,12 @@ def generate_thumbnail(course_title, course_description):
     """Generate a thumbnail using DALL-E."""
     client = openai.OpenAI(api_key=get_openai_key())
 
-    prompt = f"""Create a modern, professional thumbnail for an online course titled '{course_title}'.
-    Course description: {course_description}
-    Style: Clean, educational, engaging, with relevant imagery."""
+    prompt = (
+        f"Create a modern, professional thumbnail for an online course "
+        f"titled '{course_title}'.\n"
+        f"Course description: {course_description}\n"
+        f"Style: Clean, educational, engaging, with relevant imagery."
+    )
 
     try:
         response = client.images.generate(
@@ -87,7 +90,7 @@ def process_courses(limit=None):
     try:
         # Query courses without thumbnails
         query = session.query(Course).filter(
-            (Course.thumbnail_url == None) | (Course.thumbnail_url == "")
+            (Course.thumbnail_url is None) | (Course.thumbnail_url == "")
         )
 
         if limit:
