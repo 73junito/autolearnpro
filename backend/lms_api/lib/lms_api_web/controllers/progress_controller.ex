@@ -3,6 +3,7 @@ defmodule LmsApiWeb.ProgressController do
 
   alias LmsApi.Progress
   alias LmsApi.Enrollments
+  alias LmsApi.Catalog
 
   action_fallback LmsApiWeb.FallbackController
 
@@ -103,9 +104,7 @@ defmodule LmsApiWeb.ProgressController do
   end
 
   defp get_course_id_for_lesson(lesson_id) do
-    # This would need to be implemented based on your lesson structure
-    # For now, return a mock course_id
-    {:ok, 1}
+    Catalog.get_course_id_for_lesson(lesson_id)
   end
 
   defp update_course_progress(user_id, lesson_id) do
