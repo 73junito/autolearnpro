@@ -12,12 +12,11 @@ sys.path.insert(0, str(project_root))
 try:
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
+    from app.models import Course
 except ImportError:
     print("Error: Required packages not installed.")
     print("Please run: pip install sqlalchemy psycopg2-binary")
     sys.exit(1)
-
-from app.models import Course
 
 
 def get_database_url():

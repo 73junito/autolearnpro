@@ -16,6 +16,6 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: qa_check.py <file>")
         sys.exit(1)
-    
+
     success = check_file(sys.argv[1])
     sys.exit(0 if success else 1)
