@@ -18,4 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file docker/lms-api/Dockerfile.release --tag my-image-name:$(date +%s)
+      run: |
+        docker --version || true
+        docker build \
+          --file "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" \
+          --tag my-image-name:$(date +%s) \
+          "Automotive and Diesel LMS"
