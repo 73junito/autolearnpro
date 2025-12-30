@@ -33,7 +33,7 @@ defmodule LmsApi.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.12"},
-      {:phoenix_html, "~> 3.3"},
+      {:phoenix_html, "~> 4.3"},
       {:gettext, "~> 0.23"},
       {:phoenix_view, "~> 2.0"},
       {:phoenix_pubsub, "~> 2.1"},
