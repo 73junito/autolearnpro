@@ -23,7 +23,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build backend image (no push)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./backend/lms_api
           file: Dockerfile
@@ -35,7 +35,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Run Trivy vulnerability scan
-        uses: aquasecurity/trivy-action@v0.22.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: lms-api:nightly-${{ github.sha }}
           format: json

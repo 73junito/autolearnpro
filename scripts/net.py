@@ -22,7 +22,12 @@ def get_session(retries: int = 3, backoff_factor: float = 1.0) -> requests.Sessi
     return session
 
 
-def post_json(url: str, payload: Any, timeout: int = 120, session: Optional[requests.Session] = None) -> Any:
+def post_json(
+    url: str,
+    payload: Any,
+    timeout: int = 120,
+    session: Optional[requests.Session] = None,
+) -> Any:
     """POST JSON payload and return parsed JSON. Raises on HTTP errors."""
     s = session or get_session()
     resp = s.post(url, json=payload, timeout=timeout)
