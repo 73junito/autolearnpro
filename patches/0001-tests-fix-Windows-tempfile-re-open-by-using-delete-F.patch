@@ -1,0 +1,165 @@
+From 5a426abeaf620692fc609521df4492a24cfcede4 Mon Sep 17 00:00:00 2001
+From: 73junito <73junito@gmail.com>
+Date: Tue, 30 Dec 2025 12:49:59 -0600
+Subject: [PATCH] tests: fix Windows tempfile re-open by using delete=False and
+ explicit cleanup
+
+---
+ tests/test_client.py             | 52 ++++++++++++++++++++++----------
+ tests/test_type_serialization.py | 17 ++++++++---
+ 2 files changed, 49 insertions(+), 20 deletions(-)
+
+diff --git a/tests/test_client.py b/tests/test_client.py
+index 24a8af3..6eae460 100644
+--- a/tests/test_client.py
++++ b/tests/test_client.py
+@@ -459,13 +459,16 @@ def test_client_generate_images(httpserver: HTTPServer):
+   )
+ 
+   client = Client(httpserver.url_for('/'))
+-
+-  with tempfile.NamedTemporaryFile() as temp:
++  with tempfile.NamedTemporaryFile(delete=False) as temp:
+     temp.write(PNG_BYTES)
+     temp.flush()
+-    response = client.generate('dummy', 'Why is the sky blue?', images=[temp.name])
++    temp_name = temp.name
++  try:
++    response = client.generate('dummy', 'Why is the sky blue?', images=[temp_name])
+     assert response['model'] == 'dummy'
+     assert response['response'] == 'Because it is.'
++  finally:
++    os.unlink(temp_name)
+ 
+ 
+ def test_client_generate_format_json(httpserver: HTTPServer):
+@@ -740,20 +743,26 @@ def test_client_create_blob(httpserver: HTTPServer):
+   httpserver.expect_ordered_request(re.compile('^/api/blobs/sha256[:-][0-9a-fA-F]{64}$'), method='POST').respond_with_response(Response(status=201))
+ 
+   client = Client(httpserver.url_for('/'))
+-
+-  with tempfile.NamedTemporaryFile() as blob:
+-    response = client.create_blob(blob.name)
++  with tempfile.NamedTemporaryFile(delete=False) as blob:
++    blob_name = blob.name
++  try:
++    response = client.create_blob(blob_name)
+     assert response == 'sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
++  finally:
++    os.unlink(blob_name)
+ 
+ 
+ def test_client_create_blob_exists(httpserver: HTTPServer):
+   httpserver.expect_ordered_request(PrefixPattern('/api/blobs/'), method='POST').respond_with_response(Response(status=200))
+ 
+   client = Client(httpserver.url_for('/'))
+-
+-  with tempfile.NamedTemporaryFile() as blob:
+-    response = client.create_blob(blob.name)
++  with tempfile.NamedTemporaryFile(delete=False) as blob:
++    blob_name = blob.name
++  try:
++    response = client.create_blob(blob_name)
+     assert response == 'sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
++  finally:
++    os.unlink(blob_name)
+ 
+ 
+ def test_client_delete(httpserver: HTTPServer):
+@@ -945,13 +954,16 @@ async def test_async_client_generate_images(httpserver: HTTPServer):
+   )
+ 
+   client = AsyncClient(httpserver.url_for('/'))
+-
+-  with tempfile.NamedTemporaryFile() as temp:
++  with tempfile.NamedTemporaryFile(delete=False) as temp:
+     temp.write(PNG_BYTES)
+     temp.flush()
+-    response = await client.generate('dummy', 'Why is the sky blue?', images=[temp.name])
++    temp_name = temp.name
++  try:
++    response = await client.generate('dummy', 'Why is the sky blue?', images=[temp_name])
+     assert response['model'] == 'dummy'
+     assert response['response'] == 'Because it is.'
++  finally:
++    os.unlink(temp_name)
+ 
+ 
+ async def test_async_client_pull(httpserver: HTTPServer):
+@@ -1118,9 +1130,13 @@ async def test_async_client_create_blob(httpserver: HTTPServer):
+ 
+   client = AsyncClient(httpserver.url_for('/'))
+ 
+-  with tempfile.NamedTemporaryFile() as blob:
+-    response = await client.create_blob(blob.name)
++  with tempfile.NamedTemporaryFile(delete=False) as blob:
++    blob_name = blob.name
++  try:
++    response = await client.create_blob(blob_name)
+     assert response == 'sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
++  finally:
++    os.unlink(blob_name)
+ 
+ 
+ async def test_async_client_create_blob_exists(httpserver: HTTPServer):
+@@ -1128,9 +1144,13 @@ async def test_async_client_create_blob_exists(httpserver: HTTPServer):
+ 
+   client = AsyncClient(httpserver.url_for('/'))
+ 
+-  with tempfile.NamedTemporaryFile() as blob:
+-    response = await client.create_blob(blob.name)
++  with tempfile.NamedTemporaryFile(delete=False) as blob:
++    blob_name = blob.name
++  try:
++    response = await client.create_blob(blob_name)
+     assert response == 'sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
++  finally:
++    os.unlink(blob_name)
+ 
+ 
+ async def test_async_client_delete(httpserver: HTTPServer):
+diff --git a/tests/test_type_serialization.py b/tests/test_type_serialization.py
+index f458cd2..745920d 100644
+--- a/tests/test_type_serialization.py
++++ b/tests/test_type_serialization.py
+@@ -1,4 +1,5 @@
+ import tempfile
++import os
+ from base64 import b64encode
+ from pathlib import Path
+ 
+@@ -32,19 +33,27 @@ def test_image_serialization_plain_string():
+ 
+ 
+ def test_image_serialization_path():
+-  with tempfile.NamedTemporaryFile() as temp_file:
++  with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+     temp_file.write(b'test file content')
+     temp_file.flush()
+-    img = Image(value=Path(temp_file.name))
++    temp_name = temp_file.name
++  try:
++    img = Image(value=Path(temp_name))
+     assert img.model_dump() == b64encode(b'test file content').decode()
++  finally:
++    os.unlink(temp_name)
+ 
+ 
+ def test_image_serialization_string_path():
+-  with tempfile.NamedTemporaryFile() as temp_file:
++  with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+     temp_file.write(b'test file content')
+     temp_file.flush()
+-    img = Image(value=temp_file.name)
++    temp_name = temp_file.name
++  try:
++    img = Image(value=temp_name)
+     assert img.model_dump() == b64encode(b'test file content').decode()
++  finally:
++    os.unlink(temp_name)
+ 
+   with pytest.raises(ValueError):
+     img = Image(value='some_path/that/does/not/exist.png')
+-- 
+2.52.0.windows.1
+
