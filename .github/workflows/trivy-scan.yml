@@ -7,15 +7,17 @@ on:
 jobs:
   trivy-scan:
     runs-on: ubuntu-latest
+    env:
+      ARTIFACT_KEY: ${{ secrets.ARTIFACT_ENCRYPTION_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v2.1.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2.11.0
 
       - name: Build backend image for scan
         run: |
@@ -31,9 +33,7 @@ jobs:
           exit-code: '1'
 
       - name: Encrypt Trivy report (optional)
-        if: secrets.ARTIFACT_ENCRYPTION_KEY != ''
-        env:
-          ARTIFACT_KEY: ${{ secrets.ARTIFACT_ENCRYPTION_KEY }}
+        if: ${{ env.ARTIFACT_KEY != '' }}
         run: |
           set -euo pipefail
           # Use AES-256-CBC with passphrase from secret to encrypt report
