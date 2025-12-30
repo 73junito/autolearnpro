@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Detect ollama on runner
         shell: bash
@@ -47,13 +47,13 @@ jobs:
           fi
 
       - name: Set up Elixir
-        uses: erlef/setup-beam@v1
+        uses: erlef/setup-beam@3559ac3b631a9560f28817e8e7fdde1638664336
         with:
           elixir-version: '1.16'
           otp-version: '26'
 
       - name: Restore dependencies cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: |
             backend/lms_api/deps
@@ -89,7 +89,7 @@ jobs:
         continue-on-error: false
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238
         with:
           file: backend/lms_api/cover/excoveralls.json
           flags: backend
@@ -125,7 +125,7 @@ jobs:
 
       - name: Upload HTML coverage report as artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: coverage-report
           path: backend/lms_api/cover/
