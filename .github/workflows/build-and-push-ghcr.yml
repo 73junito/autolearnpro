@@ -12,56 +12,48 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout
+      - name: "Checkout"
         uses: actions/checkout@v4
 
-      - name: Set up QEMU
+      - name: "Set up QEMU"
         uses: docker/setup-qemu-action@v2
 
-      - name: Set up Docker Buildx
+      - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v2
 
-      - name: Login to GHCR
+      - name: "Login to GHCR"
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Debug: Docker and buildx info
+      - name: "Debug: Docker and buildx info"
         run: |
           docker --version
           docker buildx version
           docker info
 
-      - name: Debug - show workspace and Dockerfile path
+      - name: "Debug - show workspace and Dockerfile path"
         run: |
           echo "PWD:"
           pwd
-          echo ""
-          echo "GITHUB_WORKSPACE:"
-          echo "$GITHUB_WORKSPACE"
-          echo ""
           echo "Top-level files:"
           ls -la || true
-          echo ""
-          echo "docker/ tree:"
-          ls -la docker || true
-          echo ""
-          echo "docker/lms-api tree:"
-          ls -la docker/lms-api || true
 
-      - name: Debug - check Dockerfile existence
+      - name: "Debug - check Dockerfile existence"
         run: |
-          if [ -f docker/lms-api/Dockerfile.release ]; then
+          if [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
             echo "Dockerfile.release FOUND"
           else
-            echo "Dockerfile.release MISSING"
+            echo "Dockerfile.release MISSING: expected at Automotive and Diesel LMS/docker/lms-api/Dockerfile.release"
+            ls -la "Automotive and Diesel LMS/docker" || true
+            exit 1
           fi
 
-      - name: Build and push image (manual buildx)
+      - name: "Build and push image (manual buildx)"
         env:
-          IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/lms-api
+          IMAGE_NAME: "ghcr.io/${{ github.repository_owner }}/lms-api"
           TAGS: "latest,${{ github.sha }}"
         run: |
           set -eo pipefail
@@ -71,7 +63,7 @@ jobs:
           docker buildx create --use --name=ci-builder || true
           # show verbose build output and push to GHCR
           docker buildx build \
-            --file docker/lms-api/Dockerfile.release \
+            --file "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" \
             --platform linux/amd64 \
             --push \
             --progress=plain \
@@ -79,4 +71,4 @@ jobs:
             --no-cache \
             --tag ${IMAGE_NAME}:latest \
             --tag ${IMAGE_NAME}:${GITHUB_SHA} \
-            .
+            "Automotive and Diesel LMS"

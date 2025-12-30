@@ -30,14 +30,15 @@ jobs:
         run: |
           echo "PWD:"; pwd
           echo "Top-level files:"; ls -la || true
-          echo "docker/lms-api listing:"; ls -la docker/lms-api || true
+          echo "Automotive and Diesel LMS/docker/lms-api listing:"; ls -la "Automotive and Diesel LMS/docker/lms-api" || true
 
       - name: Debug - check Dockerfile existence
         run: |
-          if [ -f docker/lms-api/Dockerfile.release ]; then
+          if [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
             echo "Dockerfile.release FOUND"
           else
-            echo "Dockerfile.release MISSING"
+            echo "Dockerfile.release MISSING: expected at Automotive and Diesel LMS/docker/lms-api/Dockerfile.release"
+            exit 1
           fi
 
       - name: Build (buildx) and attempt push
@@ -50,7 +51,7 @@ jobs:
           docker buildx create --use --name=ci-builder || true
           docker buildx inspect --bootstrap
           docker buildx build \
-            --file docker/lms-api/Dockerfile.release \
+            --file "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" \
             --platform linux/amd64 \
             --push \
             --progress=plain \
@@ -58,4 +59,4 @@ jobs:
             --no-cache \
             --tag ${IMAGE_NAME}:test-${{ github.run_id }} \
             --tag ${IMAGE_NAME}:${{ github.sha }} \
-            .
+            "Automotive and Diesel LMS"

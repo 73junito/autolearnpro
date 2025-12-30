@@ -1,0 +1,44 @@
+name: Storybook CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    outputs:
+      storybook: ${{ steps.paths.outputs.storybook }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine changed paths
+        id: paths
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            storybook:
+              - 'packages/ui/**'
+              - 'apps/web/components/**'
+              - 'apps/web/**'
+
+  build:
+    needs: filter
+    if: github.event_name == 'push' || needs.filter.outputs.storybook == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm storybook:build

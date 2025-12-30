@@ -17,7 +17,7 @@ if shutil.which("ollama") is None:
     # pytest is more reliable than checking sys.modules during collection.
     try:
         import pytest  # type: ignore
-        pytest.skip("ollama CLI not found, skipping ollama-dependent tests")
+        pytest.skip("ollama CLI not found, skipping ollama-dependent tests", allow_module_level=True)
     except Exception:
         # Not running under pytest (or pytest import failed) — exit
         # successfully for manual invocation.

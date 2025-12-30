@@ -19,9 +19,17 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.11.0
 
+      - name: Check Dockerfile exists
+        run: |
+          if [ ! -f "Automotive and Diesel LMS/backend/lms_api/Dockerfile" ]; then
+            echo "Automotive and Diesel LMS/backend/lms_api/Dockerfile not found"
+            ls -la "Automotive and Diesel LMS/backend" || true
+            exit 1
+          fi
+
       - name: Build backend image for scan
         run: |
-          docker build -t lms-api:pr-${{ github.sha }} -f backend/lms_api/Dockerfile ./backend/lms_api
+          docker build -t lms-api:pr-${{ github.sha }} -f "Automotive and Diesel LMS/backend/lms_api/Dockerfile" "Automotive and Diesel LMS/backend/lms_api"
 
       - name: Run Trivy (vuln scan)
         uses: aquasecurity/trivy-action@v0

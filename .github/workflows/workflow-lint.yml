@@ -1,0 +1,37 @@
+name: Workflow Lint
+
+on:
+  pull_request:
+  push:
+    branches: [ main, '**' ]
+
+jobs:
+  lint-workflows:
+    name: Lint GitHub Workflows (YAML)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run super-linter for YAML only
+        uses: github/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_INCLUDE: ".github/workflows/.*\\.(yml|yaml)$"
+          LINTER_RULES_PATH: ""
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Only enable YAML linting to validate workflow files
+          VALIDATE_YAML: true
+          VALIDATE_JSON: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_SHELL: false
+          VALIDATE_ACTIONS: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_PYTHON: false
+          VALIDATE_DOCKERFILE: false
+          VALIDATE_BASH: false
+          VALIDATE_ANSIBLE: false
+          VALIDATE_TERRAFORM: false
+          VALIDATE_GITATTRIBUTES: false
+          VALIDATE_GITHUB_WORKFLOW: false
