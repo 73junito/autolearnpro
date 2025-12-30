@@ -1,0 +1,24 @@
+name: Dispatch Test
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print environment and files
+        run: |
+          echo "DISPATCH TEST START"
+          date --utc
+          uname -a || true
+          echo "PWD:"; pwd
+          echo "TOP-LEVEL:"; ls -la || true
+          echo "docker/lms-api listing:"; ls -la docker/lms-api || true
+          echo "DISPATCH TEST END"
