@@ -1,50 +1,60 @@
 import json
-from types import SimpleNamespace
 import scripts.generate_questions_gpu_v2 as gen
 
 
+class MockCursor:
+    """Mock cursor for testing database operations."""
+
+    def __init__(self, fetch_result, executed_list):
+        self._fetch = fetch_result
+        self.executed = executed_list
+
+    def execute(self, sql, params=None):
+        # record call
+        self.executed.append((sql, params))
+
+    def fetchone(self):
+        return self._fetch
+
+    def close(self):
+        pass
+
+
+class MockConn:
+    """Mock connection for testing database operations."""
+
+    def __init__(self, cursor):
+        self._cursor = cursor
+        self.committed = False
+
+    def cursor(self):
+        return self._cursor
+
+    def commit(self):
+        self.committed = True
+
+    def close(self):
+        pass
+
+
+class MockPsycopg:
+    """Mock psycopg2 module for testing."""
+
+    def __init__(self, fetch_result, executed_list):
+        self._fetch_result = fetch_result
+        self._executed = executed_list
+
+    def connect(self, *args, **kwargs):
+        """Create a new connection with fresh cursor."""
+        cur = MockCursor(self._fetch_result, self._executed)
+        return MockConn(cur)
+
+
 def make_mock_psycopg2(fetch_result=None):
+    """Create mock psycopg2 module and executed list."""
     executed = []
-
-    class MockCursor:
-        def __init__(self, fetch_result=None):
-            self._fetch = fetch_result
-            self.executed = executed
-
-        def execute(self, sql, params=None):
-            # record call
-            self.executed.append((sql, params))
-
-        def fetchone(self):
-            return self._fetch
-
-        def close(self):
-            pass
-
-    class MockConn:
-        def __init__(self, cursor):
-            self._cursor = cursor
-            self.committed = False
-
-        def cursor(self):
-            return self._cursor
-
-        def commit(self):
-            self.committed = True
-
-        def close(self):
-            pass
-
-    class MockPsycopg:
-        def __init__(self):
-            self._last_conn_args = None
-
-        def connect(self, *args, **kwargs):
-            # return a new connection with fresh cursor
-            cur = MockCursor(fetch_result)
-            return MockConn(cur)
-
-    return MockPsycopg(), executed
+    mock_psycopg = MockPsycopg(fetch_result, executed)
+    return mock_psycopg, executed
 
 
 def test_get_or_create_bank_direct_db_existing():

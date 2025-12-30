@@ -12,7 +12,7 @@ sys.path.insert(0, str(project_root))
 try:
     from sqlalchemy import create_engine, inspect
     from sqlalchemy.orm import sessionmaker
-except ImportError as e:
+except ImportError:
     print("Error: Required packages not installed.")
     print("Please run: pip install sqlalchemy psycopg2-binary")
     sys.exit(1)
@@ -67,7 +67,10 @@ def inspect_courses_table():
         fks = inspector.get_foreign_keys("courses")
         if fks:
             for fk in fks:
-                print(f"  - {fk['constrained_columns']} -> {fk['referred_table']}.{fk['referred_columns']}")
+                print(
+                    f"  - {fk['constrained_columns']} -> "
+                    f"{fk['referred_table']}.{fk['referred_columns']}"
+                )
         else:
             print("  - None")
 

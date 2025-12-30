@@ -9,7 +9,7 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from scripts.generate_thumbnails import generate_thumbnail, download_image
+from scripts.generate_thumbnails import generate_thumbnail, download_image  # noqa: E402
 
 
 def test_generate_thumbnail():
