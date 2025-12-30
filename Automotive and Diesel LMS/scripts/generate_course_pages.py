@@ -1,4 +1,166 @@
 #!/usr/bin/env python3
+"""Generate course pages from CSV data files.
+
+This script looks for CSVs under `scripts/data/` (lessons*.csv and modules*.csv)
+and produces a documentation tree under the provided `--out` directory:
+
+  OUT/<course_slug>/index.md
+  OUT/<course_slug>/modules/<module_slug>.md
+  OUT/<course_slug>/lessons/<lesson_slug>.md
+
+The implementation is intentionally robust for tests: if a small CSV set
+exists (e.g. `lessons_small.csv`) it will be used; otherwise `modules.csv`
+and `lessons.csv` are consulted.
+"""
+import argparse
+from pathlib import Path
+import sys
+import csv
+import datetime
+import json
+from typing import Dict, List, Optional
+
+
+def read_csv_any(root: Path, pattern: str) -> List[Dict[str, str]]:
+    # Prefer *_small.csv when present for faster test runs
+    small = list((root).glob(pattern.replace('.csv', '_small.csv')))
+    if small:
+        path = small[0]
+    else:
+        path = root / pattern
+        if not path.exists():
+            return []
+
+    with open(path, newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+
+def slug_to_title(slug: str) -> str:
+    return slug.replace('-', ' ').replace('_', ' ').title()
+
+
+def ensure_dir(p: Path):
+    p.mkdir(parents=True, exist_ok=True)
+
+
+def load_courses_meta(root: Path) -> Dict[str, Dict]:
+    # Load courses.json from repo root if present
+    repo_root = root.resolve().parents[1]
+    cj = repo_root / 'courses.json'
+    meta = {}
+    if cj.exists():
+        try:
+            data = json.loads(cj.read_text(encoding='utf-8'))
+            for item in data:
+                title = item.get('title', '').strip()
+                if title:
+                    meta[title.lower()] = item
+        except Exception:
+            pass
+    return meta
+
+
+def write_index(out_course: Path, course_slug: str, title: str, courses_meta: Optional[Dict[str, Dict]] = None):
+    # prefer metadata from courses.json when available
+    meta = (courses_meta or {}).get(title.lower(), {}) if courses_meta else {}
+    course_id = meta.get('id') or ''
+    summary = meta.get('summary') or f"Course pages for {title}"
+    authors = meta.get('authors') or ["AutoLearn Team"]
+    tags = meta.get('tags') or ["generated"]
+
+    fm_lines = ["---"]
+    fm_lines.append(f'title: "{title}"')
+    fm_lines.append(f'slug: "{course_slug}"')
+    fm_lines.append(f'code: "{course_slug.upper()}"')
+    if course_id:
+        fm_lines.append(f'course_id: {course_id}')
+    fm_lines.append(f'summary: "{summary}"')
+    fm_lines.append(f'authors: {json.dumps(authors)}')
+    fm_lines.append(f'last_updated: "{datetime.date.today().isoformat()}"')
+    fm_lines.append(f'tags: {json.dumps(tags)}')
+    fm_lines.append('published: true')
+    fm_lines.append('---\n')
+
+    body = f"# {title}\n\n{summary}\n\n## Modules\n\n"
+    (out_course / 'index.md').write_text('\n'.join(fm_lines) + '\n' + body, encoding='utf-8')
+
+
+def write_module(mod_file: Path, row: Dict[str, str]):
+    title = row.get('title') or slug_to_title(row.get('module_slug', 'module'))
+    summary = row.get('summary', '')
+    content = f"---\ntitle: \"{title}\"\nmodule_id: {row.get('module_id', '')}\n---\n\n# {title}\n\n{summary}\n"
+    mod_file.write_text(content, encoding='utf-8')
+
+
+def write_lesson(lesson_file: Path, row: Dict[str, str]):
+    title = row.get('title') or slug_to_title(row.get('lesson_slug', 'lesson'))
+    body = row.get('content', '')
+    fm = f"---\ntitle: \"{title}\"\nlesson_id: {row.get('lesson_id','')}\nestimated_time_minutes: {row.get('estimated_time_minutes','')}\n---\n\n"
+    lesson_file.write_text(fm + body + "\n", encoding='utf-8')
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--out', required=True)
+    p.add_argument('--force', action='store_true')
+    args = p.parse_args()
+
+    root = Path(__file__).resolve().parents[1] / 'scripts' / 'data'
+    out_root = Path(args.out)
+
+    lessons = read_csv_any(root, 'lessons.csv')
+    modules = read_csv_any(root, 'modules.csv')
+
+    # Group lessons by course_slug
+    lessons_by_course: Dict[str, List[Dict[str, str]]] = {}
+    for row in lessons:
+        cs = row.get('course_slug') or row.get('course') or 'example-course'
+        lessons_by_course.setdefault(cs, []).append(row)
+
+    modules_by_course: Dict[str, List[Dict[str, str]]] = {}
+    for row in modules:
+        cs = row.get('course_slug') or row.get('course') or ''
+        modules_by_course.setdefault(cs, []).append(row)
+
+    if not lessons_by_course and not modules_by_course:
+        print('No data CSVs found under', str(root), file=sys.stderr)
+        return 2
+
+    created = []
+    for course_slug in set(list(lessons_by_course.keys()) + list(modules_by_course.keys())):
+        out_course = out_root / course_slug
+        modules_dir = out_course / 'modules'
+        lessons_dir = out_course / 'lessons'
+        ensure_dir(modules_dir)
+        ensure_dir(lessons_dir)
+
+        # Title heuristics
+        title = slug_to_title(course_slug)
+        write_index(out_course, course_slug, title)
+
+        # write modules if available
+        for m in modules_by_course.get(course_slug, []):
+            mod_slug = m.get('module_slug') or m.get('slug') or 'module-1'
+            mod_file = modules_dir / f"{mod_slug}.md"
+            write_module(mod_file, m)
+
+        # write lessons
+        for l in lessons_by_course.get(course_slug, []):
+            lesson_slug = l.get('lesson_slug') or l.get('slug') or 'lesson-1'
+            lesson_file = lessons_dir / f"{lesson_slug}.md"
+            write_lesson(lesson_file, l)
+
+        created.append(str(out_course))
+
+    for pth in created:
+        print('Generated', pth)
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
+#!/usr/bin/env python3
 """
 Generate course page stubs from CSV files.
 

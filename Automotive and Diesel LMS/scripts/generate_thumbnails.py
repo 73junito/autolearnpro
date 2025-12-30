@@ -1,25 +1,7 @@
 #!/usr/bin/env python3
-"""
+"""Generate thumbnails for courses using OpenAI DALL-E."""
 
-Generate thumbnails for course catalog using an Ollama image model (Ollama CLI only; REST API not required).
-
-Usage examples:
-  python scripts/generate_thumbnails.py --model "registry.ollama.ai/Flux_AI/Flux_AI:latest" --input courses.json --outdir thumbnails --size 512
-  echo -e "Intro to EV\nDiesel Fundamentals" | python scripts/generate_thumbnails.py --model "..." --outdir thumbs
-
-Input formats supported:
-- JSON array of objects with 'id' and 'title' keys
-- CSV with header containing 'id' and 'title' columns
-- Plain newline-separated titles (each line is a title)
-
-The script uses the Ollama CLI (not the REST API) to generate images. It expects the CLI to return a base64-encoded PNG string in the response text or a raw base64 blob. The script will attempt to extract base64 and write PNG files named
-"<id>_<slugified-title>.png" or sequential indices when id unavailable.
-"""
-import argparse
-import base64
-import json
 import os
-import re
 import sys
 import subprocess
 from PIL import Image
@@ -34,93 +16,42 @@ from .net import get_session, post_json
 from .config import validate, ollama_available
 import shutil
 
-# REST API is not used; CLI only
-BASE64_RE = re.compile(r"([A-Za-z0-9+/]{100,}=*)")
+# Import third-party and local modules after path setup
+# ruff: noqa: E402
+import openai
+import requests
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-# Default local Stable Diffusion WebUI model path (Windows)
-SD_WEBUI_DEFAULT = Path(r"C:\stable-diffusion-webui\stable-diffusion-webui\models\Stable-diffusion\dreamshaper_8.safetensors")
-SD_WEBUI_API = os.getenv("SD_WEBUI_API", "http://127.0.0.1:7860")
-
-
-def slugify(s: str) -> str:
-    s = s.lower()
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    s = re.sub(r"-+", "-", s).strip("-")
-    return s[:40]
+from app.models import Course
 
 
-def read_input(path: Optional[str]) -> List[Dict[str, str]]:
-    items = []
-    if path is None:
-        # read titles from stdin
-        data = sys.stdin.read().strip()
-        if not data:
-            return []
-        for i, line in enumerate(data.splitlines(), 1):
-            title = line.strip()
-            if title:
-                items.append({"id": str(i), "title": title})
-        return items
-
-    p = Path(path)
-    if not p.exists():
-        raise FileNotFoundError(path)
-
-    if p.suffix.lower() == ".json":
-        with p.open(encoding="utf-8") as f:
-            obj = json.load(f)
-            if isinstance(obj, list):
-                for i, it in enumerate(obj):
-                    if isinstance(it, dict):
-                        title = it.get("title") or it.get("name")
-                        idv = str(it.get("id") or it.get("slug") or i + 1)
-                        if title:
-                            items.append({"id": idv, "title": title})
-                    else:
-                        items.append({"id": str(i + 1), "title": str(it)})
-            else:
-                raise ValueError("JSON input must be an array")
-        return items
-
-    if p.suffix.lower() in (".csv", ".tsv"):
-        import csv
-
-        delim = "\t" if p.suffix.lower() == ".tsv" else ","
-        with p.open(encoding="utf-8") as f:
-            reader = csv.DictReader(f, delimiter=delim)
-            for i, row in enumerate(reader, 1):
-                title = row.get("title") or row.get("name")
-                idv = row.get("id") or row.get("slug") or str(i)
-                if title:
-                    items.append({"id": str(idv), "title": title})
-        return items
-
-    # Plain text
-    with p.open(encoding="utf-8") as f:
-        for i, line in enumerate(f, 1):
-            title = line.strip()
-            if title:
-                items.append({"id": str(i), "title": title})
-    return items
+def get_database_url():
+    """Get database URL from environment."""
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        print("Error: DATABASE_URL not set in environment")
+        sys.exit(1)
+    return database_url
 
 
-def fetch_from_db(sql: str, pg_pod: Optional[str], namespace: str = "autolearnpro") -> List[Dict[str, str]]:
-    """Run SQL via kubectl exec into postgres pod and parse tab-separated output (id\ttitle)."""
-    if not pg_pod:
-        # discover pod
-        try:
-            r = subprocess.run(
-                ["kubectl", "get", "pod", "-n", namespace, "-l", "app=postgres", "-o", "jsonpath={.items[0].metadata.name}"],
-                capture_output=True, text=True, timeout=10
-            )
-            pg_pod = r.stdout.strip()
-        except Exception as e:
-            raise RuntimeError(f"Failed to find postgres pod: {e}")
+def get_openai_key():
+    """Get OpenAI API key from environment."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        print("Error: OPENAI_API_KEY not set in environment")
+        sys.exit(1)
+    return api_key
 
-    cmd = [
-        "kubectl", "exec", "-n", namespace, pg_pod, "--",
-        "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-A", "-F", "\t", "-c", sql
-    ]
+
+def generate_thumbnail(course_title, course_description):
+    """Generate a thumbnail using DALL-E."""
+    client = openai.OpenAI(api_key=get_openai_key())
+
+    prompt = f"""Create a modern, professional thumbnail for an online course titled '{course_title}'.
+    Course description: {course_description}
+    Style: Clean, educational, engaging, with relevant imagery."""
+
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
         if r.returncode != 0:
@@ -205,33 +136,23 @@ def _generate_image_cli(model: str, prompt: str) -> Optional[str]:
             pass
         return None
     except Exception as e:
-        print(f"Error calling ollama CLI: {e}")
+        print(f"Error generating thumbnail: {e}")
         return None
 
 
-def generate_image_sdwebui(model_path: str, prompt: str, size: int) -> Optional[str]:
-    """Use Stable Diffusion WebUI's /sdapi/v1/txt2img endpoint. Returns base64 PNG string or None."""
+def download_image(url, filepath):
+    """Download an image from a URL to a local file."""
     try:
-        model_name = Path(model_path).name
-        url = f"{SD_WEBUI_API.rstrip('/')}/sdapi/v1/txt2img"
-        payload = {
-            "prompt": prompt,
-            "width": size,
-            "height": size,
-            "steps": 20,
-            "cfg_scale": 7.5,
-            "sampler_name": "Euler a",
-            "sd_model_checkpoint": model_name,
-        }
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
 
-        obj = post_json(url, payload, timeout=120)
-        images = obj.get("images") or []
-        if images:
-            return images[0]
-        return None
+        with open(filepath, "wb") as f:
+            f.write(response.content)
+
+        return True
     except Exception as e:
-        print(f"Error calling Stable Diffusion WebUI API: {e}")
-        return None
+        print(f"Error downloading image: {e}")
+        return False
 
 
 def generate_simple_thumbnail(title: str, size: int) -> str:
@@ -306,16 +227,19 @@ def call_mcp_tool(tool: str, payload: dict) -> Optional[dict]:
         print(f"Failed to call MCP tool: {e}")
         return None
 
+        if limit:
+            query = query.limit(limit)
 
 def save_image_b64(b64: str, outpath: Path):
     raw = base64.b64decode(b64)
     image = Image.open(io.BytesIO(raw))
     image.save(outpath, "JPEG")
 
+        if not courses:
+            print("No courses found that need thumbnails.")
+            return
 
-def main(argv: List[str] = None):
-    # Validate environment
-    validate(require_db=False, require_ollama=False)
+        print(f"Found {len(courses)} courses to process.")
 
     parser = argparse.ArgumentParser(description="Generate course thumbnails via Ollama image model")
     parser.add_argument("--model", required=False, help="Ollama model identifier or path (eg registry.ollama.ai/Flux_AI/Flux_AI:latest)")
@@ -330,40 +254,38 @@ def main(argv: List[str] = None):
     parser.add_argument("--use-mcp", action="store_true", help="Call local MCP server tool for generation")
     args = parser.parse_args(argv)
 
-    # Resolve model: CLI -> env -> known local manifest -> error
-    model = args.model or os.getenv("IMAGE_MODEL") or os.getenv("OLLAMA_IMAGE_MODEL")
-    # Known local Ollama manifest path (Windows default from user)
-    local_manifest = Path(r"C:\Users\rod63\.ollama\models\manifests\registry.ollama.ai\Flux_AI\Flux_AI\latest")
-    if not model and local_manifest.exists():
-        # Use registry identifier when local manifest exists
-        model = "registry.ollama.ai/Flux_AI/Flux_AI:latest"
+        for i, course in enumerate(courses, 1):
+            print(f"\n[{i}/{len(courses)}] Processing: {course.title}")
 
-    if not model:
-        print("Model not specified. Provide --model or set IMAGE_MODEL env var.")
-        print("Example: --model 'registry.ollama.ai/Flux_AI/Flux_AI:latest'")
-        return 2
+            # Generate thumbnail
+            image_url = generate_thumbnail(course.title, course.description or "")
 
-    # Warn if ollama CLI not found and user didn't force a different backend
-    if not ollama_available() and not args.force_cli:
-        print("Warning: 'ollama' CLI not found. Use --force-cli to bypass or install ollama.")
+            if not image_url:
+                print("  Skipping due to generation error.")
+                continue
 
-    items = []
-    try:
-        if args.db:
-            sql = "SELECT id, title FROM courses WHERE title IS NOT NULL;"
-            items = fetch_from_db(sql, args.pg_pod, args.namespace)
-        else:
-            items = read_input(args.input)
+            # Download image
+            filename = f"course_{course.id}.png"
+            filepath = thumbnails_dir / filename
+
+            if download_image(image_url, filepath):
+                # Update course with local thumbnail path
+                course.thumbnail_url = f"/static/thumbnails/{filename}"
+                session.commit()
+                print(f"  Success! Saved to {filepath}")
+            else:
+                print("  Failed to download image.")
+
     except Exception as e:
-        print(f"Failed to read input: {e}")
-        return 2
+        print(f"Error processing courses: {e}")
+        session.rollback()
+    finally:
+        session.close()
 
-    if not items:
-        print("No courses found in input. Expecting titles via file or stdin.")
-        return 1
 
-    outdir = Path(args.outdir)
-    outdir.mkdir(parents=True, exist_ok=True)
+def main():
+    """Main entry point."""
+    import argparse
 
     limit = args.limit or len(items)
     for i, item in enumerate(items[:limit]):
@@ -405,9 +327,12 @@ def main(argv: List[str] = None):
         except Exception as e:
             print(f"Failed to save image for {title}: {e}")
 
-    return 0
+    args = parser.parse_args()
+
+    print("Starting thumbnail generation...")
+    process_courses(limit=args.limit)
+    print("\nDone!")
 
 
 if __name__ == "__main__":
-    import argparse
-    sys.exit(main())
+    main()

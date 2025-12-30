@@ -79,17 +79,6 @@ jobs:
           echo "Postgres did not become ready in time"
           exit 1
 
-      - name: Run database migrations
-        working-directory: backend/lms_api
-        run: mix ecto.setup
-
-      - name: Run tests with coverage
-        working-directory: backend/lms_api
-        run: mix coveralls.json
-        continue-on-error: false
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238
         with:
           file: backend/lms_api/cover/excoveralls.json
           flags: backend

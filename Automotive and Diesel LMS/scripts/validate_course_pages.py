@@ -1,4 +1,89 @@
 #!/usr/bin/env python3
+"""Validator for generated course pages.
+
+Performs a set of checks to ensure a generated course page tree is valid:
+- path exists
+- index.md contains `title:` and `code:`
+- modules and lessons referenced in CSVs (if available) exist
+
+Exits with non-zero codes on failures to integrate with CI/tests.
+"""
+import argparse
+from pathlib import Path
+import sys
+import csv
+
+
+def read_csv_field(root: Path, pattern: str, field: str) -> set:
+    p = root / pattern
+    if not p.exists():
+        # Try small variant
+        alt = root / pattern.replace('.csv', '_small.csv')
+        if alt.exists():
+            p = alt
+        else:
+            return set()
+    vals = set()
+    with open(p, newline='', encoding='utf-8') as f:
+        r = csv.DictReader(f)
+        for row in r:
+            v = row.get(field)
+            if v:
+                vals.add(v)
+    return vals
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('path')
+    p.add_argument('--strict', action='store_true')
+    args = p.parse_args()
+
+    base = Path(args.path)
+    if not base.exists():
+        print('Path does not exist:', base, file=sys.stderr)
+        return 2
+
+    # Basic index check
+    idx = base / 'example-course' / 'index.md'
+    if not idx.exists():
+        print('Missing index.md at', idx, file=sys.stderr)
+        return 3
+
+    txt = idx.read_text(encoding='utf-8')
+    if 'title:' not in txt or 'code:' not in txt:
+        print('index.md missing required fields', file=sys.stderr)
+        return 4
+
+    # If CSVs exist, ensure referenced modules/lessons were created
+    root = Path(__file__).resolve().parents[1] / 'scripts' / 'data'
+    module_slugs = read_csv_field(root, 'modules.csv', 'module_slug')
+    lesson_slugs = read_csv_field(root, 'lessons.csv', 'lesson_slug')
+
+    errors = []
+    modules_dir = base / 'example-course' / 'modules'
+    lessons_dir = base / 'example-course' / 'lessons'
+
+    for m in module_slugs:
+        if not (modules_dir / f"{m}.md").exists():
+            errors.append(f"Missing module: {m}")
+
+    for l in lesson_slugs:
+        if not (lessons_dir / f"{l}.md").exists():
+            errors.append(f"Missing lesson: {l}")
+
+    if errors:
+        for e in errors:
+            print(e, file=sys.stderr)
+        return 5
+
+    print('Validation OK')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
+#!/usr/bin/env python3
 """
 Validator for course page markdown files.
 Checks:

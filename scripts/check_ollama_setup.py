@@ -1,27 +1,14 @@
 #!/usr/bin/env python3
 """
-Test script for Ollama Python integration
+Generate 200K questions using Ollama (local LLM) - RELIABLE VERSION
+Manages small batches with proper error handling
 """
-import sys
 import subprocess
-
-# If the `ollama` CLI isn't available, bail out early to avoid
-# FileNotFoundError during test collection on CI runners that don't
-# have Ollama installed.
-if shutil.which("ollama") is None:
-    print("ollama CLI not found in PATH; skipping ollama-dependent script.")
-    # Try to tell pytest to skip the test if pytest is available. Importing
-    # pytest is more reliable than checking sys.modules during collection.
-    try:
-        import pytest  # type: ignore
-        pytest.skip("ollama CLI not found, skipping ollama-dependent tests", allow_module_level=True)
-    except Exception:
-        # Not running under pytest (or pytest import failed) — exit
-        # successfully for manual invocation.
-        sys.exit(0)
+import json
+import sys
 
 # Configuration
-MODEL = "qwen3:1.7b"
+MODEL = "lms-assistant:latest"
 BATCH_SIZE = 3
 QUESTIONS_PER_RUN = 50
 TOTAL_TARGET = 200000
@@ -105,18 +92,14 @@ try:
             print(f"✓ Successfully parsed {len(questions)} question(s)")
             print("\n✅ SYSTEM READY - Run './scripts/generate_questions_python.py' to start")
         else:
-            print("⚠ No models available for chat test")
-            print("Pull a model with: ollama pull llama2")
-    
-    except Exception as e:
-        print(f"❌ Error during ollama operation: {e}")
-        return 1
-    
-    print("\n" + "=" * 50)
-    print("✓ All Ollama Python tests passed!")
-    print("=" * 50)
-    
-    return 0
+            print("⚠ No JSON found in response")
+    else:
+        print(f"✗ Ollama error: {result.stderr}")
 
-if __name__ == "__main__":
-    sys.exit(main())
+except subprocess.TimeoutExpired:
+    print("✗ Ollama timed out (>120s)")
+except Exception as e:
+    print(f"✗ Test failed: {e}")
+
+print("\nSetup complete! The Python generator is ready to use.")
+print("It will generate questions in small, manageable batches.")

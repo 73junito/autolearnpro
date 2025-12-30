@@ -1,14 +1,24 @@
-name: Build and Push lms-api to GHCR (test)
+name: Build and Push Test
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/lms_api/**'
+      - 'docker/lms-api/**'
+      - '.github/workflows/build-and-push-test.yml'
+
+env:
+  REGISTRY: ghcr.io
 
 permissions:
   contents: read
   packages: write
 
 jobs:
-  build-and-push-test:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
