@@ -77,60 +77,34 @@ jobs:
       - name: Check coverage threshold
         working-directory: backend/lms_api
         run: |
-          # If coverage JSON is missing, skip the threshold check (don't fail CI)
-          if [ ! -f cover/excoveralls.json ]; then
-            echo "Coverage JSON not found; skipping coverage threshold check."; exit 0
-          fi
           python3 - <<'PY'
-import json
-import sys
-
-THRESHOLD = 70
-
-def load_coverage(path: str) -> float:
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            raw = f.read().strip()
-            if not raw:
-                print("Coverage file is empty; cannot determine coverage.", file=sys.stderr)
-                sys.exit(1)
-            data = json.loads(raw)
-    except FileNotFoundError:
-        # The shell check above should prevent this, but handle defensively.
-        print("Coverage file not found; skipping coverage threshold check.", file=sys.stderr)
-        sys.exit(0)
-    except json.JSONDecodeError as e:
-        print(f"Failed to parse coverage JSON: {e}", file=sys.stderr)
-        sys.exit(1)
-    except OSError as e:
-        print(f"Failed to read coverage file: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    if not isinstance(data, dict):
-        print("Coverage JSON does not contain a top-level object.", file=sys.stderr)
-        sys.exit(1)
-
-    if "coverage" not in data:
-        print("Key 'coverage' not found in coverage JSON; cannot determine coverage.", file=sys.stderr)
-        sys.exit(1)
-
-    try:
-        coverage_value = float(data["coverage"])
-    except (TypeError, ValueError):
-        print("Coverage value is not numeric; cannot determine coverage.", file=sys.stderr)
-        sys.exit(1)
-
-    return coverage_value
-
-coverage = load_coverage("cover/excoveralls.json")
-print(f"Current coverage: {coverage}%")
-
-if coverage < THRESHOLD:
-    print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
-    sys.exit(1)
-else:
-    print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
-PY
+          import json
+          import sys
+          
+          # Check if coverage file exists
+          try:
+              with open('cover/excoveralls.json', 'r') as f:
+                  data = json.load(f)
+          except FileNotFoundError:
+              print("Coverage JSON not found at cover/excoveralls.json")
+              sys.exit(1)
+          
+          # Parse coverage and threshold
+          if 'coverage' not in data:
+              print("Coverage key not found in JSON data")
+              sys.exit(1)
+          coverage = float(data['coverage'])
+          threshold = 70.0
+          
+          print(f"Current coverage: {coverage}%")
+          
+          # Compare and exit with appropriate code
+          if coverage < threshold:
+              print(f"❌ Coverage ({coverage}%) is below threshold ({threshold}%)")
+              sys.exit(1)
+          else:
+              print(f"✅ Coverage ({coverage}%) meets threshold ({threshold}%)")
+          PY
 
       - name: Comment PR with coverage
         if: github.event_name == 'pull_request'
