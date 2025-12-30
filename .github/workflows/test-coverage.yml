@@ -46,7 +46,7 @@ jobs:
           path: |
             backend/lms_api/deps
             backend/lms_api/_build
-          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.lock') }}
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
           restore-keys: ${{ runner.os }}-mix-
 
       - name: Install dependencies
@@ -56,16 +56,6 @@ jobs:
       - name: Compile dependencies
         working-directory: backend/lms_api
         run: mix deps.compile
-
-      - name: Wait for Postgres
-        run: |
-          for i in $(seq 1 30); do
-            pg_isready -h localhost -p 5432 && { echo 'Postgres ready'; exit 0; }
-            echo "Waiting for Postgres ($i/30)..."
-            sleep 2
-          done
-          echo "Postgres did not become ready in time"
-          exit 1
 
       - name: Run database migrations
         working-directory: backend/lms_api
@@ -91,23 +81,55 @@ jobs:
           if [ ! -f cover/excoveralls.json ]; then
             echo "Coverage JSON not found; skipping coverage threshold check."; exit 0
           fi
-          # Safely parse coverage from JSON and enforce numeric coercion inside Python
           python3 - <<'PY'
-import json,sys
-try:
-    data = json.load(open('cover/excoveralls.json'))
-    cov = data.get('coverage') or data.get('coverage_percent') or data.get('total_coverage') or 0
-    cov = float(cov)
-except Exception as e:
-    print('Failed to parse coverage JSON, skipping threshold check:', e)
-    sys.exit(0)
-print(f'Current coverage: {cov}%')
-threshold = 70.0
-if cov < threshold:
-    print(f'❌ Coverage ({cov}%) is below threshold ({threshold}%)')
+import json
+import sys
+
+THRESHOLD = 70
+
+def load_coverage(path: str) -> float:
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            raw = f.read().strip()
+            if not raw:
+                print("Coverage file is empty; cannot determine coverage.", file=sys.stderr)
+                sys.exit(1)
+            data = json.loads(raw)
+    except FileNotFoundError:
+        # The shell check above should prevent this, but handle defensively.
+        print("Coverage file not found; skipping coverage threshold check.", file=sys.stderr)
+        sys.exit(0)
+    except json.JSONDecodeError as e:
+        print(f"Failed to parse coverage JSON: {e}", file=sys.stderr)
+        sys.exit(1)
+    except OSError as e:
+        print(f"Failed to read coverage file: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    if not isinstance(data, dict):
+        print("Coverage JSON does not contain a top-level object.", file=sys.stderr)
+        sys.exit(1)
+
+    if "coverage" not in data:
+        print("Key 'coverage' not found in coverage JSON; cannot determine coverage.", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        coverage_value = float(data["coverage"])
+    except (TypeError, ValueError):
+        print("Coverage value is not numeric; cannot determine coverage.", file=sys.stderr)
+        sys.exit(1)
+
+    return coverage_value
+
+coverage = load_coverage("cover/excoveralls.json")
+print(f"Current coverage: {coverage}%")
+
+if coverage < THRESHOLD:
+    print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
     sys.exit(1)
 else:
-    print(f'✅ Coverage ({cov}%) meets threshold ({threshold}%)')
+    print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
 PY
 
       - name: Comment PR with coverage
@@ -118,22 +140,8 @@ PY
           script: |
             const fs = require('fs');
             const path = 'backend/lms_api/cover/excoveralls.json';
-            if (!fs.existsSync(path)) {
-              console.log('Coverage file not found, skipping PR comment.');
-              return;
-            }
-            let data = {};
-            try {
-              data = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
-            } catch (e) {
-              console.log('Failed to parse coverage JSON, skipping PR comment:', e);
-              return;
-            }
-            const raw = data.coverage || data.coverage_percent || data.total_coverage || 0;
-            const coveragePercent = Number(raw) || 0;
-            const covered_lines = data.covered_lines || 'N/A';
-            const total_lines = data.total_lines || 'N/A';
-            const meets = coveragePercent >= 70;
+            const coverage = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
+            const coveragePercent = (coverage.coverage || 0).toFixed(2);
             const comment = `## 📊 Test Coverage Report
 
 **Overall Coverage:** ${coveragePercent.toFixed(2)}%
