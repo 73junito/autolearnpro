@@ -129,19 +129,38 @@ defmodule LmsApiWeb.LiveSessionsController do
   end
 
   def join_session(conn, %{"id" => id}) do
+    session = LiveSessions.get_live_session!(id)
     user = Guardian.Plug.current_resource(conn)
 
-    with {:ok, _participant} <- LiveSessions.add_participant(id, user.id) do
-      session = LiveSessions.get_live_session!(id)
-      render(conn, "show.json", live_session: session)
+    # Check access - user must be host, course manager, or enrolled in the course
+    if session.host_id == user.id ||
+       InstructorDashboard.can_manage_course?(user, session.course_id) ||
+       LmsApi.Enrollments.user_enrolled_in_course?(user.id, session.course_id) do
+      with {:ok, _participant} <- LiveSessions.add_participant(id, user.id) do
+        render(conn, "show.json", live_session: session)
+      end
+    else
+      conn
+      |> put_status(:forbidden)
+      |> json(%{error: "Access denied"})
     end
   end
 
   def leave_session(conn, %{"id" => id}) do
+    session = LiveSessions.get_live_session!(id)
     user = Guardian.Plug.current_resource(conn)
 
-    with {:ok, _participant} <- LiveSessions.remove_participant(id, user.id) do
-      json(conn, %{message: "Left session successfully"})
+    # Check access - user must be host, course manager, or enrolled in the course
+    if session.host_id == user.id ||
+       InstructorDashboard.can_manage_course?(user, session.course_id) ||
+       LmsApi.Enrollments.user_enrolled_in_course?(user.id, session.course_id) do
+      with {:ok, _participant} <- LiveSessions.remove_participant(id, user.id) do
+        json(conn, %{message: "Left session successfully"})
+      end
+    else
+      conn
+      |> put_status(:forbidden)
+      |> json(%{error: "Access denied"})
     end
   end
 
