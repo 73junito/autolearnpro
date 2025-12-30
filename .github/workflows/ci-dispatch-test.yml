@@ -3,6 +3,9 @@ name: Dispatch Test
 on:
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   run-test:
     runs-on: ubuntu-latest
