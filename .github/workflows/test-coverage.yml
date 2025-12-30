@@ -77,39 +77,32 @@ jobs:
       - name: Check coverage threshold
         working-directory: backend/lms_api
         run: |
-          # If coverage JSON is missing, skip the threshold check (don't fail CI)
-          if [ ! -f cover/excoveralls.json ]; then
-            echo "Coverage JSON not found; skipping coverage threshold check."; exit 0
-          fi
-          python3 <<'EOF'
-          import json
-          import sys
-          
-          THRESHOLD = 70
-          
-          try:
-              with open("cover/excoveralls.json") as f:
-                  coverage_data = json.load(f)
-              
-              if "coverage" not in coverage_data:
-                  print("❌ Error: 'coverage' key not found in JSON file")
-                  sys.exit(1)
-              
-              coverage = float(coverage_data["coverage"])
-              print(f"Current coverage: {coverage}%")
-              
-              if coverage < THRESHOLD:
-                  print(f"❌ Coverage ({coverage}%) is below threshold ({THRESHOLD}%)")
-                  sys.exit(1)
-              else:
-                  print(f"✅ Coverage ({coverage}%) meets threshold ({THRESHOLD}%)")
-          except (json.JSONDecodeError, ValueError) as e:
-              print(f"❌ Error parsing coverage data: {e}")
-              sys.exit(1)
-          except FileNotFoundError:
-              print("❌ Error: coverage file not found")
-              sys.exit(1)
-          EOF
+          python3 - <<'PY'
+import json
+import sys
+
+coverage_file = 'cover/excoveralls.json'
+threshold = 70
+
+try:
+    with open(coverage_file, 'r') as f:
+        data = json.load(f)
+    coverage = float(data['coverage'])
+    
+    print(f"Current coverage: {coverage}%")
+    
+    if coverage < threshold:
+        print(f"❌ Coverage ({coverage}%) is below threshold ({threshold}%)")
+        sys.exit(1)
+    else:
+        print(f"✅ Coverage ({coverage}%) meets threshold ({threshold}%)")
+except FileNotFoundError:
+    print("Coverage JSON not found")
+    sys.exit(1)
+except (KeyError, ValueError) as e:
+    print(f"Error parsing coverage data: {e}")
+    sys.exit(1)
+PY
 
       - name: Comment PR with coverage
         if: github.event_name == 'pull_request'
@@ -119,8 +112,22 @@ jobs:
           script: |
             const fs = require('fs');
             const path = 'backend/lms_api/cover/excoveralls.json';
-            const coverage = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
-            const coveragePercent = (coverage.coverage || 0).toFixed(2);
+            if (!fs.existsSync(path)) {
+              console.log('Coverage file not found, skipping PR comment.');
+              return;
+            }
+            let data = {};
+            try {
+              data = JSON.parse(fs.readFileSync(path, 'utf8')) || {};
+            } catch (e) {
+              console.log('Failed to parse coverage JSON, skipping PR comment:', e);
+              return;
+            }
+            const raw = data.coverage || data.coverage_percent || data.total_coverage || 0;
+            const coveragePercent = Number(raw) || 0;
+            const covered_lines = data.covered_lines || 'N/A';
+            const total_lines = data.total_lines || 'N/A';
+            const meets = coveragePercent >= 70;
             const comment = `## 📊 Test Coverage Report
 
 **Overall Coverage:** ${coveragePercent.toFixed(2)}%
