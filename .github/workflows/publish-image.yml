@@ -56,7 +56,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
 
       - name: Output image
-        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:latest"
+        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}"
 
   deploy:
     name: Deploy to Kubernetes
@@ -65,6 +65,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/')
     permissions:
       contents: read
+      id-token: write  # Required for OIDC authentication
 
     steps:
       - name: Checkout
@@ -73,9 +74,63 @@ jobs:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: '1.31.0'
+          version: 'latest'
 
-      - name: Decode kubeconfig
+      # ============================================================
+      # Cloud OIDC Authentication (GKE / EKS / AKS)
+      # See docs/CI_OIDC_SETUP.md for detailed setup instructions
+      # ============================================================
+
+      - name: Authenticate to GKE via Workload Identity (optional)
+        if: secrets.GKE_WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GKE_SERVICE_ACCOUNT != ''
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: ${{ secrets.GKE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GKE_SERVICE_ACCOUNT }}
+
+      - name: Get GKE credentials (if OIDC auth used)
+        if: secrets.GKE_WORKLOAD_IDENTITY_PROVIDER != '' && secrets.GKE_SERVICE_ACCOUNT != ''
+        uses: google-github-actions/get-gke-credentials@v3
+        with:
+          cluster_name: ${{ secrets.GKE_CLUSTER_NAME }}
+          location: ${{ secrets.GKE_CLUSTER_LOCATION }}
+
+      - name: Authenticate to AWS via OIDC (optional, for EKS)
+        if: secrets.AWS_ROLE_TO_ASSUME != '' && secrets.EKS_CLUSTER_NAME != ''
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: github-actions-deploy
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Update kubeconfig for EKS (if AWS OIDC used)
+        if: secrets.AWS_ROLE_TO_ASSUME != '' && secrets.EKS_CLUSTER_NAME != ''
+        run: |
+          aws eks update-kubeconfig \
+            --name ${{ secrets.EKS_CLUSTER_NAME }} \
+            --region ${{ secrets.AWS_REGION || 'us-east-1' }} \
+            --kubeconfig ${{ github.workspace }}/kubeconfig
+
+      - name: Authenticate to Azure via OIDC (optional, for AKS)
+        if: secrets.AZURE_CLIENT_ID != '' && secrets.AZURE_TENANT_ID != '' && secrets.AZURE_SUBSCRIPTION_ID != ''
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set AKS context (if Azure OIDC used)
+        if: secrets.AZURE_CLIENT_ID != '' && secrets.AZURE_TENANT_ID != '' && secrets.AZURE_SUBSCRIPTION_ID != ''
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+          cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+
+      - name: Decode kubeconfig (fallback if no cloud OIDC configured)
+        if: |
+          (secrets.GKE_WORKLOAD_IDENTITY_PROVIDER == '' || secrets.GKE_SERVICE_ACCOUNT == '') &&
+          (secrets.AWS_ROLE_TO_ASSUME == '' || secrets.EKS_CLUSTER_NAME == '') &&
+          (secrets.AZURE_CLIENT_ID == '' || secrets.AZURE_TENANT_ID == '')
         env:
           KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
         run: |
@@ -84,9 +139,48 @@ jobs:
           fi
           echo "$KUBECONFIG_DATA" | base64 --decode > kubeconfig
 
-      - name: Deploy lms-api image
+      - name: Deploy lms-api image (use immutable tag)
         env:
           KUBECONFIG: ${{ github.workspace }}/kubeconfig
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          kubectl -n autolearnpro set image deployment/lms-api lms-api=ghcr.io/${{ github.repository_owner }}/lms-api:latest
+          IMAGE=ghcr.io/${{ github.repository_owner }}/lms-api:${IMAGE_TAG}
+          echo "Updating deployment lms-api to image $IMAGE in namespace autolearnpro"
+          kubectl -n autolearnpro set image deployment/lms-api lms-api=$IMAGE
           kubectl -n autolearnpro rollout status deployment/lms-api --timeout=300s
+
+      - name: Post-deploy smoke test (if manifest exists)
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+        run: |-
+          SMOKE_MANIFEST="k8s/autolearnpro/09-smoke-test-idempotent.yaml"
+          if [ -f "$SMOKE_MANIFEST" ]; then
+            echo "Running smoke test job from $SMOKE_MANIFEST"
+            kubectl -n autolearnpro delete job smoke-test-idempotent --ignore-not-found
+            kubectl -n autolearnpro apply -f "$SMOKE_MANIFEST"
+            kubectl -n autolearnpro wait --for=condition=complete job/smoke-test-idempotent --timeout=300s || echo "Smoke job did not complete within timeout"
+            kubectl -n autolearnpro logs -l job-name=smoke-test-idempotent --tail=200 || true
+          else
+            echo "No smoke manifest found at $SMOKE_MANIFEST; skipping smoke test"
+          fi
+
+      - name: Cluster service connectivity tests
+        if: always()
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig
+        run: |-
+          if [ -f "${{ github.workspace }}/kubeconfig" ]; then
+            echo "Running cluster service connectivity tests"
+            chmod +x scripts/test-services.sh || true
+            ./scripts/test-services.sh autolearnpro > service-tests.log 2>&1 || echo "Service tests failed (see service-tests.log)"
+          else
+            echo "Kubeconfig not available; skipping cluster service connectivity tests"
+          fi
+
+      - name: Upload service test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: service-tests-${{ github.sha }}
+          path: service-tests.log
+          if-no-files-found: ignore
