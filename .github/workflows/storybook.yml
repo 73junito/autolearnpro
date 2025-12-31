@@ -3,33 +3,51 @@ name: Storybook
 on:
   push:
     branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
-
-jobs:
-  storybook-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
-      - name: Setup pnpm
+      - name: Setup pnpm (action)
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-
-      - name: Verify pnpm
-        run: pnpm --version
+          version: 9.15.9
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: pnpm
+
+      - name: Ensure pnpm available (corepack fallback)
+        run: |
+          if ! command -v pnpm >/dev/null 2>&1; then
+            corepack enable
+            corepack prepare pnpm@9.15.9 --activate
+          fi
+          pnpm --version
+
+      - name: Install dependencies (ui)
+        working-directory: packages/ui
+        run: pnpm install
+
+      - name: Build Storybook (ui)
+        working-directory: packages/ui
+        run: pnpm storybook:build
+
+      - name: Upload Storybook static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: packages/ui/storybook-static
+          retention-days: 30
+=======
+          cache: pnpm
+
+      - name: Verify pnpm
+        run: pnpm --version
+>>>>>>> 23560445 (CI: fix Storybook workflow pnpm setup order)
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
