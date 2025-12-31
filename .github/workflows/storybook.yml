@@ -30,11 +30,13 @@ jobs:
       - name: Verify pnpm
         run: pnpm --version
 
-      - name: Install dependencies
+      - name: Install dependencies (ui)
+        working-directory: packages/ui
         run: pnpm install --frozen-lockfile
 
-      - name: Build Storybook (UI only)
-        run: pnpm --filter @lms/ui storybook:build
+      - name: Build Storybook (ui)
+        working-directory: packages/ui
+        run: pnpm storybook:build
 
       - name: Upload Storybook static site
         uses: actions/upload-artifact@v4
