@@ -48,11 +48,13 @@ on:
         run: pnpm --version
 >>>>>>> 23560445 (CI: fix Storybook workflow pnpm setup order)
 
-      - name: Install dependencies
+      - name: Install dependencies (ui)
+        working-directory: packages/ui
         run: pnpm install --frozen-lockfile
 
-      - name: Build Storybook (UI only)
-        run: pnpm --filter @lms/ui storybook:build
+      - name: Build Storybook (ui)
+        working-directory: packages/ui
+        run: pnpm storybook:build
 
       - name: Upload Storybook static site
         uses: actions/upload-artifact@v4
