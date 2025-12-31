@@ -1,0 +1,9 @@
+{
+  "name": "@lms/ui",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "storybook": "sb dev -p 6006",
+    "storybook:build": "sb build"
+  }
+}
