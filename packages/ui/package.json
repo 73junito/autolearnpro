@@ -8,7 +8,9 @@
   }
   ,
   "devDependencies": {
-    "storybook": "^8.6.0",
-    "@storybook/react-webpack5": "^8.6.0"
+    "storybook": "^8.6.15",
+    "@storybook/nextjs": "^8.6.15",
+    "@storybook/addon-essentials": "^8.6.15",
+    "@storybook/test": "^8.6.15"
   }
 }
