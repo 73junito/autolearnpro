@@ -33,8 +33,8 @@ defmodule LmsApi.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.12"},
-      {:phoenix_html, "~> 4.3"},
-      {:gettext, "~> 1.0"},
+      {:phoenix_html, "~> 3.3"},
+      {:gettext, "~> 0.23"},
       {:phoenix_view, "~> 2.0"},
       {:phoenix_pubsub, "~> 2.1"},
       {:phoenix_ecto, "~> 4.4"},
@@ -42,7 +42,7 @@ defmodule LmsApi.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.6"},
-      {:httpoison, "~> 2.3"},
+      {:httpoison, "~> 1.8"},
       {:guardian, "~> 2.0"},
       {:bcrypt_elixir, "~> 3.0"},
       {:redix, "~> 1.3"},

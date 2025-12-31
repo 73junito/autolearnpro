@@ -1,9 +1,5 @@
 name: Test Coverage
 
-permissions:
-  contents: read
-  pull-requests: write
-
 on:
   push:
     branches: [main, develop]
@@ -127,7 +123,7 @@ jobs:
 
       - name: Upload HTML coverage report as artifact
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: backend/lms_api/cover/

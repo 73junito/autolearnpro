@@ -1,8 +1,5 @@
 name: Backend CI (Elixir)
 
-permissions:
-  contents: read
-
 on:
   push:
     paths:

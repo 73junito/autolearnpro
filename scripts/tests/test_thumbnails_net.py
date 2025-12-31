@@ -1,43 +1,45 @@
-#!/usr/bin/env python3
-"""Test thumbnail generation with network access."""
-
 import os
-import sys
+import tempfile
 from pathlib import Path
 
-# Add project root to path
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
-
-from scripts.generate_thumbnails import generate_thumbnail, download_image  # noqa: E402
+import scripts.generate_thumbnails as gen
 
 
-def test_generate_thumbnail():
-    """Test thumbnail generation."""
-    # Check for API key
-    if not os.getenv("OPENAI_API_KEY"):
-        print("Skipping test: OPENAI_API_KEY not set")
-        return
+def test_generate_image_sdwebui_success(monkeypatch, tmp_path):
+    # Simulate post_json returning an images array
+    called = {}
 
-    print("Testing thumbnail generation...")
-    title = "Introduction to Python Programming"
-    description = "Learn Python basics"
+    def fake_post_json(url, payload, timeout=120, session=None):
+        called['url'] = url
+        return {'images': ['FAKE_BASE64_IMAGE']}
 
-    url = generate_thumbnail(title, description)
+    monkeypatch.setattr(gen, 'post_json', fake_post_json)
 
-    if url:
-        print(f"Success! Generated thumbnail URL: {url}")
+    # Create a dummy model file so generate_image_base64 prefers SD WebUI
+    model_file = tmp_path / 'dummy_model.safetensors'
+    model_file.write_text('')
 
-        # Test download
-        test_file = Path("/tmp/test_thumbnail.png")
-        if download_image(url, test_file):
-            print(f"Downloaded to {test_file}")
-            print(f"File size: {test_file.stat().st_size} bytes")
-        else:
-            print("Failed to download image")
-    else:
-        print("Failed to generate thumbnail")
+    result = gen.generate_image_base64(str(model_file), 'test prompt', 128)
+    assert result == 'FAKE_BASE64_IMAGE'
+    assert called.get('url') is not None
 
 
-if __name__ == "__main__":
-    test_generate_thumbnail()
+def test_generate_image_sdwebui_failure_fallback_to_cli(monkeypatch, tmp_path):
+    # Simulate post_json raising an exception
+    def fake_post_json(url, payload, timeout=120, session=None):
+        raise RuntimeError('SD API down')
+
+    monkeypatch.setattr(gen, 'post_json', fake_post_json)
+
+    # Monkeypatch CLI generator to return a known base64 string
+    def fake_cli(model, prompt):
+        return 'CLI_BASE64'
+
+    monkeypatch.setattr(gen, '_generate_image_cli', fake_cli)
+
+    # Create a dummy model file so generate_image_base64 will attempt SD WebUI
+    model_file = tmp_path / 'dummy_model.safetensors'
+    model_file.write_text('')
+
+    result = gen.generate_image_base64(str(model_file), 'test prompt', 128)
+    assert result == 'CLI_BASE64'
