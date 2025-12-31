@@ -1,8 +1,9 @@
+/** @type { import('@storybook/nextjs').StorybookConfig } */
 module.exports = {
   framework: {
-    name: '@storybook/react-webpack5',
+    name: '@storybook/nextjs',
     options: {},
   },
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: [],
+  addons: ['@storybook/addon-essentials'],
 };
