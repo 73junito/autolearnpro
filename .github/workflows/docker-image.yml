@@ -40,9 +40,10 @@ jobs:
       id: dockerfile
       run: |
         set -euo pipefail
+        # If Dockerfile is at docker/lms-api/Dockerfile.release the Dockerfile expects to COPY backend/lms_api from the repository root.
         if [ -f "docker/lms-api/Dockerfile.release" ]; then
           echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
-          echo "context=docker/lms-api" >> $GITHUB_OUTPUT
+          echo "context=." >> $GITHUB_OUTPUT
         elif [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
           echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
           echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
