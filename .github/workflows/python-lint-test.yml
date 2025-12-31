@@ -10,6 +10,24 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: autolearnpro
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/autolearnpro
+
     steps:
       - uses: actions/checkout@v3
 
@@ -27,5 +45,17 @@ jobs:
       - name: Lint with ruff
         run: ruff check scripts || true
 
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h localhost -p 5432 && { echo 'Postgres ready'; exit 0; }
+            echo "Waiting for Postgres ($i/30)..."
+            sleep 2
+          done
+          echo "Postgres did not become ready in time"
+          exit 1
+
       - name: Test with pytest
-        run: pytest tests -q
+        run: pytest -q
+        env:
+          DATABASE_URL: ${{ env.DATABASE_URL }}
