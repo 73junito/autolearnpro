@@ -222,4 +222,4 @@ defmodule LmsApi.Media do
     extension = Path.extname(filename) |> String.downcase()
     extension in @allowed_extensions
   end
-end
+endend
