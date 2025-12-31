@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1c61d314f264c8fde5ad58c3d53be32e6f5a1742be09cc123efa1a05d66fe5d7
-size 417
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240">
+  <rect width="100%" height="100%" fill="#fbfffb"/>
+  <g font-family="Segoe UI, Arial" fill="#0b63d6">
+    <text x="26" y="84" font-size="22" font-weight="700">Fuel</text>
+    <text x="26" y="112" font-size="18">Injection</text>
+  </g>
+  <rect x="220" y="40" width="100" height="80" rx="6" fill="#0b63d6" opacity="0.08"/>
+</svg>
