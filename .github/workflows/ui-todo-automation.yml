@@ -1,0 +1,65 @@
+name: UI TODO Automation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * 1' # weekly on Monday at 12:00 UTC
+
+jobs:
+  update-todo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Generate TODO_UI.md
+        run: |
+          cat > TODO_UI.md <<'EOF'
+# Frontend UI TODOs (automated)
+
+This file is maintained automatically by `.github/workflows/ui-todo-automation.yml`.
+
+## Priority Tasks
+
+1. Stabilize Storybook CI
+   - Harden `.github/workflows/storybook.yml`, ensure `workflow_dispatch`, safe `pnpm` handling, artifact uploads to `packages/ui/storybook-static`, and add defensive steps for logs and directories.
+2. Component audit & cleanup
+   - Review `packages/ui` components, remove unused code, standardize exports.
+3. Add unit tests
+   - Add/expand unit tests (Vitest/Jest) and require 80%+ coverage for critical components.
+4. Add visual regression tests
+   - Integrate Playwright/Chromatic snapshots and run in CI for PRs.
+5. Accessibility audit & fixes
+   - Run `axe` checks, add ARIA fixes and CI checks.
+6. TypeScript & linting
+   - Enable `strict` where feasible, fix lints, add CI lint step.
+7. Design tokens & theming
+   - Centralize tokens in `packages/ui` and publish Storybook docs.
+8. E2E tests & CI integration
+   - Add Playwright E2E for critical user flows and Storybook interaction tests.
+9. Performance optimization
+   - Bundle analysis, code-splitting/manualChunks, font/image optimization.
+10. Publish & release flow
+    - Standardize Storybook publishing (artifact retention, gh-pages), and generate release notes.
+
+## Automation Notes
+- This workflow runs weekly and can be triggered manually via `workflow_dispatch`.
+- It commits `TODO_UI.md` to `main` using the `GITHUB_TOKEN`, which requires the workflow to have `contents: write` permission.
+- If your repository restricts workflow write permissions, please grant the runner permission or run this workflow from an admin account.
+
+EOF
+
+      - name: Commit and push TODO
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add TODO_UI.md
+          git commit -m "chore: update TODO_UI.md (automated)" || echo "No changes to commit"
+          git push origin main || echo "Push failed"

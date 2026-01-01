@@ -4,17 +4,11 @@ on:
   push:
     branches: [main, develop, ci/enable-build-and-push-test]
   pull_request:
-  name: Storybook
+    branches: [main, develop]
+  workflow_dispatch:
 
-  on:
-    push:
-      branches: [main, develop, ci/enable-build-and-push-test]
-    pull_request:
-      branches: [main, develop]
-    workflow_dispatch:
-
-  jobs:
-    storybook-build:
+jobs:
+  storybook-build:
       runs-on: ubuntu-latest
       defaults:
         run:
@@ -46,17 +40,28 @@ on:
           run: |
             rm -rf node_modules
             pnpm store prune || true
-            pnpm install --frozen-lockfile || pnpm install
+            pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile || pnpm install
 
         - name: Build Storybook (ui)
           working-directory: packages/ui
           run: |
-            pnpm run storybook:build 2>&1 | tee packages/ui/storybook-build.log
+            mkdir -p .
+            # ensure any required output dir exists and capture build output
+            pnpm run storybook:build 2>&1 | tee storybook-build.log
 
         - name: Ensure build log exists
+          working-directory: packages/ui
           run: |
-            if [ ! -f packages/ui/storybook-build.log ]; then
-              echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
+            if [ ! -f ./storybook-build.log ]; then
+              echo 'No build log produced by Storybook build step' > ./storybook-build.log
+            fi
+
+        - name: List Storybook static files (debug)
+          run: |
+            if [ -d packages/ui/storybook-static ]; then
+              ls -la packages/ui/storybook-static || true
+            else
+              echo 'storybook-static directory not found'
             fi
 
         - name: Upload Storybook build log
@@ -84,4 +89,4 @@ on:
             name: storybook-static
             path: packages/ui/storybook-static
             retention-days: 30
-    steps:
+
