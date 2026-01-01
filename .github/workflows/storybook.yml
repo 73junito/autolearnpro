@@ -46,7 +46,14 @@ jobs:
 
       - name: Build Storybook (ui)
         working-directory: packages/ui
-        run: pnpm storybook:build
+        run: pnpm storybook:build 2>&1 | tee storybook-build.log
+
+      - name: Upload Storybook build log
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-build-log
+          path: packages/ui/storybook-build.log
+          retention-days: 30
 
       - name: Upload Storybook static site
         uses: actions/upload-artifact@v4
