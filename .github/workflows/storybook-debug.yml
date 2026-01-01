@@ -2,6 +2,9 @@ name: Storybook Debug Build
 
 on:
   workflow_dispatch: {}
+  push:
+    branches:
+      - ci/enable-build-and-push-test
 
 jobs:
   build:
