@@ -12,10 +12,18 @@ Flags:
 
 - `--quality`: JPEG quality (0-100). Default: 85.
 
+- `--format`: Output format (`jpeg`, `png`, `webp`). Default: `jpeg`.
+
 Example (set quality):
 
 ```
 cargo run --release -- --input /path/to/images --output /path/to/thumbs --quality 85 --benchmark
+```
+
+Example (set format to webp):
+
+```
+cargo run --release -- --input /path/to/images --output /path/to/thumbs --format webp --quality 80 --benchmark
 ```
 
 Build a release binary:

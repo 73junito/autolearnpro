@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{Parser, ValueEnum};
 use image::imageops::FilterType;
 use rayon::prelude::*;
 use std::{fs, path::PathBuf, time::Instant};
@@ -37,6 +37,17 @@ struct Args {
     /// JPEG output quality (0-100)
     #[arg(long, default_value_t = 85)]
     quality: u8,
+
+    /// Output image format: jpeg, png, webp
+    #[arg(long, value_enum, default_value_t = OutputFormat::Jpeg)]
+    format: OutputFormat,
+}
+
+#[derive(ValueEnum, Clone)]
+enum OutputFormat {
+    Jpeg,
+    Png,
+    WebP,
 }
 
 fn main() {
@@ -69,8 +80,9 @@ fn main() {
         .collect();
 
     let quality = args.quality;
+    let format = args.format.clone();
     files.par_iter().for_each(|path| {
-        if let Err(e) = process_image(path, &args.input, &args.output, args.width, args.height, quality) {
+        if let Err(e) = process_image(path, &args.input, &args.output, args.width, args.height, quality, format.clone()) {
             eprintln!("failed {}: {}", path.display(), e);
         }
     });
@@ -83,7 +95,7 @@ fn main() {
     }
 }
 
-fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: u32, quality: u8) -> Result<(), String> {
+fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: u32, quality: u8, format: OutputFormat) -> Result<(), String> {
     let img = image::open(path).map_err(|e| format!("open error: {}", e))?;
     let thumb = img.resize(w, h, FilterType::Lanczos3);
 
@@ -96,9 +108,17 @@ fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: 
 
     let fout = File::create(&out_path).map_err(|e| format!("create file: {}", e))?;
     let mut writer = BufWriter::new(fout);
-    thumb
-        .write_to(&mut writer, ImageOutputFormat::Jpeg(quality))
-        .map_err(|e| format!("save error: {}", e))?;
+    match format {
+        OutputFormat::Jpeg => thumb
+            .write_to(&mut writer, ImageOutputFormat::Jpeg(quality))
+            .map_err(|e| format!("save error: {}", e))?,
+        OutputFormat::Png => thumb
+            .write_to(&mut writer, ImageOutputFormat::Png)
+            .map_err(|e| format!("save error: {}", e))?,
+        OutputFormat::WebP => thumb
+            .write_to(&mut writer, ImageOutputFormat::WebP(quality))
+            .map_err(|e| format!("save error: {}", e))?,
+    }
 
     Ok(())
 }
