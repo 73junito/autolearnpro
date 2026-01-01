@@ -144,11 +144,11 @@ jobs:
           fi
 
   scheduled-gh-pages-cleanup:
-    permissions:
-      contents: write
     name: Scheduled gh-pages cleanup
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       CLEANUP_AGE_DAYS: '30'
     steps:
