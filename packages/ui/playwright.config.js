@@ -1,5 +1,6 @@
 const { defineConfig, devices } = require('@playwright/test');
 
+// Playwright configuration: serves built Storybook and runs tests against it
 module.exports = defineConfig({
   testDir: './tests',
   timeout: 30000,
@@ -22,20 +23,3 @@ module.exports = defineConfig({
     },
   ],
 });
-// Playwright configuration: serves built Storybook and runs tests against it
-const { devices } = require('@playwright/test');
-
-module.exports = {
-  testDir: './tests',
-  timeout: 30 * 1000,
-  use: {
-    headless: true,
-    viewport: { width: 1280, height: 800 },
-    ignoreHTTPSErrors: true,
-  },
-  webServer: {
-    command: 'npx http-server ./storybook-static -p 6006',
-    port: 6006,
-    reuseExistingServer: true,
-  },
-};
