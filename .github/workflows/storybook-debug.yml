@@ -31,6 +31,12 @@ jobs:
         working-directory: packages/ui
         run: pnpm storybook:build 2>&1 | tee storybook-build.log
 
+      - name: Ensure build log exists
+        run: |
+          if [ ! -f packages/ui/storybook-build.log ]; then
+            echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
+          fi
+
       - name: Upload Storybook build log
         if: always()
         uses: actions/upload-artifact@v4
