@@ -34,6 +34,7 @@ jobs:
           echo "PWD:"; pwd
           echo "Top-level files:"; ls -la || true
           echo "docker/lms-api listing:"; ls -la docker/lms-api || true
+          echo "backend/lms_api exists:"; [ -d backend/lms_api ] && echo yes || echo no
 
       - name: Debug - check Dockerfile existence
         run: |
@@ -43,14 +44,54 @@ jobs:
             echo "Dockerfile.release MISSING"
           fi
 
-      - name: Build and push (build-push-action)
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: docker/lms-api/Dockerfile.release
-          platforms: linux/amd64
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/lms-api:test-${{ github.run_id }},ghcr.io/${{ github.repository_owner }}/lms-api:${{ github.sha }}
-          pull: true
-          no-cache: true
-          progress: plain
+      - name: Determine Dockerfile and context
+        id: dockerfile
+        run: |
+          set -euo pipefail
+          if [ -f "docker/lms-api/Dockerfile.release" ]; then
+            if [ -d "backend/lms_api" ]; then
+              echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
+              echo "context=." >> $GITHUB_OUTPUT
+            else
+              echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
+              echo "context=docker/lms-api" >> $GITHUB_OUTPUT
+            fi
+          elif [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
+            if [ -d "Automotive and Diesel LMS/backend/lms_api" ]; then
+              echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
+              echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
+            elif [ -d "backend/lms_api" ]; then
+              echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
+              echo "context=." >> $GITHUB_OUTPUT
+            else
+              echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
+              echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "No Dockerfile found in expected locations." >&2
+            ls -la || true
+            exit 1
+          fi
+
+      - name: Build and push image (buildx CLI)
+        env:
+          IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/lms-api
+          DOCKERFILE: ${{ steps.dockerfile.outputs.file }}
+          BUILD_CONTEXT: ${{ steps.dockerfile.outputs.context }}
+        run: |
+          set -eo pipefail
+          echo "Using Dockerfile: $DOCKERFILE"
+          echo "Using context: $BUILD_CONTEXT"
+          docker --version
+          docker buildx version
+          docker buildx create --use --name=ci-builder || true
+          docker buildx build \
+            --file "$DOCKERFILE" \
+            --platform linux/amd64 \
+            --push \
+            --progress=plain \
+            --pull \
+            --no-cache \
+            --tag ${IMAGE_NAME}:test-${{ github.run_id }} \
+            --tag ${IMAGE_NAME}:${{ github.sha }} \
+            "$BUILD_CONTEXT"
