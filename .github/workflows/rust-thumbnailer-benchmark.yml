@@ -29,4 +29,4 @@ jobs:
         run: cargo build --release --manifest-path tools/thumbnailer-rust/Cargo.toml
 
       - name: Run benchmark
-        run: ./target/release/thumbnailer --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark
+        run: cargo run --release --manifest-path tools/thumbnailer-rust/Cargo.toml -- --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark
