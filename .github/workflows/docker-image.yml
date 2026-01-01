@@ -46,31 +46,18 @@ jobs:
       id: dockerfile
       run: |
         set -euo pipefail
-<<<<<<< HEAD
         # Prefer the Dockerfile in docker/lms-api when present
         if [ -f "docker/lms-api/Dockerfile.release" ]; then
           # If backend exists at repo root, build from repo root so COPY backend/lms_api works
           if [ -d "backend/lms_api" ]; then
             echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
             echo "context=." >> $GITHUB_OUTPUT
-          # Otherwise, if backend exists under the Automotive and Diesel LMS folder, use that folder as context
-          elif [ -d "Automotive and Diesel LMS/backend/lms_api" ]; then
-            echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
-            echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
           else
-            # No backend found; still set context to repo root but warn (will likely fail later)
             echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
-            echo "context=." >> $GITHUB_OUTPUT
-            echo "WARNING: backend/lms_api not found in repo root or Automotive and Diesel LMS; build may fail" >&2
+            echo "context=docker/lms-api" >> $GITHUB_OUTPUT
           fi
-=======
-        # If Dockerfile is at docker/lms-api/Dockerfile.release the Dockerfile expects to COPY backend/lms_api from the repository root.
-        if [ -f "docker/lms-api/Dockerfile.release" ]; then
-          echo "file=docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
-          echo "context=." >> $GITHUB_OUTPUT
->>>>>>> origin/ci/enable-build-and-push-test
         elif [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
-          # Dockerfile located under the spacey folder � choose context based on where backend lives
+          # Dockerfile located under the spacey folder — choose context based on where backend lives
           if [ -d "Automotive and Diesel LMS/backend/lms_api" ]; then
             echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
             echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
@@ -81,7 +68,6 @@ jobs:
           else
             echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
             echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
-            echo "WARNING: backend/lms_api not found; build may fail" >&2
           fi
         else
           echo "No Dockerfile found in expected locations." >&2
