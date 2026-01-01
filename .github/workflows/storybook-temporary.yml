@@ -3,6 +3,9 @@ name: Temporary Storybook Build
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-storybook:
     runs-on: ubuntu-latest
