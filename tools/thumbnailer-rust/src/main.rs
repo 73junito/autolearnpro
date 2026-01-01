@@ -3,6 +3,9 @@ use image::imageops::FilterType;
 use rayon::prelude::*;
 use std::{fs, path::PathBuf, time::Instant};
 use walkdir::WalkDir;
+use image::ImageOutputFormat;
+use std::fs::File;
+use std::io::BufWriter;
 
 #[derive(Parser)]
 #[command(version)]
@@ -30,6 +33,10 @@ struct Args {
     /// Print simple benchmark timing
     #[arg(long, default_value_t = false)]
     benchmark: bool,
+
+    /// JPEG output quality (0-100)
+    #[arg(long, default_value_t = 85)]
+    quality: u8,
 }
 
 fn main() {
@@ -61,8 +68,9 @@ fn main() {
         .map(|e| e.path().to_path_buf())
         .collect();
 
+    let quality = args.quality;
     files.par_iter().for_each(|path| {
-        if let Err(e) = process_image(path, &args.input, &args.output, args.width, args.height) {
+        if let Err(e) = process_image(path, &args.input, &args.output, args.width, args.height, quality) {
             eprintln!("failed {}: {}", path.display(), e);
         }
     });
@@ -75,7 +83,7 @@ fn main() {
     }
 }
 
-fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: u32) -> Result<(), String> {
+fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: u32, quality: u8) -> Result<(), String> {
     let img = image::open(path).map_err(|e| format!("open error: {}", e))?;
     let thumb = img.resize(w, h, FilterType::Lanczos3);
 
@@ -86,8 +94,10 @@ fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: 
     }
     out_path.set_extension("jpg");
 
+    let fout = File::create(&out_path).map_err(|e| format!("create file: {}", e))?;
+    let mut writer = BufWriter::new(fout);
     thumb
-        .save_with_format(out_path, image::ImageFormat::Jpeg)
+        .write_to(&mut writer, ImageOutputFormat::Jpeg(quality))
         .map_err(|e| format!("save error: {}", e))?;
 
     Ok(())

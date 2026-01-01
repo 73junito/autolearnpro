@@ -8,6 +8,16 @@ Usage:
 cargo run --release -- --input /path/to/images --output /path/to/thumbs --width 240 --height 160 --workers 4 --benchmark
 ```
 
+Flags:
+
+- `--quality`: JPEG quality (0-100). Default: 85.
+
+Example (set quality):
+
+```
+cargo run --release -- --input /path/to/images --output /path/to/thumbs --quality 85 --benchmark
+```
+
 Build a release binary:
 
 ```
