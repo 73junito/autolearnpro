@@ -1,0 +1,233 @@
+﻿2025-12-19T00:48:49.9039688Z ##[group]Run github/codeql-action/analyze@v4
+2025-12-19T00:48:49.9039981Z with:
+2025-12-19T00:48:49.9040163Z   category: /language:actions
+2025-12-19T00:48:49.9040390Z   output: ../results
+2025-12-19T00:48:49.9040575Z   upload: always
+2025-12-19T00:48:49.9040758Z   skip-queries: false
+2025-12-19T00:48:49.9041008Z   checkout_path: /home/runner/work/autolearnpro/autolearnpro
+2025-12-19T00:48:49.9041308Z   upload-database: true
+2025-12-19T00:48:49.9041507Z   wait-for-processing: true
+2025-12-19T00:48:49.9041839Z   token: ***
+2025-12-19T00:48:49.9042068Z   matrix: {
+  "language": "actions",
+  "build-mode": "none"
+}
+2025-12-19T00:48:49.9042365Z   expect-error: false
+2025-12-19T00:48:49.9042543Z env:
+2025-12-19T00:48:49.9042732Z   CODEQL_ACTION_FEATURE_MULTI_LANGUAGE: false
+2025-12-19T00:48:49.9042998Z   CODEQL_ACTION_FEATURE_SANDWICH: false
+2025-12-19T00:48:49.9043389Z   CODEQL_ACTION_FEATURE_SARIF_COMBINE: true
+2025-12-19T00:48:49.9043648Z   CODEQL_ACTION_FEATURE_WILL_UPLOAD: true
+2025-12-19T00:48:49.9043893Z   CODEQL_ACTION_VERSION: 4.31.9
+2025-12-19T00:48:49.9044181Z   JOB_RUN_UUID: cef326a0-9fd5-4cd3-bda2-90948cae7ce6
+2025-12-19T00:48:49.9044456Z   CODEQL_ACTION_INIT_HAS_RUN: true
+2025-12-19T00:48:49.9044757Z   CODEQL_ACTION_ANALYSIS_KEY: .github/workflows/codeql.yml:analyze
+2025-12-19T00:48:49.9045118Z   CODEQL_WORKFLOW_STARTED_AT: 2025-12-19T00:48:36.266Z
+2025-12-19T00:48:49.9045388Z   CODEQL_RAM: 14581
+2025-12-19T00:48:49.9045564Z   CODEQL_THREADS: 4
+2025-12-19T00:48:49.9045740Z ##[endgroup]
+2025-12-19T00:48:50.8926766Z While resolving threads, found a cgroup CPUs file with 4 CPUs in /sys/fs/cgroup/cpuset.cpus.effective.
+2025-12-19T00:48:50.8962436Z Not performing diff-informed analysis because we are not analyzing a pull request.
+2025-12-19T00:48:50.9004830Z ##[group]Extracting actions
+2025-12-19T00:48:50.9011432Z [command]/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/codeql database trace-command --use-build-mode --working-dir /home/runner/work/autolearnpro/autolearnpro -O=actions.trap.cache.dir=/home/runner/work/_temp/trapCaches/actions -O=actions.trap.cache.bound=1024 -O=actions.trap.cache.write=true /home/runner/work/_temp/codeql_databases/actions
+2025-12-19T00:48:51.7201623Z Running command in /home/runner/work/autolearnpro/autolearnpro: [/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/actions/tools/autobuild.sh]
+2025-12-19T00:48:51.7383065Z [2025-12-19 00:48:51] [build-stdout] LGTM_INDEX_FILTERS not set. Using the default filters, and passing through to the JavaScript extractor.
+2025-12-19T00:48:52.6159236Z [2025-12-19 00:48:52] [build-stdout] Found JavaScript extractor at '/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/javascript'.
+2025-12-19T00:48:52.6160941Z [2025-12-19 00:48:52] [build-stdout] Running JavaScript autobuilder at '/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/javascript/tools/autobuild.sh'.
+2025-12-19T00:48:53.1524670Z [2025-12-19 00:48:53] [build-stdout] Parallel extraction with 4 threads.
+2025-12-19T00:48:53.2676758Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/backend-ci.yml
+2025-12-19T00:48:53.2682493Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/build-and-push-ghcr.yml
+2025-12-19T00:48:53.2685356Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/ci.yml
+2025-12-19T00:48:53.2688225Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/codeql.yml
+2025-12-19T00:48:53.4514688Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/ci.yml (173 ms)
+2025-12-19T00:48:53.4516317Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/deploy-eks-oidc-example.yml
+2025-12-19T00:48:53.4518047Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/build-and-push-ghcr.yml (174 ms)
+2025-12-19T00:48:53.4520184Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/deploy-oidc-example.yml
+2025-12-19T00:48:53.4521792Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/backend-ci.yml (178 ms)
+2025-12-19T00:48:53.4523490Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/docker-image.yml
+2025-12-19T00:48:53.4525035Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/codeql.yml (179 ms)
+2025-12-19T00:48:53.4526594Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/docker-publish.yml
+2025-12-19T00:48:53.4589883Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/docker-image.yml (10 ms)
+2025-12-19T00:48:53.4591625Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/nightly-scan.yml
+2025-12-19T00:48:53.4593637Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/deploy-oidc-example.yml (13 ms)
+2025-12-19T00:48:53.4617323Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/deploy-eks-oidc-example.yml (15 ms)
+2025-12-19T00:48:53.4620355Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/publish-image.yml
+2025-12-19T00:48:53.4645164Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/pages.yml
+2025-12-19T00:48:53.4736873Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/docker-publish.yml (25 ms)
+2025-12-19T00:48:53.4791374Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/python-lint-test.yml
+2025-12-19T00:48:53.4796768Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/nightly-scan.yml (20 ms)
+2025-12-19T00:48:53.4798840Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/redaction-tests.yml
+2025-12-19T00:48:53.4807397Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/pages.yml (17 ms)
+2025-12-19T00:48:53.4849769Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/refresh-cloudflare-ips.yml
+2025-12-19T00:48:53.4851681Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/redaction-tests.yml (6 ms)
+2025-12-19T00:48:53.4858342Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/test-coverage.yml
+2025-12-19T00:48:53.4880717Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/python-lint-test.yml (11 ms)
+2025-12-19T00:48:53.4912423Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/trivy-scan.yml
+2025-12-19T00:48:53.4918566Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/publish-image.yml (30 ms)
+2025-12-19T00:48:53.4921493Z [2025-12-19 00:48:53] [build-stdout] Extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/update-cloudflare-ips.yml
+2025-12-19T00:48:53.4925585Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/refresh-cloudflare-ips.yml (13 ms)
+2025-12-19T00:48:53.4988415Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/trivy-scan.yml (7 ms)
+2025-12-19T00:48:53.5115626Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/test-coverage.yml (27 ms)
+2025-12-19T00:48:53.5164622Z [2025-12-19 00:48:53] [build-stdout] Done extracting /home/runner/work/autolearnpro/autolearnpro/.github/workflows/update-cloudflare-ips.yml (25 ms)
+2025-12-19T00:48:53.5494105Z ##[endgroup]
+2025-12-19T00:48:53.5499168Z ##[group]Finalizing actions
+2025-12-19T00:48:53.5500606Z [command]/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/codeql database finalize --finalize-dataset --threads=4 --ram=14581 /home/runner/work/_temp/codeql_databases/actions
+2025-12-19T00:48:54.3093923Z Running TRAP import for CodeQL database at /home/runner/work/_temp/codeql_databases/actions...
+2025-12-19T00:48:55.3406487Z Importing TRAP files
+2025-12-19T00:48:55.9543038Z Merging relations
+2025-12-19T00:48:56.1334939Z Finished writing database (relations: 29.40 KiB; string pool: 2.06 MiB).
+2025-12-19T00:48:56.1671688Z TRAP import complete (1.9s).
+2025-12-19T00:48:56.4126185Z Finished zipping source archive (19.06 KiB).
+2025-12-19T00:48:56.4247080Z ##[endgroup]
+2025-12-19T00:48:56.4251977Z ##[group]Running queries for actions
+2025-12-19T00:48:56.4254313Z [command]/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/codeql database run-queries --ram=14581 --threads=4 --expect-discarded-cache /home/runner/work/_temp/codeql_databases/actions --min-disk-free=1024 -v
+2025-12-19T00:48:57.1444217Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/database-run-queries-20251219.004857.141.log.
+2025-12-19T00:48:57.1912559Z Stringpool size measured as 2154906
+2025-12-19T00:48:57.7798924Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/execute-queries-20251219.004857.776.log.
+2025-12-19T00:48:58.0959531Z Recording pack reference codeql/actions-queries at /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16.
+2025-12-19T00:48:59.8997456Z Compiling in 3 threads due to RAM limits.
+2025-12-19T00:49:00.3506784Z [1/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/ExcessiveSecretsExposure.qlx.
+2025-12-19T00:49:00.3540382Z [2/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/UnmaskedSecretExposure.qlx.
+2025-12-19T00:49:00.4371706Z [3/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/SecretsInArtifacts.qlx.
+2025-12-19T00:49:00.8933695Z [4/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/ArtifactPoisoningCritical.qlx.
+2025-12-19T00:49:00.9470665Z [5/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-1395/UseOfKnownVulnerableAction.qlx.
+2025-12-19T00:49:00.9482293Z [6/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/UntrustedCheckoutHigh.qlx.
+2025-12-19T00:49:00.9542217Z [7/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/UntrustedCheckoutCritical.qlx.
+2025-12-19T00:49:01.1129761Z [8/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-094/CodeInjectionCritical.qlx.
+2025-12-19T00:49:01.1306724Z [9/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.qlx.
+2025-12-19T00:49:01.1524625Z [10/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.qlx.
+2025-12-19T00:49:01.1666140Z [11/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-275/MissingActionsPermissions.qlx.
+2025-12-19T00:49:01.3416912Z [12/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-285/ImproperAccessControl.qlx.
+2025-12-19T00:49:01.4225746Z [13/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-077/EnvVarInjectionCritical.qlx.
+2025-12-19T00:49:01.4384070Z [14/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-077/EnvPathInjectionCritical.qlx.
+2025-12-19T00:49:01.4981324Z [15/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaCodeInjection.qlx.
+2025-12-19T00:49:01.5354779Z [16/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Diagnostics/SuccessfullyExtractedFiles.qlx.
+2025-12-19T00:49:01.7337358Z [17/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaPoisonableStep.qlx.
+2025-12-19T00:49:01.7364397Z [18/18] Loaded /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaDirectCache.qlx.
+2025-12-19T00:49:01.9829811Z Starting evaluation of codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.ql.
+2025-12-19T00:49:01.9849027Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.ql.
+2025-12-19T00:49:01.9854597Z Starting evaluation of codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.ql.
+2025-12-19T00:49:01.9855914Z Starting evaluation of codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.ql.
+2025-12-19T00:49:01.9896442Z Starting evaluation of codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.ql.
+2025-12-19T00:49:01.9901468Z Starting evaluation of codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.ql.
+2025-12-19T00:49:01.9910719Z Starting evaluation of codeql/actions-queries/Security/CWE-285/ImproperAccessControl.ql.
+2025-12-19T00:49:01.9940067Z Starting evaluation of codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.ql.
+2025-12-19T00:49:02.2288243Z [1/18 eval 233ms] Evaluation done; writing results to codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+2025-12-19T00:49:02.2297015Z Starting evaluation of codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.ql.
+2025-12-19T00:49:02.2307745Z Starting evaluation of codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.ql.
+2025-12-19T00:49:02.2320953Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.ql.
+2025-12-19T00:49:02.2553688Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.ql.
+2025-12-19T00:49:02.2554877Z Starting evaluation of codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.ql.
+2025-12-19T00:49:02.2559022Z Starting evaluation of codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.ql.
+2025-12-19T00:49:02.2598645Z Starting evaluation of codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.ql.
+2025-12-19T00:49:02.2604089Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.ql.
+2025-12-19T00:49:02.2609496Z Starting evaluation of codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.ql.
+2025-12-19T00:49:02.2614688Z Starting evaluation of codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.ql.
+2025-12-19T00:49:03.4376698Z [2/18 eval 1.2s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+2025-12-19T00:49:03.4436653Z [3/18 eval 1.4s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+2025-12-19T00:49:03.4625387Z [4/18 eval 1.5s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+2025-12-19T00:49:03.6784274Z [5/18 eval 1.7s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+2025-12-19T00:49:03.7007804Z [6/18 eval 1.5s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+2025-12-19T00:49:03.7105288Z [7/18 eval 1.7s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+2025-12-19T00:49:04.1189479Z [8/18 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+2025-12-19T00:49:04.1244282Z [9/18 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+2025-12-19T00:49:04.1322028Z [10/18 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+2025-12-19T00:49:04.1323643Z [11/18 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+2025-12-19T00:49:04.1465899Z [12/18 eval 1.9s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+2025-12-19T00:49:04.2598048Z [13/18 eval 2.3s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+2025-12-19T00:49:04.2712685Z [14/18 eval 2.3s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+2025-12-19T00:49:04.3288814Z [15/18 eval 2.1s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+2025-12-19T00:49:04.4117595Z [16/18 eval 2.1s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+2025-12-19T00:49:04.6730408Z [17/18 eval 2.7s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+2025-12-19T00:49:04.7111885Z [18/18 eval 2.5s] Evaluation done; writing results to codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+2025-12-19T00:49:04.7116608Z Shutting down query evaluator.
+2025-12-19T00:49:04.7924099Z Interpreting code scanning results for actions
+2025-12-19T00:49:05.5228559Z Writing logs to /home/runner/work/_temp/codeql_databases/actions/log/database-interpret-results-20251219.004905.519.log.
+2025-12-19T00:49:05.6649386Z Recording pack reference codeql/actions-queries at /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16.
+2025-12-19T00:49:05.6849808Z Resolving extensions
+2025-12-19T00:49:06.5155910Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/UnmaskedSecretExposure.ql...
+2025-12-19T00:49:06.5506600Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+2025-12-19T00:49:06.5664360Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/SecretsInArtifacts.ql...
+2025-12-19T00:49:06.5788102Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+2025-12-19T00:49:06.5798502Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-312/ExcessiveSecretsExposure.ql...
+2025-12-19T00:49:06.5910540Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+2025-12-19T00:49:06.5917099Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/ArtifactPoisoningCritical.ql...
+2025-12-19T00:49:06.6008073Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+2025-12-19T00:49:06.6014392Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/UntrustedCheckoutCritical.ql...
+2025-12-19T00:49:06.6109855Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+2025-12-19T00:49:06.6116366Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-829/UntrustedCheckoutHigh.ql...
+2025-12-19T00:49:06.6198815Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+2025-12-19T00:49:06.6204368Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-1395/UseOfKnownVulnerableAction.ql...
+2025-12-19T00:49:06.6296269Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+2025-12-19T00:49:06.6304634Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-094/CodeInjectionCritical.ql...
+2025-12-19T00:49:06.6383496Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+2025-12-19T00:49:06.6393635Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.ql...
+2025-12-19T00:49:06.6457141Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+2025-12-19T00:49:06.6473650Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.ql...
+2025-12-19T00:49:06.6532749Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+2025-12-19T00:49:06.6555787Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-275/MissingActionsPermissions.ql...
+2025-12-19T00:49:06.6604727Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+2025-12-19T00:49:06.6609375Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-077/EnvVarInjectionCritical.ql...
+2025-12-19T00:49:06.6705463Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+2025-12-19T00:49:06.6707547Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-077/EnvPathInjectionCritical.ql...
+2025-12-19T00:49:06.6769016Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+2025-12-19T00:49:06.6776159Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-285/ImproperAccessControl.ql...
+2025-12-19T00:49:06.6871187Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+2025-12-19T00:49:06.6890470Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaCodeInjection.ql...
+2025-12-19T00:49:06.6945429Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+2025-12-19T00:49:06.6961529Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaPoisonableStep.ql...
+2025-12-19T00:49:06.7022845Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+2025-12-19T00:49:06.7035353Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Security/CWE-349/CachePoisoningViaDirectCache.ql...
+2025-12-19T00:49:06.7087634Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+2025-12-19T00:49:06.7089661Z Interpreting /opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/qlpacks/codeql/actions-queries/0.6.16/Diagnostics/SuccessfullyExtractedFiles.ql...
+2025-12-19T00:49:06.7148832Z  ... found results file at /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+2025-12-19T00:49:06.8257812Z Interpreted problem query "Unmasked Secret Exposure" (actions/unmasked-secret-exposure) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/UnmaskedSecretExposure.bqrs.
+2025-12-19T00:49:06.8270563Z Interpreted problem query "Storage of sensitive information in GitHub Actions artifact" (actions/secrets-in-artifacts) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/SecretsInArtifacts.bqrs.
+2025-12-19T00:49:06.8279148Z Interpreted problem query "Excessive Secrets Exposure" (actions/excessive-secrets-exposure) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-312/ExcessiveSecretsExposure.bqrs.
+2025-12-19T00:49:06.8285355Z Interpreted pathproblem query "Artifact poisoning" (actions/artifact-poisoning/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/ArtifactPoisoningCritical.bqrs.
+2025-12-19T00:49:06.8305019Z Interpreted pathproblem query "Checkout of untrusted code in a privileged context" (actions/untrusted-checkout/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutCritical.bqrs.
+2025-12-19T00:49:06.8325012Z Interpreted problem query "Checkout of untrusted code in trusted context" (actions/untrusted-checkout/high) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-829/UntrustedCheckoutHigh.bqrs.
+2025-12-19T00:49:06.8328398Z Interpreted problem query "Use of a known vulnerable action" (actions/vulnerable-action) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-1395/UseOfKnownVulnerableAction.bqrs.
+2025-12-19T00:49:06.8331947Z Interpreted pathproblem query "Code injection" (actions/code-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-094/CodeInjectionCritical.bqrs.
+2025-12-19T00:49:06.8339965Z Interpreted pathproblem query "Untrusted Checkout TOCTOU" (actions/untrusted-checkout-toctou/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUCritical.bqrs.
+2025-12-19T00:49:06.8343789Z Interpreted problem query "Untrusted Checkout TOCTOU" (actions/untrusted-checkout-toctou/high) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-367/UntrustedCheckoutTOCTOUHigh.bqrs.
+2025-12-19T00:49:06.8347053Z Interpreted problem query "Workflow does not contain permissions" (actions/missing-workflow-permissions) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-275/MissingActionsPermissions.bqrs.
+2025-12-19T00:49:06.8350133Z Interpreted pathproblem query "Environment variable built from user-controlled sources" (actions/envvar-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvVarInjectionCritical.bqrs.
+2025-12-19T00:49:06.8353962Z Interpreted pathproblem query "PATH environment variable built from user-controlled sources" (actions/envpath-injection/critical) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-077/EnvPathInjectionCritical.bqrs.
+2025-12-19T00:49:06.8364889Z Interpreted problem query "Improper Access Control" (actions/improper-access-control) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-285/ImproperAccessControl.bqrs.
+2025-12-19T00:49:06.8368125Z Interpreted pathproblem query "Cache Poisoning via low-privileged code injection" (actions/cache-poisoning/code-injection) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaCodeInjection.bqrs.
+2025-12-19T00:49:06.8372057Z Interpreted pathproblem query "Cache Poisoning via execution of untrusted code" (actions/cache-poisoning/poisonable-step) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaPoisonableStep.bqrs.
+2025-12-19T00:49:06.8376941Z Interpreted pathproblem query "Cache Poisoning via caching of untrusted files" (actions/cache-poisoning/direct-cache) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Security/CWE-349/CachePoisoningViaDirectCache.bqrs.
+2025-12-19T00:49:06.8380161Z Interpreted diagnostic query "Extracted files" (actions/diagnostics/successfully-extracted-files) at path /home/runner/work/_temp/codeql_databases/actions/results/codeql/actions-queries/Diagnostics/SuccessfullyExtractedFiles.bqrs.
+2025-12-19T00:49:06.8394886Z Reading source archive /home/runner/work/_temp/codeql_databases/actions/src.zip
+2025-12-19T00:49:06.9662625Z Interpreting file coverage baseline information
+2025-12-19T00:49:06.9670381Z Finished interpreting file coverage baseline information.
+2025-12-19T00:49:06.9681096Z Interpreting diagnostic messages...
+2025-12-19T00:49:07.0030411Z Found 3 raw diagnostic messages.
+2025-12-19T00:49:07.0130318Z Processed diagnostic messages (removed 0 due to limits, created 0 summary diagnostics for status page).
+2025-12-19T00:49:07.0163819Z Interpreted diagnostic messages (44ms).
+2025-12-19T00:49:07.2531287Z Exporting results to SARIF...
+2025-12-19T00:49:07.4030818Z Exported results to SARIF (150ms).
+2025-12-19T00:49:07.4341932Z ##[endgroup]
+2025-12-19T00:49:07.4343156Z CodeQL scanned 17 out of 17 GitHub Actions files in this invocation. Check the status page for overall coverage information: https://github.com/73junito/autolearnpro/security/code-scanning/tools/CodeQL/status/
+2025-12-19T00:49:07.4344625Z 
+2025-12-19T00:49:07.4355030Z Post-processing sarif files: ["/home/runner/work/autolearnpro/results/actions.sarif"]
+2025-12-19T00:49:07.4374350Z Adding fingerprints to SARIF file. See https://docs.github.com/en/enterprise-cloud@latest/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning#providing-data-to-track-code-scanning-alerts-across-runs for more information.
+2025-12-19T00:49:07.4514680Z ##[group]Uploading code scanning results
+2025-12-19T00:49:07.4618685Z Uploading results
+2025-12-19T00:49:07.7631445Z Successfully uploaded results
+2025-12-19T00:49:07.7632105Z ##[endgroup]
+2025-12-19T00:49:07.7639464Z ##[group]Cleaning up databases
+2025-12-19T00:49:07.7641295Z [command]/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/codeql database cleanup /home/runner/work/_temp/codeql_databases/actions --cache-cleanup=clear
+2025-12-19T00:49:08.4324724Z Cleaning up existing TRAP files after import...
+2025-12-19T00:49:08.4363657Z TRAP files cleaned up (2ms).
+2025-12-19T00:49:08.4365151Z Cleaning up scratch directory...
+2025-12-19T00:49:08.4368580Z Scratch directory cleaned up (0ms).
+2025-12-19T00:49:08.4786341Z ##[endgroup]
+2025-12-19T00:49:08.4795456Z [command]/opt/hostedtoolcache/CodeQL/2.23.8/x64/codeql/codeql database bundle /home/runner/work/_temp/codeql_databases/actions --output=/home/runner/work/_temp/codeql_databases/actions.zip --name=actions
+2025-12-19T00:49:09.3087023Z Creating bundle metadata for /home/runner/work/_temp/codeql_databases/actions...
+2025-12-19T00:49:09.7235546Z Creating zip file at /home/runner/work/_temp/codeql_databases/actions.zip.
+2025-12-19T00:49:10.2658149Z Skipping upload of TRAP cache for actions as it is too small
+2025-12-19T00:49:10.2662692Z ##[group]Waiting for processing to finish
+2025-12-19T00:49:10.3890998Z Analysis upload status is complete.
+2025-12-19T00:49:10.3891734Z ##[endgroup]

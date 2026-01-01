@@ -1,0 +1,10 @@
+User-agent: *
+# Disallow API and admin endpoints
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Allow everything else
+Allow: /
+
+Sitemap: /sitemap.xml

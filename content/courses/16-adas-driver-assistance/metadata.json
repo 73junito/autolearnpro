@@ -1,0 +1,7 @@
+{
+  "id": 16,
+  "title": "ADAS & Driver Assistance",
+  "slug": "16-adas-driver-assistance",
+  "description": "Sensors, camera/LiDAR basics, calibration, and ADAS function diagnostics.",
+  "lessons": ["01-introduction.md"]
+}

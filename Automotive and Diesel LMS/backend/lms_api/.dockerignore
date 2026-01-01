@@ -1,0 +1,19 @@
+_build
+deps
+node_modules
+npm-debug.log
+.git
+.gitignore
+.DS_Store
+*.log
+tmp
+cover
+.build
+._build
+
+# Docker related
+docker-compose.override.yml
+
+# IDE
+.vscode
+.idea

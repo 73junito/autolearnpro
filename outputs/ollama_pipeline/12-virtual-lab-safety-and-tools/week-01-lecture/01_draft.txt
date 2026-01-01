@@ -1,0 +1,1337 @@
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.1754346Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.1880204Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2005049Z","response":"","thinking":"Okay","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2127997Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2268556Z","response":"","thinking":" let","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2399259Z","response":"","thinking":"'s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2529399Z","response":"","thinking":" tackle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2661844Z","response":"","thinking":" this","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2791769Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.2935038Z","response":"","thinking":" draft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3062555Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3192969Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3327222Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3454409Z","response":"","thinking":" wants","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3583806Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3718957Z","response":"","thinking":" structured","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.3844223Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.397217Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4103433Z","response":"","thinking":" \"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4239024Z","response":"","thinking":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4369954Z","response":"","thinking":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4502494Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4641742Z","response":"","thinking":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4774195Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.4901354Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.5036255Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.515995Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.5297956Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.5428725Z","response":"","thinking":"0","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.555517Z","response":"","thinking":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.568711Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.5817654Z","response":"","thinking":"lecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.5932943Z","response":"","thinking":"\".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6077363Z","response":"","thinking":" First","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6208037Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6338984Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6462571Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6589592Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6724873Z","response":"","thinking":" break","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.686184Z","response":"","thinking":" down","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.6987745Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7118262Z","response":"","thinking":" components","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7240766Z","response":"","thinking":" they","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7388277Z","response":"","thinking":" mentioned","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7519586Z","response":"","thinking":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7654919Z","response":"","thinking":" learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7783275Z","response":"","thinking":" objectives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.7915789Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8050137Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8182096Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8309324Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8444155Z","response":"","thinking":" step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8569681Z","response":"","thinking":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8704343Z","response":"","thinking":"-step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8830564Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.8962398Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.9092198Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.921422Z","response":"","thinking":" practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.935552Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.949052Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.9619557Z","response":"","thinking":" All","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.9740865Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:32.9875807Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0011383Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0142786Z","response":"","thinking":" concise","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0261873Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0402238Z","response":"","thinking":" factual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0537951Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0668051Z","response":"","thinking":"Starting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0790478Z","response":"","thinking":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.0932713Z","response":"","thinking":" learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1063522Z","response":"","thinking":" objectives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1195235Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1319281Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1449586Z","response":"","thinking":" main","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1584093Z","response":"","thinking":" goal","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1713839Z","response":"","thinking":" here","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.184835Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.1992093Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2131383Z","response":"","thinking":" ensure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2270947Z","response":"","thinking":" students","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2404068Z","response":"","thinking":" understand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2540409Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2679833Z","response":"","thinking":" protocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2818739Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.2950508Z","response":"","thinking":" tool","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3085389Z","response":"","thinking":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3216174Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3355006Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3484074Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3612061Z","response":"","thinking":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.374268Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3872562Z","response":"","thinking":" So","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.3992262Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4132342Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4262052Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4392069Z","response":"","thinking":" list","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4519892Z","response":"","thinking":" clear","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.465666Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4789219Z","response":"","thinking":" achievable","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.4921231Z","response":"","thinking":" objectives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5052135Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5183001Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5306493Z","response":"","thinking":" something","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5440965Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5564536Z","response":"","thinking":" understanding","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5687785Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5823213Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.5960924Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.6092131Z","response":"","thinking":" identifying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.621684Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.635336Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.6489253Z","response":"","thinking":" using","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.6620095Z","response":"","thinking":" them","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.6744541Z","response":"","thinking":" correctly","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.6880893Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7017344Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7149051Z","response":"","thinking":" practicing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.727472Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7407875Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.753054Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7671313Z","response":"","thinking":"Next","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7806034Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.7934724Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8071523Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8206379Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8334608Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8464334Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8598826Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8734079Z","response":"","thinking":" cover","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.886496Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.8997513Z","response":"","thinking":" essential","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9124206Z","response":"","thinking":" points","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9249222Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9383633Z","response":"","thinking":" Virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9517411Z","response":"","thinking":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9649697Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.979295Z","response":"","thinking":" includes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:33.9913133Z","response":"","thinking":" things","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0051892Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0178385Z","response":"","thinking":" using","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0309643Z","response":"","thinking":" proper","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0441582Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0573724Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0709102Z","response":"","thinking":" following","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0842024Z","response":"","thinking":" protocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.0974379Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.110757Z","response":"","thinking":" emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1241246Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1372569Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1502793Z","response":"","thinking":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1633731Z","response":"","thinking":" might","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1768901Z","response":"","thinking":" include","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.1901424Z","response":"","thinking":" simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2024997Z","response":"","thinking":" software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2159933Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2287543Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2425404Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2565851Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2700626Z","response":"","thinking":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2844665Z","response":"","thinking":" record","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.2993935Z","response":"","thinking":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.3110666Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.3256031Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.3388615Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.3520614Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.366361Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.3789773Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.391282Z","response":"","thinking":" no","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4064868Z","response":"","thinking":" eating","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4197543Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4327655Z","response":"","thinking":" proper","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4456298Z","response":"","thinking":" attire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4587828Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4715067Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4847749Z","response":"","thinking":" reporting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.4978164Z","response":"","thinking":" issues","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5116072Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5247877Z","response":"","thinking":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5373151Z","response":"","thinking":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5509676Z","response":"","thinking":"-step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5643106Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5774821Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.5906378Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6041951Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6178085Z","response":"","thinking":" wants","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6310842Z","response":"","thinking":" this","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6442415Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6574332Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6701553Z","response":"","thinking":" concise","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6829001Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.6961927Z","response":"","thinking":" So","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7092495Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7228414Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7362904Z","response":"","thinking":" step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7505331Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7638424Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7774291Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.7907866Z","response":"","thinking":" simple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8050263Z","response":"","thinking":" point","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8183445Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8315513Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8451486Z","response":"","thinking":" start","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8592298Z","response":"","thinking":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8726172Z","response":"","thinking":" an","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.8859253Z","response":"","thinking":" introduction","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.898712Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9124825Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9267782Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9404051Z","response":"","thinking":" then","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9537296Z","response":"","thinking":" move","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9675521Z","response":"","thinking":" through","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9807319Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:34.9942069Z","response":"","thinking":" concept","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0069653Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0202031Z","response":"","thinking":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0345889Z","response":"","thinking":" bullet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.047857Z","response":"","thinking":" points","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0615892Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0747447Z","response":"","thinking":" numbered","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.0889175Z","response":"","thinking":" steps","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1022853Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1160745Z","response":"","thinking":" Make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1304861Z","response":"","thinking":" sure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1441986Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1573238Z","response":"","thinking":" step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1710101Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1848048Z","response":"","thinking":" clear","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.1987685Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2126451Z","response":"","thinking":" not","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2263796Z","response":"","thinking":" too","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2399945Z","response":"","thinking":" lengthy","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2546421Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2693949Z","response":"","thinking":"Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2832185Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.2962331Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3110906Z","response":"","thinking":" These","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3258398Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3393515Z","response":"","thinking":" test","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.353932Z","response":"","thinking":" understanding","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3683024Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3815838Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.3955889Z","response":"","thinking":" multiple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4097645Z","response":"","thinking":" choice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4234781Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4371415Z","response":"","thinking":" short","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4509485Z","response":"","thinking":" answers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4641146Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4776746Z","response":"","thinking":" For","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.4915241Z","response":"","thinking":" example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.50549Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5176281Z","response":"","thinking":" identifying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.531389Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5460574Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5598874Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5729722Z","response":"","thinking":" explaining","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5861977Z","response":"","thinking":" tool","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.5999989Z","response":"","thinking":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.6141781Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.6279907Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.6421609Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.655813Z","response":"","thinking":" scenario","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.67004Z","response":"","thinking":"-based","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.6827325Z","response":"","thinking":" question","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.6963441Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.710549Z","response":"","thinking":" Need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.7237193Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.736743Z","response":"","thinking":" ensure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.7512423Z","response":"","thinking":" they","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.764292Z","response":"","thinking":"'re","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.7779414Z","response":"","thinking":" based","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.7906743Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.805182Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.8175452Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.8322806Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.846654Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.8605687Z","response":"","thinking":"Wait","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.8738428Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.8864056Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9000764Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9133295Z","response":"","thinking":" mentioned","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9274861Z","response":"","thinking":" \"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9413841Z","response":"","thinking":"virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9546055Z","response":"","thinking":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9684451Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.98058Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:35.9948055Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0092675Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.023097Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0370512Z","response":"","thinking":"0","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0502605Z","response":"","thinking":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0626911Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0772775Z","response":"","thinking":"lecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.0915954Z","response":"","thinking":"\".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1053325Z","response":"","thinking":" So","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1181997Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1327089Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1465922Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1599764Z","response":"","thinking":" part","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.1738141Z","response":"","thinking":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.18748Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2013184Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2143505Z","response":"","thinking":"-long","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2288537Z","response":"","thinking":" series","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2426299Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2565922Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2701215Z","response":"","thinking":" first","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2840402Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.2971745Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3108363Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3248146Z","response":"","thinking":" maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3385553Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3519874Z","response":"","thinking":" structure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3653233Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3798601Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.3945486Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.408781Z","response":"","thinking":" first","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4230175Z","response":"","thinking":" session","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4367823Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4506439Z","response":"","thinking":" Need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4639622Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4770657Z","response":"","thinking":" make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.4902639Z","response":"","thinking":" sure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5047046Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5183414Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5315144Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5452735Z","response":"","thinking":" tailored","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5591205Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.572584Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5857947Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.5996326Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6133641Z","response":"","thinking":"Check","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6259916Z","response":"","thinking":" if","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6388646Z","response":"","thinking":" there","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6532296Z","response":"","thinking":" are","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6664Z","response":"","thinking":" any","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6804137Z","response":"","thinking":" specific","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.6941681Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7087681Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7226286Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7354783Z","response":"","thinking":" measures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7492021Z","response":"","thinking":" unique","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7626896Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7764331Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.7900613Z","response":"","thinking":" labs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8032576Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8167024Z","response":"","thinking":" For","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.82986Z","response":"","thinking":" example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8441476Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8567997Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8709043Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8852526Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.8986552Z","response":"","thinking":" simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.913112Z","response":"","thinking":" software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.9262094Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.9402381Z","response":"","thinking":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.9541902Z","response":"","thinking":" logging","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.9676209Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.9816967Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:36.995374Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.008872Z","response":"","thinking":" emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0221579Z","response":"","thinking":" protocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0357427Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0496021Z","response":"","thinking":" what","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0618544Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0761132Z","response":"","thinking":" do","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.0893998Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1029928Z","response":"","thinking":" case","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1158513Z","response":"","thinking":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.129485Z","response":"","thinking":" accidents","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1426114Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1563001Z","response":"","thinking":"In","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1699384Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1837555Z","response":"","thinking":" step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.1967475Z","response":"","thinking":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2102003Z","response":"","thinking":"-step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2238137Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2375398Z","response":"","thinking":" maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2514986Z","response":"","thinking":" break","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2666339Z","response":"","thinking":" down","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2809903Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.2947345Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3074581Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3219254Z","response":"","thinking":" into","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3351224Z","response":"","thinking":" sections","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3492901Z","response":"","thinking":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3624581Z","response":"","thinking":" attire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3759579Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.3891464Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4030215Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4166832Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4304201Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4457421Z","response":"","thinking":" emergencies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4601152Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4738068Z","response":"","thinking":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.4886696Z","response":"","thinking":" could","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5021031Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5159222Z","response":"","thinking":" divided","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5302503Z","response":"","thinking":" into","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5445717Z","response":"","thinking":" simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5581773Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5726294Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.5865982Z","response":"","thinking":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6006446Z","response":"","thinking":" record","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6143776Z","response":"","thinking":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6269884Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6418473Z","response":"","thinking":" troubleshooting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6562312Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.670465Z","response":"","thinking":"Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6848911Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.6987784Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7128908Z","response":"","thinking":" relate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7273796Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7413619Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7548379Z","response":"","thinking":" section","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7687023Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7817027Z","response":"","thinking":" For","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.7964213Z","response":"","thinking":" example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8098721Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8237733Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8380116Z","response":"","thinking":" question","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8525014Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8662865Z","response":"","thinking":" identifying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8812365Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.8953094Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9085795Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9221158Z","response":"","thinking":" another","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9361072Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9511293Z","response":"","thinking":" tool","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.965506Z","response":"","thinking":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9794414Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:37.9939981Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0082735Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0227835Z","response":"","thinking":" scenario","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0373082Z","response":"","thinking":" where","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0516177Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0671386Z","response":"","thinking":" student","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.0816143Z","response":"","thinking":" might","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.095655Z","response":"","thinking":" make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1101302Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1245304Z","response":"","thinking":" mistake","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1382334Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1522068Z","response":"","thinking":" how","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1662412Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1802866Z","response":"","thinking":" correct","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.1944285Z","response":"","thinking":" it","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2077044Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2213944Z","response":"","thinking":"I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2349309Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2487363Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2627232Z","response":"","thinking":" ensure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2766189Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.2902242Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3039024Z","response":"","thinking":" language","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3166931Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3314075Z","response":"","thinking":" clear","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3457883Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3594683Z","response":"","thinking":" factual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3735874Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.3866226Z","response":"","thinking":" avoiding","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.400358Z","response":"","thinking":" j","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4145565Z","response":"","thinking":"argon","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4285432Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4427833Z","response":"","thinking":" Since","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4570383Z","response":"","thinking":" it","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4710718Z","response":"","thinking":"'s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.485559Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.4998735Z","response":"","thinking":" lecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5128691Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5289943Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5434812Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5579099Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5718477Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5856052Z","response":"","thinking":" straightforward","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.5998008Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.6132389Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.6274428Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.6416255Z","response":"","thinking":" keep","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.6554349Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.66999Z","response":"","thinking":" section","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.6836001Z","response":"","thinking":" concise","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.696255Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7108752Z","response":"","thinking":" maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7250099Z","response":"","thinking":" using","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7392318Z","response":"","thinking":" bullet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7529842Z","response":"","thinking":" points","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7669837Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7809716Z","response":"","thinking":" short","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.7950792Z","response":"","thinking":" paragraphs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8093244Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8226769Z","response":"","thinking":"Let","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8372236Z","response":"","thinking":" me","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8513961Z","response":"","thinking":" outline","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8645457Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8782718Z","response":"","thinking":" section","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.8925106Z","response":"","thinking":":\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9063243Z","response":"","thinking":"Learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9205945Z","response":"","thinking":" Object","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9347863Z","response":"","thinking":"ives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9485683Z","response":"","thinking":":\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9616822Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9758289Z","response":"","thinking":" Understand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:38.9895293Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.00325Z","response":"","thinking":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.0170927Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.0304828Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.044593Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.0581696Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.0728103Z","response":"","thinking":" Identify","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.0864374Z","response":"","thinking":" essential","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1003297Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1150366Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1294649Z","response":"","thinking":" their","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1433351Z","response":"","thinking":" uses","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1570746Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1710391Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1841712Z","response":"","thinking":" Apply","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.1978662Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2122169Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2258667Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2396556Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2548442Z","response":"","thinking":" labs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2689212Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2847064Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.2980612Z","response":"","thinking":" Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3117203Z","response":"","thinking":" safe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.32595Z","response":"","thinking":" handling","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3399794Z","response":"","thinking":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3531647Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3675762Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3817174Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.3953634Z","response":"","thinking":"Key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.409394Z","response":"","thinking":" Concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4234536Z","response":"","thinking":":\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4373491Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4515206Z","response":"","thinking":" Safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4651239Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4793887Z","response":"","thinking":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.4928346Z","response":"","thinking":"att","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5065695Z","response":"","thinking":"ire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5213473Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.535473Z","response":"","thinking":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5493238Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5628173Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5769249Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.5922913Z","response":"","thinking":" emergencies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6068849Z","response":"","thinking":").\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6216048Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6354169Z","response":"","thinking":" Virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6503258Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6639501Z","response":"","thinking":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6776478Z","response":"","thinking":"simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.6911055Z","response":"","thinking":" software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.7043031Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.7185465Z","response":"","thinking":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.7326997Z","response":"","thinking":" record","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.746857Z","response":"","thinking":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.760568Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.7742982Z","response":"","thinking":" troubleshooting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.7875494Z","response":"","thinking":").\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8023226Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8159252Z","response":"","thinking":" Importance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8295521Z","response":"","thinking":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8430289Z","response":"","thinking":" practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8575348Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8716738Z","response":"","thinking":" documentation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.8855602Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.899751Z","response":"","thinking":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9128177Z","response":"","thinking":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.925558Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9407771Z","response":"","thinking":"Steps","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9539615Z","response":"","thinking":":\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9677526Z","response":"","thinking":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9821282Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:39.9952317Z","response":"","thinking":" Introduction","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.009856Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0248566Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0396721Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0544223Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0690681Z","response":"","thinking":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0840704Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.0984988Z","response":"","thinking":" Ident","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1127926Z","response":"","thinking":"ifying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1271884Z","response":"","thinking":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1415902Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1558114Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1683196Z","response":"","thinking":" their","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1815573Z","response":"","thinking":" functions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.1966972Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2104183Z","response":"","thinking":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2252864Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2389797Z","response":"","thinking":" Using","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2529223Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2670775Z","response":"","thinking":" correctly","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2809713Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.2951076Z","response":"","thinking":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.308299Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3229993Z","response":"","thinking":" Emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3356701Z","response":"","thinking":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3508886Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3655785Z","response":"","thinking":"5","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3798287Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.3935247Z","response":"","thinking":" Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4081332Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4217839Z","response":"","thinking":" documentation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4362097Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4494747Z","response":"","thinking":"Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4633896Z","response":"","thinking":" Questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4776071Z","response":"","thinking":":\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.4917142Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5061804Z","response":"","thinking":" Multiple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5211104Z","response":"","thinking":" choice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5361367Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5512829Z","response":"","thinking":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5647862Z","response":"","thinking":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5805589Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.5954113Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.609853Z","response":"","thinking":" Short","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.6243263Z","response":"","thinking":" answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.639089Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.6532054Z","response":"","thinking":" tool","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.6677943Z","response":"","thinking":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.6829874Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.6974471Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7128481Z","response":"","thinking":" Scenario","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7263431Z","response":"","thinking":" question","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7407301Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7543348Z","response":"","thinking":" emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7680081Z","response":"","thinking":" response","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7807757Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.7958368Z","response":"","thinking":"I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8099986Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8244389Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8387001Z","response":"","thinking":" make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8529606Z","response":"","thinking":" sure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8671871Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8808715Z","response":"","thinking":" part","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.8946043Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9083029Z","response":"","thinking":" covered","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9224417Z","response":"","thinking":" without","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9360618Z","response":"","thinking":" being","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9502681Z","response":"","thinking":" too","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9640497Z","response":"","thinking":" verbose","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9788477Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:40.9921697Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0060226Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0197833Z","response":"","thinking":" check","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0340523Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0477087Z","response":"","thinking":" conc","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0619887Z","response":"","thinking":"isen","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0761903Z","response":"","thinking":"ess","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.0905059Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1041498Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1178184Z","response":"","thinking":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1315104Z","response":"","thinking":" bullet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1456981Z","response":"","thinking":" points","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1593375Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1732391Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.1863261Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2006046Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.214391Z","response":"","thinking":" steps","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2289944Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2420583Z","response":"","thinking":" Avoid","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.25607Z","response":"","thinking":" markdown","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2710621Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2852631Z","response":"","thinking":" but","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.2993013Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3127337Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3265211Z","response":"","thinking":" didn","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.34069Z","response":"","thinking":"'t","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3546163Z","response":"","thinking":" specify","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3673795Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3822747Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.3955137Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4102071Z","response":"","thinking":" can","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4241639Z","response":"","thinking":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4383222Z","response":"","thinking":" bullet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4526637Z","response":"","thinking":" points","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4669079Z","response":"","thinking":" as","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4805407Z","response":"","thinking":" per","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.4945312Z","response":"","thinking":" their","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5077227Z","response":"","thinking":" example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5224365Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5366615Z","response":"","thinking":"Double","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5503749Z","response":"","thinking":"-check","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5642019Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5781999Z","response":"","thinking":" all","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.5912811Z","response":"","thinking":" required","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6054795Z","response":"","thinking":" elements","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6196478Z","response":"","thinking":" are","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6332833Z","response":"","thinking":" included","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.647981Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6621961Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6758201Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.6891425Z","response":"","thinking":" wants","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7033771Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7184187Z","response":"","thinking":" structured","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7326481Z","response":"","thinking":" draft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7473791Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7614114Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.7755731Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.789276Z","response":"","thinking":" section","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.8029487Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.816607Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.8302247Z","response":"","thinking":" clearly","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.843946Z","response":"","thinking":" defined","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.8586957Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.8733049Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.8874109Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9015174Z","response":"","thinking":" ensure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9157108Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9299799Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9446903Z","response":"","thinking":" practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9584085Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.973135Z","response":"","thinking":" are","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:41.9873026Z","response":"","thinking":" aligned","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.0023464Z","response":"","thinking":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.016441Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.0310521Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.045751Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.0603925Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.0735737Z","response":"","thinking":"Alright","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.0880564Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1024533Z","response":"","thinking":" time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1170094Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1314641Z","response":"","thinking":" put","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1452181Z","response":"","thinking":" it","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1595874Z","response":"","thinking":" all","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.173791Z","response":"","thinking":" together","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.1878501Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2014447Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2167577Z","response":"","thinking":" coherent","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2308867Z","response":"","thinking":" format","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2451079Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2592488Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2733983Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.2875026Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3024732Z","response":"Lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3165518Z","response":" Draft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3313573Z","response":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3445677Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3596936Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3739972Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.3882592Z","response":" Virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4021982Z","response":" Lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4170426Z","response":" Safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4307695Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4458988Z","response":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4590455Z","response":" Week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4733146Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.4875352Z","response":"0","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5024625Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5166681Z","response":"-L","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5308692Z","response":"ecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5453162Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5593746Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5750561Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.5893677Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6037976Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.617991Z","response":"Learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6318003Z","response":" Object","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6473402Z","response":"ives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6616603Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6759304Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.6902955Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7047003Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7186868Z","response":" Identify","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7330657Z","response":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7472648Z","response":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7617856Z","response":" rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7767665Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.7927806Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.80703Z","response":" labs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.821956Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.8364503Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.8520918Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.8663795Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.8810806Z","response":" attire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.8952716Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9094488Z","response":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9243726Z","response":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9386702Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9530219Z","response":" emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9677944Z","response":" protocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9820004Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:42.9956616Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0102736Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0245583Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0387144Z","response":" Recogn","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0526856Z","response":"ize","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0679143Z","response":" essential","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.08159Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.0964868Z","response":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1108345Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1245025Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1388529Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1534794Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1682331Z","response":" simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.1824976Z","response":" software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.197608Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2113516Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2254914Z","response":" record","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2402428Z","response":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2552925Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2701556Z","response":" troubleshooting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2850989Z","response":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.2987998Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.3127444Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.3276784Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.3420008Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.3568361Z","response":" Apply","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.3710288Z","response":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.38603Z","response":" procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.400661Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4146768Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4293551Z","response":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4437489Z","response":" activities","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4582418Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4729586Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.4871176Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5017659Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5160976Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5297661Z","response":" logging","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5442977Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5598504Z","response":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5740838Z","response":" calibration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.5877707Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6020915Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6173038Z","response":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6310051Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6451237Z","response":" Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6593419Z","response":" safe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6736549Z","response":" handling","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.6884634Z","response":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7026395Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7168309Z","response":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7299736Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.744559Z","response":" document","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7586445Z","response":" results","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7732334Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.7878097Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.8020856Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.816459Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.830816Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.8453486Z","response":"Key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.8615349Z","response":" Concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.8763508Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.8907932Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9054658Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9195557Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9337274Z","response":"Safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9487307Z","response":" Rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9636306Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9781636Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:43.9921489Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0064466Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.021766Z","response":" No","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0361214Z","response":" eating","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0501704Z","response":"/dr","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0649005Z","response":"inking","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0798653Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.0940793Z","response":" proper","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1089713Z","response":" attire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1227897Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1372889Z","response":"lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1521515Z","response":" coats","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1662772Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.1799064Z","response":" gloves","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.19447Z","response":"),","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.209182Z","response":" no","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.2255686Z","response":" touching","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.2387717Z","response":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.2534622Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.267896Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.2817663Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.2959674Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3101079Z","response":" Report","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3252111Z","response":" mal","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3393981Z","response":"functions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3536437Z","response":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3684131Z","response":" hazards","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.3826519Z","response":" immediately","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.396915Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4118156Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4250961Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4398157Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.454177Z","response":"Virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4684713Z","response":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4832251Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.4979221Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5135925Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5282234Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5425628Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5567336Z","response":"Simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5714057Z","response":" Software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.5856564Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6006249Z","response":" Models","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6138256Z","response":" experiments","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6289692Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6432111Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6575163Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6713647Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6855341Z","response":" physics","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.6997832Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.714466Z","response":" chemistry","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.7291121Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.7433332Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.7579168Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.7733559Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.7876346Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8014166Z","response":"Data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8164035Z","response":" Record","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8301156Z","response":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8451326Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8592783Z","response":" Log","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8735974Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.8881627Z","response":"-time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.903666Z","response":" results","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.9180105Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.9330939Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.9474359Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.9615364Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.97622Z","response":" temperature","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:44.9904573Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.0048234Z","response":" pressure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.0190433Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.0332987Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.0476524Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.0623445Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.076496Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.089837Z","response":"Trou","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1049921Z","response":"b","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1192882Z","response":"leshooting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1334786Z","response":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1471192Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1622927Z","response":" Debug","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1765629Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.1907724Z","response":" setups","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2050367Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2192213Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2344024Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2486964Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2624638Z","response":" error","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2787668Z","response":" codes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.2930321Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3072788Z","response":" calibration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3217152Z","response":" checks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3359779Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3507252Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3650326Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3797075Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.3945287Z","response":"Emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4091174Z","response":" Prot","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4251481Z","response":"ocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4400571Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4565669Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4705141Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.4855081Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5004095Z","response":" Know","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5144977Z","response":" escape","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5294061Z","response":" routes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5442824Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5596152Z","response":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5739152Z","response":" fire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.5892657Z","response":" extingu","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6035571Z","response":"ish","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6186531Z","response":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6319312Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6481477Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6629868Z","response":" contact","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6783122Z","response":" instructors","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.6931452Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.7091255Z","response":" help","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.72398Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.7395028Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.7544951Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.7703026Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.7854027Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8010193Z","response":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.815476Z","response":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8302224Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8450087Z","response":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8597887Z","response":" Ex","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8744667Z","response":"plan","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.8893771Z","response":"ations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9040013Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9182207Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9331419Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9472962Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9632702Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9787821Z","response":"Safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:45.9938264Z","response":" Rules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0092704Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0242146Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.037913Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0523071Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0671457Z","response":" Em","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0813139Z","response":"phas","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.0965349Z","response":"ize","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1119155Z","response":" physical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1263402Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1410601Z","response":" digital","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1558732Z","response":" safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.170432Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1851109Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.1998276Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.2135598Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.2285023Z","response":" no","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.2429151Z","response":" food","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.2575664Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.2724851Z","response":" labs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.286657Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3014662Z","response":" no","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3153622Z","response":" unauthorized","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3299528Z","response":" access","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3448258Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3596078Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3741973Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.3888934Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4039848Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4192634Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4334395Z","response":" Demon","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4481978Z","response":"strate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4626538Z","response":" proper","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4775873Z","response":" attire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.4920709Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5078776Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5239295Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5381569Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5528011Z","response":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5674872Z","response":" coats","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5819571Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.5967695Z","response":" goggles","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.6110662Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.626276Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.6403939Z","response":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.6556979Z","response":" handling","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.6699038Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.6846106Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.699296Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.7135525Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.7284886Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.7426899Z","response":"Virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.757401Z","response":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.7720961Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.7866076Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8007839Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8153759Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8305585Z","response":" Explain","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8453396Z","response":" how","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8601267Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8742514Z","response":" navigate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.8887648Z","response":" simulation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.9034241Z","response":" software","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.918634Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.932864Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.9475192Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.9623354Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.9765537Z","response":" click","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:46.9912861Z","response":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0064629Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0215381Z","response":" adjust","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0370839Z","response":" variables","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0520933Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0674964Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0824291Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.0972712Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.1122958Z","response":" Show","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.127716Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.1424895Z","response":" recorder","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.1566528Z","response":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.1710677Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.185389Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.200173Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.2146783Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.229569Z","response":" save","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.2442978Z","response":" results","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.259517Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.2750528Z","response":" analyze","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.2896428Z","response":" trends","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3045407Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3186317Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3331738Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3482494Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3630277Z","response":" Demon","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3766516Z","response":"strate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.3923263Z","response":" troubleshooting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4059387Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4203788Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.435681Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4498795Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4651314Z","response":" reset","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4796435Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.4957057Z","response":" malfunction","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5101823Z","response":"ing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5254511Z","response":" device","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5414667Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5583341Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5738528Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.5889095Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6039272Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6192171Z","response":"Safety","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6345513Z","response":" Procedures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6498839Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6649805Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6798253Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.6952748Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7102827Z","response":" Teach","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7256706Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7404526Z","response":" logging","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7561411Z","response":" protocols","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7708636Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.7857973Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8005854Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8155839Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8311258Z","response":" timestamp","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8460054Z","response":" results","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8614309Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8760124Z","response":" save","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.8904051Z","response":" files","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9068046Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9222488Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9373273Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9528444Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9682747Z","response":" Highlight","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9834779Z","response":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:47.9994672Z","response":" importance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.0156414Z","response":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.031178Z","response":" calibration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.0462662Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.0619539Z","response":" error","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.0782247Z","response":" checks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.0921271Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1081433Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1234349Z","response":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1393911Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1544963Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1699635Z","response":"Emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.1861005Z","response":" Response","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2016289Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2165063Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2322572Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2472308Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2625571Z","response":" Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2768227Z","response":" evacuation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.2914594Z","response":" drills","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3061844Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3209492Z","response":" use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3353693Z","response":" emergency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3495646Z","response":" kits","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.363665Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3783742Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.3930569Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.4098639Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.4245619Z","response":" fire","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.438769Z","response":" extingu","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.453641Z","response":"ish","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.4678163Z","response":"ers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.4826121Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.4973448Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5120873Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5259124Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5410469Z","response":" Stress","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5563981Z","response":" communication","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5715059Z","response":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.5858554Z","response":" instructors","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6011946Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6163359Z","response":" critical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6313126Z","response":" issues","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6459501Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6606555Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6754085Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.6895771Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.704988Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.7187074Z","response":"Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.7334284Z","response":" Questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.748249Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.762955Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.7770858Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.7924524Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.8067062Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.82191Z","response":"Multiple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.836108Z","response":" Choice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.8507637Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.8654377Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.8795867Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.8943038Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9080693Z","response":" Which","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9225588Z","response":" rule","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9388432Z","response":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9536076Z","response":" NOT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9677951Z","response":" required","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.9828188Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:48.997047Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0113185Z","response":" labs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.026047Z","response":"?","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0405934Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0552561Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0699122Z","response":" A","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0841962Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.0986852Z","response":" No","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1132266Z","response":" eating","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1278806Z","response":"/dr","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1426258Z","response":"inking","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1581545Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1735782Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.1888798Z","response":" B","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2046523Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2199465Z","response":" Wear","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2339551Z","response":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2488044Z","response":" coats","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2639536Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2800341Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.2943824Z","response":" C","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3090427Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3231783Z","response":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3378597Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3529404Z","response":" calculator","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3681828Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3827135Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.3977166Z","response":" analysis","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4117862Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4279498Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4432559Z","response":" D","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4583713Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4731217Z","response":" Report","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.4880417Z","response":" equipment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5032898Z","response":" mal","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5186543Z","response":"functions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5333535Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5479649Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5627227Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5780154Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.5938824Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6087666Z","response":" C","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6237489Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6389836Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6535141Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6690192Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6835232Z","response":"Short","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.6987304Z","response":" Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7135792Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7284787Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7434651Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7583521Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7735493Z","response":" What","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.7881624Z","response":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.8027465Z","response":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.8175852Z","response":" purpose","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.8329266Z","response":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.8475721Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.8630051Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.877714Z","response":" recorder","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.892764Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9082454Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9231181Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9377923Z","response":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9523733Z","response":"?","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9677137Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9828993Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:49.9976483Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0126158Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0279953Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0431627Z","response":" To","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0578869Z","response":" log","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0731095Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.0893404Z","response":" analyze","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1035627Z","response":" experimental","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1183574Z","response":" results","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1333055Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1482191Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1629242Z","response":" time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1783287Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.1930403Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.2082499Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.2235949Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.2393418Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.255Z","response":"Scenario","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.2710612Z","response":" Question","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.2857504Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3009856Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3166405Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3307656Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3459584Z","response":" A","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3610668Z","response":" student","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3758757Z","response":" encounters","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.3911037Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.406353Z","response":" malfunction","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.4210128Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.4363756Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.4525498Z","response":" virtual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.4672985Z","response":" experiment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.482582Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.4972621Z","response":" What","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5130135Z","response":" steps","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5277499Z","response":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5433013Z","response":" they","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5580631Z","response":" take","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5734581Z","response":"?","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.5887745Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6033706Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6185494Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6332733Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6491295Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6638181Z","response":" Report","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6785682Z","response":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.6937035Z","response":" issue","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7087409Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7239425Z","response":" reset","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7388975Z","response":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7540286Z","response":" system","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7694369Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.7845383Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8001943Z","response":" document","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8161996Z","response":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8319847Z","response":" error","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8479018Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8641176Z","response":" instructor","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8782402Z","response":" review","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.8957799Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9112147Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9260373Z","response":"---","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9423778Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9568076Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9717265Z","response":"Note","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:50.9856282Z","response":"**:","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0014895Z","response":" Align","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0167499Z","response":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0319631Z","response":" instructor","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0474323Z","response":" feedback","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0621383Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0768269Z","response":" lab","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.0918617Z","response":" guidelines","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.1073331Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.1240092Z","response":" accuracy","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.1397007Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T02:44:51.1558023Z","response":"","done":true,"done_reason":"stop","context":[151644,872,198,2610,525,458,71245,14692,382,4021,264,32930,17755,9960,369,510,1,16,17,4108,10072,7149,323,7375,2003,12,15,16,12,76761,1837,22283,510,12,20909,25398,198,12,5309,18940,198,12,14822,14319,29208,40841,198,12,26984,4755,271,19434,40841,63594,323,59901,13,608,26865,151645,198,151644,77091,198,151667,198,32313,11,1077,594,21403,419,17755,9960,13,576,1196,6801,264,32930,17755,369,330,16,17,4108,10072,7149,323,7375,2003,12,15,16,12,76761,3263,5512,11,358,1184,311,1438,1495,279,6813,807,9733,25,6832,25398,11,1376,18940,11,3019,14319,29208,40841,11,323,6588,4755,13,2009,40841,1265,387,63594,323,59901,382,24617,448,6832,25398,13,576,1887,5795,1588,374,311,5978,4143,3535,7149,31785,323,5392,10431,304,264,4108,10072,13,2055,11,358,1265,1140,2797,11,88153,25398,13,10696,2494,1075,8660,7149,5601,11,24588,7375,11,1667,1105,12440,11,323,35566,7149,15966,382,5847,11,1376,18940,13,358,1184,311,3421,279,7565,3501,13,20721,10072,7149,5646,2513,1075,1667,6169,7096,11,2701,31785,11,12851,15966,13,13852,2578,2924,19038,3162,11,4108,7096,11,821,3255,388,13,7281,11,7149,5601,1075,902,12182,11,6169,68160,11,323,12827,4714,382,8304,14319,29208,40841,13,576,1196,6801,419,311,387,63594,13,2055,11,1817,3019,1265,387,264,4285,1459,13,10696,1191,448,458,16800,311,7149,11,1221,3271,1526,1817,7286,13,5443,17432,3501,476,48826,7354,13,7405,2704,1817,3019,374,2797,323,537,2238,34206,382,88492,4755,13,4220,1265,1273,8660,13,10696,5248,5754,476,2805,11253,13,1752,3110,11,24588,7149,5601,11,25021,5392,990,11,476,264,15048,5980,3405,13,14656,311,5978,807,2299,3118,389,279,1376,18940,382,14190,11,279,1196,9733,330,25668,10072,7149,323,7375,2003,12,15,16,12,76761,3263,2055,279,17755,374,949,315,264,2003,23791,4013,13,576,1156,2003,11,773,7196,279,5944,374,369,279,1156,3797,13,14656,311,1281,2704,279,17755,374,40791,311,429,2003,382,3973,421,1052,525,894,3151,7375,476,7149,10953,4911,311,4108,49948,13,1752,3110,11,4108,7096,11,19038,3162,11,821,8392,13,7281,11,12851,31785,1075,1128,311,653,304,1142,315,32688,382,641,279,3019,14319,29208,11,7196,1438,1495,279,7149,5601,1119,14158,25,68160,11,7096,11,15966,11,67974,13,13852,1410,387,17779,1119,19038,7375,11,821,3255,388,11,68671,382,88492,4755,1265,28143,311,1817,3772,13,1752,3110,11,264,3405,389,24588,7149,5601,11,2441,389,5392,10431,11,323,264,15048,1380,264,5458,2578,1281,264,16523,323,1246,311,4396,432,382,40,1184,311,5978,429,279,4128,374,2797,323,59901,11,30426,502,70821,13,8704,432,594,264,30578,11,279,40841,1265,387,30339,13,7281,11,2506,1817,3772,63594,11,7196,1667,17432,3501,476,2805,42643,382,10061,752,21101,1817,3772,1447,47467,3002,1886,510,12,70894,4108,10072,7149,5601,624,12,64547,7565,7375,323,862,5711,624,12,20552,7149,15966,304,4108,49948,624,12,26984,6092,11589,315,4108,7096,382,1592,75772,510,12,18702,5601,320,1587,554,11,7096,11,15966,11,67974,4292,12,20721,7375,320,83772,3162,11,821,3255,388,11,68671,4292,12,93000,315,6588,323,9705,382,8304,14319,12,33951,510,16,13,28338,311,7149,5601,624,17,13,22507,7766,4108,7375,323,862,5746,624,18,13,12091,7375,12440,624,19,13,31608,15966,624,20,13,26984,323,9705,382,88492,23382,510,12,28811,5754,389,7149,5601,624,12,10698,4226,389,5392,10431,624,12,58663,3405,389,12851,2033,382,40,1184,311,1281,2704,1817,949,374,9761,2041,1660,2238,13694,13,7281,11,1779,369,3529,23129,433,13,10696,990,17432,3501,369,1376,18940,323,7354,13,34006,50494,11,714,279,1196,3207,944,13837,11,773,358,646,990,17432,3501,438,817,862,3110,382,7378,15934,429,678,2567,5424,525,5230,13,576,1196,6801,264,32930,9960,11,773,1817,3772,1265,387,9355,4512,13,7281,11,5978,429,279,6588,4755,525,26118,448,279,1376,18940,382,71486,11,882,311,2182,432,678,3786,304,264,55787,3561,624,151668,271,334,70404,28564,25,220,16,17,20721,11607,18702,323,13852,10348,12,15,16,8125,62193,334,18611,44364,14374,3070,47467,3002,1886,334,2303,16,13,64547,1376,7149,5601,369,4108,49948,320,68,1302,2572,68160,11,7096,990,11,12851,31785,568,2303,17,13,66875,551,7565,4108,7375,320,68,1302,2572,19038,3162,11,821,3255,388,11,68671,7375,568,2303,18,13,20552,7149,15966,311,4108,10072,7488,320,68,1302,2572,821,8392,11,7096,37611,568,2303,19,13,26984,6092,11589,315,4108,7375,323,2197,3059,13,18611,44364,14374,3070,1592,75772,334,2303,12,3070,73037,22847,95518,2303,220,481,2308,12182,48054,15736,11,6169,68160,320,14380,55637,11,35416,701,902,30587,7096,13,2303,220,481,8259,8641,21409,476,51542,7069,13,2303,12,3070,33026,13852,95518,2303,220,481,3070,64554,4377,95518,26874,21204,320,68,1302,2572,21321,11,29803,568,2303,220,481,3070,1043,4067,7917,95518,2835,1931,7246,3059,320,68,1302,2572,9315,11,7262,568,2303,220,481,3070,90535,65,50240,13852,95518,11091,4108,83723,320,68,1302,2572,1465,13912,11,37611,12341,568,2303,12,3070,78969,11708,22018,95518,2303,220,481,14187,12449,11291,11,990,3940,55707,812,388,11,323,3645,53818,369,1492,13,18611,44364,14374,3070,8304,14319,12,8304,1374,10393,804,334,2303,16,13,3070,73037,22847,95518,2303,256,481,5748,50380,551,6961,323,7377,7149,320,68,1302,2572,902,3607,304,49948,11,902,44471,2615,311,821,568,2303,256,481,32305,69915,6169,68160,320,68,1302,2572,10072,55637,11,93990,8,323,7096,11589,13,2303,17,13,3070,33026,13852,95518,2303,256,481,81917,1246,311,20876,19038,3162,320,68,1302,2572,4205,7375,11,7500,7332,568,2303,256,481,6928,821,48835,10431,320,68,1302,2572,3581,3059,11,23643,18339,568,2303,256,481,32305,69915,68671,320,68,1302,2572,7585,264,71187,287,3671,568,2303,18,13,3070,73037,74011,95518,2303,256,481,69277,821,8392,31785,320,68,1302,2572,11441,3059,11,3581,3542,568,2303,256,481,55994,279,12650,315,37611,323,1465,12341,13,2303,19,13,3070,78969,5949,95518,2303,256,481,26984,59673,56548,323,990,12851,31496,320,68,1302,2572,3940,55707,812,388,568,2303,256,481,50468,10535,448,53818,369,9023,4714,13,18611,44364,14374,3070,88492,23382,334,2303,16,13,3070,32089,27107,95518,2303,256,481,15920,5912,374,4183,2567,304,4108,49948,30,2303,257,362,13,2308,12182,48054,15736,2303,257,425,13,41062,10072,55637,2303,257,356,13,5443,264,29952,369,821,6358,2303,257,422,13,8259,7096,8641,21409,2303,256,3070,16141,95518,356,2303,17,13,3070,12472,21806,95518,2303,256,481,3555,374,279,7428,315,264,821,48835,304,264,4108,10072,30,2303,256,3070,16141,95518,2014,1487,323,23643,22000,3059,304,1931,882,13,2303,18,13,3070,54031,15846,95518,2303,256,481,362,5458,33906,264,71187,304,264,4108,9342,13,3555,7354,1265,807,1896,30,2303,256,3070,16141,95518,8259,279,4265,11,7585,279,1849,11,323,2197,279,1465,369,32215,3395,13,18611,4421,2303,334,9112,95518,49472,448,32215,11055,323,10072,17501,369,13403,13],"total_duration":21376644000,"load_duration":2163128700,"prompt_eval_count":64,"prompt_eval_duration":213746800,"eval_count":1337,"eval_duration":18627895800}

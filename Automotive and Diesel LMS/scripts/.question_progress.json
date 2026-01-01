@@ -1,0 +1,22 @@
+{
+  "total": 8,
+  "by_category": {
+    "ev": 5,
+    "diesel": 1,
+    "engine_performance": 0,
+    "electrical": 1,
+    "brakes": 1
+  },
+  "by_type": {
+    "multiple_choice": 3,
+    "true_false": 2,
+    "fill_blank": 3
+  },
+  "by_difficulty": {
+    "easy": 3,
+    "medium": 2,
+    "hard": 3
+  },
+  "total_generated": 0,
+  "last_updated": "2025-12-19T22:18:54.437421"
+}

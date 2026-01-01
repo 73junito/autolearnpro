@@ -1,0 +1,58 @@
+{
+  "course": {
+    "courseId": "01-brake-systems-(ase-a5)",
+    "title": "Brake Systems (ASE A5)",
+    "track": "Brake & Chassis",
+    "level": "Introductory",
+    "term": "2026Q1",
+    "version": "1.0",
+    "bannerImage": "assets/banners/01-brake-systems.jpg",
+    "summary": "Foundational brake systems theory, inspection, and repair aligned to ASE A5 standards."
+  },
+  "modules": [
+    {
+      "moduleId": "m01",
+      "courseId": "01-brake-systems-(ase-a5)",
+      "title": "Hydraulics & Brake Fundamentals",
+      "order": 1,
+      "published": true,
+      "overview": "Introduce hydraulic principles, brake fluid properties, and system components.",
+      "items": [
+        {
+          "itemId": "m01_l1",
+          "moduleId": "m01",
+          "type": "lesson",
+          "title": "Brake System Components",
+          "order": 1,
+          "published": true,
+          "contentRef": "generated/module1_lesson1.md",
+          "estimatedMinutes": 45,
+          "prerequisites": [],
+          "competencyLinks": [
+            {"competencyCode": "ASE.A5.1", "weight": 0.6, "evidenceType": "quiz"}
+          ],
+          "standards": [
+            {"standardSource": "ASE", "standardCode": "A5-1"}
+          ]
+        },
+        {
+          "itemId": "m01_lab1",
+          "moduleId": "m01",
+          "type": "lab",
+          "title": "Bleeding and Inspecting Brake Systems",
+          "order": 2,
+          "published": true,
+          "contentRef": "generated/module1_lab.md",
+          "estimatedMinutes": 90,
+          "requirements": {"must_view": true, "must_submit": true},
+          "competencyLinks": [
+            {"competencyCode": "ASE.A5.3", "weight": 0.4, "evidenceType": "photo"}
+          ],
+          "standards": [
+            {"standardSource": "ASE", "standardCode": "A5-3"}
+          ]
+        }
+      ]
+    }
+  ]
+}

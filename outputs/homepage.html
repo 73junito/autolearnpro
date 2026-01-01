@@ -1,0 +1,660 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AutoLearnPro — Course Catalog</title>
+
+  <!-- Theme -->
+  <link rel="stylesheet" href="/theme/student-dashboard/style.css">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Minimal safe additions (keeps your theme intact) -->
+  <style>
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Brand assets (marketable setup) */
+    .brand{display:flex;align-items:center;gap:12px;margin:0 0 14px 0}
+    .brand .brand-mark{display:block;height:44px;max-width:220px;width:auto}
+    .brand .brand-sub{color:#cfe7ff;opacity:.9;font-size:.9rem;margin:6px 0 0}
+
+    /* Header brand row */
+    .header-brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .header-brand .brand-icon{width:44px;height:44px;border-radius:12px;display:block}
+    .header-brand h1{margin:0}
+    .header-brand .lead{margin:4px 0 0 0}
+
+    /* Controls */
+    .catalog-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;margin:10px 0 18px}
+    .catalog-controls input,.catalog-controls select,.catalog-controls button{max-width:100%}
+    .catalog-controls .grow{flex:1 1 360px;min-width:260px}
+    .catalog-controls .small{flex:0 0 auto}
+    .catalog-controls .status{margin-left:auto;opacity:.85;font-size:.95rem;align-self:center}
+    .catalog-help{opacity:.8;font-size:.9rem;margin:6px 0 0}
+    .nav-no-results{padding:14px 16px;border-radius:12px;background:rgba(255,255,255,0.06)}
+    .track[hidden]{display:none !important}
+
+    /* Sidebar track nav */
+    .catalog-nav ul{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+    .catalog-nav a{color:#cfe7ff;text-decoration:none}
+    .catalog-nav a:hover{text-decoration:underline}
+
+    /* Optional: nicer tile icon consistency if your theme doesn't style .icon */
+    .tile .icon{font-weight:800;letter-spacing:.5px}
+
+    /* Small screen tweaks */
+    @media (max-width: 720px){
+      .catalog-controls .status{margin-left:0;width:100%}
+      .brand .brand-mark{max-width:180px;height:40px}
+    }
+  </style>
+</head>
+
+<body>
+<div class="sd-app" data-page="catalog">
+
+  <!-- SIDEBAR -->
+  <aside class="sd-side">
+    <div class="sd-side-inner">
+
+      <!-- Marketable brand: full wordmark (top-left AUTOLEARNPRO variant exported as a real asset) -->
+      <div class="brand" aria-label="AutoLearnPro brand">
+        <img class="brand-mark"
+             src="/images/brand/autolearnpro-logo-wordmark.png"
+             alt="AutoLearnPro"
+             width="220" height="44">
+      </div>
+      <div class="brand-sub">Automotive & Diesel LMS</div>
+
+      <!-- Track jump links -->
+      <nav aria-label="Catalog tracks" class="catalog-nav">
+        <ul>
+          <li><a data-track-link href="#track-core">Core Automotive Systems</a></li>
+          <li><a data-track-link href="#track-ev">EV & Advanced Vehicle Technology</a></li>
+          <li><a data-track-link href="#track-diesel">Diesel & Heavy Equipment</a></li>
+          <li><a data-track-link href="#track-labs">Virtual Labs & Diagnostics</a></li>
+          <li><a data-track-link href="#track-capstones">Capstones & Management</a></li>
+        </ul>
+      </nav>
+
+      <div class="sr-only" id="catalog-shortcuts">
+        Keyboard shortcuts: Press slash to focus search. Press Escape to clear search.
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="sd-content">
+
+    <header class="sd-header">
+      <!-- Marketable header: icon (shield-only) + catalog title -->
+      <div class="header-brand">
+        <img class="brand-icon"
+             src="/images/brand/autolearnpro-shield.png"
+             alt=""
+             aria-hidden="true"
+             width="44" height="44">
+        <div>
+          <h1>Course Catalog</h1>
+          <p class="lead">Browse competency-based courses aligned to industry standards.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="sd-main" id="main" tabindex="-1" aria-describedby="catalog-shortcuts">
+
+      <!-- CONTROLS -->
+      <section class="catalog-controls" role="region" aria-label="Catalog controls">
+
+        <div class="grow">
+          <label for="catalog-filter" class="sr-only">Search courses</label>
+          <input
+            id="catalog-filter"
+            type="search"
+            inputmode="search"
+            autocomplete="off"
+            placeholder="Search courses (title, track, level, credential)…"
+            aria-controls="catalog-results"
+            aria-describedby="catalog-filter-hint"
+          />
+          <div id="catalog-filter-hint" class="catalog-help">
+            Tip: try <strong>ASE</strong>, <strong>intro</strong>, <strong>diesel</strong>, <strong>EV</strong>, or a course number (e.g., “3”).
+          </div>
+        </div>
+
+        <div class="small">
+          <label for="catalog-track" class="sr-only">Filter by track</label>
+          <select id="catalog-track" aria-label="Filter by track">
+            <option value="">All tracks</option>
+            <option value="core-automotive">Core Automotive Systems</option>
+            <option value="ev-advanced">EV & Advanced Vehicle Technology</option>
+            <option value="diesel-heavy">Diesel & Heavy Equipment</option>
+            <option value="virtual-labs">Virtual Labs & Diagnostics</option>
+            <option value="capstones-management">Capstones & Management</option>
+          </select>
+        </div>
+
+        <div class="small">
+          <label for="catalog-level" class="sr-only">Filter by level</label>
+          <select id="catalog-level" aria-label="Filter by level">
+            <option value="">All levels</option>
+            <option value="intro">Intro</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="small">
+          <button id="catalog-clear" type="button" aria-label="Clear filters">Clear</button>
+        </div>
+
+        <div class="status" aria-live="polite" id="catalog-status">All courses shown.</div>
+      </section>
+
+      <div id="catalog-no-results" class="nav-no-results" hidden>
+        <strong>No matches.</strong>
+        Try “intro”, “ASE”, “EV”, “diesel”, or clear filters.
+      </div>
+
+      <!-- RESULTS -->
+      <div id="catalog-results">
+
+        <!-- TRACK: Core Automotive Systems -->
+        <section class="track" id="track-core" role="region" aria-labelledby="track-core-title" data-track-id="core-automotive">
+          <h2 id="track-core-title">Core Automotive Systems</h2>
+          <div class="tiles" data-track-id="core-automotive">
+
+            <a class="tile"
+               href="/content/courses/01-brake-systems-(ase-a5)/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intermediate"
+               data-credential="ase a5"
+               data-keywords="brakes hydraulic abs">
+              <div class="icon">BS</div>
+              <div class="title">1 — Brake Systems (ASE A5)</div>
+              <div class="badges">
+                <span class="chip cred">ASE A5</span>
+                <span class="chip lab">Virtual</span>
+                <span class="chip lab">Hands-on</span>
+                <span class="chip hours">12h</span>
+              </div>
+              <div class="meta">Intermediate · ASE A5 · Virtual · Hands-on</div>
+              <div class="prereqs">Prereqs:
+                <a class="prereq" href="/content/courses/03-electrical-systems-fundamentals/site/index.html">03-electrical-systems-fundamentals</a>
+              </div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/02-engine-performance-i/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intermediate"
+               data-credential=""
+               data-keywords="engine performance fuel spark emissions">
+              <div class="icon">EP</div>
+              <div class="title">2 — Engine Performance I</div>
+              <div class="badges"></div>
+              <div class="meta">Intermediate</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/04-suspension-and-steering/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intermediate"
+               data-credential=""
+               data-keywords="alignment suspension steering chassis">
+              <div class="icon">SS</div>
+              <div class="title">4 — Suspension & Steering</div>
+              <div class="badges"></div>
+              <div class="meta">Intermediate</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/05-automatic-transmissions/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intermediate"
+               data-credential=""
+               data-keywords="automatic transmission torque converter">
+              <div class="icon">AT</div>
+              <div class="title">5 — Automatic Transmissions</div>
+              <div class="badges"></div>
+              <div class="meta">Intermediate</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/08-air-intake-and-exhaust-systems/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intro"
+               data-credential=""
+               data-keywords="intake exhaust catalytic converter">
+              <div class="icon">AI</div>
+              <div class="title">8 — Air Intake & Exhaust Systems</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/15-automotive-network-systems/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intro"
+               data-credential=""
+               data-keywords="can lin networking diagnostics">
+              <div class="icon">AN</div>
+              <div class="title">15 — Automotive Network Systems</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/16-adas-and-driver-assistance/site/index.html"
+               data-track-id="core-automotive"
+               data-level="intro"
+               data-credential=""
+               data-keywords="adas radar camera calibration">
+              <div class="icon">AD</div>
+              <div class="title">16 — ADAS & Driver Assistance</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- TRACK: EV & Advanced Vehicle Technology -->
+        <section class="track" id="track-ev" role="region" aria-labelledby="track-ev-title" data-track-id="ev-advanced">
+          <h2 id="track-ev-title">EV & Advanced Vehicle Technology</h2>
+          <div class="tiles" data-track-id="ev-advanced">
+
+            <a class="tile"
+               href="/content/courses/03-electrical-systems-fundamentals/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="electrical multimeter circuits ohm">
+              <div class="icon">ES</div>
+              <div class="title">3 — Electrical Systems Fundamentals</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/09-electric-vehicle-fundamentals/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="ev basics propulsion inverter">
+              <div class="icon">EV</div>
+              <div class="title">9 — Electric Vehicle Fundamentals</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/10-hybrid-vehicle-systems/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="hybrid regen battery motor">
+              <div class="icon">HV</div>
+              <div class="title">10 — Hybrid Vehicle Systems</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/11-ev-battery-technology/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="battery cells lithium safety">
+              <div class="icon">EB</div>
+              <div class="title">11 — EV Battery Technology</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/19-high-voltage-systems-service/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="high voltage ppe lockout">
+              <div class="icon">HV</div>
+              <div class="title">19 — High-Voltage Systems Service</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/20-ev-charging-infrastructure/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="intro"
+               data-credential=""
+               data-keywords="charging level 2 dc fast">
+              <div class="icon">EC</div>
+              <div class="title">20 — EV Charging Infrastructure</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/21-advanced-battery-management/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="advanced"
+               data-credential=""
+               data-keywords="bms balancing thermal">
+              <div class="icon">AB</div>
+              <div class="title">21 — Advanced Battery Management</div>
+              <div class="badges"></div>
+              <div class="meta">Advanced</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/25-electric-vehicle-capstone/site/index.html"
+               data-track-id="ev-advanced"
+               data-level="advanced"
+               data-credential=""
+               data-keywords="capstone project ev">
+              <div class="icon">CP</div>
+              <div class="title">25 — Electric Vehicle Capstone</div>
+              <div class="badges"></div>
+              <div class="meta">Advanced</div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- TRACK: Diesel & Heavy Equipment -->
+        <section class="track" id="track-diesel" role="region" aria-labelledby="track-diesel-title" data-track-id="diesel-heavy">
+          <h2 id="track-diesel-title">Diesel & Heavy Equipment</h2>
+          <div class="tiles" data-track-id="diesel-heavy">
+
+            <a class="tile"
+               href="/content/courses/06-diesel-engine-operation/site/index.html"
+               data-track-id="diesel-heavy"
+               data-level="intro"
+               data-credential="ase t2"
+               data-keywords="diesel combustion turbo">
+              <div class="icon">DE</div>
+              <div class="title">6 — Diesel Engine Operation</div>
+              <div class="badges">
+                <span class="chip cred">ASE T2 (optional)</span>
+                <span class="chip lab">Hands-on</span>
+                <span class="chip hours">10h</span>
+              </div>
+              <div class="meta">Intro · ASE T2 (optional) · Hands-on</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/07-diesel-fuel-systems/site/index.html"
+               data-track-id="diesel-heavy"
+               data-level="intro"
+               data-credential=""
+               data-keywords="fuel injection common rail">
+              <div class="icon">DF</div>
+              <div class="title">7 — Diesel Fuel Systems</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/17-diesel-emissions-control/site/index.html"
+               data-track-id="diesel-heavy"
+               data-level="intro"
+               data-credential=""
+               data-keywords="dpf scr def egr">
+              <div class="icon">EC</div>
+              <div class="title">17 — Diesel Emissions Control</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/18-heavy-duty-truck-systems/site/index.html"
+               data-track-id="diesel-heavy"
+               data-level="intro"
+               data-credential=""
+               data-keywords="air brakes drivetrain">
+              <div class="icon">HD</div>
+              <div class="title">18 — Heavy Duty Truck Systems</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/24-diesel-technology-capstone/site/index.html"
+               data-track-id="diesel-heavy"
+               data-level="advanced"
+               data-credential=""
+               data-keywords="diesel capstone project">
+              <div class="icon">CP</div>
+              <div class="title">24 — Diesel Technology Capstone</div>
+              <div class="badges"></div>
+              <div class="meta">Advanced</div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- TRACK: Virtual Labs & Diagnostics -->
+        <section class="track" id="track-labs" role="region" aria-labelledby="track-labs-title" data-track-id="virtual-labs">
+          <h2 id="track-labs-title">Virtual Labs & Diagnostics</h2>
+          <div class="tiles" data-track-id="virtual-labs">
+
+            <a class="tile"
+               href="/content/courses/12-virtual-lab-safety-and-tools/site/index.html"
+               data-track-id="virtual-labs"
+               data-level="intro"
+               data-credential=""
+               data-keywords="safety ppe tools">
+              <div class="icon">VL</div>
+              <div class="title">12 — Virtual Lab Safety & Tools</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/13-virtual-diagnostic-procedures/site/index.html"
+               data-track-id="virtual-labs"
+               data-level="intro"
+               data-credential=""
+               data-keywords="diagnostics workflow dtc">
+              <div class="icon">VD</div>
+              <div class="title">13 — Virtual Diagnostic Procedures</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/14-advanced-engine-diagnostics/site/index.html"
+               data-track-id="virtual-labs"
+               data-level="advanced"
+               data-credential=""
+               data-keywords="advanced diagnostics scope">
+              <div class="icon">AD</div>
+              <div class="title">14 — Advanced Engine Diagnostics</div>
+              <div class="badges"></div>
+              <div class="meta">Advanced</div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- TRACK: Capstones & Management -->
+        <section class="track" id="track-capstones" role="region" aria-labelledby="track-capstones-title" data-track-id="capstones-management">
+          <h2 id="track-capstones-title">Capstones & Management</h2>
+          <div class="tiles" data-track-id="capstones-management">
+
+            <a class="tile"
+               href="/content/courses/22-fleet-management-and-operations/site/index.html"
+               data-track-id="capstones-management"
+               data-level="intro"
+               data-credential=""
+               data-keywords="fleet operations pm">
+              <div class="icon">FM</div>
+              <div class="title">22 — Fleet Management & Operations</div>
+              <div class="badges"></div>
+              <div class="meta">Intro</div>
+            </a>
+
+            <a class="tile"
+               href="/content/courses/23-capstone-project/site/index.html"
+               data-track-id="capstones-management"
+               data-level="advanced"
+               data-credential=""
+               data-keywords="capstone project presentation">
+              <div class="icon">CP</div>
+              <div class="title">23 — Capstone Project</div>
+              <div class="badges"></div>
+              <div class="meta">Advanced</div>
+            </a>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(() => {
+  const els = {
+    input: document.getElementById('catalog-filter'),
+    track: document.getElementById('catalog-track'),
+    level: document.getElementById('catalog-level'),
+    clear: document.getElementById('catalog-clear'),
+    status: document.getElementById('catalog-status'),
+    noResults: document.getElementById('catalog-no-results'),
+    tracks: Array.from(document.querySelectorAll('.track')),
+    tiles: Array.from(document.querySelectorAll('.tile')),
+    trackLinks: Array.from(document.querySelectorAll('[data-track-link]')),
+  };
+
+  if (!els.input || !els.tiles.length) return;
+
+  // Persist filter state
+  const KEY = 'catalogFilters:v1';
+  const loadState = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } };
+  const saveState = (s) => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
+
+  const debounce = (fn, wait) => {
+    let t;
+    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+  };
+
+  const norm = (s) => (s || '').toString().trim().toLowerCase();
+  const textOf = (el) => el?.textContent ? el.textContent.trim() : '';
+
+  function computeHaystack(tile) {
+    const title = norm(textOf(tile.querySelector('.title')));
+    const meta  = norm(textOf(tile.querySelector('.meta')));
+    const chips = norm(textOf(tile.querySelector('.badges')));
+    const prereq = norm(textOf(tile.querySelector('.prereqs')));
+    const trackId = norm(tile.dataset.trackId);
+    const level = norm(tile.dataset.level);
+    const cred = norm(tile.dataset.credential);
+    const keywords = norm(tile.dataset.keywords);
+    return [title, meta, chips, prereq, trackId, level, cred, keywords].join(' ');
+  }
+
+  const tileIndex = els.tiles.map(tile => ({ tile, haystack: computeHaystack(tile) }));
+
+  function applyFilters() {
+    const q = norm(els.input.value);
+    const track = norm(els.track.value);
+    const level = norm(els.level.value);
+
+    let visibleTiles = 0;
+
+    tileIndex.forEach(({ tile, haystack }) => {
+      const tTrack = norm(tile.dataset.trackId);
+      const tLevel = norm(tile.dataset.level);
+
+      const okQ = !q || haystack.includes(q);
+      const okTrack = !track || tTrack === track;
+      const okLevel = !level || tLevel === level;
+
+      const ok = okQ && okTrack && okLevel;
+      tile.style.display = ok ? '' : 'none';
+      if (ok) visibleTiles++;
+    });
+
+    // Hide empty tracks
+    let visibleTracks = 0;
+    els.tracks.forEach(section => {
+      const anyVisible = Array.from(section.querySelectorAll('.tile'))
+        .some(t => t.style.display !== 'none');
+      section.hidden = !anyVisible;
+      if (anyVisible) visibleTracks++;
+    });
+
+    els.noResults.hidden = visibleTiles !== 0;
+
+    // Status
+    if (!q && !track && !level) els.status.textContent = 'All courses shown.';
+    else els.status.textContent = `${visibleTiles} course${visibleTiles === 1 ? '' : 's'} shown.`;
+
+    saveState({ q: els.input.value, track: els.track.value, level: els.level.value });
+  }
+
+  const applyDebounced = debounce(applyFilters, 200);
+
+  function clearFilters() {
+    els.input.value = '';
+    els.track.value = '';
+    els.level.value = '';
+    applyFilters();
+    els.input.focus();
+  }
+
+  // Keyboard shortcuts: "/" focuses search; Esc clears
+  document.addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+    const isTypingField = tag === 'input' || tag === 'textarea' || tag === 'select';
+
+    if (!isTypingField && e.key === '/') {
+      e.preventDefault();
+      els.input.focus();
+    } else if (e.key === 'Escape') {
+      const active = norm(els.input.value) || norm(els.track.value) || norm(els.level.value);
+      if (active) { e.preventDefault(); clearFilters(); }
+    }
+  });
+
+  els.input.addEventListener('input', applyDebounced);
+  els.track.addEventListener('change', applyFilters);
+  els.level.addEventListener('change', applyFilters);
+  els.clear.addEventListener('click', clearFilters);
+
+  // Sidebar active track highlight
+  if (els.tracks.length && els.trackLinks.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(en => en.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+
+      const id = visible.target.id;
+      els.trackLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === '#' + id;
+        a.style.fontWeight = isActive ? '700' : '';
+        a.style.textDecoration = isActive ? 'underline' : '';
+      });
+    }, { threshold: [0.15, 0.3, 0.5] });
+
+    els.tracks.forEach(sec => observer.observe(sec));
+  }
+
+  // Restore state
+  const st = loadState();
+  if (typeof st.q === 'string') els.input.value = st.q;
+  if (typeof st.track === 'string') els.track.value = st.track;
+  if (typeof st.level === 'string') els.level.value = st.level;
+
+  applyFilters();
+})();
+</script>
+</body>
+</html>
+```

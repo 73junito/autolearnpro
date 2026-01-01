@@ -1,0 +1,22 @@
+{
+  "written_steps": "1. Review safety precautions.\n2. Gather required tools.\n3. Perform visual inspection.\n4. Run diagnostic tests.\n5. Execute service steps.\n6. Verify operation and document results.\n\n**Verification checklist**\n- Safety equipment used\n- Measurements within spec\n",
+  "audio_script": "This is a short instructor script for Systems & Components - Part 2. Follow safety procedures, then walk through the steps and conclude with verification.",
+  "practice_activities": [
+    {
+      "type": "scenario",
+      "title": "Basic diagnostic",
+      "description": "Use the provided data to identify the issue.",
+      "questions": [
+        {
+          "question": "What is the first step?",
+          "options": [
+            "Inspect",
+            "Replace"
+          ],
+          "correct": 0
+        }
+      ]
+    }
+  ],
+  "visual_diagrams": []
+}

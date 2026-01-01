@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lms_api_dev
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend/lms_api
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    # Use the image's default command (release start). The previous dev-style
+    # command invoked `mix` which is not available in the runtime stage of the
+    # multi-stage Dockerfile and caused the container to exit with "mix: not found".
+    # Removing the custom command lets the built release run: ./bin/lms_api start
+    environment:
+      DATABASE_URL: "ecto://postgres:postgres@db:5432/lms_api_dev"
+      MIX_ENV: dev
+      SECRET_KEY_BASE: "dev_secret"
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend/web
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:4000/api"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11435:11434"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - OLLAMA_HOST=0.0.0.0:11434
+    volumes:
+      - ./ollama_models:/root/.ollama/models
+    healthcheck:
+      test: ["CMD-SHELL", "ps aux | grep -q '/bin/ollama serve' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # Grant access to the host GPU when supported by the Docker Engine
+    gpus: all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # GPU monitoring stack
+  # Note: DCGM exporter is not supported reliably under WSL2/Docker Desktop
+  # because DCGM expects PCI sysfs entries like local_cpulist which are
+  # not exposed. We remove dcgm-exporter and use the nvidia-smi exporter instead.
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    # For Compose implementations that support device_requests, uncomment and use instead:
+    # device_requests:
+    #   - driver: "nvidia"
+    #     count: -1
+    #     capabilities: ["gpu"]
+
+  nvidia-smi-exporter:
+    build:
+      context: ./monitoring/nvidia_smi_exporter
+    restart: unless-stopped
+    ports:
+      - "9401:9401"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    gpus: all
+  # pgAdmin for DB management
+  pgadmin:
+    image: dpage/pgadmin4:7
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+
+  # NGINX reverse proxy (fronting frontend and backend)
+  nginx:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  db_data:
+  pgadmin_data:
+
+  # Lightweight nvidia-smi exporter for WSL/Docker Desktop environments
+  # (Used as an alternative to dcgm-exporter when DCGM cannot access PCI sysfs)
+  

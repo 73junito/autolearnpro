@@ -1,0 +1,21 @@
+# Docker Compose snippet for running an Ollama container that uses a host models folder.
+# Set HOST_OLLAMA_HOME to one of:
+#  - D:/Automotive and Diesel LMS/ollama_models
+#  - D:/Automotive and Diesel LMS/ollama models
+# Example (PowerShell):
+#   $env:HOST_OLLAMA_HOME = 'D:/Automotive and Diesel LMS/ollama_models'
+#   docker compose up -d
+
+version: '3.8'
+services:
+  ollama:
+    image: ollama/ollama:latest
+    # If the official image differs, replace with the correct image or use a custom Dockerfile.
+    restart: unless-stopped
+    environment:
+      - OLLAMA_HOME=/root/.ollama
+    volumes:
+      - ${HOST_OLLAMA_HOME:-D:/Automotive and Diesel LMS/ollama_models}:/root/.ollama:rw
+    ports:
+      - "11434:11434" # Default Ollama API port
+    shm_size: '1gb'

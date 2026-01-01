@@ -1,0 +1,124 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-coverage:
+    name: Test Coverage Report
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lms_api_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MIX_ENV: test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/lms_api_test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect ollama on runner
+        shell: bash
+        run: |
+          # Detect presence of ollama for informational purposes only.
+          if command -v ollama >/dev/null 2>&1; then
+            echo "Found ollama: $(command -v ollama)"
+          else
+            echo 'ollama not found on runner; installing a lightweight shim to avoid failures.'
+            # Install a small shim to $HOME/bin and add it to PATH without requiring sudo.
+            bash "$GITHUB_WORKSPACE/tools/install_ollama_shim.sh"
+          fi
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.16'
+          otp-version: '26'
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            backend/lms_api/deps
+            backend/lms_api/_build
+          key: ${{ runner.os }}-mix-${{ hashFiles('backend/lms_api/mix.exs') }}
+          restore-keys: ${{ runner.os }}-mix-
+
+      - name: Install dependencies
+        working-directory: backend/lms_api
+        run: mix deps.get
+
+      - name: Compile dependencies
+        working-directory: backend/lms_api
+        run: mix deps.compile
+
+      - name: Run database migrations
+        working-directory: backend/lms_api
+        run: mix ecto.setup
+
+      - name: Run tests with coverage
+        working-directory: backend/lms_api
+        run: mix coveralls.json
+        continue-on-error: false
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: backend/lms_api/cover/excoveralls.json
+          flags: backend
+          name: backend-coverage
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        working-directory: backend/lms_api
+        env:
+          # Set to '1' in jobs where coverage is optional (docs-only commits, etc.)
+          COVERAGE_OPTIONAL: ${{ env.COVERAGE_OPTIONAL || '0' }}
+        run: |
+          # If coverage JSON is missing, fail unless COVERAGE_OPTIONAL=1. This
+          # prevents masking real failures where coverage generation broke.
+          if [ ! -f cover/excoveralls.json ]; then
+            echo "Coverage JSON not found."
+            if [ "${COVERAGE_OPTIONAL:-0}" = "1" ]; then
+              echo "Skipping coverage threshold check (COVERAGE_OPTIONAL=1)"
+              exit 0
+            fi
+            echo "Coverage JSON missing and coverage is required; failing."
+            exit 1
+          fi
+          # Delegate parsing and numeric enforcement to the Python helper
+          python3 "$GITHUB_WORKSPACE/tools/check_coverage.py" "$GITHUB_WORKSPACE/backend/lms_api/cover/excoveralls.json" 70.0
+
+      # PR comment step removed to avoid YAML parsing issues in actions script block
+
+      - name: Generate HTML coverage report
+        if: always()
+        working-directory: backend/lms_api
+        run: mix coveralls.html
+
+      - name: Upload HTML coverage report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: backend/lms_api/cover/
+          retention-days: 30
+
+
