@@ -1,7 +1,7 @@
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 module.exports = {
   framework: {
-    name: '@storybook/nextjs',
+    name: '@storybook/react-vite',
     options: {},
   },
   core: {
