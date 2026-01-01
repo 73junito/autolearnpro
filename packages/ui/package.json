@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "storybook": "sb dev -p 6006",
-    "storybook:build": "sb build --builder @storybook/builder-vite"
+    "storybook:build": "sb build"
   }
   ,
   "devDependencies": {
