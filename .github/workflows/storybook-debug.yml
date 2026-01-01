@@ -40,7 +40,8 @@ jobs:
 
       - name: Build Storybook (ui)
         working-directory: packages/ui
-        run: pnpm storybook:build 2>&1 | tee storybook-build.log
+        run: |
+          npx -y @storybook/cli build --builder @storybook/builder-vite 2>&1 | tee storybook-build.log
 
       - name: Ensure build log exists
         run: |
