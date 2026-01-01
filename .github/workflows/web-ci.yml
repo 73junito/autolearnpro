@@ -11,6 +11,9 @@ on:
     - cron: '0 3 * * 0' # Weekly: Sunday 03:00 UTC - cleanup old PR previews
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Lint Web
@@ -111,6 +114,8 @@ jobs:
     name: Cleanup Storybook PR Preview
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && !github.event.pull_request.merged }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout gh-pages branch
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
@@ -139,6 +144,8 @@ jobs:
     name: Scheduled gh-pages cleanup
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       CLEANUP_AGE_DAYS: '30'
     steps:
