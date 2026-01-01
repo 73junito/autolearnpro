@@ -41,7 +41,7 @@ jobs:
       - name: Build Storybook (ui)
         working-directory: packages/ui
         run: |
-          pnpm dlx @storybook/react-vite@8.6.15 build --builder @storybook/builder-vite 2>&1 | tee storybook-build.log
+          pnpm exec -- sb build --builder @storybook/builder-vite 2>&1 | tee storybook-build.log
 
       - name: Ensure build log exists
         run: |
