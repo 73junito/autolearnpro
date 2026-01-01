@@ -17,7 +17,7 @@ Flags:
 Example (set quality):
 
 ```
-cargo run --release -- --input /path/to/images --output /path/to/thumbs --quality 85 --benchmark
+cargo run --release -- --input /path/to/images --output /path/to/thumbs --quality 95 --benchmark
 ```
 
 Example (set format to webp):
