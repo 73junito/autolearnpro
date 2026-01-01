@@ -1,0 +1,19 @@
+{
+  "01-brake-systems-(ase-a5)": {
+    "track": "Core Automotive Systems",
+    "level": "Intermediate",
+    "credentials": ["ASE A5"],
+    "labType": ["Virtual", "Hands-on"],
+    "estimatedHours": 12,
+    "prereqs": ["03-electrical-systems-fundamentals"],
+    "summary": "Hydraulic and ABS diagnosis, measurement, and repair aligned to ASE A5."
+  },
+  "06-diesel-engine-operation": {
+    "track": "Diesel & Heavy Equipment",
+    "level": "Intro",
+    "credentials": ["ASE T2 (optional)"],
+    "labType": ["Hands-on"],
+    "estimatedHours": 10,
+    "summary": "Four-stroke diesel fundamentals, air/fuel/exhaust flow, and baseline inspection workflow."
+  }
+}

@@ -1,0 +1,91 @@
+// Prisma schema for competency model, standards mapping, assessments, evidence, and FWG 5803
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Competency {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  title       String
+  description String?
+  level       Int?
+  mappings    CompetencyStandardMap[]
+  assessments Assessment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Standard {
+  id          String   @id @default(uuid())
+  source      String   // e.g., ASE, NATEF, FWG, PERKINS
+  code        String
+  title       String
+  description String?
+  notes       String?
+  mappings    CompetencyStandardMap[]
+  @@unique([source, code])
+}
+
+model CompetencyStandardMap {
+  id            String      @id @default(uuid())
+  competencyId  String
+  standardId    String
+  strength      Int?        // 1-5 mapping strength
+  competency    Competency  @relation(fields: [competencyId], references: [id])
+  standard      Standard    @relation(fields: [standardId], references: [id])
+  @@unique([competencyId, standardId])
+}
+
+model Assessment {
+  id            String    @id @default(uuid())
+  competencyId  String
+  studentId     String
+  score         Float?
+  rubric        Json?
+  assessedAt    DateTime  @default(now())
+  evidence      Evidence[]
+  competency    Competency @relation(fields: [competencyId], references: [id])
+}
+
+model Evidence {
+  id           String   @id @default(uuid())
+  assessmentId String
+  type         String   // photo, video, log, document
+  url          String
+  metadata     Json?
+  createdAt    DateTime @default(now())
+  assessment   Assessment @relation(fields: [assessmentId], references: [id])
+}
+
+model Credential {
+  id           String   @id @default(uuid())
+  name         String
+  issuer       String
+  externalCode String?
+  linked       CompetencyCredential[]
+}
+
+model CompetencyCredential {
+  id           String     @id @default(uuid())
+  competencyId String
+  credentialId String
+  competency   Competency @relation(fields: [competencyId], references: [id])
+  credential   Credential @relation(fields: [credentialId], references: [id])
+  @@unique([competencyId, credentialId])
+}
+
+model FWGMapping {
+  id           String   @id @default(uuid())
+  fwgCode      String   // e.g., "FWG-5803"
+  title        String?
+  competencyId String
+  notes        String?
+  competency   Competency @relation(fields: [competencyId], references: [id])
+  @@unique([fwgCode, competencyId])
+}

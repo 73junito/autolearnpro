@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lms-api-migrate
+  namespace: autolearnpro
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: migrate
+        image: autolearnpro/lms-api:local
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MIX_ENV
+          value: prod
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: lms-api-secrets
+              key: DATABASE_URL
+        command: ["bin/lms_api", "eval", "LmsApi.ReleaseTasks.migrate()"]
+      serviceAccountName: default

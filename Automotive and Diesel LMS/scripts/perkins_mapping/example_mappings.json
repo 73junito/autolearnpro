@@ -1,0 +1,16 @@
+[
+  {
+    "program": "Heavy Equipment Tech",
+    "course": "HMEM Braking Systems",
+    "competency_code": "HMEM-01",
+    "competency_title": "Braking Systems — Heavy Mobile Equipment",
+    "standard_source": "FWG",
+    "standard_code": "FWG-5803",
+    "assessment_date": "2025-12-01",
+    "student_id": "S12345",
+    "score": 85,
+    "evidence_url": "https://example.com/evidence/S12345/brake1.jpg",
+    "credential_issued": true,
+    "credential_code": "CERT-HMEM-01"
+  }
+]

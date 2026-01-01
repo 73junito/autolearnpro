@@ -3,6 +3,10 @@ name: Build and Push lms-api to GHCR (test)
 on:
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build-and-push-test:
     runs-on: ubuntu-latest

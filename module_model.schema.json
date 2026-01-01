@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AutoLearnPro Module Model",
+  "type": "object",
+  "definitions": {
+    "Course": {
+      "type": "object",
+      "properties": {
+        "courseId": {"type": "string"},
+        "title": {"type": "string"},
+        "track": {"type": "string"},
+        "level": {"type": "string"},
+        "term": {"type": "string"},
+        "version": {"type": "string"},
+        "bannerImage": {"type": "string", "format": "uri"},
+        "summary": {"type": "string"}
+      },
+      "required": ["courseId","title"]
+    },
+
+    "ModuleItem": {
+      "type": "object",
+      "properties": {
+        "itemId": {"type": "string"},
+        "moduleId": {"type": "string"},
+        "type": {"type": "string", "enum": ["lesson","lab","quiz","assignment","external"]},
+        "title": {"type": "string"},
+        "order": {"type": "integer", "minimum": 0},
+        "published": {"type": "boolean"},
+        "contentRef": {"type": "string"},
+        "estimatedMinutes": {"type": "integer", "minimum": 0},
+        "requirements": {
+          "type": "object",
+          "properties": {
+            "must_view": {"type": "boolean"},
+            "must_submit": {"type": "boolean"},
+            "must_score": {"type": "number"}
+          },
+          "additionalProperties": false
+        },
+        "prerequisites": {"type": "array", "items": {"type": "string"}},
+        "competencyLinks": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/CompetencyMapping"}
+        },
+        "standards": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/StandardsMapping"}
+        }
+      },
+      "required": ["itemId","moduleId","type","title"]
+    },
+
+    "Module": {
+      "type": "object",
+      "properties": {
+        "moduleId": {"type": "string"},
+        "courseId": {"type": "string"},
+        "title": {"type": "string"},
+        "order": {"type": "integer", "minimum": 0},
+        "published": {"type": "boolean"},
+        "overview": {"type": "string"},
+        "items": {"type": "array", "items": {"$ref": "#/definitions/ModuleItem"}},
+        "competencyLinks": {"type": "array", "items": {"$ref": "#/definitions/CompetencyMapping"}},
+        "standards": {"type": "array", "items": {"$ref": "#/definitions/StandardsMapping"}}
+      },
+      "required": ["moduleId","courseId","title"]
+    },
+
+    "CompetencyMapping": {
+      "type": "object",
+      "properties": {
+        "competencyCode": {"type": "string"},
+        "weight": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidenceType": {"type": "string", "enum": ["photo","video","log","quiz","worksheet","other"]},
+        "notes": {"type": "string"}
+      },
+      "required": ["competencyCode"]
+    },
+
+    "StandardsMapping": {
+      "type": "object",
+      "properties": {
+        "standardSource": {"type": "string", "enum": ["FWG","ASE","KSDE","Other"]},
+        "standardCode": {"type": "string"},
+        "notes": {"type": "string"}
+      },
+      "required": ["standardSource","standardCode"]
+    }
+  },
+
+  "properties": {
+    "course": {"$ref": "#/definitions/Course"},
+    "modules": {"type": "array", "items": {"$ref": "#/definitions/Module"}}
+  },
+  "required": ["course","modules"],
+  "additionalProperties": false
+}

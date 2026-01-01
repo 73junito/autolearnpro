@@ -1,0 +1,25 @@
+{
+  "generated_at": "2025-12-19T06:49:34.646910+00:00",
+  "lesson_count": 1,
+  "lessons": [
+    {
+      "course": "auto-diesel",
+      "module": "brakes",
+      "lesson": "brake-safety",
+      "lesson_id": "1001",
+      "status": "ai_failed_qa",
+      "model": "lms-small",
+      "logs": [
+        "scripts\\data\\logs\\2025-12-19T06-48-19.665337+00-00.attempt1.lms-small.log",
+        "scripts\\data\\logs\\2025-12-19T06-49-34.645003+00-00.attempt1.lms-small.log"
+      ],
+      "qa_pass": false,
+      "qa_reasons": [
+        "audio_words<90 (88)"
+      ],
+      "numbered_steps": 6,
+      "audio_word_count": 88,
+      "visuals_count": 2
+    }
+  ]
+}

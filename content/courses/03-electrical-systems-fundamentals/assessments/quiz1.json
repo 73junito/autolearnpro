@@ -1,0 +1,26 @@
+{
+  "quiz_id": "esf-quiz-1",
+  "title": "Electrical Systems Fundamentals — Quiz 1",
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple_choice",
+      "question": "Ohm's law relates which three quantities?",
+      "options": ["Voltage, Current, Resistance", "Power, Energy, Time", "Charge, Mass, Acceleration"],
+      "answer": 0
+    },
+    {
+      "id": 2,
+      "type": "short_answer",
+      "question": "Describe how to perform a voltage drop test on a circuit.",
+      "answer": "Measure voltage across connections while circuit is under load; significant voltage indicates high resistance."
+    },
+    {
+      "id": 3,
+      "type": "multiple_choice",
+      "question": "Which tool is best for viewing sensor waveforms?",
+      "options": ["Digital Multimeter", "Oscilloscope", "Torque Wrench"],
+      "answer": 1
+    }
+  ]
+}

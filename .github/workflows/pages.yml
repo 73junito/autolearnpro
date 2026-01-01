@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Setup Node (for static site tooling if needed)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '18'
 
@@ -32,7 +32,7 @@ jobs:
           fi
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@4a2e02b36f31d8974a0d09d3bb9f3172aa2d0d0d
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/site

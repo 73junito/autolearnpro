@@ -1,0 +1,57 @@
+name: Elixir CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: lms_api_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Set up Erlang and Elixir
+        uses: erlef/setup-beam@3559ac3b631a9560f28817e8e7fdde1638664336
+        with:
+          elixir-version: '1.15'
+          otp-version: '26'
+
+      - name: Install Hex and Rebar
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
+
+      - name: Get dependencies
+        run: mix deps.get
+
+      - name: Create and migrate database
+        env:
+          MIX_ENV: test
+          DATABASE_URL: "ecto://postgres:postgres@127.0.0.1/lms_api_test"
+        run: |
+          mix ecto.create --quiet
+          mix ecto.migrate --quiet
+
+      - name: Run tests
+        env:
+          MIX_ENV: test
+        run: mix test
+

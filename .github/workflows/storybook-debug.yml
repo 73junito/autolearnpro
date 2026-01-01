@@ -6,6 +6,9 @@ on:
     branches:
       - ci/enable-build-and-push-test
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
