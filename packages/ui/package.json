@@ -9,8 +9,14 @@
   ,
   "devDependencies": {
     "storybook": "^8.6.15",
-    "@storybook/nextjs": "^8.6.15",
+    "@storybook/cli": "^8.6.15",
+    "@storybook/react-vite": "^8.6.15",
+    "@storybook/react": "^8.6.15",
     "@storybook/addon-essentials": "^8.6.15",
-    "@storybook/test": "^8.6.15"
+    
+    "@storybook/builder-vite": "8.6.15",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
   }
+ 
 }
