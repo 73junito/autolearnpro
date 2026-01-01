@@ -1,5 +1,8 @@
 name: Publish docs/site to GitHub Pages
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
