@@ -1,0 +1,30 @@
+course_id: 03-electrical-systems-fundamentals
+title: Electrical Systems Fundamentals
+modules:
+  - module_title: Start Here
+    items:
+      - type: page
+        title: Start Here
+        source: generated/Start_Here.md
+  - module_title: Module 1 - Safety & Tools
+    items:
+      - type: page
+        title: Overview & Objectives
+        source: generated/module1_overview.md
+      - type: page
+        title: Lesson - Multimeter Basics
+        source: generated/module1_lesson1.md
+      - type: page
+        title: Lesson - Electrical Fundamentals
+        source: generated/module1_lesson2.md
+      - type: page
+        title: Lab - Multimeter Practice
+        source: generated/module1_lab.md
+      - type: quiz
+        title: Quiz: Safety & Tools
+        source: generated/module1_quiz.md
+  - module_title: Module 2 - Electrical Fundamentals
+    items: []
+
+notes: |
+  This manifest maps generated files to Canvas module structure. Use as a guide when importing content or building a course export (Common Cartridge).

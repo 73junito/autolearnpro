@@ -1,0 +1,101 @@
+course_slug,module_slug,title,module_id,summary,sequence_number,duration_weeks,objectives
+aut-120,module-1,Fundamentals,20001,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-120,module-2,Systems & Components,20002,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-120,module-3,Diagnostics & Service,20003,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-120,module-4,Advanced Applications,20004,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-140,module-1,Fundamentals,20101,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-140,module-2,Systems & Components,20102,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-140,module-3,Diagnostics & Service,20103,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-140,module-4,Advanced Applications,20104,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-150,module-1,Fundamentals,20201,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-150,module-2,Systems & Components,20202,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-150,module-3,Diagnostics & Service,20203,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-150,module-4,Advanced Applications,20204,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-160,module-1,Fundamentals,20301,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-160,module-2,Systems & Components,20302,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-160,module-3,Diagnostics & Service,20303,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-160,module-4,Advanced Applications,20304,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-180,module-1,Fundamentals,20401,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-180,module-2,Systems & Components,20402,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-180,module-3,Diagnostics & Service,20403,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-180,module-4,Advanced Applications,20404,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-320,module-1,Fundamentals,20501,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-320,module-2,Systems & Components,20502,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-320,module-3,Diagnostics & Service,20503,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-320,module-4,Advanced Applications,20504,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-340,module-1,Fundamentals,20601,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-340,module-2,Systems & Components,20602,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-340,module-3,Diagnostics & Service,20603,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-340,module-4,Advanced Applications,20604,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-360,module-1,Fundamentals,20701,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-360,module-2,Systems & Components,20702,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-360,module-3,Diagnostics & Service,20703,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-360,module-4,Advanced Applications,20704,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-480,module-1,Fundamentals,20801,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-480,module-2,Systems & Components,20802,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-480,module-3,Diagnostics & Service,20803,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-480,module-4,Advanced Applications,20804,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+aut-490,module-1,Fundamentals,20901,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+aut-490,module-2,Systems & Components,20902,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+aut-490,module-3,Diagnostics & Service,20903,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+aut-490,module-4,Advanced Applications,20904,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-160,module-1,Fundamentals,21001,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-160,module-2,Systems & Components,21002,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-160,module-3,Diagnostics & Service,21003,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-160,module-4,Advanced Applications,21004,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-170,module-1,Fundamentals,21101,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-170,module-2,Systems & Components,21102,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-170,module-3,Diagnostics & Service,21103,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-170,module-4,Advanced Applications,21104,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-180,module-1,Fundamentals,21201,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-180,module-2,Systems & Components,21202,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-180,module-3,Diagnostics & Service,21203,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-180,module-4,Advanced Applications,21204,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-360,module-1,Fundamentals,21301,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-360,module-2,Systems & Components,21302,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-360,module-3,Diagnostics & Service,21303,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-360,module-4,Advanced Applications,21304,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-380,module-1,Fundamentals,21401,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-380,module-2,Systems & Components,21402,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-380,module-3,Diagnostics & Service,21403,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-380,module-4,Advanced Applications,21404,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+dsl-490,module-1,Fundamentals,21501,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+dsl-490,module-2,Systems & Components,21502,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+dsl-490,module-3,Diagnostics & Service,21503,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+dsl-490,module-4,Advanced Applications,21504,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-150,module-1,Fundamentals,21601,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-150,module-2,Systems & Components,21602,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-150,module-3,Diagnostics & Service,21603,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-150,module-4,Advanced Applications,21604,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-160,module-1,Fundamentals,21701,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-160,module-2,Systems & Components,21702,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-160,module-3,Diagnostics & Service,21703,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-160,module-4,Advanced Applications,21704,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-170,module-1,Fundamentals,21801,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-170,module-2,Systems & Components,21802,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-170,module-3,Diagnostics & Service,21803,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-170,module-4,Advanced Applications,21804,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-350,module-1,Fundamentals,21901,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-350,module-2,Systems & Components,21902,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-350,module-3,Diagnostics & Service,21903,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-350,module-4,Advanced Applications,21904,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-360,module-1,Fundamentals,22001,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-360,module-2,Systems & Components,22002,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-360,module-3,Diagnostics & Service,22003,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-360,module-4,Advanced Applications,22004,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-370,module-1,Fundamentals,22101,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-370,module-2,Systems & Components,22102,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-370,module-3,Diagnostics & Service,22103,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-370,module-4,Advanced Applications,22104,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+ev-490,module-1,Fundamentals,22201,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+ev-490,module-2,Systems & Components,22202,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+ev-490,module-3,Diagnostics & Service,22203,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+ev-490,module-4,Advanced Applications,22204,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+vlb-100,module-1,Fundamentals,22301,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+vlb-100,module-2,Systems & Components,22302,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+vlb-100,module-3,Diagnostics & Service,22303,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+vlb-100,module-4,Advanced Applications,22304,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C
+vlb-110,module-1,Fundamentals,22401,Introduction to core concepts and safety,1,2,Objective A;Objective B;Objective C
+vlb-110,module-2,Systems & Components,22402,Detailed study of system components and operation,2,2,Objective A;Objective B;Objective C
+vlb-110,module-3,Diagnostics & Service,22403,Diagnostic procedures and service techniques,3,2,Objective A;Objective B;Objective C
+vlb-110,module-4,Advanced Applications,22404,Advanced topics and real-world scenarios,4,2,Objective A;Objective B;Objective C

@@ -1,0 +1,95 @@
+/* Copied student dashboard style (local copy) */
+/* Source: frontend/web/public/theme/student-dashboard/style.css */
+:root{
+	--bg: #f4f6fb;
+	--surface: #ffffff;
+	--muted: #6b7280;
+	--text: #0b1220;
+	--brand: #0b5cff;
+	--brand-600: #0847d6;
+	--accent: #0f1724;
+	--nav-bg: #071428;
+	--tile-elev: rgba(3,22,66,0.06);
+	--focus: #2b7cff;
+}
+
+html,body{height:100%}
+body{
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+.sd-header{ background:linear-gradient(90deg,var(--brand),var(--brand-600)); color:white; padding:20px 24px }
+.sd-header h1{ margin:0; font-size:20px; font-weight:700 }
+
+.sd-main{ padding:22px; max-width:1000px; margin:18px auto; background:var(--surface); box-shadow:0 4px 18px var(--tile-elev); border-radius:10px }
+pre{ background:#0b1220; color:#dbeafe; padding:12px; overflow:auto; border-radius:6px }
+a{ color:var(--brand); text-decoration:underline }
+ul{ padding-left:1.2rem }
+
+/* Course tiles */
+.tiles{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:18px; margin:20px 0 }
+.tile{ background:var(--surface); border-radius:10px; padding:16px; box-shadow:0 8px 26px rgba(3,22,66,0.06); display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .14s ease, box-shadow .14s ease; min-height:160px }
+.tile:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(3,22,66,0.10) }
+
+/* Keyboard focus support for tiles */
+.tile:focus,
+.tile:focus-within{
+	outline:3px solid rgba(43,124,255,0.14);
+	transform:translateY(-6px);
+}
+
+/* Course card badges and chips */
+.tile .badges { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap }
+.chip { display:inline-block; background:#eef5ff; color:#0b4da8; padding:6px 12px; border-radius:999px; font-size:12px; margin-right:6px; font-weight:600; max-width:160px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.chip.cred { background:#fff6ea; color:#7a4b00 }
+.chip.lab { background:#e9f7ee; color:#0a6220 }
+.chip.hours { background:#f3f4f6; color:#111 }
+.prereqs { margin-top:8px; font-size:13px }
+.prereq { color:var(--brand); text-decoration:underline; margin-right:6px }
+.prereq.missing { color:#b91c1c; text-decoration:line-through }
+
+.tile .icon{ width:56px; height:56px; border-radius:12px; background:#eef6ff; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--brand); margin-bottom:12px; flex-shrink:0 }
+.tile .title{ font-size:16px; font-weight:700; margin-bottom:10px }
+.tile .meta{ font-size:13px; color:var(--muted); margin-top:auto }
+
+@media (max-width:720px){
+	.tiles{ gap:12px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+	.tile{ padding:12px; min-height:0 }
+	.tile .title{ font-size:15px }
+}
+
+/* Utility for hero */
+.course-hero{ background:linear-gradient(90deg, rgba(11,92,255,0.06), rgba(11,92,255,0.02)); padding:18px; border-radius:10px; margin:14px 0; display:flex; align-items:center; gap:14px; border:1px solid rgba(11,92,255,0.06) }
+.course-hero .hero-body{ flex:1 }
+.course-hero .hero-title{ margin:0; font-size:20px; font-weight:700 }
+.course-hero .hero-sub{ margin:6px 0 0; color:var(--muted); font-size:14px }
+.cta-btn{ display:inline-block; background:var(--brand); color:white; padding:10px 14px; border-radius:8px; text-decoration:none; font-weight:700; box-shadow:0 6px 18px rgba(11,92,255,0.12) }
+.cta-btn:hover{ background:var(--brand-600); box-shadow:0 10px 28px rgba(11,92,255,0.14) }
+.cta-btn:focus{ outline:3px solid rgba(43,124,255,0.18); outline-offset:3px }
+
+/* Left-nav accordion and search */
+.sd-side .nav-search{ width:100%; box-sizing:border-box; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:var(--surface) }
+.sd-side .nav-search::placeholder{ color:rgba(255,255,255,0.6) }
+.sd-side .nav-group{ margin-bottom:10px }
+.sd-side .nav-toggle{ width:100%; background:transparent; border:0; color:var(--surface); text-align:left; padding:10px 6px; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:space-between }
+.sd-side .nav-toggle:focus{ outline:3px solid var(--focus); border-radius:6px }
+.sd-side .nav-list{ list-style:none; margin:0; padding:0 6px; max-height:0; overflow:hidden; transition:max-height .18s ease }
+.sd-side .nav-list.expanded{ max-height:1000px }
+.sd-side .nav-list li{ margin:6px 0 }
+.sd-side .nav-list a{ color:#cbd5e1; font-size:14px; text-decoration:none }
+.sd-side .nav-list a:hover{ color:#fff }
+
+@media (max-width:800px){
+	.sd-side{ position:fixed; left:0; top:0; bottom:0; z-index:30; transform:translateX(0); width:240px }
+}
+
+.sd-app{ display:flex; gap:18px; }
+.sd-side{ width:240px; background:var(--nav-bg); color:var(--surface); min-height:100vh; padding:16px; box-shadow:3px 0 18px rgba(2,6,23,0.12) }
+.sd-side-inner{ font-size:14px }
+.sd-content{ flex:1 }
+
+/* Small helpers */
+.muted{ color:var(--muted) }
+.sr-only{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+/* Copied student dashboard style (local copy) */

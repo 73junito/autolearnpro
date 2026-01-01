@@ -1,0 +1,18 @@
+{
+  "ollama": {
+    "model": "llama3.2",
+    "host": "http://localhost:11434"
+  },
+  "stableDiffusion": {
+    "apiUrl": "http://localhost:7860",
+    "defaultSteps": 20,
+    "defaultWidth": 512,
+    "defaultHeight": 512,
+    "defaultCfgScale": 7,
+    "defaultSampler": "Euler a"
+  },
+  "courseGeneration": {
+    "descriptionPromptTemplate": "Generate a compelling and detailed course description for a course titled \"{title}\"{topic}. Make it engaging, informative, and suitable for an LMS platform.",
+    "thumbnailPromptTemplate": "Create a professional course thumbnail image for \"{title}\"{topic}. Style: {style}. Educational, clean design, suitable for LMS."
+  }
+}

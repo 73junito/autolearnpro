@@ -1,0 +1,860 @@
+﻿2025-12-18T06:41:45.0656698Z Current runner version: '2.330.0'
+2025-12-18T06:41:45.0690536Z ##[group]Runner Image Provisioner
+2025-12-18T06:41:45.0691694Z Hosted Compute Agent
+2025-12-18T06:41:45.0692571Z Version: 20251211.462
+2025-12-18T06:41:45.0693861Z Commit: 6cbad8c2bb55d58165063d031ccabf57e2d2db61
+2025-12-18T06:41:45.0695125Z Build Date: 2025-12-11T16:28:49Z
+2025-12-18T06:41:45.0696342Z Worker ID: {d5d8eac4-f139-4546-b37e-6ad88b53ffa0}
+2025-12-18T06:41:45.0697512Z ##[endgroup]
+2025-12-18T06:41:45.0698515Z ##[group]Operating System
+2025-12-18T06:41:45.0699355Z Ubuntu
+2025-12-18T06:41:45.0700034Z 24.04.3
+2025-12-18T06:41:45.0700797Z LTS
+2025-12-18T06:41:45.0701579Z ##[endgroup]
+2025-12-18T06:41:45.0702334Z ##[group]Runner Image
+2025-12-18T06:41:45.0703306Z Image: ubuntu-24.04
+2025-12-18T06:41:45.0704318Z Version: 20251215.174.1
+2025-12-18T06:41:45.0705983Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251215.174/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-18T06:41:45.0708739Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251215.174
+2025-12-18T06:41:45.0710559Z ##[endgroup]
+2025-12-18T06:41:45.0712252Z ##[group]GITHUB_TOKEN Permissions
+2025-12-18T06:41:45.0715330Z Contents: read
+2025-12-18T06:41:45.0716269Z Metadata: read
+2025-12-18T06:41:45.0717071Z Packages: write
+2025-12-18T06:41:45.0717768Z ##[endgroup]
+2025-12-18T06:41:45.0721074Z Secret source: Actions
+2025-12-18T06:41:45.0722027Z Prepare workflow directory
+2025-12-18T06:41:45.1432579Z Prepare all required actions
+2025-12-18T06:41:45.1488337Z Getting action download info
+2025-12-18T06:41:45.5104638Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-18T06:41:45.6126807Z Download action repository 'sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20' (SHA:59acb6260d9c0ba8f4a2f9d9b48431a222b68e20)
+2025-12-18T06:41:45.7662035Z Download action repository 'docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226' (SHA:f95db51fddba0c2d1ec667646a06c2ce06100226)
+2025-12-18T06:41:46.0509622Z Download action repository 'docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d' (SHA:343f7c4344506bcbf9b4de18042ae17996df046d)
+2025-12-18T06:41:46.2574258Z Download action repository 'docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934' (SHA:96383f45573cb7f253c731d3b3ab81c87ef81934)
+2025-12-18T06:41:46.5804854Z Download action repository 'docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09' (SHA:0565240e2d4ab88bba5387d719585280857ece09)
+2025-12-18T06:41:47.1113363Z Complete job name: build
+2025-12-18T06:41:47.1855682Z ##[group]Run actions/checkout@v4
+2025-12-18T06:41:47.1857105Z with:
+2025-12-18T06:41:47.1857968Z   repository: 73junito/autolearnpro
+2025-12-18T06:41:47.1859219Z   token: ***
+2025-12-18T06:41:47.1860105Z   ssh-strict: true
+2025-12-18T06:41:47.1861017Z   ssh-user: git
+2025-12-18T06:41:47.1861904Z   persist-credentials: true
+2025-12-18T06:41:47.1862893Z   clean: true
+2025-12-18T06:41:47.1863900Z   sparse-checkout-cone-mode: true
+2025-12-18T06:41:47.1864954Z   fetch-depth: 1
+2025-12-18T06:41:47.1865739Z   fetch-tags: false
+2025-12-18T06:41:47.1866674Z   show-progress: true
+2025-12-18T06:41:47.1867538Z   lfs: false
+2025-12-18T06:41:47.1868328Z   submodules: false
+2025-12-18T06:41:47.1869283Z   set-safe-directory: true
+2025-12-18T06:41:47.1870468Z env:
+2025-12-18T06:41:47.1871227Z   REGISTRY: ghcr.io
+2025-12-18T06:41:47.1872175Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:47.1873215Z ##[endgroup]
+2025-12-18T06:41:47.2967132Z Syncing repository: 73junito/autolearnpro
+2025-12-18T06:41:47.2969892Z ##[group]Getting Git version info
+2025-12-18T06:41:47.2971388Z Working directory is '/home/runner/work/autolearnpro/autolearnpro'
+2025-12-18T06:41:47.2973368Z [command]/usr/bin/git version
+2025-12-18T06:41:47.3029622Z git version 2.52.0
+2025-12-18T06:41:47.3057357Z ##[endgroup]
+2025-12-18T06:41:47.3071007Z Temporarily overriding HOME='/home/runner/work/_temp/820e7175-38c8-44a8-8c31-bf695ece7961' before making global git config changes
+2025-12-18T06:41:47.3074183Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-18T06:41:47.3083868Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+2025-12-18T06:41:47.3121363Z Deleting the contents of '/home/runner/work/autolearnpro/autolearnpro'
+2025-12-18T06:41:47.3125400Z ##[group]Initializing the repository
+2025-12-18T06:41:47.3130202Z [command]/usr/bin/git init /home/runner/work/autolearnpro/autolearnpro
+2025-12-18T06:41:47.3238596Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-12-18T06:41:47.3240886Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2025-12-18T06:41:47.3243629Z hint: to use in all of your new repositories, which will suppress this warning,
+2025-12-18T06:41:47.3245802Z hint: call:
+2025-12-18T06:41:47.3247380Z hint:
+2025-12-18T06:41:47.3249373Z hint: 	git config --global init.defaultBranch <name>
+2025-12-18T06:41:47.3251423Z hint:
+2025-12-18T06:41:47.3253732Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-12-18T06:41:47.3256922Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-12-18T06:41:47.3259476Z hint:
+2025-12-18T06:41:47.3260997Z hint: 	git branch -m <name>
+2025-12-18T06:41:47.3262458Z hint:
+2025-12-18T06:41:47.3264534Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-12-18T06:41:47.3266681Z Initialized empty Git repository in /home/runner/work/autolearnpro/autolearnpro/.git/
+2025-12-18T06:41:47.3270496Z [command]/usr/bin/git remote add origin https://github.com/73junito/autolearnpro
+2025-12-18T06:41:47.3292429Z ##[endgroup]
+2025-12-18T06:41:47.3294503Z ##[group]Disabling automatic garbage collection
+2025-12-18T06:41:47.3296355Z [command]/usr/bin/git config --local gc.auto 0
+2025-12-18T06:41:47.3326460Z ##[endgroup]
+2025-12-18T06:41:47.3328909Z ##[group]Setting up auth
+2025-12-18T06:41:47.3334155Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-18T06:41:47.3366545Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-18T06:41:47.3702421Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-18T06:41:47.3734342Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-18T06:41:47.3951122Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-18T06:41:47.3989611Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-18T06:41:47.4208079Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-12-18T06:41:47.4240760Z ##[endgroup]
+2025-12-18T06:41:47.4242240Z ##[group]Fetching the repository
+2025-12-18T06:41:47.4249303Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9e29e04bb1425c74ebf7b03858d67e394b3505ca:refs/remotes/origin/main
+2025-12-18T06:41:47.7347043Z From https://github.com/73junito/autolearnpro
+2025-12-18T06:41:47.7348573Z  * [new ref]         9e29e04bb1425c74ebf7b03858d67e394b3505ca -> origin/main
+2025-12-18T06:41:47.7381816Z ##[endgroup]
+2025-12-18T06:41:47.7385700Z ##[group]Determining the checkout info
+2025-12-18T06:41:47.7387482Z ##[endgroup]
+2025-12-18T06:41:47.7388937Z [command]/usr/bin/git sparse-checkout disable
+2025-12-18T06:41:47.7427613Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-12-18T06:41:47.7452477Z ##[group]Checking out the ref
+2025-12-18T06:41:47.7455793Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-12-18T06:41:48.3345081Z Switched to a new branch 'main'
+2025-12-18T06:41:48.3346417Z branch 'main' set up to track 'origin/main'.
+2025-12-18T06:41:48.3592516Z Encountered 9 files that should have been pointers, but weren't:
+2025-12-18T06:41:48.3593244Z 	docs/site/images/course-1.png
+2025-12-18T06:41:48.3594165Z 	docs/site/images/course-1.svg
+2025-12-18T06:41:48.3594628Z 	docs/site/images/course-1.txt
+2025-12-18T06:41:48.3595074Z 	docs/site/images/course-2.png
+2025-12-18T06:41:48.3595452Z 	docs/site/images/course-2.svg
+2025-12-18T06:41:48.3595766Z 	docs/site/images/course-2.txt
+2025-12-18T06:41:48.3596054Z 	docs/site/images/course-3.png
+2025-12-18T06:41:48.3596349Z 	docs/site/images/course-3.svg
+2025-12-18T06:41:48.3596619Z 	docs/site/images/course-3.txt
+2025-12-18T06:41:48.3613917Z ##[endgroup]
+2025-12-18T06:41:48.3653968Z [command]/usr/bin/git log -1 --format=%H
+2025-12-18T06:41:48.3677274Z 9e29e04bb1425c74ebf7b03858d67e394b3505ca
+2025-12-18T06:41:48.3957260Z ##[group]Run sigstore/cosign-installer@59acb6260d9c0ba8f4a2f9d9b48431a222b68e20
+2025-12-18T06:41:48.3957740Z with:
+2025-12-18T06:41:48.3957957Z   cosign-release: v2.2.4
+2025-12-18T06:41:48.3958228Z   install-dir: $HOME/.cosign
+2025-12-18T06:41:48.3958480Z   use-sudo: false
+2025-12-18T06:41:48.3958694Z env:
+2025-12-18T06:41:48.3958892Z   REGISTRY: ghcr.io
+2025-12-18T06:41:48.3959141Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:48.3959422Z ##[endgroup]
+2025-12-18T06:41:48.4060863Z ##[group]Run #!/bin/bash
+2025-12-18T06:41:48.4061975Z [36;1m#!/bin/bash[0m
+2025-12-18T06:41:48.4062252Z [36;1m# cosign install script[0m
+2025-12-18T06:41:48.4062550Z [36;1mshopt -s expand_aliases[0m
+2025-12-18T06:41:48.4062838Z [36;1mif [ -z "$NO_COLOR" ]; then[0m
+2025-12-18T06:41:48.4063187Z [36;1m  alias log_info="echo -e \"\033[1;32mINFO\033[0m:\""[0m
+2025-12-18T06:41:48.4063745Z [36;1m  alias log_error="echo -e \"\033[1;31mERROR\033[0m:\""[0m
+2025-12-18T06:41:48.4064117Z [36;1melse[0m
+2025-12-18T06:41:48.4064353Z [36;1m  alias log_info="echo \"INFO:\""[0m
+2025-12-18T06:41:48.4064695Z [36;1m  alias log_error="echo \"ERROR:\""[0m
+2025-12-18T06:41:48.4064978Z [36;1mfi[0m
+2025-12-18T06:41:48.4065187Z [36;1mset -e[0m
+2025-12-18T06:41:48.4065393Z [36;1m[0m
+2025-12-18T06:41:48.4065611Z [36;1mmkdir -p $HOME/.cosign[0m
+2025-12-18T06:41:48.4065866Z [36;1m[0m
+2025-12-18T06:41:48.4066085Z [36;1mif [[ v2.2.4 == "main" ]]; then[0m
+2025-12-18T06:41:48.4066477Z [36;1m  log_info "installing cosign via 'go install' from its main version"[0m
+2025-12-18T06:41:48.4066873Z [36;1m  GOBIN=$(go env GOPATH)/bin[0m
+2025-12-18T06:41:48.4067223Z [36;1m  go install github.com/sigstore/cosign/cmd/cosign@main[0m
+2025-12-18T06:41:48.4067595Z [36;1m  ln -s $GOBIN/cosign $HOME/.cosign/cosign[0m
+2025-12-18T06:41:48.4067891Z [36;1m  exit 0[0m
+2025-12-18T06:41:48.4068100Z [36;1mfi[0m
+2025-12-18T06:41:48.4068300Z [36;1m[0m
+2025-12-18T06:41:48.4068505Z [36;1mshaprog() {[0m
+2025-12-18T06:41:48.4068740Z [36;1m  case Linux in[0m
+2025-12-18T06:41:48.4068986Z [36;1m    Linux|linux)[0m
+2025-12-18T06:41:48.4069251Z [36;1m      sha256sum $1 | cut -d' ' -f1[0m
+2025-12-18T06:41:48.4069527Z [36;1m      ;;[0m
+2025-12-18T06:41:48.4069740Z [36;1m    macOS|macos)[0m
+2025-12-18T06:41:48.4070000Z [36;1m      shasum -a256 $1 | cut -d' ' -f1[0m
+2025-12-18T06:41:48.4070273Z [36;1m      ;;[0m
+2025-12-18T06:41:48.4070491Z [36;1m    Windows|windows)[0m
+2025-12-18T06:41:48.4070999Z [36;1m      powershell -command "(Get-FileHash $1 -Algorithm SHA256 | Select-Object -ExpandProperty Hash).ToLower()"[0m
+2025-12-18T06:41:48.4071494Z [36;1m      ;;[0m
+2025-12-18T06:41:48.4071702Z [36;1m    *)[0m
+2025-12-18T06:41:48.4071931Z [36;1m      log_error "unsupported OS Linux"[0m
+2025-12-18T06:41:48.4072224Z [36;1m      exit 1[0m
+2025-12-18T06:41:48.4072442Z [36;1m      ;;[0m
+2025-12-18T06:41:48.4072648Z [36;1m  esac[0m
+2025-12-18T06:41:48.4072842Z [36;1m}[0m
+2025-12-18T06:41:48.4073040Z [36;1m[0m
+2025-12-18T06:41:48.4073309Z [36;1mbootstrap_version='v2.2.4'[0m
+2025-12-18T06:41:48.4074351Z [36;1mbootstrap_linux_amd64_sha='97a6a1e15668a75fc4ff7a4dc4cb2f098f929cbea2f12faa9de31db6b42b17d7'[0m
+2025-12-18T06:41:48.4075045Z [36;1mbootstrap_linux_arm_sha='ad0338117c8c97a555e48ee194f400aad56803aaa1f39f537a3ede9261bc9aa7'[0m
+2025-12-18T06:41:48.4075715Z [36;1mbootstrap_linux_arm64_sha='658087351e1d4f9c396b5f59ee5437461c06128f4ce80ba899ccaa1c0b6a8a62'[0m
+2025-12-18T06:41:48.4076385Z [36;1mbootstrap_darwin_amd64_sha='0e5a77a86115e4c00ba4243db01abceacb13cc06981c45e53ee71f2e1db8ce25'[0m
+2025-12-18T06:41:48.4077071Z [36;1mbootstrap_darwin_arm64_sha='fcd310e64ecddc1eaa13fe814ac1c9fc02f6f9eacd9a58480ab8160eb8ca381e'[0m
+2025-12-18T06:41:48.4077758Z [36;1mbootstrap_windows_amd64_sha='9e9b71bd3fa2a6abfa903b5f784d9ca0fbc29c563d2b084c1a82c593c2bab001'[0m
+2025-12-18T06:41:48.4078259Z [36;1mcosign_executable_name=cosign[0m
+2025-12-18T06:41:48.4078533Z [36;1m[0m
+2025-12-18T06:41:48.4078907Z [36;1mtrap "popd >/dev/null" EXIT[0m
+2025-12-18T06:41:48.4079183Z [36;1m[0m
+2025-12-18T06:41:48.4079407Z [36;1mpushd $HOME/.cosign > /dev/null[0m
+2025-12-18T06:41:48.4079677Z [36;1m[0m
+2025-12-18T06:41:48.4079873Z [36;1mcase Linux in[0m
+2025-12-18T06:41:48.4080121Z [36;1m  Linux|linux)[0m
+2025-12-18T06:41:48.4080353Z [36;1m    case X64 in[0m
+2025-12-18T06:41:48.4080594Z [36;1m      X64|amd64)[0m
+2025-12-18T06:41:48.4080879Z [36;1m        bootstrap_filename='cosign-linux-amd64'[0m
+2025-12-18T06:41:48.4081230Z [36;1m        bootstrap_sha=${bootstrap_linux_amd64_sha}[0m
+2025-12-18T06:41:48.4081601Z [36;1m        desired_cosign_filename='cosign-linux-amd64'[0m
+2025-12-18T06:41:48.4082020Z [36;1m        # v0.6.0 had different filename structures from all other releases[0m
+2025-12-18T06:41:48.4082419Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4082805Z [36;1m          desired_cosign_filename='cosign_linux_amd64_0.6.0_linux_amd64'[0m
+2025-12-18T06:41:48.4083303Z [36;1m          desired_cosign_v060_signature='cosign_linux_amd64_0.6.0_linux_amd64.sig'[0m
+2025-12-18T06:41:48.4083861Z [36;1m        fi[0m
+2025-12-18T06:41:48.4084081Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4084292Z [36;1m[0m
+2025-12-18T06:41:48.4084500Z [36;1m      ARM|arm)[0m
+2025-12-18T06:41:48.4084773Z [36;1m        bootstrap_filename='cosign-linux-arm'[0m
+2025-12-18T06:41:48.4085125Z [36;1m        bootstrap_sha=${bootstrap_linux_arm_sha}[0m
+2025-12-18T06:41:48.4085487Z [36;1m        desired_cosign_filename='cosign-linux-arm'[0m
+2025-12-18T06:41:48.4085813Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4086166Z [36;1m          log_error "linux-arm build not available at v0.6.0"[0m
+2025-12-18T06:41:48.4086488Z [36;1m          exit 1[0m
+2025-12-18T06:41:48.4086716Z [36;1m        fi[0m
+2025-12-18T06:41:48.4086924Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4087130Z [36;1m[0m
+2025-12-18T06:41:48.4087330Z [36;1m      ARM64|arm64)[0m
+2025-12-18T06:41:48.4087639Z [36;1m        bootstrap_filename='cosign-linux-arm64'[0m
+2025-12-18T06:41:48.4087993Z [36;1m        bootstrap_sha=${bootstrap_linux_arm64_sha}[0m
+2025-12-18T06:41:48.4088349Z [36;1m        desired_cosign_filename='cosign-linux-arm64'[0m
+2025-12-18T06:41:48.4088684Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4089023Z [36;1m          log_error "linux-arm64 build not available at v0.6.0"[0m
+2025-12-18T06:41:48.4089355Z [36;1m          exit 1[0m
+2025-12-18T06:41:48.4089575Z [36;1m        fi[0m
+2025-12-18T06:41:48.4089786Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4089993Z [36;1m[0m
+2025-12-18T06:41:48.4090177Z [36;1m      *)[0m
+2025-12-18T06:41:48.4090434Z [36;1m        log_error "unsupported architecture X64"[0m
+2025-12-18T06:41:48.4090729Z [36;1m        exit 1[0m
+2025-12-18T06:41:48.4090954Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4091159Z [36;1m    esac[0m
+2025-12-18T06:41:48.4091362Z [36;1m    ;;[0m
+2025-12-18T06:41:48.4091555Z [36;1m[0m
+2025-12-18T06:41:48.4091757Z [36;1m  macOS|macos)[0m
+2025-12-18T06:41:48.4091983Z [36;1m    case X64 in[0m
+2025-12-18T06:41:48.4092351Z [36;1m      X64|amd64)[0m
+2025-12-18T06:41:48.4092625Z [36;1m        bootstrap_filename='cosign-darwin-amd64'[0m
+2025-12-18T06:41:48.4092973Z [36;1m        bootstrap_sha=${bootstrap_darwin_amd64_sha}[0m
+2025-12-18T06:41:48.4093338Z [36;1m        desired_cosign_filename='cosign-darwin-amd64'[0m
+2025-12-18T06:41:48.4093861Z [36;1m        # v0.6.0 had different filename structures from all other releases[0m
+2025-12-18T06:41:48.4094240Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4094611Z [36;1m          desired_cosign_filename='cosign_darwin_amd64_0.6.0_darwin_amd64'[0m
+2025-12-18T06:41:48.4095105Z [36;1m          desired_cosign_v060_signature='cosign_darwin_amd64_0.6.0_darwin_amd64.sig'[0m
+2025-12-18T06:41:48.4095499Z [36;1m        fi[0m
+2025-12-18T06:41:48.4095708Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4095917Z [36;1m[0m
+2025-12-18T06:41:48.4096243Z [36;1m      ARM64|arm64)[0m
+2025-12-18T06:41:48.4096537Z [36;1m        bootstrap_filename='cosign-darwin-arm64'[0m
+2025-12-18T06:41:48.4096889Z [36;1m        bootstrap_sha=${bootstrap_darwin_arm64_sha}[0m
+2025-12-18T06:41:48.4097257Z [36;1m        desired_cosign_filename='cosign-darwin-arm64'[0m
+2025-12-18T06:41:48.4097669Z [36;1m        # v0.6.0 had different filename structures from all other releases[0m
+2025-12-18T06:41:48.4098037Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4098414Z [36;1m          desired_cosign_filename='cosign_darwin_arm64_0.6.0_darwin_arm64'[0m
+2025-12-18T06:41:48.4098903Z [36;1m          desired_cosign_v060_signature='cosign_darwin_arm64_0.6.0_darwin_arm64.sig'[0m
+2025-12-18T06:41:48.4099292Z [36;1m        fi[0m
+2025-12-18T06:41:48.4099504Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4099707Z [36;1m[0m
+2025-12-18T06:41:48.4099899Z [36;1m      *)[0m
+2025-12-18T06:41:48.4100151Z [36;1m        log_error "unsupported architecture X64"[0m
+2025-12-18T06:41:48.4100466Z [36;1m        exit 1[0m
+2025-12-18T06:41:48.4100687Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4100906Z [36;1m    esac[0m
+2025-12-18T06:41:48.4101101Z [36;1m    ;;[0m
+2025-12-18T06:41:48.4101303Z [36;1m[0m
+2025-12-18T06:41:48.4101495Z [36;1m  Windows|windows)[0m
+2025-12-18T06:41:48.4101738Z [36;1m    case X64 in[0m
+2025-12-18T06:41:48.4101966Z [36;1m      X64|amd64)[0m
+2025-12-18T06:41:48.4102252Z [36;1m        bootstrap_filename='cosign-windows-amd64.exe'[0m
+2025-12-18T06:41:48.4102624Z [36;1m        bootstrap_sha=${bootstrap_windows_amd64_sha}[0m
+2025-12-18T06:41:48.4102998Z [36;1m        desired_cosign_filename='cosign-windows-amd64.exe'[0m
+2025-12-18T06:41:48.4103362Z [36;1m        cosign_executable_name=cosign.exe[0m
+2025-12-18T06:41:48.4103848Z [36;1m        # v0.6.0 had different filename structures from all other releases[0m
+2025-12-18T06:41:48.4104221Z [36;1m        if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4104615Z [36;1m          desired_cosign_filename='cosign_windows_amd64_0.6.0_windows_amd64.exe'[0m
+2025-12-18T06:41:48.4105144Z [36;1m          desired_cosign_v060_signature='cosign_windows_amd64_0.6.0_windows_amd64.exe.sig'[0m
+2025-12-18T06:41:48.4105552Z [36;1m        fi[0m
+2025-12-18T06:41:48.4105758Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4105967Z [36;1m      *)[0m
+2025-12-18T06:41:48.4106217Z [36;1m        log_error "unsupported architecture X64"[0m
+2025-12-18T06:41:48.4106521Z [36;1m        exit 1[0m
+2025-12-18T06:41:48.4106745Z [36;1m        ;;[0m
+2025-12-18T06:41:48.4106946Z [36;1m    esac[0m
+2025-12-18T06:41:48.4107150Z [36;1m    ;;[0m
+2025-12-18T06:41:48.4107350Z [36;1m  *)[0m
+2025-12-18T06:41:48.4107584Z [36;1m    log_error "unsupported os Linux"[0m
+2025-12-18T06:41:48.4107860Z [36;1m    exit 1[0m
+2025-12-18T06:41:48.4108070Z [36;1m    ;;[0m
+2025-12-18T06:41:48.4108270Z [36;1mesac[0m
+2025-12-18T06:41:48.4108468Z [36;1m[0m
+2025-12-18T06:41:48.4108653Z [36;1mSUDO=[0m
+2025-12-18T06:41:48.4108939Z [36;1mif [[ "false" == "true" ]] && command -v sudo >/dev/null; then[0m
+2025-12-18T06:41:48.4109397Z [36;1m  SUDO=sudo[0m
+2025-12-18T06:41:48.4109606Z [36;1mfi[0m
+2025-12-18T06:41:48.4109802Z [36;1m[0m
+2025-12-18T06:41:48.4110066Z [36;1mexpected_bootstrap_version_digest=${bootstrap_sha}[0m
+2025-12-18T06:41:48.4110972Z [36;1mlog_info "Downloading bootstrap version '${bootstrap_version}' of cosign to verify version to be installed...\n      https://github.com/sigstore/cosign/releases/download/${bootstrap_version}/${bootstrap_filename}"[0m
+2025-12-18T06:41:48.4112159Z [36;1m$SUDO curl -sL https://github.com/sigstore/cosign/releases/download/${bootstrap_version}/${bootstrap_filename} -o ${cosign_executable_name}[0m
+2025-12-18T06:41:48.4112839Z [36;1mshaBootstrap=$(shaprog ${cosign_executable_name});[0m
+2025-12-18T06:41:48.4113277Z [36;1mif [[ $shaBootstrap != ${expected_bootstrap_version_digest} ]]; then[0m
+2025-12-18T06:41:48.4114129Z [36;1m  log_error "Unable to validate cosign version: 'v2.2.4'"[0m
+2025-12-18T06:41:48.4114480Z [36;1m  exit 1[0m
+2025-12-18T06:41:48.4114699Z [36;1mfi[0m
+2025-12-18T06:41:48.4114936Z [36;1m$SUDO chmod +x ${cosign_executable_name}[0m
+2025-12-18T06:41:48.4115228Z [36;1m[0m
+2025-12-18T06:41:48.4115552Z [36;1m# If the bootstrap and specified `cosign` releases are the same, we're done.[0m
+2025-12-18T06:41:48.4115988Z [36;1mif [[ v2.2.4 == ${bootstrap_version} ]]; then[0m
+2025-12-18T06:41:48.4116507Z [36;1m  log_info "bootstrap version successfully verified and matches requested version so nothing else to do"[0m
+2025-12-18T06:41:48.4117004Z [36;1m  exit 0[0m
+2025-12-18T06:41:48.4117206Z [36;1mfi[0m
+2025-12-18T06:41:48.4117402Z [36;1m[0m
+2025-12-18T06:41:48.4117648Z [36;1msemver='^v([0-9]+\.){0,2}(\*|[0-9]+)(-?r?c?)(\.[0-9]+)$'[0m
+2025-12-18T06:41:48.4117981Z [36;1mif [[ v2.2.4 =~ $semver ]]; then[0m
+2025-12-18T06:41:48.4118305Z [36;1m  log_info "Custom cosign version 'v2.2.4' requested"[0m
+2025-12-18T06:41:48.4118616Z [36;1melse[0m
+2025-12-18T06:41:48.4118936Z [36;1m  log_error "Unable to validate requested cosign version: 'v2.2.4'"[0m
+2025-12-18T06:41:48.4119315Z [36;1m  exit 1[0m
+2025-12-18T06:41:48.4119521Z [36;1mfi[0m
+2025-12-18T06:41:48.4119706Z [36;1m[0m
+2025-12-18T06:41:48.4119914Z [36;1m# Download custom cosign[0m
+2025-12-18T06:41:48.4120585Z [36;1mlog_info "Downloading platform-specific version 'v2.2.4' of cosign...\n      https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_filename}"[0m
+2025-12-18T06:41:48.4121562Z [36;1m$SUDO curl -sL https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_filename} -o cosign_v2.2.4[0m
+2025-12-18T06:41:48.4122145Z [36;1mshaCustom=$(shaprog cosign_v2.2.4);[0m
+2025-12-18T06:41:48.4122421Z [36;1m[0m
+2025-12-18T06:41:48.4122651Z [36;1m# same hash means it is the same release[0m
+2025-12-18T06:41:48.4122978Z [36;1mif [[ $shaCustom != $shaBootstrap ]]; then[0m
+2025-12-18T06:41:48.4123327Z [36;1m  if [[ v2.2.4 == 'v0.6.0' && Linux == 'Linux' ]]; then[0m
+2025-12-18T06:41:48.4123831Z [36;1m    # v0.6.0's linux release has a dependency on `libpcsclite1`[0m
+2025-12-18T06:41:48.4124264Z [36;1m    log_info "Installing libpcsclite1 package if necessary..."[0m
+2025-12-18T06:41:48.4124612Z [36;1m    set +e[0m
+2025-12-18T06:41:48.4124851Z [36;1m    sudo dpkg -s libpcsclite1[0m
+2025-12-18T06:41:48.4125132Z [36;1m    if [ $? -eq 0 ]; then[0m
+2025-12-18T06:41:48.4125497Z [36;1m        log_info "libpcsclite1 package is already installed"[0m
+2025-12-18T06:41:48.4125828Z [36;1m    else[0m
+2025-12-18T06:41:48.4126156Z [36;1m         log_info "libpcsclite1 package is not installed, installing it now."[0m
+2025-12-18T06:41:48.4126559Z [36;1m         sudo apt-get update -q -q[0m
+2025-12-18T06:41:48.4126886Z [36;1m         sudo apt-get install -yq libpcsclite1[0m
+2025-12-18T06:41:48.4127170Z [36;1m    fi[0m
+2025-12-18T06:41:48.4127378Z [36;1m    set -e[0m
+2025-12-18T06:41:48.4127587Z [36;1m  fi[0m
+2025-12-18T06:41:48.4127791Z [36;1m[0m
+2025-12-18T06:41:48.4127995Z [36;1m  if [[ v2.2.4 == 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4128869Z [36;1m    log_info "Downloading detached signature for platform-specific 'v2.2.4' of cosign...\n      https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_v060_signature}"[0m
+2025-12-18T06:41:48.4129951Z [36;1m    $SUDO curl -sL https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_v060_signature} -o ${desired_cosign_filename}.sig[0m
+2025-12-18T06:41:48.4130554Z [36;1m  else[0m
+2025-12-18T06:41:48.4131221Z [36;1m    log_info "Downloading detached signature for platform-specific 'v2.2.4' of cosign...\n      https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_filename}.sig"[0m
+2025-12-18T06:41:48.4132180Z [36;1m    $SUDO curl -sLO https://github.com/sigstore/cosign/releases/download/v2.2.4/${desired_cosign_filename}.sig[0m
+2025-12-18T06:41:48.4132681Z [36;1m  fi[0m
+2025-12-18T06:41:48.4132882Z [36;1m[0m
+2025-12-18T06:41:48.4133190Z [36;1m  if [[ v2.2.4 < 'v0.6.0' ]]; then[0m
+2025-12-18T06:41:48.4133939Z [36;1m    log_info "Downloading cosign public key 'v2.2.4' of cosign...\n    https://raw.githubusercontent.com/sigstore/cosign/v2.2.4/.github/workflows/cosign.pub"[0m
+2025-12-18T06:41:48.4134821Z [36;1m    RELEASE_COSIGN_PUB_KEY=https://raw.githubusercontent.com/sigstore/cosign/v2.2.4/.github/workflows/cosign.pub[0m
+2025-12-18T06:41:48.4135337Z [36;1m  else[0m
+2025-12-18T06:41:48.4135892Z [36;1m    log_info "Downloading cosign public key 'v2.2.4' of cosign...\n    https://raw.githubusercontent.com/sigstore/cosign/v2.2.4/release/release-cosign.pub"[0m
+2025-12-18T06:41:48.4136757Z [36;1m    RELEASE_COSIGN_PUB_KEY=https://raw.githubusercontent.com/sigstore/cosign/v2.2.4/release/release-cosign.pub[0m
+2025-12-18T06:41:48.4137261Z [36;1m  fi[0m
+2025-12-18T06:41:48.4137458Z [36;1m[0m
+2025-12-18T06:41:48.4137801Z [36;1m  log_info "Using bootstrap cosign to verify signature of desired cosign version"[0m
+2025-12-18T06:41:48.4138527Z [36;1m  ./cosign verify-blob --insecure-ignore-tlog --key $RELEASE_COSIGN_PUB_KEY --signature ${desired_cosign_filename}.sig cosign_v2.2.4[0m
+2025-12-18T06:41:48.4139080Z [36;1m[0m
+2025-12-18T06:41:48.4139281Z [36;1m  $SUDO rm cosign[0m
+2025-12-18T06:41:48.4139576Z [36;1m  $SUDO mv cosign_v2.2.4 ${cosign_executable_name}[0m
+2025-12-18T06:41:48.4139914Z [36;1m  $SUDO chmod +x ${cosign_executable_name}[0m
+2025-12-18T06:41:48.4140243Z [36;1m  log_info "Installation complete!"[0m
+2025-12-18T06:41:48.4140516Z [36;1mfi[0m
+2025-12-18T06:41:48.4176873Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-12-18T06:41:48.4177257Z env:
+2025-12-18T06:41:48.4177457Z   REGISTRY: ghcr.io
+2025-12-18T06:41:48.4177701Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:48.4177969Z ##[endgroup]
+2025-12-18T06:41:48.4266197Z [1;32mINFO[0m: Downloading bootstrap version 'v2.2.4' of cosign to verify version to be installed...
+2025-12-18T06:41:48.4266961Z       https://github.com/sigstore/cosign/releases/download/v2.2.4/cosign-linux-amd64
+2025-12-18T06:41:48.9619718Z [1;32mINFO[0m: bootstrap version successfully verified and matches requested version so nothing else to do
+2025-12-18T06:41:48.9666738Z ##[group]Run echo "$HOME/.cosign" >> $GITHUB_PATH
+2025-12-18T06:41:48.9667088Z [36;1mecho "$HOME/.cosign" >> $GITHUB_PATH[0m
+2025-12-18T06:41:48.9698945Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2025-12-18T06:41:48.9699279Z env:
+2025-12-18T06:41:48.9699447Z   REGISTRY: ghcr.io
+2025-12-18T06:41:48.9699659Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:48.9699891Z ##[endgroup]
+2025-12-18T06:41:48.9822721Z ##[group]Run docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226
+2025-12-18T06:41:48.9823155Z with:
+2025-12-18T06:41:48.9823350Z   driver: docker-container
+2025-12-18T06:41:48.9824121Z   buildkitd-flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+2025-12-18T06:41:48.9824618Z   install: false
+2025-12-18T06:41:48.9824794Z   use: true
+2025-12-18T06:41:48.9824968Z   cleanup: true
+2025-12-18T06:41:48.9825337Z env:
+2025-12-18T06:41:48.9825502Z   REGISTRY: ghcr.io
+2025-12-18T06:41:48.9825708Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:48.9825947Z ##[endgroup]
+2025-12-18T06:41:49.1226206Z ##[group]Docker info
+2025-12-18T06:41:49.1253943Z [command]/usr/bin/docker version
+2025-12-18T06:41:49.2008617Z Client: Docker Engine - Community
+2025-12-18T06:41:49.2012582Z  Version:           28.0.4
+2025-12-18T06:41:49.2013661Z  API version:       1.48
+2025-12-18T06:41:49.2014415Z  Go version:        go1.23.7
+2025-12-18T06:41:49.2014883Z  Git commit:        b8034c0
+2025-12-18T06:41:49.2015281Z  Built:             Tue Mar 25 15:07:16 2025
+2025-12-18T06:41:49.2015739Z  OS/Arch:           linux/amd64
+2025-12-18T06:41:49.2016113Z  Context:           default
+2025-12-18T06:41:49.2016345Z 
+2025-12-18T06:41:49.2016510Z Server: Docker Engine - Community
+2025-12-18T06:41:49.2016885Z  Engine:
+2025-12-18T06:41:49.2017167Z   Version:          28.0.4
+2025-12-18T06:41:49.2017582Z   API version:      1.48 (minimum version 1.24)
+2025-12-18T06:41:49.2018058Z   Go version:       go1.23.7
+2025-12-18T06:41:49.2018424Z   Git commit:       6430e49
+2025-12-18T06:41:49.2018799Z   Built:            Tue Mar 25 15:07:16 2025
+2025-12-18T06:41:49.2019227Z   OS/Arch:          linux/amd64
+2025-12-18T06:41:49.2019603Z   Experimental:     false
+2025-12-18T06:41:49.2019948Z  containerd:
+2025-12-18T06:41:49.2020243Z   Version:          v2.2.0
+2025-12-18T06:41:49.2020666Z   GitCommit:        1c4457e00facac03ce1d75f7b6777a7a851e5c41
+2025-12-18T06:41:49.2021406Z  runc:
+2025-12-18T06:41:49.2021713Z   Version:          1.3.4
+2025-12-18T06:41:49.2022070Z   GitCommit:        v1.3.4-0-gd6d73eb8
+2025-12-18T06:41:49.2022318Z  docker-init:
+2025-12-18T06:41:49.2022582Z   Version:          0.19.0
+2025-12-18T06:41:49.2022853Z   GitCommit:        de40ad0
+2025-12-18T06:41:49.2075982Z [command]/usr/bin/docker info
+2025-12-18T06:41:49.4291861Z Client: Docker Engine - Community
+2025-12-18T06:41:49.4293726Z  Version:    28.0.4
+2025-12-18T06:41:49.4297797Z  Context:    default
+2025-12-18T06:41:49.4298073Z  Debug Mode: false
+2025-12-18T06:41:49.4298267Z  Plugins:
+2025-12-18T06:41:49.4298476Z   buildx: Docker Buildx (Docker Inc.)
+2025-12-18T06:41:49.4298725Z     Version:  v0.30.1
+2025-12-18T06:41:49.4298999Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2025-12-18T06:41:49.4299324Z   compose: Docker Compose (Docker Inc.)
+2025-12-18T06:41:49.4299573Z     Version:  v2.38.2
+2025-12-18T06:41:49.4299828Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2025-12-18T06:41:49.4300068Z 
+2025-12-18T06:41:49.4300139Z Server:
+2025-12-18T06:41:49.4300302Z  Containers: 0
+2025-12-18T06:41:49.4300472Z   Running: 0
+2025-12-18T06:41:49.4300658Z   Paused: 0
+2025-12-18T06:41:49.4300821Z   Stopped: 0
+2025-12-18T06:41:49.4300987Z  Images: 0
+2025-12-18T06:41:49.4301158Z  Server Version: 28.0.4
+2025-12-18T06:41:49.4301370Z  Storage Driver: overlay2
+2025-12-18T06:41:49.4301580Z   Backing Filesystem: extfs
+2025-12-18T06:41:49.4301793Z   Supports d_type: true
+2025-12-18T06:41:49.4301991Z   Using metacopy: false
+2025-12-18T06:41:49.4302195Z   Native Overlay Diff: false
+2025-12-18T06:41:49.4302399Z   userxattr: false
+2025-12-18T06:41:49.4302603Z  Logging Driver: json-file
+2025-12-18T06:41:49.4302983Z  Cgroup Driver: systemd
+2025-12-18T06:41:49.4303339Z  Cgroup Version: 2
+2025-12-18T06:41:49.4303841Z  Plugins:
+2025-12-18T06:41:49.4304127Z   Volume: local
+2025-12-18T06:41:49.4304525Z   Network: bridge host ipvlan macvlan null overlay
+2025-12-18T06:41:49.4305663Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2025-12-18T06:41:49.4306337Z  Swarm: inactive
+2025-12-18T06:41:49.4306697Z  Runtimes: io.containerd.runc.v2 runc
+2025-12-18T06:41:49.4307130Z  Default Runtime: runc
+2025-12-18T06:41:49.4307525Z  Init Binary: docker-init
+2025-12-18T06:41:49.4307970Z  containerd version: 1c4457e00facac03ce1d75f7b6777a7a851e5c41
+2025-12-18T06:41:49.4308505Z  runc version: v1.3.4-0-gd6d73eb8
+2025-12-18T06:41:49.4308925Z  init version: de40ad0
+2025-12-18T06:41:49.4309520Z  Security Options:
+2025-12-18T06:41:49.4309836Z   apparmor
+2025-12-18T06:41:49.4310112Z   seccomp
+2025-12-18T06:41:49.4310386Z    Profile: builtin
+2025-12-18T06:41:49.4310696Z   cgroupns
+2025-12-18T06:41:49.4310994Z  Kernel Version: 6.11.0-1018-azure
+2025-12-18T06:41:49.4311384Z  Operating System: Ubuntu 24.04.3 LTS
+2025-12-18T06:41:49.4311783Z  OSType: linux
+2025-12-18T06:41:49.4312099Z  Architecture: x86_64
+2025-12-18T06:41:49.4312431Z  CPUs: 4
+2025-12-18T06:41:49.4312735Z  Total Memory: 15.62GiB
+2025-12-18T06:41:49.4313112Z  Name: runnervmh13bl
+2025-12-18T06:41:49.4313662Z  ID: 0a695d56-123a-42a8-a772-617b83954cb8
+2025-12-18T06:41:49.4314104Z  Docker Root Dir: /var/lib/docker
+2025-12-18T06:41:49.4314501Z  Debug Mode: false
+2025-12-18T06:41:49.4314854Z  Username: githubactions
+2025-12-18T06:41:49.4315216Z  Experimental: false
+2025-12-18T06:41:49.4315673Z  Insecure Registries:
+2025-12-18T06:41:49.4348214Z   ::1/128
+2025-12-18T06:41:49.4348545Z   127.0.0.0/8
+2025-12-18T06:41:49.4348896Z  Live Restore Enabled: false
+2025-12-18T06:41:49.4349205Z 
+2025-12-18T06:41:49.4349763Z ##[endgroup]
+2025-12-18T06:41:49.4948148Z ##[group]Buildx version
+2025-12-18T06:41:49.4980437Z [command]/usr/bin/docker buildx version
+2025-12-18T06:41:49.5485479Z github.com/docker/buildx v0.30.1 9e66234aa13328a5e75b75aa5574e1ca6d6d9c01
+2025-12-18T06:41:49.5518092Z ##[endgroup]
+2025-12-18T06:41:49.5526116Z ##[group]Creating a new builder instance
+2025-12-18T06:41:49.6277999Z [command]/usr/bin/docker buildx create --name builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+2025-12-18T06:41:49.6891750Z builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e
+2025-12-18T06:41:49.6923778Z ##[endgroup]
+2025-12-18T06:41:49.6924449Z ##[group]Booting builder
+2025-12-18T06:41:49.6953228Z [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e
+2025-12-18T06:41:49.7486839Z #1 [internal] booting buildkit
+2025-12-18T06:41:49.8989363Z #1 pulling image moby/buildkit:buildx-stable-1
+2025-12-18T06:41:51.9882634Z #1 pulling image moby/buildkit:buildx-stable-1 2.2s done
+2025-12-18T06:41:52.1388727Z #1 creating container buildx_buildkit_builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e0
+2025-12-18T06:41:52.3726714Z #1 creating container buildx_buildkit_builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e0 0.4s done
+2025-12-18T06:41:52.3743096Z #1 DONE 2.6s
+2025-12-18T06:41:52.4023641Z Name:          builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e
+2025-12-18T06:41:52.4024566Z Driver:        docker-container
+2025-12-18T06:41:52.4024988Z Last Activity: 2025-12-18 06:41:49 +0000 UTC
+2025-12-18T06:41:52.4025296Z 
+2025-12-18T06:41:52.4025428Z Nodes:
+2025-12-18T06:41:52.4027227Z Name:                  builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e0
+2025-12-18T06:41:52.4027813Z Endpoint:              unix:///var/run/docker.sock
+2025-12-18T06:41:52.4028273Z Status:                running
+2025-12-18T06:41:52.4029070Z BuildKit daemon flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+2025-12-18T06:41:52.4029931Z BuildKit version:      v0.26.2
+2025-12-18T06:41:52.4030487Z Platforms:             linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
+2025-12-18T06:41:52.4031032Z Labels:
+2025-12-18T06:41:52.4031429Z  org.mobyproject.buildkit.worker.executor:         oci
+2025-12-18T06:41:52.4032092Z  org.mobyproject.buildkit.worker.hostname:         6d93934d54ad
+2025-12-18T06:41:52.4033155Z  org.mobyproject.buildkit.worker.network:          host
+2025-12-18T06:41:52.4034228Z  org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+2025-12-18T06:41:52.4034963Z  org.mobyproject.buildkit.worker.selinux.enabled:  false
+2025-12-18T06:41:52.4035665Z  org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+2025-12-18T06:41:52.4036242Z GC Policy rule#0:
+2025-12-18T06:41:52.4036573Z  All:            false
+2025-12-18T06:41:52.4037134Z  Filters:        type==source.local,type==exec.cachemount,type==source.git.checkout
+2025-12-18T06:41:52.4038078Z  Keep Duration:  48h0m0s
+2025-12-18T06:41:52.4038473Z  Max Used Space: 488.3MiB
+2025-12-18T06:41:52.4038841Z GC Policy rule#1:
+2025-12-18T06:41:52.4039218Z  All:            false
+2025-12-18T06:41:52.4039635Z  Keep Duration:  1440h0m0s
+2025-12-18T06:41:52.4040049Z  Reserved Space: 7.451GiB
+2025-12-18T06:41:52.4040422Z  Max Used Space: 54.02GiB
+2025-12-18T06:41:52.4040771Z  Min Free Space: 13.97GiB
+2025-12-18T06:41:52.4041116Z GC Policy rule#2:
+2025-12-18T06:41:52.4041429Z  All:            false
+2025-12-18T06:41:52.4041770Z  Reserved Space: 7.451GiB
+2025-12-18T06:41:52.4042118Z  Max Used Space: 54.02GiB
+2025-12-18T06:41:52.4042461Z  Min Free Space: 13.97GiB
+2025-12-18T06:41:52.4042796Z GC Policy rule#3:
+2025-12-18T06:41:52.4043102Z  All:            true
+2025-12-18T06:41:52.4043644Z  Reserved Space: 7.451GiB
+2025-12-18T06:41:52.4044035Z  Max Used Space: 54.02GiB
+2025-12-18T06:41:52.4044391Z  Min Free Space: 13.97GiB
+2025-12-18T06:41:52.4076310Z ##[endgroup]
+2025-12-18T06:41:52.4909813Z ##[group]Inspect builder
+2025-12-18T06:41:52.4911156Z {
+2025-12-18T06:41:52.4911486Z   "nodes": [
+2025-12-18T06:41:52.4911786Z     {
+2025-12-18T06:41:52.4912213Z       "name": "builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e0",
+2025-12-18T06:41:52.4912810Z       "endpoint": "unix:///var/run/docker.sock",
+2025-12-18T06:41:52.4913303Z       "status": "running",
+2025-12-18T06:41:52.4914054Z       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+2025-12-18T06:41:52.4914640Z       "labels": {
+2025-12-18T06:41:52.4915130Z         "org.mobyproject.buildkit.worker.executor": "oci",
+2025-12-18T06:41:52.4915826Z         "org.mobyproject.buildkit.worker.hostname": "6d93934d54ad",
+2025-12-18T06:41:52.4916523Z         "org.mobyproject.buildkit.worker.network": "host",
+2025-12-18T06:41:52.4917286Z         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+2025-12-18T06:41:52.4918077Z         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+2025-12-18T06:41:52.4918840Z         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+2025-12-18T06:41:52.4919413Z       },
+2025-12-18T06:41:52.4919690Z       "gcPolicy": [
+2025-12-18T06:41:52.4920009Z         {
+2025-12-18T06:41:52.4920290Z           "all": false,
+2025-12-18T06:41:52.4920628Z           "filter": [
+2025-12-18T06:41:52.4920962Z             "type==source.local",
+2025-12-18T06:41:52.4921345Z             "type==exec.cachemount",
+2025-12-18T06:41:52.4921807Z             "type==source.git.checkout"
+2025-12-18T06:41:52.4922248Z           ],
+2025-12-18T06:41:52.4922588Z           "keepDuration": "48h0m0s"
+2025-12-18T06:41:52.4922993Z         },
+2025-12-18T06:41:52.4923298Z         {
+2025-12-18T06:41:52.4923768Z           "all": false,
+2025-12-18T06:41:52.4924128Z           "keepDuration": "1440h0m0s"
+2025-12-18T06:41:52.4924536Z         },
+2025-12-18T06:41:52.4924822Z         {
+2025-12-18T06:41:52.4925118Z           "all": false
+2025-12-18T06:41:52.4925446Z         },
+2025-12-18T06:41:52.4925735Z         {
+2025-12-18T06:41:52.4926032Z           "all": true
+2025-12-18T06:41:52.4926364Z         }
+2025-12-18T06:41:52.4926642Z       ]
+2025-12-18T06:41:52.4926926Z     }
+2025-12-18T06:41:52.4927198Z   ],
+2025-12-18T06:41:52.4927601Z   "name": "builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e",
+2025-12-18T06:41:52.4928140Z   "driver": "docker-container",
+2025-12-18T06:41:52.4928591Z   "lastActivity": "2025-12-18T06:41:49.000Z"
+2025-12-18T06:41:52.4929024Z }
+2025-12-18T06:41:52.4929525Z ##[endgroup]
+2025-12-18T06:41:52.4930100Z ##[group]BuildKit version
+2025-12-18T06:41:52.7527125Z builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e0: moby/buildkit:buildx-stable-1 => buildkitd github.com/moby/buildkit v0.26.2 be1f38efe73c6a93cc429a0488ad6e1db663398c
+2025-12-18T06:41:52.7527991Z ##[endgroup]
+2025-12-18T06:41:52.7641833Z ##[group]Run docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d
+2025-12-18T06:41:52.7642198Z with:
+2025-12-18T06:41:52.7642366Z   registry: ghcr.io
+2025-12-18T06:41:52.7642554Z   username: 73junito
+2025-12-18T06:41:52.7643300Z   password: ***
+2025-12-18T06:41:52.7644049Z   ecr: auto
+2025-12-18T06:41:52.7644219Z   logout: true
+2025-12-18T06:41:52.7644387Z env:
+2025-12-18T06:41:52.7644536Z   REGISTRY: ghcr.io
+2025-12-18T06:41:52.7644749Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:52.7644973Z ##[endgroup]
+2025-12-18T06:41:52.8602239Z Logging into ghcr.io...
+2025-12-18T06:41:53.0081702Z Login Succeeded!
+2025-12-18T06:41:53.0166094Z ##[group]Run docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934
+2025-12-18T06:41:53.0166476Z with:
+2025-12-18T06:41:53.0166669Z   images: ghcr.io/73junito/autolearnpro
+2025-12-18T06:41:53.0166920Z   context: workflow
+2025-12-18T06:41:53.0167252Z   github-token: ***
+2025-12-18T06:41:53.0167435Z env:
+2025-12-18T06:41:53.0167597Z   REGISTRY: ghcr.io
+2025-12-18T06:41:53.0167797Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:53.0168020Z ##[endgroup]
+2025-12-18T06:41:53.3922427Z ##[group]Context info
+2025-12-18T06:41:53.3922900Z eventName: schedule
+2025-12-18T06:41:53.3923322Z sha: 9e29e04bb1425c74ebf7b03858d67e394b3505ca
+2025-12-18T06:41:53.3923893Z ref: refs/heads/main
+2025-12-18T06:41:53.3924096Z workflow: Docker
+2025-12-18T06:41:53.3924265Z action: meta
+2025-12-18T06:41:53.3924445Z actor: 73junito
+2025-12-18T06:41:53.3924619Z runNumber: 119
+2025-12-18T06:41:53.3927585Z runId: 20328436046
+2025-12-18T06:41:53.3928154Z ##[endgroup]
+2025-12-18T06:41:53.3932528Z ##[group]Processing images input
+2025-12-18T06:41:53.3933017Z name=ghcr.io/73junito/autolearnpro,enable=true
+2025-12-18T06:41:53.3933833Z ##[endgroup]
+2025-12-18T06:41:53.3946373Z ##[group]Processing tags input
+2025-12-18T06:41:53.3946870Z type=schedule,pattern=nightly,enable=true,priority=1000
+2025-12-18T06:41:53.3947806Z type=ref,event=branch,enable=true,priority=600
+2025-12-18T06:41:53.3948286Z type=ref,event=tag,enable=true,priority=600
+2025-12-18T06:41:53.3948792Z type=ref,event=pr,prefix=pr-,enable=true,priority=600
+2025-12-18T06:41:53.3949482Z ##[endgroup]
+2025-12-18T06:41:53.3950305Z ##[group]Processing flavor input
+2025-12-18T06:41:53.3951078Z latest=auto
+2025-12-18T06:41:53.3951356Z prefix=
+2025-12-18T06:41:53.3951623Z prefixLatest=false
+2025-12-18T06:41:53.3951904Z suffix=
+2025-12-18T06:41:53.3952157Z suffixLatest=false
+2025-12-18T06:41:53.3952664Z ##[endgroup]
+2025-12-18T06:41:53.3993875Z ##[group]Docker image version
+2025-12-18T06:41:53.3994322Z nightly
+2025-12-18T06:41:53.3994876Z ##[endgroup]
+2025-12-18T06:41:53.4000074Z ##[group]Docker tags
+2025-12-18T06:41:53.4000524Z ghcr.io/73junito/autolearnpro:nightly
+2025-12-18T06:41:53.4001019Z ghcr.io/73junito/autolearnpro:main
+2025-12-18T06:41:53.4001674Z ##[endgroup]
+2025-12-18T06:41:53.4080965Z ##[group]Docker labels
+2025-12-18T06:41:53.4081588Z org.opencontainers.image.created=2025-12-18T06:41:53.395Z
+2025-12-18T06:41:53.4082358Z org.opencontainers.image.description=
+2025-12-18T06:41:53.4083053Z org.opencontainers.image.licenses=MIT
+2025-12-18T06:41:53.4084253Z org.opencontainers.image.revision=9e29e04bb1425c74ebf7b03858d67e394b3505ca
+2025-12-18T06:41:53.4085537Z org.opencontainers.image.source=https://github.com/73junito/autolearnpro
+2025-12-18T06:41:53.4086381Z org.opencontainers.image.title=autolearnpro
+2025-12-18T06:41:53.4087152Z org.opencontainers.image.url=https://github.com/73junito/autolearnpro
+2025-12-18T06:41:53.4088164Z org.opencontainers.image.version=nightly
+2025-12-18T06:41:53.4088994Z ##[endgroup]
+2025-12-18T06:41:53.4089659Z ##[group]JSON output
+2025-12-18T06:41:53.4090103Z {
+2025-12-18T06:41:53.4090471Z   "tags": [
+2025-12-18T06:41:53.4090772Z     "ghcr.io/73junito/autolearnpro:nightly",
+2025-12-18T06:41:53.4091197Z     "ghcr.io/73junito/autolearnpro:main"
+2025-12-18T06:41:53.4091555Z   ],
+2025-12-18T06:41:53.4091787Z   "labels": {
+2025-12-18T06:41:53.4092187Z     "org.opencontainers.image.created": "2025-12-18T06:41:53.395Z",
+2025-12-18T06:41:53.4093079Z     "org.opencontainers.image.description": "",
+2025-12-18T06:41:53.4093748Z     "org.opencontainers.image.licenses": "MIT",
+2025-12-18T06:41:53.4094424Z     "org.opencontainers.image.revision": "9e29e04bb1425c74ebf7b03858d67e394b3505ca",
+2025-12-18T06:41:53.4095274Z     "org.opencontainers.image.source": "https://github.com/73junito/autolearnpro",
+2025-12-18T06:41:53.4095730Z     "org.opencontainers.image.title": "autolearnpro",
+2025-12-18T06:41:53.4096286Z     "org.opencontainers.image.url": "https://github.com/73junito/autolearnpro",
+2025-12-18T06:41:53.4097153Z     "org.opencontainers.image.version": "nightly"
+2025-12-18T06:41:53.4097455Z   }
+2025-12-18T06:41:53.4097625Z }
+2025-12-18T06:41:53.4097996Z ##[endgroup]
+2025-12-18T06:41:53.4098381Z ##[group]Bake file definition
+2025-12-18T06:41:53.4098607Z {
+2025-12-18T06:41:53.4098764Z   "target": {
+2025-12-18T06:41:53.4098963Z     "docker-metadata-action": {
+2025-12-18T06:41:53.4099190Z       "tags": [
+2025-12-18T06:41:53.4099404Z         "ghcr.io/73junito/autolearnpro:nightly",
+2025-12-18T06:41:53.4099696Z         "ghcr.io/73junito/autolearnpro:main"
+2025-12-18T06:41:53.4099956Z       ],
+2025-12-18T06:41:53.4100126Z       "labels": {
+2025-12-18T06:41:53.4100413Z         "org.opencontainers.image.created": "2025-12-18T06:41:53.395Z",
+2025-12-18T06:41:53.4100809Z         "org.opencontainers.image.description": "",
+2025-12-18T06:41:53.4101141Z         "org.opencontainers.image.licenses": "MIT",
+2025-12-18T06:41:53.4101589Z         "org.opencontainers.image.revision": "9e29e04bb1425c74ebf7b03858d67e394b3505ca",
+2025-12-18T06:41:53.4102161Z         "org.opencontainers.image.source": "https://github.com/73junito/autolearnpro",
+2025-12-18T06:41:53.4102645Z         "org.opencontainers.image.title": "autolearnpro",
+2025-12-18T06:41:53.4103104Z         "org.opencontainers.image.url": "https://github.com/73junito/autolearnpro",
+2025-12-18T06:41:53.4103781Z         "org.opencontainers.image.version": "nightly"
+2025-12-18T06:41:53.4104050Z       },
+2025-12-18T06:41:53.4104205Z       "args": {
+2025-12-18T06:41:53.4104446Z         "DOCKER_META_IMAGES": "ghcr.io/73junito/autolearnpro",
+2025-12-18T06:41:53.4104746Z         "DOCKER_META_VERSION": "nightly"
+2025-12-18T06:41:53.4104983Z       }
+2025-12-18T06:41:53.4105129Z     }
+2025-12-18T06:41:53.4105275Z   }
+2025-12-18T06:41:53.4105409Z }
+2025-12-18T06:41:53.4105708Z ##[endgroup]
+2025-12-18T06:41:53.4244959Z ##[group]Run docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
+2025-12-18T06:41:53.4245343Z with:
+2025-12-18T06:41:53.4245504Z   context: .
+2025-12-18T06:41:53.4245672Z   push: true
+2025-12-18T06:41:53.4245975Z   tags: ghcr.io/73junito/autolearnpro:nightly
+ghcr.io/73junito/autolearnpro:main
+2025-12-18T06:41:53.4247737Z   labels: org.opencontainers.image.created=2025-12-18T06:41:53.395Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=MIT
+org.opencontainers.image.revision=9e29e04bb1425c74ebf7b03858d67e394b3505ca
+org.opencontainers.image.source=https://github.com/73junito/autolearnpro
+org.opencontainers.image.title=autolearnpro
+org.opencontainers.image.url=https://github.com/73junito/autolearnpro
+org.opencontainers.image.version=nightly
+2025-12-18T06:41:53.4249399Z   cache-from: type=gha
+2025-12-18T06:41:53.4249615Z   cache-to: type=gha,mode=max
+2025-12-18T06:41:53.4249820Z   load: false
+2025-12-18T06:41:53.4249992Z   no-cache: false
+2025-12-18T06:41:53.4250197Z   pull: false
+2025-12-18T06:41:53.4250500Z   github-token: ***
+2025-12-18T06:41:53.4250678Z env:
+2025-12-18T06:41:53.4250838Z   REGISTRY: ghcr.io
+2025-12-18T06:41:53.4251025Z   IMAGE_NAME: 73junito/autolearnpro
+2025-12-18T06:41:53.4251277Z   DOCKER_METADATA_OUTPUT_VERSION: nightly
+2025-12-18T06:41:53.4251724Z   DOCKER_METADATA_OUTPUT_TAGS: ghcr.io/73junito/autolearnpro:nightly
+ghcr.io/73junito/autolearnpro:main
+2025-12-18T06:41:53.4253791Z   DOCKER_METADATA_OUTPUT_LABELS: org.opencontainers.image.created=2025-12-18T06:41:53.395Z
+org.opencontainers.image.description=
+org.opencontainers.image.licenses=MIT
+org.opencontainers.image.revision=9e29e04bb1425c74ebf7b03858d67e394b3505ca
+org.opencontainers.image.source=https://github.com/73junito/autolearnpro
+org.opencontainers.image.title=autolearnpro
+org.opencontainers.image.url=https://github.com/73junito/autolearnpro
+org.opencontainers.image.version=nightly
+2025-12-18T06:41:53.4257435Z   DOCKER_METADATA_OUTPUT_JSON: {"tags":["ghcr.io/73junito/autolearnpro:nightly","ghcr.io/73junito/autolearnpro:main"],"labels":{"org.opencontainers.image.created":"2025-12-18T06:41:53.395Z","org.opencontainers.image.description":"","org.opencontainers.image.licenses":"MIT","org.opencontainers.image.revision":"9e29e04bb1425c74ebf7b03858d67e394b3505ca","org.opencontainers.image.source":"https://github.com/73junito/autolearnpro","org.opencontainers.image.title":"autolearnpro","org.opencontainers.image.url":"https://github.com/73junito/autolearnpro","org.opencontainers.image.version":"nightly"}}
+2025-12-18T06:41:53.4259664Z   DOCKER_METADATA_OUTPUT_BAKE_FILE: /tmp/docker-actions-toolkit-0wB3f6/docker-metadata-action-bake.json
+2025-12-18T06:41:53.4260107Z ##[endgroup]
+2025-12-18T06:41:53.5691554Z ##[group]GitHub Actions runtime token ACs
+2025-12-18T06:41:53.5724612Z refs/heads/main: read/write
+2025-12-18T06:41:53.5725326Z ##[endgroup]
+2025-12-18T06:41:53.5725900Z ##[group]Docker info
+2025-12-18T06:41:53.5779553Z [command]/usr/bin/docker version
+2025-12-18T06:41:53.5980780Z Client: Docker Engine - Community
+2025-12-18T06:41:53.5981642Z  Version:           28.0.4
+2025-12-18T06:41:53.5982439Z  API version:       1.48
+2025-12-18T06:41:53.5982977Z  Go version:        go1.23.7
+2025-12-18T06:41:53.5984785Z  Git commit:        b8034c0
+2025-12-18T06:41:53.5985184Z  Built:             Tue Mar 25 15:07:16 2025
+2025-12-18T06:41:53.5985614Z  OS/Arch:           linux/amd64
+2025-12-18T06:41:53.5985974Z  Context:           default
+2025-12-18T06:41:53.5986211Z 
+2025-12-18T06:41:53.5986372Z Server: Docker Engine - Community
+2025-12-18T06:41:53.5986876Z  Engine:
+2025-12-18T06:41:53.5987146Z   Version:          28.0.4
+2025-12-18T06:41:53.5987529Z   API version:      1.48 (minimum version 1.24)
+2025-12-18T06:41:53.5987971Z   Go version:       go1.23.7
+2025-12-18T06:41:53.5988314Z   Git commit:       6430e49
+2025-12-18T06:41:53.5988697Z   Built:            Tue Mar 25 15:07:16 2025
+2025-12-18T06:41:53.5989095Z   OS/Arch:          linux/amd64
+2025-12-18T06:41:53.5989449Z   Experimental:     false
+2025-12-18T06:41:53.5990201Z  containerd:
+2025-12-18T06:41:53.5990504Z   Version:          v2.2.0
+2025-12-18T06:41:53.5990945Z   GitCommit:        1c4457e00facac03ce1d75f7b6777a7a851e5c41
+2025-12-18T06:41:53.5991426Z  runc:
+2025-12-18T06:41:53.5991707Z   Version:          1.3.4
+2025-12-18T06:41:53.5992061Z   GitCommit:        v1.3.4-0-gd6d73eb8
+2025-12-18T06:41:53.5994145Z  docker-init:
+2025-12-18T06:41:53.5994442Z   Version:          0.19.0
+2025-12-18T06:41:53.5994805Z   GitCommit:        de40ad0
+2025-12-18T06:41:53.6032384Z [command]/usr/bin/docker info
+2025-12-18T06:41:53.6528996Z Client: Docker Engine - Community
+2025-12-18T06:41:53.6534372Z  Version:    28.0.4
+2025-12-18T06:41:53.6534858Z  Context:    default
+2025-12-18T06:41:53.6535187Z  Debug Mode: false
+2025-12-18T06:41:53.6535494Z  Plugins:
+2025-12-18T06:41:53.6535800Z   buildx: Docker Buildx (Docker Inc.)
+2025-12-18T06:41:53.6536230Z     Version:  v0.30.1
+2025-12-18T06:41:53.6536633Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2025-12-18T06:41:53.6537138Z   compose: Docker Compose (Docker Inc.)
+2025-12-18T06:41:53.6537544Z     Version:  v2.38.2
+2025-12-18T06:41:53.6537930Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2025-12-18T06:41:53.6538284Z 
+2025-12-18T06:41:53.6538387Z Server:
+2025-12-18T06:41:53.6538637Z  Containers: 1
+2025-12-18T06:41:53.6538913Z   Running: 1
+2025-12-18T06:41:53.6539079Z   Paused: 0
+2025-12-18T06:41:53.6539240Z   Stopped: 0
+2025-12-18T06:41:53.6539395Z  Images: 1
+2025-12-18T06:41:53.6539559Z  Server Version: 28.0.4
+2025-12-18T06:41:53.6539774Z  Storage Driver: overlay2
+2025-12-18T06:41:53.6539984Z   Backing Filesystem: extfs
+2025-12-18T06:41:53.6540200Z   Supports d_type: true
+2025-12-18T06:41:53.6540392Z   Using metacopy: false
+2025-12-18T06:41:53.6540595Z   Native Overlay Diff: false
+2025-12-18T06:41:53.6540796Z   userxattr: false
+2025-12-18T06:41:53.6541269Z  Logging Driver: json-file
+2025-12-18T06:41:53.6541468Z  Cgroup Driver: systemd
+2025-12-18T06:41:53.6541657Z  Cgroup Version: 2
+2025-12-18T06:41:53.6541827Z  Plugins:
+2025-12-18T06:41:53.6542002Z   Volume: local
+2025-12-18T06:41:53.6542215Z   Network: bridge host ipvlan macvlan null overlay
+2025-12-18T06:41:53.6542585Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2025-12-18T06:41:53.6542916Z  Swarm: inactive
+2025-12-18T06:41:53.6543110Z  Runtimes: io.containerd.runc.v2 runc
+2025-12-18T06:41:53.6543354Z  Default Runtime: runc
+2025-12-18T06:41:53.6544114Z  Init Binary: docker-init
+2025-12-18T06:41:53.6544601Z  containerd version: 1c4457e00facac03ce1d75f7b6777a7a851e5c41
+2025-12-18T06:41:53.6545152Z  runc version: v1.3.4-0-gd6d73eb8
+2025-12-18T06:41:53.6545540Z  init version: de40ad0
+2025-12-18T06:41:53.6545868Z  Security Options:
+2025-12-18T06:41:53.6546182Z   apparmor
+2025-12-18T06:41:53.6546471Z   seccomp
+2025-12-18T06:41:53.6546754Z    Profile: builtin
+2025-12-18T06:41:53.6547083Z   cgroupns
+2025-12-18T06:41:53.6547371Z  Kernel Version: 6.11.0-1018-azure
+2025-12-18T06:41:53.6547782Z  Operating System: Ubuntu 24.04.3 LTS
+2025-12-18T06:41:53.6548158Z  OSType: linux
+2025-12-18T06:41:53.6548451Z  Architecture: x86_64
+2025-12-18T06:41:53.6548750Z  CPUs: 4
+2025-12-18T06:41:53.6549050Z  Total Memory: 15.62GiB
+2025-12-18T06:41:53.6549369Z  Name: runnervmh13bl
+2025-12-18T06:41:53.6549713Z  ID: 0a695d56-123a-42a8-a772-617b83954cb8
+2025-12-18T06:41:53.6550104Z  Docker Root Dir: /var/lib/docker
+2025-12-18T06:41:53.6550461Z  Debug Mode: false
+2025-12-18T06:41:53.6550749Z  Username: githubactions
+2025-12-18T06:41:53.6551122Z  Experimental: false
+2025-12-18T06:41:53.6551456Z  Insecure Registries:
+2025-12-18T06:41:53.6551790Z   ::1/128
+2025-12-18T06:41:53.6552059Z   127.0.0.0/8
+2025-12-18T06:41:53.6552362Z  Live Restore Enabled: false
+2025-12-18T06:41:53.6552614Z 
+2025-12-18T06:41:53.6553118Z ##[endgroup]
+2025-12-18T06:41:53.6553868Z ##[group]Proxy configuration
+2025-12-18T06:41:53.6556102Z No proxy configuration found
+2025-12-18T06:41:53.6556926Z ##[endgroup]
+2025-12-18T06:41:53.7129457Z ##[group]Buildx version
+2025-12-18T06:41:53.7160645Z [command]/usr/bin/docker buildx version
+2025-12-18T06:41:53.7685834Z github.com/docker/buildx v0.30.1 9e66234aa13328a5e75b75aa5574e1ca6d6d9c01
+2025-12-18T06:41:53.7717891Z ##[endgroup]
+2025-12-18T06:41:54.1428239Z [command]/usr/bin/docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --iidfile /tmp/docker-actions-toolkit-7EVX57/iidfile --label org.opencontainers.image.created=2025-12-18T06:41:53.395Z --label org.opencontainers.image.description= --label org.opencontainers.image.licenses=MIT --label org.opencontainers.image.revision=9e29e04bb1425c74ebf7b03858d67e394b3505ca --label org.opencontainers.image.source=https://github.com/73junito/autolearnpro --label org.opencontainers.image.title=autolearnpro --label org.opencontainers.image.url=https://github.com/73junito/autolearnpro --label org.opencontainers.image.version=nightly --tag ghcr.io/73junito/autolearnpro:nightly --tag ghcr.io/73junito/autolearnpro:main --metadata-file /tmp/docker-actions-toolkit-7EVX57/metadata-file --push .
+2025-12-18T06:41:54.2943080Z #0 building with "builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e" instance using docker-container driver
+2025-12-18T06:41:54.2944245Z 
+2025-12-18T06:41:54.2944599Z #1 [internal] load build definition from Dockerfile
+2025-12-18T06:41:54.2945203Z #1 transferring dockerfile: 2B done
+2025-12-18T06:41:54.2945790Z #1 DONE 0.0s
+2025-12-18T06:41:54.2956192Z ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+2025-12-18T06:41:54.3024889Z ##[error]buildx failed with: ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+2025-12-18T06:41:54.3154211Z Post job cleanup.
+2025-12-18T06:41:54.4475693Z ##[group]Removing temp folder /tmp/docker-actions-toolkit-7EVX57
+2025-12-18T06:41:54.4485016Z ##[endgroup]
+2025-12-18T06:41:54.4597567Z Post job cleanup.
+2025-12-18T06:41:54.5598252Z [command]/usr/bin/docker logout ghcr.io
+2025-12-18T06:41:54.5721588Z Removing login credentials for ghcr.io
+2025-12-18T06:41:54.5830645Z Post job cleanup.
+2025-12-18T06:41:54.7277348Z ##[group]Removing builder
+2025-12-18T06:41:54.8214261Z [command]/usr/bin/docker buildx rm builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e
+2025-12-18T06:41:54.9571826Z builder-751b33bc-f7d1-4c7b-9b19-3b2805db848e removed
+2025-12-18T06:41:54.9607012Z ##[endgroup]
+2025-12-18T06:41:54.9607453Z ##[group]Cleaning up certificates
+2025-12-18T06:41:54.9616042Z ##[endgroup]
+2025-12-18T06:41:54.9719561Z Post job cleanup.
+2025-12-18T06:41:55.0667919Z [command]/usr/bin/git version
+2025-12-18T06:41:55.0703846Z git version 2.52.0
+2025-12-18T06:41:55.0747919Z Temporarily overriding HOME='/home/runner/work/_temp/be64ccd1-df9e-4c4a-a454-eed5f4471971' before making global git config changes
+2025-12-18T06:41:55.0748834Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-18T06:41:55.0753608Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+2025-12-18T06:41:55.0788531Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-18T06:41:55.0819990Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-18T06:41:55.1043147Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-18T06:41:55.1063984Z http.https://github.com/.extraheader
+2025-12-18T06:41:55.1076173Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-12-18T06:41:55.1105982Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-18T06:41:55.1322921Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-18T06:41:55.1352981Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-18T06:41:55.1674453Z Cleaning up orphan processes

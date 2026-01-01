@@ -1,0 +1,913 @@
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.8897505Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9018861Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.915239Z","response":"","thinking":"Okay","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9285315Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9412536Z","response":"","thinking":" let","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.954427Z","response":"","thinking":"'s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9670069Z","response":"","thinking":" tackle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9808668Z","response":"","thinking":" this","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:51.9931405Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0069588Z","response":"","thinking":" draft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0206215Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0336017Z","response":"","thinking":" The","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0467025Z","response":"","thinking":" user","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0598271Z","response":"","thinking":" wants","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.073088Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0863607Z","response":"","thinking":" structured","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.0990292Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1119144Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1249425Z","response":"","thinking":" \"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1379157Z","response":"","thinking":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1515995Z","response":"","thinking":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1647695Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1778611Z","response":"","thinking":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.1916828Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.204875Z","response":"","thinking":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2171957Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2304713Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2435574Z","response":"","thinking":"0","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2563378Z","response":"","thinking":"5","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2686487Z","response":"","thinking":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.282511Z","response":"","thinking":"lecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.2956034Z","response":"","thinking":".\"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3093611Z","response":"","thinking":" First","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3226486Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3355469Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3487112Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3613742Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3744457Z","response":"","thinking":" figure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.3875395Z","response":"","thinking":" out","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4004756Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4137719Z","response":"","thinking":" main","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4274005Z","response":"","thinking":" topics","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4401057Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4528533Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4666435Z","response":"","thinking":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4801241Z","response":"","thinking":"5","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.4925886Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5070258Z","response":"","thinking":" Since","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5186844Z","response":"","thinking":" it","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5326574Z","response":"","thinking":"'s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5458411Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5596318Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5722702Z","response":"","thinking":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5849211Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.5977549Z","response":"","thinking":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6113718Z","response":"","thinking":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6246331Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6377132Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6506477Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6638669Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6779285Z","response":"","thinking":" would","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.6906584Z","response":"","thinking":" likely","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.703451Z","response":"","thinking":" include","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7170411Z","response":"","thinking":" things","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7307044Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7447039Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7575896Z","response":"","thinking":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7708632Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7843835Z","response":"","thinking":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.7971153Z","response":"","thinking":" planning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8097958Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8232973Z","response":"","thinking":" resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8363195Z","response":"","thinking":" allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8493523Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8628962Z","response":"","thinking":" maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8758289Z","response":"","thinking":" some","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.8888071Z","response":"","thinking":" new","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9018827Z","response":"","thinking":" technologies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9145576Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9279545Z","response":"","thinking":" strategies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9406032Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9539431Z","response":"","thinking":"Learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9666648Z","response":"","thinking":" objectives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9800103Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:52.9922126Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0055114Z","response":"","thinking":" clear","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0188305Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0322019Z","response":"","thinking":" They","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0453854Z","response":"","thinking":" might","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0585055Z","response":"","thinking":" include","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0709751Z","response":"","thinking":" understanding","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.085402Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.0980488Z","response":"","thinking":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1116669Z","response":"","thinking":" principles","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1247641Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1370072Z","response":"","thinking":" applying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1507521Z","response":"","thinking":" operational","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1638971Z","response":"","thinking":" strategies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1770237Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.1898728Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2029149Z","response":"","thinking":" using","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2160064Z","response":"","thinking":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2297318Z","response":"","thinking":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2427495Z","response":"","thinking":" planning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2552687Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2690853Z","response":"","thinking":" Key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2810279Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.2952592Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3082617Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3210751Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3346576Z","response":"","thinking":" concise","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3471645Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3596066Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3730735Z","response":"","thinking":" I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3862617Z","response":"","thinking":"'ll","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.3993828Z","response":"","thinking":" list","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4119269Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4256294Z","response":"","thinking":" main","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4390426Z","response":"","thinking":" topics","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4513311Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4650065Z","response":"","thinking":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.478123Z","response":"","thinking":" schedules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.4912262Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5051138Z","response":"","thinking":" resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5177739Z","response":"","thinking":" allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5324307Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5467449Z","response":"","thinking":" technology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5609215Z","response":"","thinking":" integration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5743426Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.5889227Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6028512Z","response":"","thinking":" risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6164038Z","response":"","thinking":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6303315Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6442675Z","response":"","thinking":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.657275Z","response":"","thinking":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6705028Z","response":"","thinking":"-step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.6834315Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.696402Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7086316Z","response":"","thinking":" break","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7223036Z","response":"","thinking":" down","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7355024Z","response":"","thinking":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7479903Z","response":"","thinking":" concept","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7615531Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7762317Z","response":"","thinking":" For","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.7896948Z","response":"","thinking":" example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8039901Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8180945Z","response":"","thinking":" explaining","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8313794Z","response":"","thinking":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8448578Z","response":"","thinking":" schedules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8578016Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8710802Z","response":"","thinking":" then","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8841255Z","response":"","thinking":" moving","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.8966263Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9099868Z","response":"","thinking":" resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.922636Z","response":"","thinking":" allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9362315Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9494903Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9626602Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9761144Z","response":"","thinking":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:53.9888812Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0024613Z","response":"","thinking":" Each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0156002Z","response":"","thinking":" step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0287103Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0418824Z","response":"","thinking":" be","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0548925Z","response":"","thinking":" factual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0685595Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.0813553Z","response":"","thinking":" straightforward","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.094488Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1079018Z","response":"","thinking":" Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1207437Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1334542Z","response":"","thinking":" should","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1464954Z","response":"","thinking":" test","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1597704Z","response":"","thinking":" understanding","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.172268Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.1856448Z","response":"","thinking":" maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.199053Z","response":"","thinking":" multiple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.21181Z","response":"","thinking":" choice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.2254439Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.2385409Z","response":"","thinking":" application","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.2510753Z","response":"","thinking":"-based","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.264383Z","response":"","thinking":".\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.277418Z","response":"","thinking":"I","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.2904028Z","response":"","thinking":" need","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3031685Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3161237Z","response":"","thinking":" make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3302335Z","response":"","thinking":" sure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.342665Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3556262Z","response":"","thinking":" explanations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3690316Z","response":"","thinking":" are","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3823086Z","response":"","thinking":" concise","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.3950126Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.40811Z","response":"","thinking":" so","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.4217546Z","response":"","thinking":" no","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.4335905Z","response":"","thinking":" fl","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.4482384Z","response":"","thinking":"uff","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.462496Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.4759089Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.4896351Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5033964Z","response":"","thinking":" check","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5171616Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5305698Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5437322Z","response":"","thinking":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5573389Z","response":"","thinking":" structure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5701617Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5848328Z","response":"","thinking":" logical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.5982242Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6112582Z","response":"","thinking":" starting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6248209Z","response":"","thinking":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6384347Z","response":"","thinking":" objectives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6516492Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6641964Z","response":"","thinking":" then","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.6788463Z","response":"","thinking":" key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.692134Z","response":"","thinking":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7057799Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7193197Z","response":"","thinking":" steps","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7324182Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7463499Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.759936Z","response":"","thinking":" practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7731382Z","response":"","thinking":" questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.7868115Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8004734Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8139383Z","response":"","thinking":" include","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8271316Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8402047Z","response":"","thinking":" summary","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8537722Z","response":"","thinking":" at","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8677513Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8817438Z","response":"","thinking":" end","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.8964025Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9114438Z","response":"","thinking":" Let","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9253926Z","response":"","thinking":" me","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9388345Z","response":"","thinking":" make","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9534942Z","response":"","thinking":" sure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.967592Z","response":"","thinking":" all","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9815732Z","response":"","thinking":" parts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:54.9957113Z","response":"","thinking":" are","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0106055Z","response":"","thinking":" covered","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0238252Z","response":"","thinking":" without","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0375915Z","response":"","thinking":" being","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.050908Z","response":"","thinking":" too","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0636931Z","response":"","thinking":" verbose","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0774138Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.0911386Z","response":"","thinking":" Also","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1047555Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1177766Z","response":"","thinking":" ensure","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1311099Z","response":"","thinking":" that","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1444457Z","response":"","thinking":" the","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1581415Z","response":"","thinking":" terminology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1723331Z","response":"","thinking":" is","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1857544Z","response":"","thinking":" correct","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.1992054Z","response":"","thinking":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.212143Z","response":"","thinking":" relevant","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2263955Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2399005Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2531185Z","response":"","thinking":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2661913Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2799574Z","response":"","thinking":" Maybe","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.2925712Z","response":"","thinking":" include","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3061714Z","response":"","thinking":" examples","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3198217Z","response":"","thinking":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3331375Z","response":"","thinking":" predictive","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3471477Z","response":"","thinking":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3610055Z","response":"","thinking":" or","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.374211Z","response":"","thinking":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.3872666Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4006079Z","response":"","thinking":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4142543Z","response":"","thinking":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4274704Z","response":"","thinking":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4412931Z","response":"","thinking":" Alright","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4545012Z","response":"","thinking":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4683615Z","response":"","thinking":" time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4816395Z","response":"","thinking":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.4956211Z","response":"","thinking":" put","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5096033Z","response":"","thinking":" it","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5227634Z","response":"","thinking":" all","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5364373Z","response":"","thinking":" together","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5501495Z","response":"","thinking":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5635717Z","response":"","thinking":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5770474Z","response":"","thinking":" structured","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.5907188Z","response":"","thinking":" format","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6038389Z","response":"","thinking":".\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6176096Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6309258Z","response":"","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6439345Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6576354Z","response":"Lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6730819Z","response":" Draft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6863017Z","response":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.6996726Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7127976Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7258965Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7397107Z","response":" Fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7530053Z","response":" Management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.76659Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7808968Z","response":" Operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.7952735Z","response":" Week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8089862Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8220688Z","response":"5","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.835484Z","response":" Lecture","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8486932Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8614236Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8757963Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.8888303Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.902433Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9157842Z","response":"Learning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9300186Z","response":" Object","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9436977Z","response":"ives","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9572988Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9718632Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9857687Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:55.9995661Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0129349Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0265939Z","response":"Under","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0406212Z","response":"stand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0538478Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0679823Z","response":" core","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0811119Z","response":" principles","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.0944261Z","response":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1079574Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1212824Z","response":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1349648Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1480432Z","response":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1606605Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.174912Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.1886001Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2017144Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2153613Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2282776Z","response":"Apply","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2424413Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2552344Z","response":" operational","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2686645Z","response":" strategies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2822401Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.2959792Z","response":" efficient","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3096546Z","response":" resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3228308Z","response":" allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3355201Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3491226Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3627757Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3765162Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.3899302Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4020953Z","response":"Ex","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.417113Z","response":"plain","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4302704Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4441448Z","response":" technologies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4575353Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4696733Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4839855Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.4977239Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.5110176Z","response":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.5246684Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.5384291Z","response":" AI","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.5515608Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.5640788Z","response":" enabling","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.579027Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.592817Z","response":" optimization","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.6065963Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.6197911Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.633358Z","response":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.64713Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.6602453Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.673963Z","response":"Evaluate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.6878766Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7011206Z","response":" risks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7141052Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7277445Z","response":" solutions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7408481Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7547736Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7683258Z","response":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7818238Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.7952411Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8089269Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8227267Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8364413Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8498277Z","response":"Key","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8632467Z","response":" Concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8762383Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.8905432Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9047623Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9182194Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9326439Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9470749Z","response":"F","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9606262Z","response":"leet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9743701Z","response":" Maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:56.9882108Z","response":" S","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0023324Z","response":"chedules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0155183Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.030391Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0446522Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.057999Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0703379Z","response":" Regular","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0844796Z","response":" inspections","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.0975647Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1115109Z","response":" vehicle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1245166Z","response":" checks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1378949Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1515858Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1650456Z","response":" preventive","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1777581Z","response":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.1926612Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2064243Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.21984Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2325494Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2462451Z","response":" Importance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2603408Z","response":" of","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2734258Z","response":" timing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.2867897Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3003822Z","response":" priorit","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3141034Z","response":"ization","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3268847Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3403974Z","response":" minimize","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3541438Z","response":" downtime","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3674768Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3809335Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.3946154Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4079317Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4209092Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4340451Z","response":"Resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4468193Z","response":" Allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4613058Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4749221Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.4885369Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5013627Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5159265Z","response":" Bal","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5291825Z","response":"ancing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5422952Z","response":" vehicle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5554084Z","response":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5701957Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.58358Z","response":" driver","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.5970269Z","response":" shifts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6102993Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.623978Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6376103Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6509662Z","response":"/e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6642142Z","response":"lect","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6779537Z","response":"rical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.6917043Z","response":" demands","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7053754Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7191393Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7322261Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7450704Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7593539Z","response":" Tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.7727166Z","response":" like","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.787541Z","response":" demand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8015822Z","response":" forecasting","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.815033Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8285266Z","response":" load","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8420364Z","response":" balancing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8547496Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8689615Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8821731Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.8956017Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9081899Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9224206Z","response":"Technology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9362797Z","response":" Integration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9504653Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.963753Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9768491Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:57.9911122Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0049906Z","response":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0192096Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0328842Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0470889Z","response":"-time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0609879Z","response":" vehicle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0755453Z","response":" monitoring","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.0896607Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1041874Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1182435Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1324992Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.146214Z","response":" GPS","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1605616Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1747922Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.1880192Z","response":" usage","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2023568Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2159325Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2291643Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2432343Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2578445Z","response":" AI","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2715105Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2849763Z","response":" predictive","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.2989139Z","response":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3125153Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3257817Z","response":" route","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3408271Z","response":" optimization","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3545331Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3680171Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3821527Z","response":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.3957152Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4097458Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4234685Z","response":"Risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.437099Z","response":" Management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4505269Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4646528Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4783117Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.4926652Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.5071266Z","response":" Ident","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.5208693Z","response":"ifying","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.5350378Z","response":" risks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.548959Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.5625412Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.5762945Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.589534Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6046228Z","response":" accidents","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6178649Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6315102Z","response":" theft","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.645846Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6601163Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6743593Z","response":" shortages","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.6881061Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7017963Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7150657Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7304979Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7450049Z","response":" Strategies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7585866Z","response":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7727978Z","response":" insurance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7864736Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.7998053Z","response":" route","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.8145203Z","response":" planning","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.828556Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.8431273Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.855974Z","response":" redundancy","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.8705425Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.8847796Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.8986505Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9130192Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.926872Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9408418Z","response":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9551156Z","response":"-by","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9688999Z","response":"-","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9830858Z","response":"Step","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:58.9970604Z","response":" Ex","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0109288Z","response":"plan","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0248955Z","response":"ations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0382396Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0522683Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0664268Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0803418Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.0940223Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.107129Z","response":"Maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.1216794Z","response":" S","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.1371085Z","response":"chedules","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.151087Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.1656982Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.180096Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.1938306Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2074983Z","response":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2209881Z","response":" predictive","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2356255Z","response":" analytics","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2492774Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2630216Z","response":" schedule","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2763132Z","response":" repairs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.2906351Z","response":" before","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3041882Z","response":" breakdown","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3174218Z","response":"s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3320265Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3455248Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.359425Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3733393Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.3870183Z","response":" Example","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.4006386Z","response":":","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.4143578Z","response":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.428208Z","response":" sensors","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.4420342Z","response":" alert","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.456259Z","response":" crews","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.471375Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.4855242Z","response":" oil","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5001416Z","response":" leaks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5144785Z","response":" before","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.529564Z","response":" they","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5443491Z","response":" become","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5587806Z","response":" critical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5726118Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.5870698Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6007194Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6152837Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6293387Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6431281Z","response":"Resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6567011Z","response":" Allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6702288Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6836896Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.6977849Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7121164Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7271264Z","response":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7408087Z","response":" historical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7545021Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7682949Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7829936Z","response":" forecast","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.7965733Z","response":" demand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8114074Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8252826Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8394072Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8535558Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8667667Z","response":" peak","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8805826Z","response":" hours","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.8940344Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9083303Z","response":" delivery","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9232235Z","response":" trucks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9369204Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9505059Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9639142Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9780954Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:02:59.9923112Z","response":" Adjust","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0062599Z","response":" routes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0206806Z","response":" dynamically","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0343751Z","response":" based","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0477654Z","response":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.061427Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0751775Z","response":"-time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.0891091Z","response":" traffic","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1032324Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1167669Z","response":" vehicle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.130872Z","response":" availability","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1447297Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1594365Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1739628Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.1890047Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.2032701Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.217529Z","response":"Technology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.2324741Z","response":" Integration","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.2466357Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.2614032Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.276105Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.2907022Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3053331Z","response":" Implement","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3205577Z","response":" GPS","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3341532Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3487963Z","response":" te","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3629602Z","response":"lem","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3780228Z","response":"atics","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.3913544Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4051946Z","response":" track","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4195969Z","response":" vehicle","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4337777Z","response":" locations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4474729Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4614125Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.475595Z","response":" efficiency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.4897538Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.5037963Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.5187481Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.5324784Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.5460284Z","response":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.559183Z","response":" AI","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.5734022Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.588161Z","response":" analyze","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6025278Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6167742Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6306436Z","response":" suggest","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6448116Z","response":" optimal","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6585157Z","response":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6715757Z","response":" intervals","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.6858792Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7001055Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7144324Z","response":"4","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7288786Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7426694Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7563293Z","response":"Risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7706927Z","response":" Management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.7848125Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.797999Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8125481Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8256705Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8398459Z","response":" Create","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8535961Z","response":" contingency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8674135Z","response":" plans","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8819234Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.8956546Z","response":" unexpected","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9099155Z","response":" events","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9230265Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.937127Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9506731Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9650002Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9788952Z","response":" road","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:00.9919921Z","response":" closures","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0062266Z","response":").","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0204199Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0343472Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0480399Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0616353Z","response":" Collabor","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0756463Z","response":"ate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.0902432Z","response":" with","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1044977Z","response":" insurance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1185837Z","response":" providers","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1333046Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1481956Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1621058Z","response":"-time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1766849Z","response":" risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.1909012Z","response":" assessment","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.203819Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2196662Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2338555Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2482703Z","response":"###","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2622385Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2766844Z","response":"Practice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.2919371Z","response":" Questions","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3067246Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3211502Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3355863Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3502941Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3644667Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3786929Z","response":"Multiple","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.3924484Z","response":" Choice","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4064573Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4196119Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4345902Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4481047Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4625206Z","response":" Which","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4769797Z","response":" technology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.4914651Z","response":" enables","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5066166Z","response":" predictive","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5211481Z","response":" maintenance","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5361497Z","response":"?","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5504323Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5653078Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5801925Z","response":" A","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.5944365Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6101731Z","response":" GPS","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6250175Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6407279Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6557188Z","response":" B","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6700606Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6849Z","response":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.6995406Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.7142513Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.728832Z","response":" C","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.7427667Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.757645Z","response":" Traditional","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.7725823Z","response":" paper","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.7881837Z","response":" logs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8032526Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8179125Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8326379Z","response":" D","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8469573Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8613517Z","response":" Manual","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8765281Z","response":" inspections","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.8909272Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9052562Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9197805Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9344621Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9481305Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9628101Z","response":" B","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.977485Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:01.9932021Z","response":" IoT","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0074729Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0217199Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0355251Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0490788Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0639368Z","response":"Application","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.0780806Z","response":" Question","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.092739Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1075827Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1218336Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1360429Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1509596Z","response":" Explain","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.165125Z","response":" how","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1793977Z","response":" AI","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.1941512Z","response":" can","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2078487Z","response":" optimize","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2228465Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2370922Z","response":" resource","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2522201Z","response":" allocation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2653461Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2798759Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.2940606Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3082763Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3239153Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3384432Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3538774Z","response":" AI","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3688406Z","response":" analyzes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3828561Z","response":" historical","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.3978721Z","response":" data","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4125876Z","response":" (","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4266183Z","response":"e","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4412526Z","response":".g","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4554721Z","response":".,","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4696704Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4839267Z","response":" consumption","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.4977229Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.5131995Z","response":" traffic","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.527822Z","response":" patterns","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.541887Z","response":")","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.5565996Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.5708144Z","response":" predict","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.5845576Z","response":" demand","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.5993947Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6136121Z","response":" adjust","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6277968Z","response":" routes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6427568Z","response":" dynamically","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6566761Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6707644Z","response":" reducing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6855577Z","response":" waste","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.6999886Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.7141974Z","response":" costs","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.7289039Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.743154Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.7573027Z","response":"3","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.7706518Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.785074Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.7992496Z","response":"Short","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.814012Z","response":" Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.8286231Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.8429085Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.8577652Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.8725387Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.8863596Z","response":" List","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9016212Z","response":" two","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.915743Z","response":" risks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9316121Z","response":" in","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9454143Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9596691Z","response":" operations","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9743686Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:02.9880294Z","response":" suggest","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0022553Z","response":" a","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0167233Z","response":" solution","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0304105Z","response":" for","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0446013Z","response":" each","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0592785Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0730244Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.0881271Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1017499Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1159469Z","response":"Answer","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1306369Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.145369Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1596232Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1737759Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.1885635Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2027171Z","response":"Risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2164019Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2306415Z","response":"1","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2452735Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2597935Z","response":" Fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2744156Z","response":" shortages","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.2883107Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.3024922Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.3166908Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.3309024Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.345188Z","response":"Solution","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.3593986Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.374Z","response":" Use","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.3877135Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4025896Z","response":"-time","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4176619Z","response":" fuel","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4324892Z","response":" tracking","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4477448Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4614613Z","response":" optimize","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4757675Z","response":" routes","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.4903406Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5047808Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5191565Z","response":"  ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5339291Z","response":" -","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5480889Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5622511Z","response":"Risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5767613Z","response":" ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.5904235Z","response":"2","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6047449Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6189318Z","response":" Driver","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6337149Z","response":" fatigue","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6478402Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6624527Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6765352Z","response":"    ","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.6912077Z","response":" **","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7054353Z","response":"Solution","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7201433Z","response":":**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7343492Z","response":" Implement","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7483288Z","response":" fatigue","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7630194Z","response":" monitoring","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7766149Z","response":" systems","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.7922162Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8064759Z","response":" enforce","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8219777Z","response":" rest","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8362171Z","response":" breaks","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.849815Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8644629Z","response":"  \n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8790121Z","response":"---\n\n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.8932424Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9078034Z","response":"Summary","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9216051Z","response":"**","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9367981Z","response":"  \n","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9511684Z","response":"This","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9658946Z","response":" week","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9792556Z","response":"’s","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:03.9944486Z","response":" lesson","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.0093833Z","response":" focuses","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.0235039Z","response":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.037687Z","response":" modern","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.0518777Z","response":" fleet","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.066293Z","response":" management","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.0805388Z","response":" tools","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.0952498Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.1090996Z","response":" strategies","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.123736Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.1379784Z","response":" emphasizing","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.1523565Z","response":" technology","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.166978Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.1811327Z","response":" efficiency","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.1952764Z","response":",","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.2096826Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.2235362Z","response":" risk","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.2384803Z","response":" mitigation","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.252657Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.2672453Z","response":" Students","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.2815169Z","response":" will","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.296715Z","response":" apply","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.310484Z","response":" concepts","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.3245824Z","response":" to","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.3394008Z","response":" real","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.3539394Z","response":"-world","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.368161Z","response":" scenarios","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.3823021Z","response":" and","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.3964479Z","response":" evaluate","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.411194Z","response":" their","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.4247784Z","response":" impact","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.439659Z","response":" on","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.4540305Z","response":" operational","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.4693818Z","response":" effectiveness","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.4841394Z","response":".","done":false}
+{"model":"qwen3:1.7b","created_at":"2025-12-27T08:03:04.4994511Z","response":"","done":true,"done_reason":"stop","context":[151644,872,198,2610,525,458,71245,14692,382,4021,264,32930,17755,9960,369,510,1,17,17,25099,6240,323,7525,2003,12,15,20,12,76761,1837,22283,510,12,20909,25398,198,12,5309,18940,198,12,14822,14319,29208,40841,198,12,26984,4755,271,19434,40841,63594,323,59901,13,608,26865,151645,198,151644,77091,198,151667,198,32313,11,1077,594,21403,419,17755,9960,13,576,1196,6801,264,32930,17755,369,330,17,17,25099,6240,323,7525,2003,12,15,20,12,76761,1189,5512,11,358,1184,311,7071,700,279,1887,13347,369,2003,220,20,13,8704,432,594,264,25099,6240,323,7525,2003,11,279,1376,18940,1035,4363,2924,2513,1075,25099,13404,11,7525,9115,11,5101,23757,11,7196,1045,501,14310,476,14830,382,47467,25398,1265,387,2797,13,2379,2578,2924,8660,25099,6240,16170,11,18950,24586,14830,11,323,1667,7375,369,9115,13,5309,18940,1184,311,387,63594,11,773,358,3278,1140,279,1887,13347,1075,13404,36769,11,5101,23757,11,5440,17590,11,323,5214,6240,382,8304,14319,29208,40841,1265,1438,1495,1817,7286,13,1752,3110,11,25021,13404,36769,11,1221,7218,311,5101,23757,11,323,773,389,13,8886,3019,1265,387,59901,323,30339,13,26984,4755,1265,1273,8660,11,7196,5248,5754,476,3766,5980,382,40,1184,311,1281,2704,279,40841,525,63594,11,773,902,1320,1362,13,7281,11,1779,429,279,17755,5944,374,19819,11,5916,448,25398,11,1221,1376,18940,11,7354,11,323,6588,4755,13,10696,2924,264,12126,518,279,835,13,6771,752,1281,2704,678,5479,525,9761,2041,1660,2238,13694,13,7281,11,5978,429,279,56626,374,4396,323,9760,311,25099,6240,13,10696,2924,10295,1075,59236,13404,476,49080,304,25099,7525,13,97593,11,882,311,2182,432,678,3786,304,264,32930,3561,624,151668,271,334,70404,28564,25,220,17,17,43455,9551,323,24883,10348,220,20,66972,334,18611,44364,14374,3070,47467,3002,1886,334,2303,16,13,3070,16250,2685,334,6200,16170,315,25099,6240,323,7525,13,2303,17,13,3070,28497,334,24586,14830,369,11050,5101,23757,13,2303,18,13,3070,840,20772,334,14310,320,68,1302,2572,49080,11,15235,8,27362,25099,25262,13,2303,19,13,3070,82345,334,15276,323,9904,304,25099,7525,13,18611,44364,14374,3070,1592,75772,334,2303,16,13,3070,37,18973,38206,328,49613,334,2303,256,481,28800,56974,11,7310,12341,11,323,70023,13404,13,2303,256,481,93000,315,18405,323,44677,2022,311,29337,74854,13,18611,17,13,3070,4783,72667,334,2303,256,481,19420,8974,7310,10431,11,5579,28635,11,323,10416,16546,767,12108,18154,13,2303,256,481,13852,1075,7479,78382,323,2795,43363,13,18611,18,13,3070,62407,40069,334,2303,256,481,49080,369,1931,7246,7310,16558,320,68,1302,2572,23344,11,10416,10431,568,2303,256,481,15235,369,59236,13404,323,6021,25262,13,18611,19,13,3070,85307,9551,334,2303,256,481,22507,7766,15276,320,68,1302,2572,32688,11,27383,11,10416,66176,568,2303,256,481,55519,25,8113,11,6021,9115,11,323,89373,13,18611,44364,14374,3070,8304,14319,12,8304,1374,10393,804,334,2303,16,13,3070,92735,328,49613,334,2303,256,481,5443,59236,27875,311,9700,30186,1573,29985,82,13,2303,256,481,13383,25,49080,25092,5115,42060,311,5590,36696,1573,807,3635,9023,13,18611,17,13,3070,4783,72667,334,2303,256,481,5443,13656,821,311,17595,7479,320,68,1302,2572,16162,4115,369,9691,26763,568,2303,256,481,27196,11291,42011,3118,389,1931,7246,9442,323,7310,18048,13,18611,18,13,3070,62407,40069,334,2303,256,481,31075,23344,323,1013,3433,28370,311,3754,7310,10468,323,10416,15024,13,2303,256,481,5443,15235,311,23643,821,323,4190,22823,13404,26992,13,18611,19,13,3070,85307,9551,334,2303,256,481,4230,82449,6649,369,16500,4357,320,68,1302,2572,5636,59900,568,2303,256,481,48581,349,448,8113,12565,369,1931,7246,5214,15449,13,18611,44364,14374,3070,88492,23382,334,2303,16,13,3070,32089,27107,334,2303,256,481,15920,5440,20081,59236,13404,30,2303,257,362,8,23344,2303,257,425,8,49080,2303,257,356,8,45460,5567,18422,2303,257,422,8,14539,56974,2303,256,3070,16141,66963,425,8,49080,18611,17,13,3070,4988,15846,334,2303,256,481,81917,1246,15235,646,29436,25099,5101,23757,13,2303,256,3070,16141,66963,15235,85181,13656,821,320,68,1302,2572,10416,15293,11,9442,12624,8,311,7023,7479,323,7500,11291,42011,11,17719,12291,323,7049,13,18611,18,13,3070,12472,21806,334,2303,256,481,1759,1378,15276,304,25099,7525,323,4190,264,6291,369,1817,13,2303,256,3070,16141,66963,2303,256,481,3070,85307,220,16,66963,36284,66176,13,2303,257,3070,36842,66963,5443,1931,7246,10416,14849,323,29436,11291,13,2303,256,481,3070,85307,220,17,66963,14577,35609,13,2303,257,3070,36842,66963,31075,35609,16558,5942,323,28162,2732,18303,13,18611,44364,334,19237,334,2303,1986,2003,748,17755,23497,389,6481,25099,6240,7375,323,14830,11,80903,5440,11,15024,11,323,5214,65760,13,20173,686,3796,18940,311,1931,30084,25283,323,15442,862,5421,389,24586,26279,13],"total_duration":15090387900,"load_duration":2253391700,"prompt_eval_count":63,"prompt_eval_duration":206594000,"eval_count":913,"eval_duration":12329342700}

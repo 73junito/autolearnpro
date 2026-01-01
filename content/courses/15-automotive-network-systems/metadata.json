@@ -1,0 +1,7 @@
+{
+  "id": 15,
+  "title": "Automotive Network Systems",
+  "slug": "15-automotive-network-systems",
+  "description": "CAN, LIN, FlexRay basics, message formats, and network troubleshooting.",
+  "lessons": ["01-introduction.md"]
+}

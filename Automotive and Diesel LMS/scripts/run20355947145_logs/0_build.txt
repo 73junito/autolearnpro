@@ -1,0 +1,151 @@
+﻿2025-12-19T00:43:25.3590059Z Current runner version: '2.330.0'
+2025-12-19T00:43:25.3616262Z ##[group]Runner Image Provisioner
+2025-12-19T00:43:25.3617072Z Hosted Compute Agent
+2025-12-19T00:43:25.3617700Z Version: 20251211.462
+2025-12-19T00:43:25.3618308Z Commit: 6cbad8c2bb55d58165063d031ccabf57e2d2db61
+2025-12-19T00:43:25.3619043Z Build Date: 2025-12-11T16:28:49Z
+2025-12-19T00:43:25.3619640Z Worker ID: {08b6a293-ae62-41f1-bd72-41230352d5f2}
+2025-12-19T00:43:25.3620377Z ##[endgroup]
+2025-12-19T00:43:25.3620870Z ##[group]Operating System
+2025-12-19T00:43:25.3621498Z Ubuntu
+2025-12-19T00:43:25.3621956Z 24.04.3
+2025-12-19T00:43:25.3622447Z LTS
+2025-12-19T00:43:25.3622937Z ##[endgroup]
+2025-12-19T00:43:25.3623417Z ##[group]Runner Image
+2025-12-19T00:43:25.3623973Z Image: ubuntu-24.04
+2025-12-19T00:43:25.3624653Z Version: 20251215.174.1
+2025-12-19T00:43:25.3625781Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251215.174/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-19T00:43:25.3627360Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251215.174
+2025-12-19T00:43:25.3628406Z ##[endgroup]
+2025-12-19T00:43:25.3631078Z ##[group]GITHUB_TOKEN Permissions
+2025-12-19T00:43:25.3633151Z Actions: write
+2025-12-19T00:43:25.3633731Z ArtifactMetadata: write
+2025-12-19T00:43:25.3634660Z Attestations: write
+2025-12-19T00:43:25.3635205Z Checks: write
+2025-12-19T00:43:25.3635734Z Contents: write
+2025-12-19T00:43:25.3636231Z Deployments: write
+2025-12-19T00:43:25.3636871Z Discussions: write
+2025-12-19T00:43:25.3637415Z Issues: write
+2025-12-19T00:43:25.3637929Z Metadata: read
+2025-12-19T00:43:25.3638525Z Models: read
+2025-12-19T00:43:25.3639021Z Packages: write
+2025-12-19T00:43:25.3639516Z Pages: write
+2025-12-19T00:43:25.3640081Z PullRequests: write
+2025-12-19T00:43:25.3640756Z RepositoryProjects: write
+2025-12-19T00:43:25.3641293Z SecurityEvents: write
+2025-12-19T00:43:25.3641879Z Statuses: write
+2025-12-19T00:43:25.3642424Z ##[endgroup]
+2025-12-19T00:43:25.3644839Z Secret source: Actions
+2025-12-19T00:43:25.3645725Z Prepare workflow directory
+2025-12-19T00:43:25.3979355Z Prepare all required actions
+2025-12-19T00:43:25.4018084Z Getting action download info
+2025-12-19T00:43:25.6801164Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-19T00:43:25.8711421Z Complete job name: build
+2025-12-19T00:43:25.9539844Z ##[group]Run actions/checkout@v4
+2025-12-19T00:43:25.9540701Z with:
+2025-12-19T00:43:25.9541125Z   repository: 73junito/autolearnpro
+2025-12-19T00:43:25.9541827Z   token: ***
+2025-12-19T00:43:25.9542261Z   ssh-strict: true
+2025-12-19T00:43:25.9542692Z   ssh-user: git
+2025-12-19T00:43:25.9543146Z   persist-credentials: true
+2025-12-19T00:43:25.9543626Z   clean: true
+2025-12-19T00:43:25.9544028Z   sparse-checkout-cone-mode: true
+2025-12-19T00:43:25.9544682Z   fetch-depth: 1
+2025-12-19T00:43:25.9545074Z   fetch-tags: false
+2025-12-19T00:43:25.9545478Z   show-progress: true
+2025-12-19T00:43:25.9545885Z   lfs: false
+2025-12-19T00:43:25.9546257Z   submodules: false
+2025-12-19T00:43:25.9546683Z   set-safe-directory: true
+2025-12-19T00:43:25.9547371Z ##[endgroup]
+2025-12-19T00:43:26.0664835Z Syncing repository: 73junito/autolearnpro
+2025-12-19T00:43:26.0667119Z ##[group]Getting Git version info
+2025-12-19T00:43:26.0667966Z Working directory is '/home/runner/work/autolearnpro/autolearnpro'
+2025-12-19T00:43:26.0669343Z [command]/usr/bin/git version
+2025-12-19T00:43:26.0757198Z git version 2.52.0
+2025-12-19T00:43:26.0785780Z ##[endgroup]
+2025-12-19T00:43:26.0801205Z Temporarily overriding HOME='/home/runner/work/_temp/be3e37a6-6af0-4cde-ac68-c880baa6c40f' before making global git config changes
+2025-12-19T00:43:26.0802622Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-19T00:43:26.0815430Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+2025-12-19T00:43:26.0860180Z Deleting the contents of '/home/runner/work/autolearnpro/autolearnpro'
+2025-12-19T00:43:26.0863949Z ##[group]Initializing the repository
+2025-12-19T00:43:26.0868913Z [command]/usr/bin/git init /home/runner/work/autolearnpro/autolearnpro
+2025-12-19T00:43:26.1000706Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-12-19T00:43:26.1002416Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2025-12-19T00:43:26.1003324Z hint: to use in all of your new repositories, which will suppress this warning,
+2025-12-19T00:43:26.1004015Z hint: call:
+2025-12-19T00:43:26.1004789Z hint:
+2025-12-19T00:43:26.1005645Z hint: 	git config --global init.defaultBranch <name>
+2025-12-19T00:43:26.1006408Z hint:
+2025-12-19T00:43:26.1007167Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-12-19T00:43:26.1008778Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-12-19T00:43:26.1010030Z hint:
+2025-12-19T00:43:26.1010702Z hint: 	git branch -m <name>
+2025-12-19T00:43:26.1011479Z hint:
+2025-12-19T00:43:26.1012473Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-12-19T00:43:26.1014504Z Initialized empty Git repository in /home/runner/work/autolearnpro/autolearnpro/.git/
+2025-12-19T00:43:26.1021366Z [command]/usr/bin/git remote add origin https://github.com/73junito/autolearnpro
+2025-12-19T00:43:26.1059529Z ##[endgroup]
+2025-12-19T00:43:26.1060699Z ##[group]Disabling automatic garbage collection
+2025-12-19T00:43:26.1064863Z [command]/usr/bin/git config --local gc.auto 0
+2025-12-19T00:43:26.1095685Z ##[endgroup]
+2025-12-19T00:43:26.1096869Z ##[group]Setting up auth
+2025-12-19T00:43:26.1103772Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-19T00:43:26.1136490Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-19T00:43:26.1506863Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-19T00:43:26.1539472Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-19T00:43:26.1772905Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-19T00:43:26.1807103Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-19T00:43:26.2050886Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-12-19T00:43:26.2087646Z ##[endgroup]
+2025-12-19T00:43:26.2088935Z ##[group]Fetching the repository
+2025-12-19T00:43:26.2097746Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +80581c828ad921d9a9afd27bfe014cb991097d7e:refs/remotes/origin/main
+2025-12-19T00:43:26.5022793Z From https://github.com/73junito/autolearnpro
+2025-12-19T00:43:26.5023831Z  * [new ref]         80581c828ad921d9a9afd27bfe014cb991097d7e -> origin/main
+2025-12-19T00:43:26.5057878Z ##[endgroup]
+2025-12-19T00:43:26.5059066Z ##[group]Determining the checkout info
+2025-12-19T00:43:26.5060518Z ##[endgroup]
+2025-12-19T00:43:26.5066134Z [command]/usr/bin/git sparse-checkout disable
+2025-12-19T00:43:26.5110272Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-12-19T00:43:26.5138062Z ##[group]Checking out the ref
+2025-12-19T00:43:26.5142646Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-12-19T00:43:26.9785339Z Switched to a new branch 'main'
+2025-12-19T00:43:26.9787107Z branch 'main' set up to track 'origin/main'.
+2025-12-19T00:43:27.0100860Z Encountered 9 files that should have been pointers, but weren't:
+2025-12-19T00:43:27.0102813Z 	docs/site/images/course-1.png
+2025-12-19T00:43:27.0103962Z 	docs/site/images/course-1.svg
+2025-12-19T00:43:27.0105306Z 	docs/site/images/course-1.txt
+2025-12-19T00:43:27.0106590Z 	docs/site/images/course-2.png
+2025-12-19T00:43:27.0107594Z 	docs/site/images/course-2.svg
+2025-12-19T00:43:27.0108732Z 	docs/site/images/course-2.txt
+2025-12-19T00:43:27.0109830Z 	docs/site/images/course-3.png
+2025-12-19T00:43:27.0110934Z 	docs/site/images/course-3.svg
+2025-12-19T00:43:27.0112040Z 	docs/site/images/course-3.txt
+2025-12-19T00:43:27.0120787Z ##[endgroup]
+2025-12-19T00:43:27.0159754Z [command]/usr/bin/git log -1 --format=%H
+2025-12-19T00:43:27.0183169Z 80581c828ad921d9a9afd27bfe014cb991097d7e
+2025-12-19T00:43:27.0411127Z ##[group]Run docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+2025-12-19T00:43:27.0413360Z [36;1mdocker build . --file Dockerfile --tag my-image-name:$(date +%s)[0m
+2025-12-19T00:43:27.0453200Z shell: /usr/bin/bash -e {0}
+2025-12-19T00:43:27.0454272Z ##[endgroup]
+2025-12-19T00:43:27.5897387Z #0 building with "default" instance using docker driver
+2025-12-19T00:43:27.5898021Z 
+2025-12-19T00:43:27.5898311Z #1 [internal] load build definition from Dockerfile
+2025-12-19T00:43:27.5899222Z #1 transferring dockerfile: 2B done
+2025-12-19T00:43:27.5899814Z #1 DONE 0.0s
+2025-12-19T00:43:27.5914940Z ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+2025-12-19T00:43:27.5967177Z ##[error]Process completed with exit code 1.
+2025-12-19T00:43:27.6088585Z Post job cleanup.
+2025-12-19T00:43:27.7071025Z [command]/usr/bin/git version
+2025-12-19T00:43:27.7109890Z git version 2.52.0
+2025-12-19T00:43:27.7155512Z Temporarily overriding HOME='/home/runner/work/_temp/d03683ea-9508-4e6b-aba9-2e4d036b2976' before making global git config changes
+2025-12-19T00:43:27.7156563Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-19T00:43:27.7161227Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+2025-12-19T00:43:27.7199742Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-19T00:43:27.7234790Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-19T00:43:27.7488808Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-19T00:43:27.7513954Z http.https://github.com/.extraheader
+2025-12-19T00:43:27.7528260Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-12-19T00:43:27.7564550Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-19T00:43:27.7818667Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-19T00:43:27.7855159Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-19T00:43:27.8230134Z Cleaning up orphan processes

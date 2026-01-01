@@ -35,7 +35,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Run Trivy vulnerability scan
-        uses: aquasecurity/trivy-action@v0.22.0
+        uses: aquasecurity/trivy-action@v0
         with:
           image-ref: lms-api:nightly-${{ github.sha }}
           format: json
@@ -44,7 +44,7 @@ jobs:
           exit-code: '0' # do not fail scheduled run, just report
 
       - name: Upload Trivy report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: trivy-nightly-report-${{ github.sha }}
           path: trivy-nightly-${{ github.sha }}.json
@@ -60,7 +60,7 @@ jobs:
 
       - name: Upload Docker Scout report (if created)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: docker-scout-nightly-${{ github.sha }}
           path: docker-scout-nightly-${{ github.sha }}.txt

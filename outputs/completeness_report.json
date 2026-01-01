@@ -1,0 +1,1532 @@
+{
+  "01-brake-systems-(ase-a5)": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "01-brake-systems-ase-a5": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "02-engine-performance-i": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "03-electrical-systems-fundamentals": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "04-suspension-and-steering": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "04-suspension-steering": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "05-automatic-transmissions": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "06-diesel-engine-operation": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "07-diesel-fuel-systems": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "08-air-intake-and-exhaust-systems": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "08-air-intake-exhaust-systems": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "09-electric-vehicle-fundamentals": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "10-hybrid-vehicle-systems": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "11-ev-battery-technology": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "12-virtual-lab-safety-and-tools": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "12-virtual-lab-safety-tools": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "13-virtual-diagnostic-procedures": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "14-advanced-engine-diagnostics": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "15-automotive-network-systems": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "16-adas-and-driver-assistance": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "16-adas-driver-assistance": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "17-diesel-emissions-control": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "18-heavy-duty-truck-systems": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "19-high-voltage-systems-service": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "20-ev-charging-infrastructure": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "21-advanced-battery-management": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "22-fleet-management-and-operations": {
+    "syllabus": false,
+    "rubric": false,
+    "modules": {}
+  },
+  "22-fleet-management-operations": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "23-capstone-project": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "24-diesel-technology-capstone": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  },
+  "25-electric-vehicle-capstone": {
+    "syllabus": true,
+    "rubric": false,
+    "modules": {
+      "week-01-introduction": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-02-fundamentals": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-03-components": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-04-diagnostics": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-05-service-procedures": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      },
+      "week-06-review": {
+        "overview": true,
+        "learning_objectives": true,
+        "lecture": true,
+        "slides": true,
+        "activities": false,
+        "knowledge_check": true,
+        "rubric": false
+      }
+    }
+  }
+}
