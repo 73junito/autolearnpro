@@ -1,5 +1,8 @@
 name: Workflow Lint
 
+permissions:
+  contents: read
+
 on:
   pull_request:
   push:
