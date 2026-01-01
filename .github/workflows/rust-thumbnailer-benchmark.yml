@@ -33,3 +33,15 @@ jobs:
 
       - name: Run Python baseline
         run: python tools/python_thumbnailer.py --input sample_images --output sample_thumbs_py --width 240 --height 160 --workers 4 --benchmark
+
+      - name: Upload Rust thumbnails
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-thumbs
+          path: sample_thumbs/**
+
+      - name: Upload Python thumbnails
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-thumbs
+          path: sample_thumbs_py/**
