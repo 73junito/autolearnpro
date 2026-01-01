@@ -45,7 +45,7 @@ jobs:
         - name: Build Storybook (ui)
           working-directory: packages/ui
           run: |
-            pnpm run storybook:build 2>&1 | tee packages/ui/storybook-build.log
+            pnpm run storybook:build 2>&1 | tee storybook-build.log
 
         - name: Ensure build log exists
           run: |
