@@ -30,3 +30,6 @@ jobs:
 
       - name: Run benchmark
         run: cargo run --release --manifest-path tools/thumbnailer-rust/Cargo.toml -- --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark
+
+      - name: Run Python baseline
+        run: python tools/python_thumbnailer.py --input sample_images --output sample_thumbs_py --width 240 --height 160 --workers 4 --benchmark
