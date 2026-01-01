@@ -30,6 +30,14 @@ jobs:
           pnpm store prune || true
           pnpm install --frozen-lockfile || pnpm install
 
+      - name: Diagnose Storybook deps
+        working-directory: packages/ui
+        run: |
+          echo "--- pnpm list @storybook packages ---"
+          pnpm ls @storybook/builder-webpack5 @storybook/builder-vite @storybook/react-vite @storybook/react --depth 4 || true
+          echo "--- pnpm why builder-webpack5 ---"
+          pnpm why @storybook/builder-webpack5 || true
+
       - name: Build Storybook (ui)
         working-directory: packages/ui
         run: pnpm storybook:build 2>&1 | tee storybook-build.log
