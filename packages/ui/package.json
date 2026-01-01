@@ -11,6 +11,13 @@
     "storybook": "^8.6.15",
     "@storybook/nextjs": "^8.6.15",
     "@storybook/addon-essentials": "^8.6.15",
-    "@storybook/test": "^8.6.15"
+    "@storybook/test": "^8.6.15",
+    "@storybook/builder-webpack5": "8.6.15",
+    "webpack": "5.88.2",
+    "webpack-cli": "5.1.4"
+  }
+  ,
+  "overrides": {
+    "webpack": "5.88.2"
   }
 }
