@@ -1,5 +1,8 @@
 name: Web CI
 
+permissions:
+  contents: read
+
 on:
   push:
     paths:
@@ -151,6 +154,8 @@ jobs:
     name: Scheduled gh-pages cleanup
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       CLEANUP_AGE_DAYS: '30'
     steps:
