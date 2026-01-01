@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch: {}
 
 jobs:
   storybook-build:
@@ -13,6 +14,51 @@ jobs:
       run:
         shell: bash
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: 'false'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Ensure pnpm available (corepack fallback)
+        run: |
+          if ! command -v pnpm >/dev/null 2>&1; then
+            corepack enable
+            corepack prepare pnpm@9.15.9 --activate
+          fi
+          pnpm --version
+
+      - name: Install dependencies (ui)
+        working-directory: packages/ui
+        run: pnpm install --frozen-lockfile || pnpm install
+
+      - name: Build Storybook (ui)
+        working-directory: packages/ui
+        run: pnpm storybook:build
+
+      - name: Upload Storybook static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: packages/ui/storybook-static
+          retention-days: 30
+name: Storybook
+
+on:
+  push:
+    branches: [main, develop]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,6 +82,7 @@ jobs:
             corepack prepare pnpm@9.15.9 --activate
           fi
           pnpm --version
+<<<<<<< HEAD
 
       - name: Install dependencies (ui)
         working-directory: packages/ui
@@ -44,6 +91,30 @@ jobs:
       - name: Build Storybook (ui)
         working-directory: packages/ui
         run: pnpm storybook:build
+
+      - name: Upload Storybook static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: packages/ui/storybook-static
+          retention-days: 30
+=======
+          cache: pnpm
+
+      - name: Verify pnpm
+        run: pnpm --version
+>>>>>>> 23560445 (CI: fix Storybook workflow pnpm setup order)
+=======
+>>>>>>> a3124dd8 (ci(storybook): ensure pnpm setup + corepack fallback; disable submodules in checkout)
+
+      - name: Install dependencies (ui)
+        working-directory: packages/ui
+        run: pnpm install
+
+      - name: Build Storybook (ui)
+        working-directory: packages/ui
+        run: pnpm storybook:build
+>>>>>>> origin/ci/enable-build-and-push-test
 
       - name: Upload Storybook static site
         uses: actions/upload-artifact@v4
