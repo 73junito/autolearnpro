@@ -16,7 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: 'true'
 
       - name: Set up Elixir
         uses: erlef/setup-beam@3559ac3b631a9560f28817e8e7fdde1638664336
