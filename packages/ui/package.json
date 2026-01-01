@@ -14,7 +14,10 @@
     "@storybook/test": "^8.6.15",
     "@storybook/builder-webpack5": "8.6.15",
     "webpack": "5.88.2",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "5.1.4",
+    "@storybook/builder-vite": "8.6.15",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
   }
   ,
   "overrides": {
