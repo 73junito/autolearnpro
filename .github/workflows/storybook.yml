@@ -4,200 +4,84 @@ on:
   push:
     branches: [main, develop, ci/enable-build-and-push-test]
   pull_request:
-    branches: [main, develop]
-  workflow_dispatch:
+  name: Storybook
 
-jobs:
-  storybook-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
+  on:
+    push:
+      branches: [main, develop, ci/enable-build-and-push-test]
+    pull_request:
+      branches: [main, develop]
+    workflow_dispatch:
 
+  jobs:
+    storybook-build:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          shell: bash
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+            submodules: 'false'
+
+        - name: Ensure pnpm available (corepack fallback)
+          run: |
+            if ! command -v pnpm >/dev/null 2>&1; then
+              corepack enable
+              corepack prepare pnpm@9.15.9 --activate
+            fi
+            pnpm --version
+
+        - name: Setup Node (cache pnpm)
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            cache: pnpm
+
+        - name: Install dependencies (ui)
+          working-directory: packages/ui
+          run: |
+            rm -rf node_modules
+            pnpm store prune || true
+            pnpm install --frozen-lockfile || pnpm install
+
+        - name: Build Storybook (ui)
+          working-directory: packages/ui
+          run: |
+            pnpm run storybook:build 2>&1 | tee packages/ui/storybook-build.log
+
+        - name: Ensure build log exists
+          run: |
+            if [ ! -f packages/ui/storybook-build.log ]; then
+              echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
+            fi
+
+        - name: Upload Storybook build log
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: storybook-build-log
+            path: packages/ui/storybook-build.log
+            retention-days: 30
+
+        - name: Deploy Storybook to GitHub Pages
+          if: success()
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: packages/ui/storybook-static
+            publish_branch: gh-pages
+            user_name: github-actions[bot]
+            user_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+        - name: Upload Storybook static site
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: storybook-static
+            path: packages/ui/storybook-static
+            retention-days: 30
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: 'false'
-
-      - name: Ensure pnpm available (corepack fallback)
-        run: |
-          if ! command -v pnpm >/dev/null 2>&1; then
-            corepack enable
-            corepack prepare pnpm@9.15.9 --activate
-          fi
-          pnpm --version
-
-      - name: Setup Node (cache pnpm)
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Install dependencies (ui)
-        working-directory: packages/ui
-        run: |
-          rm -rf node_modules
-          pnpm store prune || true
-          pnpm install --frozen-lockfile || pnpm install
-
-      - name: Build Storybook (ui)
-        working-directory: packages/ui
-        run: |
-          pnpm run storybook:build 2>&1 | tee packages/ui/storybook-build.log
-
-      - name: Ensure build log exists
-        run: |
-          if [ ! -f packages/ui/storybook-build.log ]; then
-            echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
-          fi
-
-      - name: Upload Storybook build log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: storybook-build-log
-          path: packages/ui/storybook-build.log
-          retention-days: 30
-
-      - name: Upload Storybook static site
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: storybook-static
-          path: packages/ui/storybook-static
-          retention-days: 30
-name: Storybook
-
-on:
-  push:
-    branches: [main, develop, ci/enable-build-and-push-test]
-  pull_request:
-    branches: [main, develop]
-  workflow_dispatch:
-
-jobs:
-  storybook-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: 'false'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.15.9
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Ensure pnpm available (corepack fallback)
-        run: |
-          if ! command -v pnpm >/dev/null 2>&1; then
-            corepack enable
-            corepack prepare pnpm@9.15.9 --activate
-          fi
-          pnpm --version
-
-      - name: Install dependencies (ui)
-        working-directory: packages/ui
-        run: pnpm install --frozen-lockfile || pnpm install
-
-      - name: Build Storybook (ui)
-        working-directory: packages/ui
-        run: pnpm storybook:build 2>&1 | tee storybook-build.log
-
-      - name: Upload Storybook build log
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: storybook-build-log
-          path: packages/ui/storybook-build.log
-          retention-days: 30
-
-      - name: Upload Storybook static site
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: storybook-static
-          name: Storybook
-
-          on:
-            push:
-              branches: [main, develop, ci/enable-build-and-push-test]
-            pull_request:
-              branches: [main, develop]
-            workflow_dispatch:
-
-          jobs:
-            storybook-build:
-              runs-on: ubuntu-latest
-              defaults:
-                run:
-                  shell: bash
-
-              steps:
-                - name: Checkout
-                  uses: actions/checkout@v4
-                  with:
-                    fetch-depth: 0
-                    submodules: 'false'
-
-                - name: Ensure pnpm available (corepack fallback)
-                  run: |
-                    if ! command -v pnpm >/dev/null 2>&1; then
-                      corepack enable
-                      corepack prepare pnpm@9.15.9 --activate
-                    fi
-                    pnpm --version
-
-                - name: Setup Node (cache pnpm)
-                  uses: actions/setup-node@v4
-                  with:
-                    node-version: 20
-                    cache: pnpm
-
-                - name: Install dependencies (ui)
-                  working-directory: packages/ui
-                  run: |
-                    rm -rf node_modules
-                    pnpm store prune || true
-                    pnpm install --frozen-lockfile || pnpm install
-
-                - name: Build Storybook (ui)
-                  working-directory: packages/ui
-                  run: |
-                    pnpm run storybook:build 2>&1 | tee storybook-build.log
-
-                - name: Ensure build log exists
-                  run: |
-                    if [ ! -f packages/ui/storybook-build.log ]; then
-                      echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
-                    fi
-
-                - name: Upload Storybook build log
-                  if: always()
-                  uses: actions/upload-artifact@v4
-                  with:
-                    name: storybook-build-log
-                    path: packages/ui/storybook-build.log
-                    retention-days: 30
-
-                - name: Upload Storybook static site
-                  if: always()
-                  uses: actions/upload-artifact@v4
-                  with:
-                    name: storybook-static
-                    path: packages/ui/storybook-static
-                    retention-days: 30
