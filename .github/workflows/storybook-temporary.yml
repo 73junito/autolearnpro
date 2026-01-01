@@ -41,11 +41,8 @@ jobs:
       - name: Build Storybook (ui)
         working-directory: packages/ui
         run: |
-          # write build log inside the package then move it to the repo-level path
+          # write build log inside the package (packages/ui/storybook-build.log)
           pnpm run storybook:build 2>&1 | tee storybook-build.log
-          mkdir -p ../packages/ui
-          mv storybook-build.log ../packages/ui/storybook-build.log
-
       - name: Ensure build log exists
         run: |
           if [ ! -f packages/ui/storybook-build.log ]; then
