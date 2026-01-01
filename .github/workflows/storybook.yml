@@ -4,16 +4,10 @@ on:
   push:
     branches: [main, develop, ci/enable-build-and-push-test]
   pull_request:
-  name: Storybook
+    branches: [main, develop]
+  workflow_dispatch:
 
-  on:
-    push:
-      branches: [main, develop, ci/enable-build-and-push-test]
-    pull_request:
-      branches: [main, develop]
-    workflow_dispatch:
-
-  jobs:
+jobs:
     storybook-build:
       runs-on: ubuntu-latest
       defaults:
