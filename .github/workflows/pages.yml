@@ -1,8 +1,9 @@
 name: Publish docs/site to GitHub Pages
 
 permissions:
-  contents: read
+  contents: write
   pages: write
+  id-token: write
 
 on:
   push:
