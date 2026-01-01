@@ -10,6 +10,7 @@
   "devDependencies": {
     "storybook": "^8.6.15",
     "@storybook/react-vite": "^8.6.15",
+    "@storybook/react": "^8.6.15",
     "@storybook/addon-essentials": "^8.6.15",
     "@storybook/test": "^8.6.15",
     
