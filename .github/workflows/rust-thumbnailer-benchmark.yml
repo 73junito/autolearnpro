@@ -45,3 +45,38 @@ jobs:
         with:
           name: python-thumbs
           path: sample_thumbs_py/**
+
+      - name: Authenticate gh and download latest artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: ${{ github.head_ref }}
+          REFNAME: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          # install gh if missing
+          if ! command -v gh >/dev/null 2>&1; then
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+            sudo apt update && sudo apt install -y gh
+          fi
+
+          # authenticate non-interactively
+          printf '%s' "$GH_TOKEN" | gh auth login --with-token
+          gh auth status || true
+
+          # determine branch
+          if [ -z "$BRANCH" ]; then
+            BRANCH="$REFNAME"
+          fi
+
+          echo "Searching for latest completed run on branch: $BRANCH"
+          RUN_ID=$(gh run list --repo "$REPO" --workflow rust-thumbnailer-benchmark.yml --branch "$BRANCH" --limit 1 --json databaseId,status,conclusion --jq '.[] | select(.status=="completed") | .databaseId' | head -n1)
+
+          if [ -n "$RUN_ID" ]; then
+            echo "Downloading artifacts for run $RUN_ID"
+            gh run download "$RUN_ID" --repo "$REPO" --dir "artifacts/run-$RUN_ID"
+            echo "Artifacts downloaded to artifacts/run-$RUN_ID"
+          else
+            echo "No completed runs found yet."
+          fi
