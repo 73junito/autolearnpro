@@ -27,7 +27,11 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: 'false'
 
     - name: Debug - show workspace and Dockerfile path
       run: |
@@ -59,7 +63,7 @@ jobs:
             echo "WARNING: backend/lms_api not found in repo root or Automotive and Diesel LMS; build may fail" >&2
           fi
         elif [ -f "Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" ]; then
-          # Dockerfile located under the spacey folder — choose context based on where backend lives
+          # Dockerfile located under the spacey folder ï¿½ choose context based on where backend lives
           if [ -d "Automotive and Diesel LMS/backend/lms_api" ]; then
             echo "file=Automotive and Diesel LMS/docker/lms-api/Dockerfile.release" >> $GITHUB_OUTPUT
             echo "context=Automotive and Diesel LMS" >> $GITHUB_OUTPUT
