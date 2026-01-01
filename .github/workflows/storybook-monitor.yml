@@ -1,0 +1,61 @@
+name: Storybook Monitor
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+  actions: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check published Storybook site
+        id: check-site
+        run: |
+          set -euo pipefail
+          URL="https://73junito.github.io/autolearnpro/index.html"
+          if curl -sfI "$URL" >/dev/null; then
+            echo "SITE_OK=true" >> "$GITHUB_ENV"
+          else
+            echo "SITE_OK=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Check recent workflow run and create/update issue on failure
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const siteOk = process.env.SITE_OK === 'true';
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const workflowFile = 'storybook.yml';
+
+            // Get the latest run for the Storybook workflow
+            const runs = await github.rest.actions.listWorkflowRunsForRepo({ owner, repo, workflow_id: workflowFile, per_page: 1 });
+            const last = runs.data.workflow_runs && runs.data.workflow_runs[0];
+            const runOk = last && last.conclusion === 'success' && (Date.now() - new Date(last.updated_at).getTime() < 1000 * 60 * 60);
+
+            const issueTitle = 'storybook-monitor: failing Storybook';
+            if (siteOk && runOk) {
+              // If healthy, close any existing monitor issue
+              const issues = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
+              const existing = issues.data.find(i => i.title === issueTitle);
+              if (existing) {
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed' });
+              }
+              console.log('Storybook healthy: site OK and last run successful');
+            } else {
+              const body = `Storybook monitor detected issues.\n\nsiteOk=${siteOk}\nlastRunOk=${runOk}\nlastRun=${last ? last.html_url : 'none'}\ncheckedAt=${new Date().toISOString()}`;
+              const issues = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
+              const existing = issues.data.find(i => i.title === issueTitle);
+              if (existing) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: existing.number, body });
+              } else {
+                await github.rest.issues.create({ owner, repo, title: issueTitle, body, labels: ['automation', 'storybook-monitor'] });
+              }
+              console.log('Storybook or workflow run failing — issue created/updated');
+            }
