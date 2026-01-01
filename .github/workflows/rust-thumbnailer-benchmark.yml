@@ -1,0 +1,32 @@
+name: Rust Thumbnailer Benchmark
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python and Pillow
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pillow
+
+      - name: Generate sample images
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          import os
+          os.makedirs('sample_images', exist_ok=True)
+          for i in range(20):
+              img = Image.new('RGB',(1920,1080),(i*10%256,i*5%256,i*3%256))
+              img.save(f'sample_images/img_{i:03}.png')
+          PY
+
+      - name: Build
+        run: cargo build --release --manifest-path tools/thumbnailer-rust/Cargo.toml
+
+      - name: Run benchmark
+        run: ./target/release/thumbnailer --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark
