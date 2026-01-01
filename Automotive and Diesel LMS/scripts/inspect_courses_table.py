@@ -1,92 +1,87 @@
 #!/usr/bin/env python3
-"""Script to inspect the structure of the courses table in the database."""
+"""
+Inspect `courses` table columns in the in-cluster Postgres database.
 
-import os
+Usage:
+  python scripts/inspect_courses_table.py            # auto-discover pod in 'autolearnpro' namespace
+  python scripts/inspect_courses_table.py --pg-pod postgres-abc --namespace autolearnpro
+
+This script runs `kubectl exec` to call `psql` inside the Postgres pod and prints
+columns from information_schema for `public.courses`.
+"""
+import argparse
+import subprocess
 import sys
-from pathlib import Path
-
-# Add the project root to the Python path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-try:
-    from sqlalchemy import create_engine, inspect
-    from sqlalchemy.orm import sessionmaker
-except ImportError as e:
-    print("Error: Required packages not installed.")
-    print("Please run: pip install sqlalchemy psycopg2-binary")
-    sys.exit(1)
 
 
-def get_database_url():
-    """Get database URL from environment variables."""
+def discover_pg_pod(namespace: str) -> str:
     try:
-        return os.environ["DATABASE_URL"]
-    except KeyError as e:
-        print("Error: DATABASE_URL environment variable not set.")
-        print("Please set it in your .env file or environment.")
-        raise SystemExit(1) from e
-
-
-def inspect_courses_table():
-    """Inspect and display the structure of the courses table."""
-    database_url = get_database_url()
-
-    # Create engine and session
-    engine = create_engine(database_url)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    try:
-        # Create inspector
-        inspector = inspect(engine)
-
-        # Check if courses table exists
-        if "courses" not in inspector.get_table_names():
-            print("Error: 'courses' table does not exist in the database.")
-            raise SystemExit(1) from None
-
-        print("\n=== Courses Table Structure ===")
-        print("\nColumns:")
-
-        # Get column information
-        columns = inspector.get_columns("courses")
-        for column in columns:
-            nullable = "NULL" if column["nullable"] else "NOT NULL"
-            default = f" DEFAULT {column['default']}" if column.get("default") else ""
-            print(f"  - {column['name']}: {column['type']} {nullable}{default}")
-
-        # Get primary key
-        print("\nPrimary Key:")
-        pk = inspector.get_pk_constraint("courses")
-        if pk and pk.get("constrained_columns"):
-            print(f"  - {', '.join(pk['constrained_columns'])}")
-
-        # Get foreign keys
-        print("\nForeign Keys:")
-        fks = inspector.get_foreign_keys("courses")
-        if fks:
-            for fk in fks:
-                print(f"  - {fk['constrained_columns']} -> {fk['referred_table']}.{fk['referred_columns']}")
-        else:
-            print("  - None")
-
-        # Get indexes
-        print("\nIndexes:")
-        indexes = inspector.get_indexes("courses")
-        if indexes:
-            for idx in indexes:
-                unique = "UNIQUE" if idx.get("unique") else ""
-                print(f"  - {idx['name']}: {', '.join(idx['column_names'])} {unique}")
-        else:
-            print("  - None")
-
+        r = subprocess.run([
+            "kubectl", "get", "pod", "-n", namespace,
+            "-l", "app=postgres", "-o", "jsonpath={.items[0].metadata.name}"
+        ], capture_output=True, text=True, timeout=10)
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip() or "kubectl failed")
+        return r.stdout.strip()
     except Exception as e:
-        print(f"Error inspecting database: {e}")
-        raise SystemExit(1) from e
-    finally:
-        session.close()
+        raise RuntimeError(f"Failed to discover postgres pod: {e}")
+
+
+def query_columns(pg_pod: str, namespace: str):
+    sql = (
+        "SELECT column_name, data_type, is_nullable, character_maximum_length "
+        "FROM information_schema.columns "
+        "WHERE table_schema = 'public' AND table_name = 'courses' "
+        "ORDER BY ordinal_position;"
+    )
+
+    cmd = [
+        "kubectl", "exec", "-n", namespace, pg_pod, "--",
+        "psql", "-U", "postgres", "-d", "lms_api_prod", "-t", "-A", "-F", "\t", "-c", sql
+    ]
+
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("psql query timed out")
+
+    if r.returncode != 0:
+        raise RuntimeError(f"psql error: {r.stderr.strip()}")
+
+    out = r.stdout.strip()
+    if not out:
+        print("No columns returned - table may not exist or has no columns.")
+        return
+
+    print("columns:\n")
+    for line in out.splitlines():
+        cols = line.split("\t")
+        # columns: column_name, data_type, is_nullable, character_maximum_length
+        name = cols[0] if len(cols) > 0 else ""
+        dtype = cols[1] if len(cols) > 1 else ""
+        nullable = cols[2] if len(cols) > 2 else ""
+        length = cols[3] if len(cols) > 3 else ""
+        print(f"- {name}: {dtype} nullable={nullable} max_length={length}")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Inspect courses table columns via kubectl/psql")
+    parser.add_argument("--pg-pod", help="Postgres pod name (optional)")
+    parser.add_argument("--namespace", default="autolearnpro", help="K8s namespace where Postgres runs")
+    args = parser.parse_args(argv)
+
+    try:
+        pg_pod = args.pg_pod
+        if not pg_pod:
+            pg_pod = discover_pg_pod(args.namespace)
+        print(f"Using Postgres pod: {pg_pod} (namespace: {args.namespace})")
+        query_columns(pg_pod, args.namespace)
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 2
+
+    return 0
 
 
 if __name__ == "__main__":
-    inspect_courses_table()
+    sys.exit(main())

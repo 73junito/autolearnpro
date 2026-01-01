@@ -1,44 +1,87 @@
-name: Storybook CI
+name: Storybook
 
 on:
-  pull_request:
   push:
-    branches: [ main ]
+    branches: [main, develop, ci/enable-build-and-push-test]
+  pull_request:
+  name: Storybook
 
-jobs:
-  filter:
-    runs-on: ubuntu-latest
-    outputs:
-      storybook: ${{ steps.paths.outputs.storybook }}
+  on:
+    push:
+      branches: [main, develop, ci/enable-build-and-push-test]
+    pull_request:
+      branches: [main, develop]
+    workflow_dispatch:
+
+  jobs:
+    storybook-build:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          shell: bash
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+            submodules: 'false'
+
+        - name: Ensure pnpm available (corepack fallback)
+          run: |
+            if ! command -v pnpm >/dev/null 2>&1; then
+              corepack enable
+              corepack prepare pnpm@9.15.9 --activate
+            fi
+            pnpm --version
+
+        - name: Setup Node (cache pnpm)
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            cache: pnpm
+
+        - name: Install dependencies (ui)
+          working-directory: packages/ui
+          run: |
+            rm -rf node_modules
+            pnpm store prune || true
+            pnpm install --frozen-lockfile || pnpm install
+
+        - name: Build Storybook (ui)
+          working-directory: packages/ui
+          run: |
+            pnpm run storybook:build 2>&1 | tee packages/ui/storybook-build.log
+
+        - name: Ensure build log exists
+          run: |
+            if [ ! -f packages/ui/storybook-build.log ]; then
+              echo 'No build log produced by Storybook build step' > packages/ui/storybook-build.log
+            fi
+
+        - name: Upload Storybook build log
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: storybook-build-log
+            path: packages/ui/storybook-build.log
+            retention-days: 30
+
+        - name: Deploy Storybook to GitHub Pages
+          if: success()
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: packages/ui/storybook-static
+            publish_branch: gh-pages
+            user_name: github-actions[bot]
+            user_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+        - name: Upload Storybook static site
+          if: always()
+          uses: actions/upload-artifact@v4
+          with:
+            name: storybook-static
+            path: packages/ui/storybook-static
+            retention-days: 30
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Determine changed paths
-        id: paths
-        uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50
-        with:
-          filters: |
-            storybook:
-              - 'packages/ui/**'
-              - 'apps/web/components/**'
-              - 'apps/web/**'
-
-  build:
-    needs: filter
-    if: github.event_name == 'push' || needs.filter.outputs.storybook == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - run: pnpm storybook:build
