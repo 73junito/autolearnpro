@@ -1,3 +1,6 @@
 [submodule "lib/ollama-js"]
+    path = lib/ollama-js
+    url = https://github.com/ollama/ollama-js.git
+[submodule "lib/ollama-js"]
 	path = lib/ollama-js
 	url = https://github.com/ollama/ollama-js.git
