@@ -63,7 +63,7 @@ jobs:
         run: |
           # Use npm to install dev deps (package-lock.json was committed locally)
           if [ -f package-lock.json ]; then
-            npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+            npm ci --no-audit --no-fund || { echo "npm ci failed. Please ensure package-lock.json is in sync with package.json and retry."; exit 1; }
           else
             npm install --no-audit --no-fund @playwright/test axe-core http-server --save-dev || true
           fi
