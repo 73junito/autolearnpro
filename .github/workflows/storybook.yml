@@ -50,6 +50,7 @@ jobs:
 
       - name: Upload Storybook build log
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: storybook-build-log
           path: packages/ui/storybook-build.log
@@ -57,6 +58,7 @@ jobs:
 
       - name: Upload Storybook static site
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: storybook-static
           path: packages/ui/storybook-static
