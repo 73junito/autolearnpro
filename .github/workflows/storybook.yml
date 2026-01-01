@@ -76,7 +76,7 @@ jobs:
       - name: Run accessibility tests with Playwright
         working-directory: packages/ui
         run: |
-          npx playwright test --config=playwright.config.js --reporter=html || (echo "Playwright tests failed"; exit 1)
+          npx playwright test --config=playwright.config.js --reporter=html
 
       - name: Upload Playwright HTML report
         if: always()
