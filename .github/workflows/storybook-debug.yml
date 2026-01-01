@@ -41,7 +41,7 @@ jobs:
       - name: Build Storybook (ui)
         working-directory: packages/ui
         run: |
-          pnpm exec -- sb build --builder @storybook/builder-vite 2>&1 | tee storybook-build.log
+          pnpm exec -- sb build 2>&1 | tee storybook-build.log
 
       - name: Ensure build log exists
         run: |
