@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-    storybook-build:
+  storybook-build:
       runs-on: ubuntu-latest
       defaults:
         run:
@@ -78,4 +78,4 @@ jobs:
             name: storybook-static
             path: packages/ui/storybook-static
             retention-days: 30
-    steps:
+
