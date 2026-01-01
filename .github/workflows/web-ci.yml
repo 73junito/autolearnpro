@@ -1,0 +1,185 @@
+name: Web CI
+
+on:
+  push:
+    paths:
+      - 'apps/web/**'
+  pull_request:
+    paths:
+      - 'apps/web/**'
+  schedule:
+    - cron: '0 3 * * 0' # Weekly: Sunday 03:00 UTC - cleanup old PR previews
+  workflow_dispatch: {}
+
+jobs:
+  lint:
+    name: Lint Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+      - name: Run Super-Linter (ESLint annotations)
+        uses: github/super-linter@45fc0d88288beee4701c62761281edfee85655d7
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          filter_regex_include: 'apps/web/.*'
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ESLINT: true
+          DEFAULT_BRANCH: main
+
+  build:
+    name: Build Web
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+      - name: Restore npm cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.npm
+            ~/.pnpm-store
+          key: ${{ runner.os }}-web-npm-${{ hashFiles('apps/web/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-web-npm-
+      - name: Restore Storybook cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: apps/web/node_modules/.cache/storybook
+          key: ${{ runner.os }}-web-storybook-${{ hashFiles('apps/web/package-lock.json','apps/web/.storybook/**') }}
+          restore-keys: |
+            ${{ runner.os }}-web-storybook-
+      - name: Restore Storybook static cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: apps/web/storybook-static
+          key: ${{ runner.os }}-web-storybook-static-${{ hashFiles('apps/web/package-lock.json','apps/web/.storybook/**') }}
+          restore-keys: |
+            ${{ runner.os }}-web-storybook-static-
+      - name: Install dependencies
+        run: npm ci --prefix apps/web
+      - name: Run unit & snapshot tests
+        run: npm test --prefix apps/web
+      - name: Build
+        run: npm run build --prefix apps/web
+      - name: Build Storybook
+        run: npm run build-storybook --prefix apps/web
+      - name: Upload Storybook build artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: storybook-static
+          path: apps/web/storybook-static
+
+  storybook-preview:
+    name: Storybook PR Preview
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Storybook artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: storybook-static
+          path: apps/web/storybook-static
+      - name: Deploy Storybook to gh-pages (PR folder)
+        uses: JamesIves/github-pages-deploy-action@13046b614c663b56cba4dda3f30b9736a748b80d
+        with:
+          branch: gh-pages
+          folder: apps/web/storybook-static
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          clean: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment PR with preview URL
+        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Storybook preview for this PR is available at:
+
+            https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/
+
+  cleanup-gh-pages:
+    name: Cleanup Storybook PR Preview
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && !github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Remove PR preview folder if exists
+        env:
+          PR_NUM: ${{ github.event.pull_request.number }}
+        run: |
+          PREVIEW_DIR=pr-${PR_NUM}
+          if [ -d "$PREVIEW_DIR" ]; then
+            git rm -rf "$PREVIEW_DIR" || true
+            git commit -m "chore(ci): remove Storybook preview for PR #${PR_NUM}" || echo "no changes to commit"
+            git push origin gh-pages
+            echo "Removed $PREVIEW_DIR from gh-pages"
+          else
+            echo "$PREVIEW_DIR not found on gh-pages"
+          fi
+
+  scheduled-gh-pages-cleanup:
+    name: Scheduled gh-pages cleanup
+    if: ${{ github.event_name == 'schedule' }}
+    runs-on: ubuntu-latest
+    env:
+      CLEANUP_AGE_DAYS: '30'
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Find and remove old PR preview folders
+        run: |
+          set -euo pipefail
+          AGE=${{ env.CLEANUP_AGE_DAYS }}
+          echo "Removing pr-* folders older than ${AGE} days"
+          # Find pr-* directories in repo root older than AGE days
+          OLD=$(find . -maxdepth 1 -type d -name 'pr-*' -mtime +${AGE} -printf "%P\n" || true)
+          if [ -z "$OLD" ]; then
+            echo "No stale preview folders found"
+            exit 0
+          fi
+          echo "Found the following stale previews:"
+          echo "$OLD"
+          while IFS= read -r d; do
+            if [ -n "$d" ]; then
+              echo "Removing $d"
+              git rm -rf "$d" || true
+            fi
+          done <<EOF
+$OLD
+EOF
+          git commit -m "chore(ci): remove Storybook previews older than ${AGE} days" || echo "no changes to commit"
+          git push origin gh-pages
+          echo "Cleanup complete"
+
+      # Optional: publish visual test to Chromatic (requires CHROMATIC_PROJECT_TOKEN)
+      # - name: Publish to Chromatic
+      #   if: ${{ secrets.CHROMATIC_PROJECT_TOKEN != '' }}
+      #   uses: chromaui/action@v1
+      #   with:
+      #     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      #     exitZeroOnChanges: true
