@@ -47,7 +47,7 @@ struct Args {
 enum OutputFormat {
     Jpeg,
     Png,
-    WebP,
+    Webp,
 }
 
 fn main() {
@@ -62,7 +62,7 @@ fn main() {
 
     let start = Instant::now();
 
-    let mut files: Vec<PathBuf> = WalkDir::new(&args.input)
+    let files: Vec<PathBuf> = WalkDir::new(&args.input)
         .into_iter()
         .filter_map(|e| e.ok())
         .filter(|e| e.file_type().is_file())
@@ -104,20 +104,28 @@ fn process_image(path: &PathBuf, root: &PathBuf, out_root: &PathBuf, w: u32, h: 
     if let Some(parent) = out_path.parent() {
         fs::create_dir_all(parent).map_err(|e| format!("mkdir: {}", e))?;
     }
-    out_path.set_extension("jpg");
 
     let fout = File::create(&out_path).map_err(|e| format!("create file: {}", e))?;
     let mut writer = BufWriter::new(fout);
     match format {
-        OutputFormat::Jpeg => thumb
-            .write_to(&mut writer, ImageOutputFormat::Jpeg(quality))
-            .map_err(|e| format!("save error: {}", e))?,
-        OutputFormat::Png => thumb
-            .write_to(&mut writer, ImageOutputFormat::Png)
-            .map_err(|e| format!("save error: {}", e))?,
-        OutputFormat::WebP => thumb
-            .write_to(&mut writer, ImageOutputFormat::WebP(quality))
-            .map_err(|e| format!("save error: {}", e))?,
+        OutputFormat::Jpeg => {
+            out_path.set_extension("jpg");
+            thumb
+                .write_to(&mut writer, ImageOutputFormat::Jpeg(quality))
+                .map_err(|e| format!("save error: {}", e))?
+        }
+        OutputFormat::Png => {
+            out_path.set_extension("png");
+            thumb
+                .write_to(&mut writer, ImageOutputFormat::Png)
+                .map_err(|e| format!("save error: {}", e))?
+        }
+        OutputFormat::Webp => {
+            out_path.set_extension("webp");
+            thumb
+                .write_to(&mut writer, ImageOutputFormat::WebP)
+                .map_err(|e| format!("save error: {}", e))?
+        }
     }
 
     Ok(())
