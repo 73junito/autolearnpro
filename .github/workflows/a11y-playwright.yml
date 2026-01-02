@@ -44,14 +44,43 @@ jobs:
       - name: Run Playwright accessibility scans (multi-page)
         working-directory: frontend/web
         run: |
-          # scan home, courses, and catalog; adjust as needed
-          node tools/run_playwright_scans.js / /courses /catalog
+          # scan a set of critical pages; adjust as needed
+          node tools/run_playwright_scans.js / /courses /catalog /dashboard /admin/dashboard /signin
 
       - name: Upload a11y reports
         uses: actions/upload-artifact@v4
         with:
           name: a11y-playwright-reports
           path: frontend/web/a11y-*-playwright.json
+
+      - name: Summarize a11y reports
+        if: github.event_name == 'pull_request'
+        working-directory: frontend/web
+        run: |
+          echo "# Accessibility Scan Summary" > a11y-summary.md
+          echo "" >> a11y-summary.md
+          for f in a11y-*-playwright.json; do
+            if [ -f "$f" ]; then
+              v=$(jq '.violations | length' "$f")
+              p=$(jq '.passes | length' "$f")
+              i=$(jq '.incomplete | length' "$f")
+              echo "## $f" >> a11y-summary.md
+              echo "- violations: $v" >> a11y-summary.md
+              echo "- passes: $p" >> a11y-summary.md
+              echo "- incomplete: $i" >> a11y-summary.md
+              echo "" >> a11y-summary.md
+            fi
+          done
+
+      - name: Comment A11Y summary on PR
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-file: frontend/web/a11y-summary.md
+          edit-mode: replace
 
       - name: Fail on accessibility violations
         if: env.REPORT_ONLY != 'true'
