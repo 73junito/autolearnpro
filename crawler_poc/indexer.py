@@ -5,7 +5,6 @@ Run: python indexer.py
 import os
 import json
 import time
-from datetime import datetime
 import redis
 from db import ensure_schema, upsert_logical_object, get_latest_version_hash, insert_version
 
