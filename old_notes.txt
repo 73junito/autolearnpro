@@ -1,0 +1,8 @@
+Artifacts for feat/thumbnailer-quality run 20646679612
+Short bench summary
+
+This release includes local benchmark artifacts for the thumbnailer prototype (Rust vs Python).
+Files attached: `bench-results-local.zip` (contains `bench_report.csv` and `samples/` side-by-side images), plus the benchmark harness: `tools/thumbnailer-rust/run_bench_grid.py` and `tools/thumbnailer-rust/visual_compare.py`.
+
+Reproduce locally: see `tools/thumbnailer-rust/README.md`.
+

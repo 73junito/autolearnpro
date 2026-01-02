@@ -1,3 +1,5 @@
+import React from 'react';
+
 const caps = [
   { title: "Competency-Based Learning", desc: "Progression based on mastery—not seat time." },
   { title: "Standards Alignment", desc: "Map competencies to FWG, ASE, Perkins, and custom frameworks." },

@@ -35,7 +35,7 @@ struct Args {
     benchmark: bool,
 
     /// JPEG output quality (0-100)
-    #[arg(long, default_value_t = 85, value_parser = clap::value_parser!(0_u8..=100))]
+    #[arg(long, default_value_t = 85)]
     quality: u8,
 
     /// Output image format: jpeg, png, webp

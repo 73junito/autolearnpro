@@ -27,8 +27,5 @@
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.5.0",
     "typescript": "^5.0.0"
-  },
-  "overrides": {
-    "esbuild": "0.24.2"
   }
 }

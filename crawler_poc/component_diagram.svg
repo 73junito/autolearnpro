@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700">
+  <style> .box{fill:#f8f9fb;stroke:#2b2f33;stroke-width:1.5;} .title{font:16px sans-serif;fill:#111;} .lbl{font:12px sans-serif;fill:#111;} .arrow{stroke:#2b2f33;stroke-width:1.2;fill:none;marker-end:url(#arrow);} </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2f33" />
+    </marker>
+  </defs>
+
+  <!-- Left column -->
+  <rect x="20" y="30" width="220" height="80" rx="6" class="box"/>
+  <text x="30" y="55" class="title">Scheduler / Frontier</text>
+  <text x="30" y="75" class="lbl">priority, politeness, escalation</text>
+
+  <rect x="20" y="140" width="220" height="60" rx="6" class="box"/>
+  <text x="30" y="165" class="title">Auth Manager</text>
+  <text x="30" y="185" class="lbl">leases creds, refresh, events</text>
+
+  <rect x="20" y="220" width="220" height="60" rx="6" class="box"/>
+  <text x="30" y="245" class="title">Queue</text>
+  <text x="30" y="265" class="lbl">Redis Streams / durable</text>
+
+  <!-- Middle column fetchers -->
+  <rect x="290" y="30" width="240" height="80" rx="6" class="box"/>
+  <text x="300" y="55" class="title">Tier1 - API Fetcher</text>
+  <text x="300" y="75" class="lbl">low-cost, JSON endpoints</text>
+
+  <rect x="290" y="130" width="240" height="80" rx="6" class="box"/>
+  <text x="300" y="155" class="title">Tier2 - HTTP Fetcher</text>
+  <text x="300" y="175" class="lbl">HTML, static assets, cookies</text>
+
+  <rect x="290" y="250" width="240" height="80" rx="6" class="box"/>
+  <text x="300" y="275" class="title">Tier3 - Headless Fetcher</text>
+  <text x="300" y="295" class="lbl">Playwright: network traces, JS</text>
+
+  <!-- Right column parsing & storage -->
+  <rect x="620" y="30" width="320" height="80" rx="6" class="box"/>
+  <text x="630" y="55" class="title">Parser / Extractor</text>
+  <text x="630" y="75" class="lbl">emit Learning Objects (typed)</text>
+
+  <rect x="620" y="130" width="320" height="80" rx="6" class="box"/>
+  <text x="630" y="155" class="title">Deduper / Canonicalizer</text>
+  <text x="630" y="175" class="lbl">logical_id, content_hash, versions</text>
+
+  <rect x="620" y="250" width="320" height="160" rx="6" class="box"/>
+  <text x="630" y="275" class="title">Storage & Indexing</text>
+  <text x="630" y="295" class="lbl">MinIO (blobs) • Postgres (metadata)</text>
+  <text x="630" y="315" class="lbl">OpenSearch (search) • Versioned objects</text>
+
+  <!-- Observability & Control Plane -->
+  <rect x="20" y="340" width="300" height="140" rx="6" class="box"/>
+  <text x="30" y="370" class="title">Control Plane</text>
+  <text x="30" y="390" class="lbl">Policy UI • Job control • Legal / ToS</text>
+  <text x="30" y="410" class="lbl">PII rules • Rate budgets</text>
+
+  <rect x="350" y="360" width="540" height="120" rx="6" class="box"/>
+  <text x="360" y="385" class="title">Observability</text>
+  <text x="360" y="405" class="lbl">Prometheus • Grafana • OpenTelemetry</text>
+  <text x="360" y="425" class="lbl">Metrics, traces, alerts</text>
+
+  <!-- Arrows -->
+  <path class="arrow" d="M240,70 L290,70" />
+  <path class="arrow" d="M240,170 L290,170" />
+  <path class="arrow" d="M240,250 L290,290" />
+
+  <path class="arrow" d="M530,70 L620,70" />
+  <path class="arrow" d="M530,170 L620,170" />
+  <path class="arrow" d="M530,290 L620,290" />
+
+  <path class="arrow" d="M560,210 L620,210" stroke-dasharray="4 3" />
+
+  <path class="arrow" d="M460,380 L620,380" />
+  <path class="arrow" d="M340,290 L340,340" />
+
+  <!-- Auth links -->
+  <path class="arrow" d="M240,170 L340,170" />
+  <path class="arrow" d="M340,170 L460,170" />
+
+  <!-- Labels -->
+  <text x="440" y="190" class="lbl">task messages / creds lease</text>
+
+</svg>

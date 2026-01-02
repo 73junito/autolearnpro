@@ -1,0 +1,415 @@
+build-and-run	Set up job	∩╗┐2026-01-01T22:26:52.1522207Z Current runner version: '2.330.0'
+build-and-run	Set up job	2026-01-01T22:26:52.1547476Z ##[group]Runner Image Provisioner
+build-and-run	Set up job	2026-01-01T22:26:52.1548376Z Hosted Compute Agent
+build-and-run	Set up job	2026-01-01T22:26:52.1548888Z Version: 20251211.462
+build-and-run	Set up job	2026-01-01T22:26:52.1549473Z Commit: 6cbad8c2bb55d58165063d031ccabf57e2d2db61
+build-and-run	Set up job	2026-01-01T22:26:52.1550197Z Build Date: 2025-12-11T16:28:49Z
+build-and-run	Set up job	2026-01-01T22:26:52.1550838Z Worker ID: {b22c489b-93e9-4ab6-b6b7-935ae4b1cb18}
+build-and-run	Set up job	2026-01-01T22:26:52.1551520Z ##[endgroup]
+build-and-run	Set up job	2026-01-01T22:26:52.1552095Z ##[group]Operating System
+build-and-run	Set up job	2026-01-01T22:26:52.1552618Z Ubuntu
+build-and-run	Set up job	2026-01-01T22:26:52.1553093Z 24.04.3
+build-and-run	Set up job	2026-01-01T22:26:52.1553592Z LTS
+build-and-run	Set up job	2026-01-01T22:26:52.1554004Z ##[endgroup]
+build-and-run	Set up job	2026-01-01T22:26:52.1554772Z ##[group]Runner Image
+build-and-run	Set up job	2026-01-01T22:26:52.1555367Z Image: ubuntu-24.04
+build-and-run	Set up job	2026-01-01T22:26:52.1555910Z Version: 20251215.174.1
+build-and-run	Set up job	2026-01-01T22:26:52.1556933Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251215.174/images/ubuntu/Ubuntu2404-Readme.md
+build-and-run	Set up job	2026-01-01T22:26:52.1558367Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251215.174
+build-and-run	Set up job	2026-01-01T22:26:52.1559627Z ##[endgroup]
+build-and-run	Set up job	2026-01-01T22:26:52.1562293Z ##[group]GITHUB_TOKEN Permissions
+build-and-run	Set up job	2026-01-01T22:26:52.1564738Z Actions: write
+build-and-run	Set up job	2026-01-01T22:26:52.1565403Z ArtifactMetadata: write
+build-and-run	Set up job	2026-01-01T22:26:52.1565932Z Attestations: write
+build-and-run	Set up job	2026-01-01T22:26:52.1566434Z Checks: write
+build-and-run	Set up job	2026-01-01T22:26:52.1566869Z Contents: write
+build-and-run	Set up job	2026-01-01T22:26:52.1567447Z Deployments: write
+build-and-run	Set up job	2026-01-01T22:26:52.1567952Z Discussions: write
+build-and-run	Set up job	2026-01-01T22:26:52.1568432Z Issues: write
+build-and-run	Set up job	2026-01-01T22:26:52.1568953Z Metadata: read
+build-and-run	Set up job	2026-01-01T22:26:52.1569441Z Models: read
+build-and-run	Set up job	2026-01-01T22:26:52.1569910Z Packages: write
+build-and-run	Set up job	2026-01-01T22:26:52.1570439Z Pages: write
+build-and-run	Set up job	2026-01-01T22:26:52.1570964Z PullRequests: write
+build-and-run	Set up job	2026-01-01T22:26:52.1571556Z RepositoryProjects: write
+build-and-run	Set up job	2026-01-01T22:26:52.1572187Z SecurityEvents: write
+build-and-run	Set up job	2026-01-01T22:26:52.1572690Z Statuses: write
+build-and-run	Set up job	2026-01-01T22:26:52.1573182Z ##[endgroup]
+build-and-run	Set up job	2026-01-01T22:26:52.1575917Z Secret source: Actions
+build-and-run	Set up job	2026-01-01T22:26:52.1576912Z Prepare workflow directory
+build-and-run	Set up job	2026-01-01T22:26:52.2015813Z Prepare all required actions
+build-and-run	Set up job	2026-01-01T22:26:52.2071534Z Getting action download info
+build-and-run	Set up job	2026-01-01T22:26:52.5188734Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+build-and-run	Set up job	2026-01-01T22:26:52.6168333Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build-and-run	Set up job	2026-01-01T22:26:52.8460200Z Complete job name: build-and-run
+build-and-run	Run actions/checkout@v4	∩╗┐2026-01-01T22:26:52.9173936Z ##[group]Run actions/checkout@v4
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9175048Z with:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9175478Z   repository: 73junito/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9176152Z   token: ***
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9176529Z   ssh-strict: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9176912Z   ssh-user: git
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9177301Z   persist-credentials: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9177741Z   clean: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9178133Z   sparse-checkout-cone-mode: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9178611Z   fetch-depth: 1
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9178980Z   fetch-tags: false
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9179395Z   show-progress: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9179782Z   lfs: false
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9180150Z   submodules: false
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9180537Z   set-safe-directory: true
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:52.9181180Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0278833Z Syncing repository: 73junito/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0280847Z ##[group]Getting Git version info
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0281588Z Working directory is '/home/runner/work/autolearnpro/autolearnpro'
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0282635Z [command]/usr/bin/git version
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0375070Z git version 2.52.0
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0401443Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0416461Z Temporarily overriding HOME='/home/runner/work/_temp/c7407c0c-4ecd-461c-9549-ae63c3d1e271' before making global git config changes
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0418015Z Adding repository directory to the temporary git global config as a safe directory
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0431044Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0471036Z Deleting the contents of '/home/runner/work/autolearnpro/autolearnpro'
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0474696Z ##[group]Initializing the repository
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0479008Z [command]/usr/bin/git init /home/runner/work/autolearnpro/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0610202Z hint: Using 'master' as the name for the initial branch. This default branch name
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0611800Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0613481Z hint: to use in all of your new repositories, which will suppress this warning,
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0614860Z hint: call:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0615603Z hint:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0616582Z hint: 	git config --global init.defaultBranch <name>
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0617720Z hint:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0618884Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0620577Z hint: 'development'. The just-created branch can be renamed via this command:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0621800Z hint:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0622425Z hint: 	git branch -m <name>
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0623147Z hint:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0624077Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0626027Z Initialized empty Git repository in /home/runner/work/autolearnpro/autolearnpro/.git/
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0629011Z [command]/usr/bin/git remote add origin https://github.com/73junito/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0666754Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0667957Z ##[group]Disabling automatic garbage collection
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0671767Z [command]/usr/bin/git config --local gc.auto 0
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0703192Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0704570Z ##[group]Setting up auth
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0711301Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.0743851Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1127771Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1160165Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1405253Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1450546Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1745538Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1796415Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1803169Z ##[group]Fetching the repository
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:53.1812402Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +be3ef972aa6c5f15b260afe2578850da956b0a75:refs/remotes/origin/feat/thumbnailer-quality
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0902598Z From https://github.com/73junito/autolearnpro
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0904858Z  * [new ref]         be3ef972aa6c5f15b260afe2578850da956b0a75 -> origin/feat/thumbnailer-quality
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0942957Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0944235Z ##[group]Determining the checkout info
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0946961Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0951681Z [command]/usr/bin/git sparse-checkout disable
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.0999312Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.1029968Z ##[group]Checking out the ref
+build-and-run	Run actions/checkout@v4	2026-01-01T22:26:59.1034783Z [command]/usr/bin/git checkout --progress --force -B feat/thumbnailer-quality refs/remotes/origin/feat/thumbnailer-quality
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.1419196Z Updating files:  59% (5850/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.1710714Z Updating files:  60% (5913/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.2151015Z Updating files:  61% (6012/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.2703474Z Updating files:  62% (6111/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.3424651Z Updating files:  63% (6209/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.3790085Z Updating files:  64% (6308/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.4208383Z Updating files:  65% (6406/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.4545318Z Updating files:  66% (6505/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.5283888Z Updating files:  67% (6603/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.5445283Z Updating files:  68% (6702/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.5827577Z Updating files:  69% (6800/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.6431745Z Updating files:  70% (6899/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.6760528Z Updating files:  71% (6998/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.7705758Z Updating files:  72% (7096/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.8160646Z Updating files:  73% (7195/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.8394049Z Updating files:  74% (7293/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.8769848Z Updating files:  75% (7392/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:00.9240966Z Updating files:  76% (7490/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.0240256Z Updating files:  77% (7589/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.0729117Z Updating files:  78% (7687/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.1226881Z Updating files:  79% (7786/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.1943401Z Updating files:  79% (7846/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.2134039Z Updating files:  80% (7884/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.2272169Z Updating files:  81% (7983/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.2953631Z Updating files:  82% (8082/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.3322830Z Updating files:  83% (8180/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.3857355Z Updating files:  84% (8279/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.3918083Z Updating files:  85% (8377/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.3948690Z Updating files:  86% (8476/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.3980020Z Updating files:  87% (8574/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.4539259Z Updating files:  88% (8673/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.5722793Z Updating files:  89% (8771/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.6579074Z Updating files:  90% (8870/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.7967216Z Updating files:  91% (8969/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:01.9702737Z Updating files:  92% (9067/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.1210811Z Updating files:  93% (9166/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.1328260Z Updating files:  93% (9254/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.2484929Z Updating files:  94% (9264/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.3926654Z Updating files:  95% (9363/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.5291540Z Updating files:  96% (9461/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.6787364Z Updating files:  97% (9560/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:02.8104998Z Updating files:  98% (9658/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.0459669Z Updating files:  99% (9757/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.0460180Z Updating files: 100% (9855/9855)
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.0461029Z Updating files: 100% (9855/9855), done.
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.0580317Z Switched to a new branch 'feat/thumbnailer-quality'
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.0583106Z branch 'feat/thumbnailer-quality' set up to track 'origin/feat/thumbnailer-quality'.
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.1295948Z ##[endgroup]
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.1336020Z [command]/usr/bin/git log -1 --format=%H
+build-and-run	Run actions/checkout@v4	2026-01-01T22:27:03.1359303Z be3ef972aa6c5f15b260afe2578850da956b0a75
+build-and-run	Install Python and Pillow	∩╗┐2026-01-01T22:27:03.1544961Z ##[group]Run python -m pip install --upgrade pip
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.1545486Z [36;1mpython -m pip install --upgrade pip[0m
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.1545787Z [36;1mpython -m pip install pillow[0m
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.1582760Z shell: /usr/bin/bash -e {0}
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.1583029Z ##[endgroup]
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.6320097Z Defaulting to user installation because normal site-packages is not writeable
+build-and-run	Install Python and Pillow	2026-01-01T22:27:03.9680377Z Requirement already satisfied: pip in /usr/lib/python3/dist-packages (24.0)
+build-and-run	Install Python and Pillow	2026-01-01T22:27:04.0813350Z Collecting pip
+build-and-run	Install Python and Pillow	2026-01-01T22:27:04.1228552Z   Downloading pip-25.3-py3-none-any.whl.metadata (4.7 kB)
+build-and-run	Install Python and Pillow	2026-01-01T22:27:04.1310736Z Downloading pip-25.3-py3-none-any.whl (1.8 MB)
+build-and-run	Install Python and Pillow	2026-01-01T22:27:04.1648672Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 1.8/1.8 MB 56.9 MB/s eta 0:00:00
+build-and-run	Install Python and Pillow	2026-01-01T22:27:04.4198729Z Installing collected packages: pip
+build-and-run	Install Python and Pillow	2026-01-01T22:27:05.4143816Z Successfully installed pip-25.3
+build-and-run	Install Python and Pillow	2026-01-01T22:27:05.7059429Z Defaulting to user installation because normal site-packages is not writeable
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.0744821Z Collecting pillow
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.1292225Z   Downloading pillow-12.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.1431405Z Downloading pillow-12.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.2488174Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 7.0/7.0 MB 95.4 MB/s  0:00:00
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.3248142Z Installing collected packages: pillow
+build-and-run	Install Python and Pillow	2026-01-01T22:27:06.6221489Z Successfully installed pillow-12.0.0
+build-and-run	Generate sample images	∩╗┐2026-01-01T22:27:06.6879082Z ##[group]Run python - <<'PY'
+build-and-run	Generate sample images	2026-01-01T22:27:06.6879384Z [36;1mpython - <<'PY'[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6879604Z [36;1mfrom PIL import Image[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6879811Z [36;1mimport os[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6880063Z [36;1mos.makedirs('sample_images', exist_ok=True)[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6880344Z [36;1mfor i in range(20):[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6880613Z [36;1m    img = Image.new('RGB',(1920,1080),(i*10%256,i*5%256,i*3%256))[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6880968Z [36;1m    img.save(f'sample_images/img_{i:03}.png')[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6881224Z [36;1mPY[0m
+build-and-run	Generate sample images	2026-01-01T22:27:06.6914796Z shell: /usr/bin/bash -e {0}
+build-and-run	Generate sample images	2026-01-01T22:27:06.6915041Z ##[endgroup]
+build-and-run	Build	∩╗┐2026-01-01T22:27:07.5763622Z ##[group]Run cargo build --release --manifest-path tools/thumbnailer-rust/Cargo.toml
+build-and-run	Build	2026-01-01T22:27:07.5764210Z [36;1mcargo build --release --manifest-path tools/thumbnailer-rust/Cargo.toml[0m
+build-and-run	Build	2026-01-01T22:27:07.5797089Z shell: /usr/bin/bash -e {0}
+build-and-run	Build	2026-01-01T22:27:07.5797323Z ##[endgroup]
+build-and-run	Build	2026-01-01T22:27:07.7671967Z     Updating crates.io index
+build-and-run	Build	2026-01-01T22:27:07.9752777Z      Locking 59 packages to latest compatible versions
+build-and-run	Build	2026-01-01T22:27:07.9790565Z       Adding image v0.24.9 (available: v0.25.9)
+build-and-run	Build	2026-01-01T22:27:07.9837941Z  Downloading crates ...
+build-and-run	Build	2026-01-01T22:27:08.0546188Z   Downloaded autocfg v1.5.0
+build-and-run	Build	2026-01-01T22:27:08.2685783Z   Downloaded clap v4.5.53
+build-and-run	Build	2026-01-01T22:27:08.4033874Z   Downloaded utf8parse v0.2.2
+build-and-run	Build	2026-01-01T22:27:08.4049464Z   Downloaded walkdir v2.5.0
+build-and-run	Build	2026-01-01T22:27:08.4069204Z   Downloaded quote v1.0.42
+build-and-run	Build	2026-01-01T22:27:08.4097793Z   Downloaded either v1.15.0
+build-and-run	Build	2026-01-01T22:27:08.4114032Z   Downloaded byteorder v1.5.0
+build-and-run	Build	2026-01-01T22:27:08.4133012Z   Downloaded crossbeam-deque v0.8.6
+build-and-run	Build	2026-01-01T22:27:08.4150065Z   Downloaded bitflags v1.3.2
+build-and-run	Build	2026-01-01T22:27:08.4190572Z   Downloaded zune-inflate v0.2.54
+build-and-run	Build	2026-01-01T22:27:08.4214755Z   Downloaded unicode-ident v1.0.22
+build-and-run	Build	2026-01-01T22:27:08.4249070Z   Downloaded rayon-core v1.13.0
+build-and-run	Build	2026-01-01T22:27:08.4288185Z   Downloaded zerocopy-derive v0.8.31
+build-and-run	Build	2026-01-01T22:27:08.4360152Z   Downloaded png v0.17.16
+build-and-run	Build	2026-01-01T22:27:08.4403089Z   Downloaded rayon v1.11.0
+build-and-run	Build	2026-01-01T22:27:08.4496224Z   Downloaded qoi v0.4.1
+build-and-run	Build	2026-01-01T22:27:08.4524983Z   Downloaded miniz_oxide v0.8.9
+build-and-run	Build	2026-01-01T22:27:08.4552453Z   Downloaded clap_builder v4.5.53
+build-and-run	Build	2026-01-01T22:27:08.4616266Z   Downloaded flate2 v1.1.5
+build-and-run	Build	2026-01-01T22:27:08.4670582Z   Downloaded num-traits v0.2.19
+build-and-run	Build	2026-01-01T22:27:08.5573435Z   Downloaded exr v1.74.0
+build-and-run	Build	2026-01-01T22:27:08.7096607Z   Downloaded zerocopy v0.8.31
+build-and-run	Build	2026-01-01T22:27:08.7349483Z   Downloaded bytemuck v1.24.0
+build-and-run	Build	2026-01-01T22:27:08.7381202Z   Downloaded syn v2.0.112
+build-and-run	Build	2026-01-01T22:27:08.7485979Z   Downloaded smallvec v1.15.1
+build-and-run	Build	2026-01-01T22:27:08.7507225Z   Downloaded proc-macro2 v1.0.104
+build-and-run	Build	2026-01-01T22:27:08.7537134Z   Downloaded half v2.7.1
+build-and-run	Build	2026-01-01T22:27:08.7563386Z   Downloaded gif v0.13.3
+build-and-run	Build	2026-01-01T22:27:08.7580684Z   Downloaded crossbeam-utils v0.8.21
+build-and-run	Build	2026-01-01T22:27:08.7613773Z   Downloaded crossbeam-epoch v0.9.18
+build-and-run	Build	2026-01-01T22:27:08.7644771Z   Downloaded crc32fast v1.5.0
+build-and-run	Build	2026-01-01T22:27:08.7663214Z   Downloaded clap_derive v4.5.49
+build-and-run	Build	2026-01-01T22:27:08.7685107Z   Downloaded anstream v0.6.21
+build-and-run	Build	2026-01-01T22:27:08.7704758Z   Downloaded weezl v0.1.12
+build-and-run	Build	2026-01-01T22:27:08.7730503Z   Downloaded simd-adler32 v0.3.8
+build-and-run	Build	2026-01-01T22:27:08.7754348Z   Downloaded fdeflate v0.3.7
+build-and-run	Build	2026-01-01T22:27:08.7771480Z   Downloaded is_terminal_polyfill v1.70.2
+build-and-run	Build	2026-01-01T22:27:08.7781370Z   Downloaded colorchoice v1.0.4
+build-and-run	Build	2026-01-01T22:27:08.7790803Z   Downloaded clap_lex v0.7.6
+build-and-run	Build	2026-01-01T22:27:08.7802292Z   Downloaded cfg-if v1.0.4
+build-and-run	Build	2026-01-01T22:27:08.7816152Z   Downloaded bit_field v0.10.3
+build-and-run	Build	2026-01-01T22:27:08.7828147Z   Downloaded anstyle-query v1.1.5
+build-and-run	Build	2026-01-01T22:27:08.7839647Z   Downloaded strsim v0.11.1
+build-and-run	Build	2026-01-01T22:27:08.7852474Z   Downloaded same-file v1.0.6
+build-and-run	Build	2026-01-01T22:27:08.7865467Z   Downloaded lebe v0.5.3
+build-and-run	Build	2026-01-01T22:27:08.7878404Z   Downloaded heck v0.5.0
+build-and-run	Build	2026-01-01T22:27:08.7891643Z   Downloaded color_quant v1.1.0
+build-and-run	Build	2026-01-01T22:27:08.7901901Z   Downloaded jpeg-decoder v0.3.2
+build-and-run	Build	2026-01-01T22:27:08.7961671Z   Downloaded anstyle-parse v0.2.7
+build-and-run	Build	2026-01-01T22:27:08.7978019Z   Downloaded adler2 v2.0.1
+build-and-run	Build	2026-01-01T22:27:08.7990283Z   Downloaded anstyle v1.0.13
+build-and-run	Build	2026-01-01T22:27:08.8018706Z   Downloaded tiff v0.9.1
+build-and-run	Build	2026-01-01T22:27:08.8311384Z   Downloaded image v0.24.9
+build-and-run	Build	2026-01-01T22:27:08.9283283Z    Compiling proc-macro2 v1.0.104
+build-and-run	Build	2026-01-01T22:27:08.9283847Z    Compiling quote v1.0.42
+build-and-run	Build	2026-01-01T22:27:08.9284260Z    Compiling unicode-ident v1.0.22
+build-and-run	Build	2026-01-01T22:27:08.9284974Z    Compiling crossbeam-utils v0.8.21
+build-and-run	Build	2026-01-01T22:27:09.1848001Z    Compiling simd-adler32 v0.3.8
+build-and-run	Build	2026-01-01T22:27:09.4208179Z    Compiling cfg-if v1.0.4
+build-and-run	Build	2026-01-01T22:27:09.4503384Z    Compiling rayon-core v1.13.0
+build-and-run	Build	2026-01-01T22:27:09.5097972Z    Compiling adler2 v2.0.1
+build-and-run	Build	2026-01-01T22:27:09.6709472Z    Compiling crc32fast v1.5.0
+build-and-run	Build	2026-01-01T22:27:09.7374297Z    Compiling miniz_oxide v0.8.9
+build-and-run	Build	2026-01-01T22:27:09.8092055Z    Compiling zerocopy v0.8.31
+build-and-run	Build	2026-01-01T22:27:10.0588888Z    Compiling crossbeam-epoch v0.9.18
+build-and-run	Build	2026-01-01T22:27:10.2461842Z    Compiling syn v2.0.112
+build-and-run	Build	2026-01-01T22:27:10.3332220Z    Compiling crossbeam-deque v0.8.6
+build-and-run	Build	2026-01-01T22:27:10.4407204Z    Compiling utf8parse v0.2.2
+build-and-run	Build	2026-01-01T22:27:10.4900088Z    Compiling autocfg v1.5.0
+build-and-run	Build	2026-01-01T22:27:10.8933210Z    Compiling either v1.15.0
+build-and-run	Build	2026-01-01T22:27:11.0471871Z    Compiling rayon v1.11.0
+build-and-run	Build	2026-01-01T22:27:11.4199935Z    Compiling num-traits v0.2.19
+build-and-run	Build	2026-01-01T22:27:11.5066960Z    Compiling anstyle-parse v0.2.7
+build-and-run	Build	2026-01-01T22:27:11.6620622Z    Compiling flate2 v1.1.5
+build-and-run	Build	2026-01-01T22:27:12.2209554Z    Compiling is_terminal_polyfill v1.70.2
+build-and-run	Build	2026-01-01T22:27:12.2607394Z    Compiling weezl v0.1.12
+build-and-run	Build	2026-01-01T22:27:12.2906160Z    Compiling anstyle v1.0.13
+build-and-run	Build	2026-01-01T22:27:12.5094260Z    Compiling anstyle-query v1.1.5
+build-and-run	Build	2026-01-01T22:27:12.5577163Z    Compiling colorchoice v1.0.4
+build-and-run	Build	2026-01-01T22:27:12.6091786Z    Compiling anstream v0.6.21
+build-and-run	Build	2026-01-01T22:27:13.1397883Z    Compiling zune-inflate v0.2.54
+build-and-run	Build	2026-01-01T22:27:13.5151767Z    Compiling fdeflate v0.3.7
+build-and-run	Build	2026-01-01T22:27:13.7118890Z    Compiling jpeg-decoder v0.3.2
+build-and-run	Build	2026-01-01T22:27:13.8492303Z    Compiling lebe v0.5.3
+build-and-run	Build	2026-01-01T22:27:13.9792579Z    Compiling heck v0.5.0
+build-and-run	Build	2026-01-01T22:27:14.1299599Z    Compiling color_quant v1.1.0
+build-and-run	Build	2026-01-01T22:27:14.1731607Z    Compiling zerocopy-derive v0.8.31
+build-and-run	Build	2026-01-01T22:27:14.4133310Z    Compiling clap_lex v0.7.6
+build-and-run	Build	2026-01-01T22:27:14.5392722Z    Compiling bytemuck v1.24.0
+build-and-run	Build	2026-01-01T22:27:14.7069194Z    Compiling bitflags v1.3.2
+build-and-run	Build	2026-01-01T22:27:14.7401563Z    Compiling strsim v0.11.1
+build-and-run	Build	2026-01-01T22:27:14.8777836Z    Compiling smallvec v1.15.1
+build-and-run	Build	2026-01-01T22:27:15.0832122Z    Compiling bit_field v0.10.3
+build-and-run	Build	2026-01-01T22:27:15.1840176Z    Compiling clap_builder v4.5.53
+build-and-run	Build	2026-01-01T22:27:15.5849635Z    Compiling qoi v0.4.1
+build-and-run	Build	2026-01-01T22:27:15.8044745Z    Compiling png v0.17.16
+build-and-run	Build	2026-01-01T22:27:17.3753960Z    Compiling half v2.7.1
+build-and-run	Build	2026-01-01T22:27:17.5130336Z    Compiling tiff v0.9.1
+build-and-run	Build	2026-01-01T22:27:17.9968677Z    Compiling exr v1.74.0
+build-and-run	Build	2026-01-01T22:27:18.4826961Z    Compiling gif v0.13.3
+build-and-run	Build	2026-01-01T22:27:19.3022172Z    Compiling clap_derive v4.5.49
+build-and-run	Build	2026-01-01T22:27:21.0412657Z    Compiling same-file v1.0.6
+build-and-run	Build	2026-01-01T22:27:21.1325138Z    Compiling byteorder v1.5.0
+build-and-run	Build	2026-01-01T22:27:21.1348268Z    Compiling clap v4.5.53
+build-and-run	Build	2026-01-01T22:27:21.1707687Z    Compiling walkdir v2.5.0
+build-and-run	Build	2026-01-01T22:27:23.8006735Z    Compiling image v0.24.9
+build-and-run	Build	2026-01-01T22:27:39.4422705Z    Compiling thumbnailer v0.1.0 (/home/runner/work/autolearnpro/autolearnpro/tools/thumbnailer-rust)
+build-and-run	Build	2026-01-01T22:27:43.6639886Z     Finished `release` profile [optimized] target(s) in 35.99s
+build-and-run	Run benchmark	∩╗┐2026-01-01T22:27:43.6866846Z ##[group]Run cargo run --release --manifest-path tools/thumbnailer-rust/Cargo.toml -- --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark
+build-and-run	Run benchmark	2026-01-01T22:27:43.6868904Z [36;1mcargo run --release --manifest-path tools/thumbnailer-rust/Cargo.toml -- --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark[0m
+build-and-run	Run benchmark	2026-01-01T22:27:43.6918129Z shell: /usr/bin/bash -e {0}
+build-and-run	Run benchmark	2026-01-01T22:27:43.6918517Z ##[endgroup]
+build-and-run	Run benchmark	2026-01-01T22:27:43.7844959Z     Finished `release` profile [optimized] target(s) in 0.03s
+build-and-run	Run benchmark	2026-01-01T22:27:43.7862829Z      Running `tools/thumbnailer-rust/target/release/thumbnailer --input sample_images --output sample_thumbs --width 240 --height 160 --workers 4 --benchmark`
+build-and-run	Run benchmark	2026-01-01T22:27:44.1088866Z processed 20 files in 319.31ms
+build-and-run	Run Python baseline	∩╗┐2026-01-01T22:27:44.1146170Z ##[group]Run python tools/python_thumbnailer.py --input sample_images --output sample_thumbs_py --width 240 --height 160 --workers 4 --benchmark
+build-and-run	Run Python baseline	2026-01-01T22:27:44.1147138Z [36;1mpython tools/python_thumbnailer.py --input sample_images --output sample_thumbs_py --width 240 --height 160 --workers 4 --benchmark[0m
+build-and-run	Run Python baseline	2026-01-01T22:27:44.1179256Z shell: /usr/bin/bash -e {0}
+build-and-run	Run Python baseline	2026-01-01T22:27:44.1179559Z ##[endgroup]
+build-and-run	Run Python baseline	2026-01-01T22:27:44.5965345Z processed 20 files in 421.29ms
+build-and-run	Upload Rust thumbnails	∩╗┐2026-01-01T22:27:44.6151449Z ##[group]Run actions/upload-artifact@v4
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6151744Z with:
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6151914Z   name: rust-thumbs
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6152095Z   path: sample_thumbs/**
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6152305Z   if-no-files-found: warn
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6152506Z   compression-level: 6
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6152704Z   overwrite: false
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6152894Z   include-hidden-files: false
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.6153108Z ##[endgroup]
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.8360520Z With the provided path, there will be 20 files uploaded
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.8365698Z Artifact name is valid!
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.8367402Z Root directory input is valid!
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:44.9554589Z Beginning upload of artifact content to blob storage
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.1160043Z Uploaded bytes 11620
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.1528428Z Finished uploading artifact content to blob storage!
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.1532601Z SHA256 digest of uploaded artifact zip is fae9d8a63cb8c17c35f4e17b8465117a4f0478749c201ac457bef5e25c37cc33
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.1535043Z Finalizing artifact upload
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.2484559Z Artifact rust-thumbs.zip successfully finalized. Artifact ID 5004783180
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.2485473Z Artifact rust-thumbs has been successfully uploaded! Final size is 11620 bytes. Artifact ID is 5004783180
+build-and-run	Upload Rust thumbnails	2026-01-01T22:27:45.2492595Z Artifact download URL: https://github.com/73junito/autolearnpro/actions/runs/20646679612/artifacts/5004783180
+build-and-run	Upload Python thumbnails	∩╗┐2026-01-01T22:27:45.2627885Z ##[group]Run actions/upload-artifact@v4
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2628223Z with:
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2628405Z   name: python-thumbs
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2628620Z   path: sample_thumbs_py/**
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2628837Z   if-no-files-found: warn
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2629044Z   compression-level: 6
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2629229Z   overwrite: false
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2629421Z   include-hidden-files: false
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.2629637Z ##[endgroup]
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.4932317Z With the provided path, there will be 20 files uploaded
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.4938919Z Artifact name is valid!
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.4940851Z Root directory input is valid!
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.6128909Z Beginning upload of artifact content to blob storage
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.7936456Z Uploaded bytes 11574
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.8305790Z Finished uploading artifact content to blob storage!
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.8308955Z SHA256 digest of uploaded artifact zip is b9f98824cfd58726039e72d0712fba4cb9a01aff2dc49e2590d6d017d09ef540
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.8310807Z Finalizing artifact upload
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.9548750Z Artifact python-thumbs.zip successfully finalized. Artifact ID 5004783220
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.9550285Z Artifact python-thumbs has been successfully uploaded! Final size is 11574 bytes. Artifact ID is 5004783220
+build-and-run	Upload Python thumbnails	2026-01-01T22:27:45.9557755Z Artifact download URL: https://github.com/73junito/autolearnpro/actions/runs/20646679612/artifacts/5004783220
+build-and-run	Authenticate gh and download latest artifacts	∩╗┐2026-01-01T22:27:45.9681952Z ##[group]Run # install gh if missing
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9682294Z [36;1m# install gh if missing[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9682564Z [36;1mif ! command -v gh >/dev/null 2>&1; then[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9683189Z [36;1m  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9683863Z [36;1m  sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9685074Z [36;1m  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9685980Z [36;1m  sudo apt update && sudo apt install -y gh[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9686246Z [36;1mfi[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9686412Z [36;1m[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9686591Z [36;1m# authenticate non-interactively[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9686910Z [36;1mprintf '%s' "$GH_TOKEN" | gh auth login --with-token[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9687248Z [36;1mgh auth status || true[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9687453Z [36;1m[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9687622Z [36;1m# determine branch[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9687846Z [36;1mif [ -z "$BRANCH" ]; then[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9688079Z [36;1m  BRANCH="$REFNAME"[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9688277Z [36;1mfi[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9688434Z [36;1m[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9688680Z [36;1mecho "Searching for latest completed run on branch: $BRANCH"[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9689522Z [36;1mRUN_ID=$(gh run list --repo "$REPO" --workflow rust-thumbnailer-benchmark.yml --branch "$BRANCH" --limit 1 --json databaseId,status,conclusion --jq '.[] | select(.status=="completed") | .databaseId' | head -n1)[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9690251Z [36;1m[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9690422Z [36;1mif [ -n "$RUN_ID" ]; then[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9690701Z [36;1m  echo "Downloading artifacts for run $RUN_ID"[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9691076Z [36;1m  gh run download "$RUN_ID" --repo "$REPO" --dir "artifacts/run-$RUN_ID"[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9691478Z [36;1m  echo "Artifacts downloaded to artifacts/run-$RUN_ID"[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9691763Z [36;1melse[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9691960Z [36;1m  echo "No completed runs found yet."[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9692204Z [36;1mfi[0m
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9726227Z shell: /usr/bin/bash -e {0}
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9726465Z env:
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9726634Z   GH_TOKEN: 
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9726813Z   BRANCH: 
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9727000Z   REFNAME: feat/thumbnailer-quality
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9727260Z   REPO: 73junito/autolearnpro
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:45.9727483Z ##[endgroup]
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:46.2008474Z 
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:46.3062660Z ! First copy your one-time code: A346-92B3
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:27:46.3063369Z Open this URL to continue in your web browser: https://github.com/login/device
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:42:45.3070449Z failed to authenticate via web browser: context deadline exceeded
+build-and-run	Authenticate gh and download latest artifacts	2026-01-01T22:42:45.3110674Z ##[error]Process completed with exit code 1.
+build-and-run	Post Run actions/checkout@v4	∩╗┐2026-01-01T22:42:45.3184894Z Post job cleanup.
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4128454Z [command]/usr/bin/git version
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4170357Z git version 2.52.0
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4216812Z Temporarily overriding HOME='/home/runner/work/_temp/99d1fa2c-c0ac-4a80-8fe2-e74f0ba46f4f' before making global git config changes
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4218250Z Adding repository directory to the temporary git global config as a safe directory
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4223590Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/autolearnpro/autolearnpro
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4266651Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4303876Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4567153Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4590763Z http.https://github.com/.extraheader
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4606747Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4640696Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4901333Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-and-run	Post Run actions/checkout@v4	2026-01-01T22:42:45.4941379Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-and-run	Complete job	∩╗┐2026-01-01T22:42:45.5318458Z Cleaning up orphan processes

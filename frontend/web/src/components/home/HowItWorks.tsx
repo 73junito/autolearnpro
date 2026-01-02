@@ -1,3 +1,4 @@
+import React from 'react';
 const steps = [
   { title: "Enroll or assign courses", desc: "Role-based access for learners, instructors, and admins." },
   { title: "Complete modules & labs", desc: "Canvas-style modules with prerequisites and requirements." },
