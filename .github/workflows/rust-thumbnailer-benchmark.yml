@@ -36,18 +36,33 @@ jobs:
 
       - name: Run Python baseline
         run: python tools/python_thumbnailer.py --input sample_images --output sample_thumbs_py --width 240 --height 160 --workers 4 --benchmark
+      - name: Zip Rust thumbnails
+        run: |
+          if [ -d sample_thumbs ]; then
+            zip -r rust-thumbs.zip sample_thumbs || true
+          else
+            echo "sample_thumbs directory not found"
+          fi
 
-      - name: Upload Rust thumbnails
+      - name: Zip Python thumbnails
+        run: |
+          if [ -d sample_thumbs_py ]; then
+            zip -r python-thumbs.zip sample_thumbs_py || true
+          else
+            echo "sample_thumbs_py directory not found"
+          fi
+
+      - name: Upload Rust thumbnails (zip)
         uses: actions/upload-artifact@v4
         with:
-          name: rust-thumbs
-          path: sample_thumbs/**
+          name: rust-thumbs-zip
+          path: rust-thumbs.zip
 
-      - name: Upload Python thumbnails
+      - name: Upload Python thumbnails (zip)
         uses: actions/upload-artifact@v4
         with:
-          name: python-thumbs
-          path: sample_thumbs_py/**
+          name: python-thumbs-zip
+          path: python-thumbs.zip
 
       - name: Authenticate gh and download latest artifacts
         env:
