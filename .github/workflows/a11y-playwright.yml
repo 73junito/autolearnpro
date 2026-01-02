@@ -16,6 +16,9 @@ on:
 jobs:
   a11y-playwright:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     env:
       # Set REPORT_ONLY to control fail behavior. Uses workflow input when provided.
       REPORT_ONLY: ${{ github.event.inputs.report_only || 'true' }}
