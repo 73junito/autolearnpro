@@ -41,17 +41,32 @@ jobs:
         working-directory: frontend/web
         run: npm run build
 
-      - name: Run Playwright accessibility scan
+      - name: Run Playwright accessibility scans (multi-page)
         working-directory: frontend/web
-        run: node tools/run_playwright_scan.js
+        run: |
+          # scan home, courses, and catalog; adjust as needed
+          node tools/run_playwright_scans.js / /courses /catalog
 
-      - name: Upload a11y report
+      - name: Upload a11y reports
         uses: actions/upload-artifact@v4
         with:
-          name: a11y-playwright-report
-          path: frontend/web/a11y-playwright.json
+          name: a11y-playwright-reports
+          path: frontend/web/a11y-*-playwright.json
 
       - name: Fail on accessibility violations
         if: env.REPORT_ONLY != 'true'
         working-directory: frontend/web
-        run: node tools/a11y_check_exit.js a11y-playwright.json
+        run: |
+          set -e
+          found=0
+          for f in a11y-*-playwright.json; do
+            if [ -f "$f" ]; then
+              echo "Checking $f"
+              node tools/a11y_check_exit.js "$f" || exit 1
+              found=1
+            fi
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "No a11y reports found to check" >&2
+            exit 1
+          fi
