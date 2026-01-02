@@ -1,0 +1,57 @@
+name: Accessibility — Playwright (a11y)
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/web/**'
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      report_only:
+        description: 'Run the job in report-only mode (true/false)'
+        required: false
+        default: 'true'
+
+jobs:
+  a11y-playwright:
+    runs-on: ubuntu-latest
+    env:
+      # Set REPORT_ONLY to control fail behavior. Uses workflow input when provided.
+      REPORT_ONLY: ${{ github.event.inputs.report_only || 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: frontend/web
+        run: |
+          npm ci
+
+      - name: Install Playwright browsers
+        working-directory: frontend/web
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Next.js
+        working-directory: frontend/web
+        run: npm run build
+
+      - name: Run Playwright accessibility scan
+        working-directory: frontend/web
+        run: node tools/run_playwright_scan.js
+
+      - name: Upload a11y report
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-playwright-report
+          path: frontend/web/a11y-playwright.json
+
+      - name: Fail on accessibility violations
+        if: env.REPORT_ONLY != 'true'
+        working-directory: frontend/web
+        run: node tools/a11y_check_exit.js a11y-playwright.json
