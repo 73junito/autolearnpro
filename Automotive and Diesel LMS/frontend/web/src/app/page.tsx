@@ -25,7 +25,7 @@ export default function Home() {
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <Link href="/login" className="block bg-primary-600 hover:bg-primary-500 text-white px-4 py-3 rounded-lg text-center">Start Learning</Link>
-              <Link href="/instructor" className="block bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg text-center">Instructor Tools</Link>
+              <Link href="/dashboard" className="block bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg text-center">Instructor Tools</Link>
               <Link href="/dashboard" className="block bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg text-center">Program Analytics</Link>
             </div>
 

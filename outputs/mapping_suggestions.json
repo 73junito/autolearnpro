@@ -1,0 +1,783 @@
+{
+  "generatedAt": "2026-01-02T19:05:45.521Z",
+  "counts": {
+    "other": 90,
+    "knowledge_check": 14,
+    "lesson": 23,
+    "module_overview": 11,
+    "activity": 10,
+    "assessment": 6
+  },
+  "suggestions": [
+    {
+      "source": "1018 results for **/*.html",
+      "type": "other",
+      "suggested": "1018 results for **\\*.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\homepage.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\homepage.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\packages\\ui\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\packages\\ui\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\01-brake-systems-ase-a5\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\01-brake-systems-ase-a5\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\04-suspension-steering\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\04-suspension-steering\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\22-fleet-management-and-operations\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\22-fleet-management-and-operations\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\22-fleet-management-operations\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\22-fleet-management-operations\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\20-ev-charging-infrastructure\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\20-ev-charging-infrastructure\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\24-diesel-technology-capstone\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\24-diesel-technology-capstone\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\19-high-voltage-systems-service\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\19-high-voltage-systems-service\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\23-capstone-project\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\23-capstone-project\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\18-heavy-duty-truck-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\18-heavy-duty-truck-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\25-electric-vehicle-capstone\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\25-electric-vehicle-capstone\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\21-advanced-battery-management\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\21-advanced-battery-management\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\17-diesel-emissions-control\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\17-diesel-emissions-control\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\16-adas-driver-assistance\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\16-adas-driver-assistance\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\15-automotive-network-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\15-automotive-network-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\16-adas-and-driver-assistance\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\16-adas-and-driver-assistance\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\14-advanced-engine-diagnostics\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\14-advanced-engine-diagnostics\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\13-virtual-diagnostic-procedures\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\13-virtual-diagnostic-procedures\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\12-virtual-lab-safety-tools\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\12-virtual-lab-safety-tools\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\11-ev-battery-technology\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\11-ev-battery-technology\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\09-electric-vehicle-fundamentals\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\09-electric-vehicle-fundamentals\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\10-hybrid-vehicle-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\10-hybrid-vehicle-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\08-air-intake-and-exhaust-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\08-air-intake-and-exhaust-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\08-air-intake-exhaust-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\08-air-intake-exhaust-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\12-virtual-lab-safety-and-tools\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\12-virtual-lab-safety-and-tools\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\site_index\\preview_03_module1.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\site_index\\preview_03_module1.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\templates\\course_home_wireframe.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\templates\\course_home_wireframe.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\site_index\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\site_index\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\04-suspension-and-steering\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\04-suspension-and-steering\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\07-diesel-fuel-systems\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\07-diesel-fuel-systems\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\05-automatic-transmissions\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\05-automatic-transmissions\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\06-diesel-engine-operation\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\06-diesel-engine-operation\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\01-brake-systems-(ase-a5)\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\01-brake-systems-(ase-a5)\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\02-engine-performance-i\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\02-engine-performance-i\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\outputs\\index_backups\\content\\courses\\03-electrical-systems-fundamentals\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\outputs\\index_backups\\content\\courses\\03-electrical-systems-fundamentals\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\22-fleet-management-operations\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\practice-test.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\practice-test.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\syllabus.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\25-electric-vehicle-capstone\\site\\syllabus.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\README.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\25-electric-vehicle-capstone\\site\\README.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\practice-test.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\practice-test.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\01-introduction.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\01-introduction.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\05_fleet_management_and_operations_lesson_5.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\05_fleet_management_and_operations_lesson_5.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\04_fleet_management_and_operations_lesson_4.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\04_fleet_management_and_operations_lesson_4.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\03_fleet_management_and_operations_lesson_3.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\03_fleet_management_and_operations_lesson_3.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\02_fleet_management_and_operations_lesson_2.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\02_fleet_management_and_operations_lesson_2.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\lessons\\01_fleet_management_and_operations_lesson_1.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\01_fleet_management_and_operations_lesson_1.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-06-review\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-06-review\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-06-review\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-05-service-procedures\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-06-review\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-06-review\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-04-diagnostics\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-03-components\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-02-fundamentals\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-02-fundamentals\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-03-components\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-03-components\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-04-diagnostics\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-04-diagnostics\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-05-service-procedures\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-05-service-procedures\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-02-fundamentals\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-04-diagnostics\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-03-components\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-05-service-procedures\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-02-fundamentals\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-04-diagnostics\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-03-components\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-02-fundamentals\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-05-service-procedures\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-01-introduction\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-01-introduction\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-06-review\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-06-review\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-06-review\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-06-review\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-06-review\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-01-introduction\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-01-introduction\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\modules\\week-01-introduction\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\25-electric-vehicle-capstone\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\final-exam.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\final-exam.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-01-introduction\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-01-introduction\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-02-fundamentals\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-02-fundamentals\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-02-fundamentals\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-02-fundamentals\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-02-fundamentals\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-04-diagnostics\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-04-diagnostics\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-04-diagnostics\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-04-diagnostics\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-01-introduction\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-01-introduction\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-01-introduction\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\assessment.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\assessment.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\assessments\\lab_instructions.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\25-electric-vehicle-capstone\\site\\assessments\\lab_instructions.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\lessons\\02_electric_vehicle_capstone_lesson_2.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\02_electric_vehicle_capstone_lesson_2.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-03-components\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\lessons\\03_electric_vehicle_capstone_lesson_3.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\03_electric_vehicle_capstone_lesson_3.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-03-components\\overview.html",
+      "type": "module_overview",
+      "suggested": "site\\modules\\week-03-components\\overview.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\lessons\\04_electric_vehicle_capstone_lesson_4.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\04_electric_vehicle_capstone_lesson_4.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-03-components\\knowledge-check.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\knowledge-check.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\modules\\week-03-components\\activities.html",
+      "type": "activity",
+      "suggested": "site\\activities\\activities.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\syllabus.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\22-fleet-management-operations\\site\\syllabus.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\25-electric-vehicle-capstone\\site\\lessons\\05_electric_vehicle_capstone_lesson_5.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\05_electric_vehicle_capstone_lesson_5.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\README.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\22-fleet-management-operations\\site\\README.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\final-exam.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\final-exam.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\assessment.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\assessment.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\22-fleet-management-operations\\site\\assessments\\lab_instructions.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\22-fleet-management-operations\\site\\assessments\\lab_instructions.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\README.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\12-virtual-lab-safety-tools\\site\\README.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\practice-test.html",
+      "type": "knowledge_check",
+      "suggested": "site\\assessments\\practice-test.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\syllabus.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\12-virtual-lab-safety-tools\\site\\syllabus.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\content\\courses\\12-virtual-lab-safety-tools\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\final-exam.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\final-exam.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\assessment.html",
+      "type": "assessment",
+      "suggested": "site\\assessments\\assessment.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\lessons\\05_virtual_lab_safety_and_tools_lesson_5.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\05_virtual_lab_safety_and_tools_lesson_5.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\contact.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\contact.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\course-3.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\course-3.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-140.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-140.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-180.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-180.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-160.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-160.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-150.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-150.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-320.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-320.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-360.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-360.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-180.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-180.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-170.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-170.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-160.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-160.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-490.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-490.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-380.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-380.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-480.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-480.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-370.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-370.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\VLB-110.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\VLB-110.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\VLB-100.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\VLB-100.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\lesson_multimodal_example.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\lesson_multimodal_example.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-490.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-490.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-360.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-360.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-350.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-350.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-170.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-170.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-160.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-160.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\EV-150.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\EV-150.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-490.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\DSL-490.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-360.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-360.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-340.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-340.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-120.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\AUT-120.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\course_pages\\templates\\course.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\course_pages\\templates\\course.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\courses.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\courses.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\course-2.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\course-2.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\course-1.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\course-1.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\architecture.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\architecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\generated\\fuel-systems-injection.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\generated\\fuel-systems-injection.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\generated\\course-intro-to-diesel-engines.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\generated\\course-intro-to-diesel-engines.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\Automotive and Diesel LMS\\docs\\site\\generated\\advanced-engine-diagnostics.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\Automotive and Diesel LMS\\docs\\site\\generated\\advanced-engine-diagnostics.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\lib\\rust-sdk\\examples\\servers\\templates\\mcp_oauth_authorize.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\lib\\rust-sdk\\examples\\servers\\templates\\mcp_oauth_authorize.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\lib\\rust-sdk\\examples\\servers\\src\\html\\mcp_oauth_index.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\lib\\rust-sdk\\examples\\servers\\src\\html\\mcp_oauth_index.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\lib\\rust-sdk\\examples\\clients\\src\\auth\\callback.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\lib\\rust-sdk\\examples\\clients\\src\\auth\\callback.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\content\\courses\\12-virtual-lab-safety-tools\\site\\modules\\week-04-diagnostics\\lecture.html",
+      "type": "lesson",
+      "suggested": "site\\lessons\\lecture.html"
+    },
+    {
+      "source": "c:\\Automotive and Diesel LMS\\.venv3.10\\Lib\\idlelib\\help.html",
+      "type": "other",
+      "suggested": "..\\..\\..\\.venv3.10\\Lib\\idlelib\\help.html"
+    }
+  ]
+}
