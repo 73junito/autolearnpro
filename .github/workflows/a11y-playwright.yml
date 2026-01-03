@@ -1,0 +1,104 @@
+name: Accessibility — Playwright (a11y)
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/web/**'
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      report_only:
+        description: 'Run the job in report-only mode (true/false)'
+        required: false
+        default: 'true'
+
+jobs:
+  a11y-playwright:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      # Set REPORT_ONLY to control fail behavior. Uses workflow input when provided.
+      REPORT_ONLY: ${{ github.event.inputs.report_only || 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: frontend/web
+        run: |
+          npm ci
+
+      - name: Install Playwright browsers
+        working-directory: frontend/web
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Next.js
+        working-directory: frontend/web
+        run: npm run build
+
+      - name: Run Playwright accessibility scans (multi-page)
+        working-directory: frontend/web
+        run: |
+          # scan a set of critical pages; adjust as needed
+          node tools/run_playwright_scans.js / /courses /catalog /dashboard /admin/dashboard /signin
+
+      - name: Upload a11y reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-playwright-reports
+          path: frontend/web/a11y-*-playwright.json
+
+      - name: Summarize a11y reports
+        if: github.event_name == 'pull_request'
+        working-directory: frontend/web
+        run: |
+          echo "# Accessibility Scan Summary" > a11y-summary.md
+          echo "" >> a11y-summary.md
+          for f in a11y-*-playwright.json; do
+            if [ -f "$f" ]; then
+              v=$(jq '.violations | length' "$f")
+              p=$(jq '.passes | length' "$f")
+              i=$(jq '.incomplete | length' "$f")
+              echo "## $f" >> a11y-summary.md
+              echo "- violations: $v" >> a11y-summary.md
+              echo "- passes: $p" >> a11y-summary.md
+              echo "- incomplete: $i" >> a11y-summary.md
+              echo "" >> a11y-summary.md
+            fi
+          done
+
+      - name: Comment A11Y summary on PR
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-file: frontend/web/a11y-summary.md
+          edit-mode: replace
+
+      - name: Fail on accessibility violations
+        if: env.REPORT_ONLY != 'true'
+        working-directory: frontend/web
+        run: |
+          set -e
+          found=0
+          for f in a11y-*-playwright.json; do
+            if [ -f "$f" ]; then
+              echo "Checking $f"
+              node tools/a11y_check_exit.js "$f" || exit 1
+              found=1
+            fi
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "No a11y reports found to check" >&2
+            exit 1
+          fi
