@@ -74,3 +74,12 @@ ollama_models/
 
 # Ignore local extracted run artifacts
 run_*/
+artifacts/
+bench_results/
+sample_thumbs/
+sample_thumbs_py/
+sample_images/
+tools/thumbnailer-rust/target/
+packages/ui/storybook-static/
+rustup-init.exe
+tmp-gh-pages/

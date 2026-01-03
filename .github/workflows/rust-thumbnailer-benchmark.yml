@@ -64,6 +64,34 @@ jobs:
           name: python-thumbs-zip
           path: python-thumbs.zip
 
+      - name: Install extended benchmark requirements
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tools/thumbnailer-rust/requirements.txt
+
+      - name: Run extended benchmark grid (SSIM, PSNR, samples)
+        run: |
+          python tools/thumbnailer-rust/run_bench_grid.py \
+            --rust-cmd "cargo run --release --manifest-path tools/thumbnailer-rust/Cargo.toml --" \
+            --python-cmd "python tools/python_thumbnailer.py" \
+            --input sample_images \
+            --outdir bench_results \
+            --width 240 --height 160 --workers 4 --qualities 80 90 95
+
+      - name: Zip benchmark results
+        run: |
+          if [ -d bench_results ]; then
+            zip -r bench-results.zip bench_results || true
+          else
+            echo "bench_results directory not found"
+          fi
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: thumbnailer-bench-results
+          path: bench-results.zip
+
       - name: Authenticate gh and download latest artifacts
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7
+    container_name: crawler_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: crawler_postgres
+    environment:
+      POSTGRES_USER: crawler
+      POSTGRES_PASSWORD: crawlerpass
+      POSTGRES_DB: crawlerdb
+    # Host port changed to 5433 to avoid conflicts with local Postgres instances
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    container_name: crawler_minio
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data
+    ports:
+      - "9000:9000"
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  minio_data:
