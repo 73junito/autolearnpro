@@ -14,12 +14,15 @@
     "a11y:scan:files:auto": "npx wait-on http://localhost:3000 || true && npm run a11y:scan:files"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
+    "jsdom": "^22.1.0",
     "next": "16.1.1",
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.0"
   },
   "devDependencies": {
+    "@types/react": "19.2.7",
     "axe-core": "^4.11.0",
     "playwright": "^1.57.0",
     "wait-on": "^7.0.0"
