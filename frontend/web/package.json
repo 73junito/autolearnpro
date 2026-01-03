@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "a11y:scan": "node tools/run_playwright_scans.js / /courses /dashboard /admin/dashboard /login",
+    "a11y:scan:auto": "npx wait-on http://localhost:3000 && npm run a11y:scan",
+    "a11y:scan:files": "node tools/run_static_scans_from_file.js ../../outputs/html_pages.txt",
+    "a11y:scan:files:auto": "npx wait-on http://localhost:3000 || true && npm run a11y:scan:files"
   },
   "dependencies": {
     "next": "16.1.1",
@@ -15,14 +20,13 @@
     "swr": "^2.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.18",
-    "eslint": "^8",
-    "eslint-config-next": "16.1.1",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "axe-core": "^4.11.0",
+    "playwright": "^1.57.0",
+    "wait-on": "^7.0.0"
+  },
+  "vitest": {
+    "globals": true,
+    "testEnvironment": "jsdom",
+    "setupFiles": "./vitest.setup.ts"
   }
 }

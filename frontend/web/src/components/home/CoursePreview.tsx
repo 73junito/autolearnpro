@@ -22,7 +22,7 @@ export default function CoursePreview() {
             </p>
           </div>
           <Link
-            href="/catalog"
+            href="/courses"
             className="hidden rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 md:inline-flex"
           >
             View full catalog
@@ -45,7 +45,7 @@ export default function CoursePreview() {
 
               <div className="mt-4">
                 <Link
-                  href="/catalog"
+                  href="/courses"
                   className="inline-flex rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white hover:bg-blue-800"
                 >
                   Open course
@@ -57,7 +57,7 @@ export default function CoursePreview() {
 
         <div className="mt-6 md:hidden">
           <Link
-            href="/catalog"
+            href="/courses"
             className="inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
             View full catalog

@@ -12,13 +12,13 @@ export default function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-4 text-sm">
-            <Link className="text-slate-600 hover:text-slate-900" href="/docs">
+            <Link className="text-slate-600 hover:text-slate-900" href="/">
               Documentation
             </Link>
-            <Link className="text-slate-600 hover:text-slate-900" href="/privacy">
+            <Link className="text-slate-600 hover:text-slate-900" href="/">
               Privacy
             </Link>
-            <Link className="text-slate-600 hover:text-slate-900" href="/accessibility">
+            <Link className="text-slate-600 hover:text-slate-900" href="/">
               Accessibility
             </Link>
           </div>

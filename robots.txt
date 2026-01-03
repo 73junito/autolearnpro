@@ -4,6 +4,12 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
 
+# Common development/build folders
+Disallow: /_next/
+Disallow: /.next/
+Disallow: /node_modules/
+Disallow: /.env
+
 # Allow everything else
 Allow: /
 

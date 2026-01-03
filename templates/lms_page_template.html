@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{TITLE}} — {{COURSE}}</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header role="banner">
+    <div class="site-brand">
+      <a href="/{{COURSE_ROOT}}/index.html">{{COURSE_NAME}}</a>
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumbs">
+        {{BREADCRUMBS}}
+      </ol>
+    </nav>
+  </header>
+
+  <div class="container">
+    <main id="main" role="main">
+      <article>
+        <header class="page-header">
+          <h1>{{TITLE}}</h1>
+          <p class="meta">{{META}}</p>
+        </header>
+
+        <section class="content">
+          {{CONTENT}}
+        </section>
+
+        <section class="callouts" aria-hidden="false">
+          {{CALLOUTS}}
+        </section>
+      </article>
+    </main>
+
+    <aside role="complementary" class="sidebar">
+      <nav aria-label="Module navigation">
+        {{MODULE_NAV}}
+      </nav>
+      <section class="resources">
+        <h2>Resources</h2>
+        {{RESOURCES}}
+      </section>
+    </aside>
+  </div>
+
+  <footer role="contentinfo">
+    <div class="footer-links">{{FOOTER_LINKS}}</div>
+    <div class="legal">{{LEGAL}}</div>
+  </footer>
+
+  <!-- Minimal inline script to enhance accessibility where needed -->
+  <script>
+    // Focus visible polyfill for keyboard users
+    (function(){
+      document.addEventListener('keyup', function(e){ if(e.key === 'Tab') document.body.classList.add('user-is-tabbing'); });
+    })();
+  </script>
+</body>
+</html>

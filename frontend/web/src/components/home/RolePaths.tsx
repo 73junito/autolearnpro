@@ -2,16 +2,16 @@ import React from 'react';
 import Link from "next/link";
 
 const paths = [
-  {
+    {
     title: "Learners",
     desc: "Complete modules, labs, and assessments. Track mastery and credentials.",
-    href: "/catalog",
+    href: "/courses",
     bullets: ["Course cards", "Module progression", "Competency mastery"],
   },
-  {
+    {
     title: "Instructors",
     desc: "Build modules, attach labs/quizzes, and map competencies to standards.",
-    href: "/instructor",
+    href: "/dashboard",
     bullets: ["Modules & requirements", "Evidence-based labs", "Competency mapping"],
   },
   {

@@ -21,13 +21,13 @@ export default function Hero() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/catalog"
+              href="/courses"
               className="rounded-lg bg-blue-700 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-800"
             >
               Browse Course Catalog
             </Link>
             <Link
-              href="/catalog?demo=1"
+              href="/courses?demo=1"
               className="rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
               View Demo Course
@@ -76,7 +76,11 @@ export default function Hero() {
           </div>
 
           <div className="mt-4 rounded-xl border bg-white p-3 text-xs text-slate-600">
-            Replace this panel with a screenshot of your real catalog or course home once you like the layout.
+            <img
+              src="file:///C:/Users/rod63/OneDrive/Desktop/f0e2ac54-b955-4cee-8fb0-049561994328.png"
+              alt="Catalog screenshot"
+              className="w-full rounded-xl object-cover"
+            />
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <Link className="text-sm text-slate-700 hover:text-slate-900" href="/catalog">
+          <Link className="text-sm text-slate-700 hover:text-slate-900" href="/courses">
             Browse Courses
           </Link>
           <Link className="text-sm text-slate-700 hover:text-slate-900" href="/dashboard">
@@ -33,13 +33,13 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/signin"
+            href="/login"
             className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
           >
             Sign in
           </Link>
           <Link
-            href="/catalog"
+            href="/courses"
             className="rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium text-white hover:bg-blue-800"
           >
             Browse Catalog
