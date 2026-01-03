@@ -44,13 +44,20 @@ def index_loop():
             refs = lo.get('content_refs') or []
             if refs:
                 blob_path = refs[0].get('blob_path')
+            pii_flag = lo.get('pii', False)
+            pii_report = lo.get('pii_report')
             # upsert logical object
-            upsert_logical_object(logical_id, type_, title, course_id, module_id)
+            upsert_logical_object(logical_id, type_, title, course_id, module_id, pii_detected=bool(pii_flag))
             # insert version only if hash differs
             last_hash = get_latest_version_hash(logical_id)
             if content_hash != last_hash:
-                insert_version(logical_id, content_hash, crawl_time, blob_path, fetch_task_id=None)
-                print('inserted new version for', logical_id)
+                # if PII detected, avoid storing blob_path (or mark pii) but still record a version
+                if pii_flag:
+                    insert_version(logical_id, content_hash, crawl_time, None, fetch_task_id=None, pii_detected=True, pii_report=pii_report)
+                    print('PII detected — recorded version without blob for', logical_id)
+                else:
+                    insert_version(logical_id, content_hash, crawl_time, blob_path, fetch_task_id=None)
+                    print('inserted new version for', logical_id)
             else:
                 print('no change for', logical_id)
         except Exception as e:

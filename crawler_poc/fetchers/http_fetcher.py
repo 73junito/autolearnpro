@@ -4,6 +4,7 @@ import time
 import json
 import requests
 import uuid
+import hashlib
 from pathlib import Path
 import redis
 
@@ -34,12 +35,17 @@ def fetch_loop():
             blob_path = BLOBS_DIR / blob_name
             with open(blob_path, 'wb') as f:
                 f.write(body)
+            # compute sha256 of body
+            h = hashlib.sha256()
+            h.update(body)
+            content_hash = f"sha256:{h.hexdigest()}"
             result = {
                 'task_id': task_id,
                 'url': url,
                 'status_code': resp.status_code,
                 'content_type': resp.headers.get('Content-Type',''),
                 'body_path': str(blob_path),
+                'content_hash': content_hash,
                 'headers': dict(resp.headers),
                 'fetch_tier': 'http',
                 'network_trace_path': None,
