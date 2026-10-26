@@ -3,7 +3,7 @@
 Separate from Foundation 5's **disposable** database smoke test, this stack provides a persistent **development-only** PostgreSQL 17.6 database and pgAdmin 4 9.18.
 
 - UI: http://127.0.0.1:5055 (only local loopback published)
-- Login email: admin@autolearnpro.local
+- Login email: admin@autolearnpro.com
 - Local login password and database password: `infrastructure/docker/.env.local-admin` (git-ignored; do not commit or share)
 - pgAdmin server registration: **Name** AutoLearnPro Local Dev, **Host** `postgres`, **Port** `5432`, **Maintenance database** `autolearnpro_dev`, **Username** `alp_admin`, **Password** value of `ALP_LOCAL_DB_PASSWORD` from the local credential file
 - Docker Compose project: `autolearnpro-local-admin`. Separate named database and admin volumes.
