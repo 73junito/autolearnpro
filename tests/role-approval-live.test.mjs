@@ -66,6 +66,7 @@ test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45
     assert.equal(approval.rows[0].decided_by, reviewer.id);
   } finally {
     for (const id of ids.reverse()) {
+      await pool.query("DELETE FROM alp_private.alp_approval_rate_limits WHERE actor_id=$1", [id]);
       await pool.query("DELETE FROM alp_private.alp_role_audit WHERE user_id=$1 OR actor_id=$1", [id]);
       await pool.query("DELETE FROM alp_private.alp_role_requests WHERE target_id=$1 OR requested_by=$1 OR decided_by=$1", [id]);
       await pool.query("DELETE FROM auth.users WHERE id=$1", [id]);

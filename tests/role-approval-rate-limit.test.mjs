@@ -6,9 +6,11 @@ import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
 
 test("per-actor local throttle blocks seventh attempt before database access", async t => {
   let queries = 0;
+  let consumed = 0;
   const pool = {
     connect: async () => ({ query: async (sql) => {
       queries++;
+      if (sql.includes("consume_approval_quota")) return { rows: [{ allowed: ++consumed <= 6 }] };
       if (sql.includes("submit_role_request")) return { rows: [{ id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc" }] };
       return { rows: [] };
     }, release() {} }),
@@ -32,5 +34,6 @@ test("per-actor local throttle blocks seventh attempt before database access", a
   const seventh = await post();
   assert.equal(seventh.status, 429);
   assert.equal(seventh.headers.get("retry-after"), "60");
-  assert.equal(queries, before);
+  assert.equal(queries, before + 4); // BEGIN, SET ROLE, quota check, COMMIT; no mutation query
+  assert.equal(consumed, 7);
 });

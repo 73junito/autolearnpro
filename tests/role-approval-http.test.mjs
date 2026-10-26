@@ -13,6 +13,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
     connect: async () => ({
       query: async (sql, params) => {
         statements.push({ sql, params });
+        if (sql.includes("consume_approval_quota")) return { rows: [{ allowed: true }] };
         if (sql.includes("submit_role_request")) return { rows: [{ id: requestId }] };
         return { rows: [] };
       },
@@ -48,11 +49,11 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   const initialCount = statements.length;
   r = await post("/api/roles/request", { ...request, actorId: target });
   assert.equal(r.status, 400);
-  assert.equal(statements.length, initialCount);
+  assert.equal(statements.length, initialCount + 4); // quota counted but no mutation
   valid = false;
   r = await post("/api/roles/decision", { requestId, approve: true, reason: "Verified and approved" }, "forged");
   assert.equal(r.status, 401);
-  assert.equal(statements.length, initialCount);
+  assert.equal(statements.length, initialCount + 4);
   r = await fetch(base + "/api/roles/request", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
   assert.equal(r.status, 401);
   const disabled = makeServer({ approval: createRoleApproval({}) });
