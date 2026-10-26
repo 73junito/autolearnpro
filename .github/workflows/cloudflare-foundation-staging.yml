@@ -1,0 +1,44 @@
+name: Cloudflare Foundation Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Validation only; deployment is blocked until separately authorized"
+        required: true
+        type: choice
+        options:
+          - validate
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-foundation-staging
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate isolated Cloudflare Worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --check infrastructure/cloudflare/worker.mjs
+      - name: Validate Wrangler configuration
+        working-directory: infrastructure/cloudflare
+        run: npx --yes wrangler@4.137.0 deploy --dry-run --env staging
+
+  deployment-gate:
+    name: Staging deployment gate (blocked)
+    if: ${{ false }}
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: cloudflare-foundation-staging
+    steps:
+      - run: echo "Deployment disabled pending approval and required secret configuration."
