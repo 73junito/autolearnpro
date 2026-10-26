@@ -7,7 +7,8 @@ Separate from Foundation 5's **disposable** database smoke test, this stack prov
 - Local login password and database password: `infrastructure/docker/.env.local-admin` (git-ignored; do not commit or share)
 - pgAdmin server registration: **Name** AutoLearnPro Local Dev, **Host** `postgres`, **Port** `5432`, **Maintenance database** `autolearnpro_dev`, **Username** `alp_admin`, **Password** value of `ALP_LOCAL_DB_PASSWORD` from the local credential file
 - Docker Compose project: `autolearnpro-local-admin`. Separate named database and admin volumes.
-- No external PostgreSQL host port exposed, no production/Supabase connection, and no application schema migrated.
+- Windows desktop clients connect via **127.0.0.1:55432** (NOT localhost:5432). Dockerized pgAdmin uses **postgres:5432**. PostgreSQL is bound only to Windows loopback, not the external network.
+- No production/Supabase connection and no application schema migrated.
 
 ## Operations (PowerShell, from F:\autolearnpro)
 

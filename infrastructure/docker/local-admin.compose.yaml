@@ -3,6 +3,8 @@ services:
   postgres:
     image: postgres:17.6-alpine
     restart: unless-stopped
+    ports:
+      - "127.0.0.1:55432:5432"
     environment:
       POSTGRES_USER: alp_admin
       POSTGRES_DB: autolearnpro_dev
