@@ -1,0 +1,41 @@
+name: autolearnpro-local-admin
+services:
+  postgres:
+    image: postgres:17.6-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: alp_admin
+      POSTGRES_DB: autolearnpro_dev
+      POSTGRES_PASSWORD: ${ALP_LOCAL_DB_PASSWORD:?Required}
+    volumes:
+      - alp_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alp_admin -d autolearnpro_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+      start_period: 15s
+    networks:
+      - local_admin
+  pgadmin:
+    image: dpage/pgadmin4:9.18
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5055:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${ALP_PGADMIN_EMAIL:?Required}
+      PGADMIN_DEFAULT_PASSWORD: ${ALP_PGADMIN_PASSWORD:?Required}
+      PGADMIN_DISABLE_POSTFIX: "1"
+    volumes:
+      - alp_pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - local_admin
+networks:
+  local_admin:
+    internal: true
+volumes:
+  alp_postgres_data:
+  alp_pgadmin_data:
