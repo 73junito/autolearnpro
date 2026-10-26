@@ -5,6 +5,22 @@ const maxBody = 8192;
 export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, publishableKey = process.env.ALP_SUPABASE_PUBLISHABLE_KEY, databaseUrl = process.env.ALP_DATABASE_URL, fetchImpl = fetch, pool: injectedPool } = {}) {
   const enabled = Boolean(authUrl && publishableKey && (databaseUrl || injectedPool));
   const pool = injectedPool ?? (databaseUrl ? new Pool({ connectionString: databaseUrl, max: 3, connectionTimeoutMillis: 5000, statement_timeout: 5000 }) : null);
+  // Single-process guardrail only. A shared persistent limiter is required before multi-instance deployment.
+  const requestsByActor = new Map();
+  const windowMs = 60_000;
+  const maxAttempts = 6;
+  function limitActor(actor) {
+    const now = Date.now();
+    if (requestsByActor.size > 5000) {
+      for (const [id, entry] of requestsByActor) if (now - entry.started >= windowMs) requestsByActor.delete(id);
+      if (requestsByActor.size > 5000) return false;
+    }
+    const old = requestsByActor.get(actor);
+    const entry = !old || now - old.started >= windowMs ? { started: now, attempts: 0 } : old;
+    entry.attempts++;
+    requestsByActor.set(actor, entry);
+    return entry.attempts <= maxAttempts;
+  }
   async function process(req, res) {
     const reply = (status, error) => {
       res.writeHead(status, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" });
@@ -25,6 +41,10 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
       actor = user.id;
       if (typeof actor !== "string" || !/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(actor)) return reply(401, "unauthorized");
     } catch { return reply(503, "auth_unavailable"); }
+    if (!limitActor(actor)) {
+      res.setHeader("retry-after", "60");
+      return reply(429, "rate_limited");
+    }
     let bodyText = "";
     try {
       for await (const chunk of req) {
