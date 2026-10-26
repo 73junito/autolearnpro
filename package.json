@@ -15,7 +15,7 @@
   "scripts": {
     "validate:foundation": "node infrastructure/scripts/validate-foundation.mjs",
     "test:runtime": "node --test tests/runtime-health.test.mjs tests/role-approval-http.test.mjs tests/role-approval-rate-limit.test.mjs",
-    "test:approval:live": "node --test tests/role-approval-live.test.mjs tests/approval-shared-quota-live.test.mjs",
+    "test:approval:live": "node --test tests/role-approval-live.test.mjs tests/approval-shared-quota-live.test.mjs tests/role-session-revocation-live.test.mjs",
     "test": "npm run validate:foundation && npm run test:runtime"
   }
 }
