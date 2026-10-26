@@ -35,7 +35,7 @@ services:
       - local_admin
 networks:
   local_admin:
-    internal: true
+    driver: bridge
 volumes:
   alp_postgres_data:
   alp_pgadmin_data:
