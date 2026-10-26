@@ -35,6 +35,11 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
       const quota = await quotaClient.query("SELECT alp_private.consume_approval_quota($1) AS allowed", [actor]);
       await quotaClient.query("COMMIT");
       if (quota.rows[0]?.allowed !== true) {
+        // Record the rejected request in its own committed, private transaction.
+        await quotaClient.query("BEGIN");
+        await quotaClient.query("SET LOCAL ROLE service_role");
+        await quotaClient.query("SELECT alp_private.record_approval_security_event($1,$2)", [actor, "approval_rate_limited"]);
+        await quotaClient.query("COMMIT");
         res.setHeader("retry-after", "60");
         return reply(429, "rate_limited");
       }
@@ -74,7 +79,17 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
       res.writeHead(isRequest ? 201 : 200, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" });
       res.end(JSON.stringify(isRequest ? { requestId } : { status: "recorded" }));
     } catch (error) {
-      if (client) { try { await client.query("ROLLBACK"); } catch { /* rollback best effort */ } }
+      if (client) {
+        try { await client.query("ROLLBACK"); } catch { /* rollback best effort */ }
+        if (error.code === "42501" || error.code === "22023") {
+          try {
+            await client.query("BEGIN");
+            await client.query("SET LOCAL ROLE service_role");
+            await client.query("SELECT alp_private.record_approval_security_event($1,$2)", [actor, error.code === "42501" ? "approval_denied" : "approval_invalid_state"]);
+            await client.query("COMMIT");
+          } catch { try { await client.query("ROLLBACK"); } catch {} }
+        }
+      }
       // Do not expose SQL errors or authorization details.
       reply(error.code === "42501" ? 403 : error.code === "22023" ? 409 : 503, error.code === "42501" ? "forbidden" : error.code === "22023" ? "invalid_state" : "approval_unavailable");
     } finally { client?.release(); }

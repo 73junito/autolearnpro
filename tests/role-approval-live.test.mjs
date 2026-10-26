@@ -48,6 +48,8 @@ test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45
     assert.ok(requestId);
     res = await post("/api/roles/decision", stranger.token, { requestId, approve: true, reason: "Unauthorized approval attempted" });
     assert.equal(res.status, 403);
+    const denial = await pool.query("SELECT count(*)::int AS count FROM alp_private.alp_security_events WHERE actor_id=$1 AND event_name='approval_denied'", [stranger.id]);
+    assert.equal(denial.rows[0].count, 1);
     res = await post("/api/roles/decision", requester.token, { requestId, approve: true, reason: "Self approval attempted locally" });
     assert.equal(res.status, 403);
     res = await post("/api/roles/decision", reviewer.token + "tampered", { requestId, approve: true, reason: "Forged token attempted locally" });
@@ -66,6 +68,7 @@ test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45
     assert.equal(approval.rows[0].decided_by, reviewer.id);
   } finally {
     for (const id of ids.reverse()) {
+      await pool.query("DELETE FROM alp_private.alp_security_events WHERE actor_id=$1", [id]);
       await pool.query("DELETE FROM alp_private.alp_approval_rate_limits WHERE actor_id=$1", [id]);
       await pool.query("DELETE FROM alp_private.alp_role_audit WHERE user_id=$1 OR actor_id=$1", [id]);
       await pool.query("DELETE FROM alp_private.alp_role_requests WHERE target_id=$1 OR requested_by=$1 OR decided_by=$1", [id]);

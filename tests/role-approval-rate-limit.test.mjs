@@ -34,6 +34,6 @@ test("per-actor local throttle blocks seventh attempt before database access", a
   const seventh = await post();
   assert.equal(seventh.status, 429);
   assert.equal(seventh.headers.get("retry-after"), "60");
-  assert.equal(queries, before + 4); // BEGIN, SET ROLE, quota check, COMMIT; no mutation query
+  assert.equal(queries, before + 8); // two transactions: quota and security event; no mutation query
   assert.equal(consumed, 7);
 });
