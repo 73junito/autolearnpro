@@ -1,0 +1,30 @@
+name: autolearnpro-foundation6-recovery
+
+# Recovery only. Uses a pre-existing, disposable CLONE of the Foundation 6
+# database volume. Never mount the source volume here.
+services:
+  postgres-recovery:
+    image: public.ecr.aws/supabase/postgres:17.11.0.006
+    restart: "no"
+    volumes:
+      - recovery_clone:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 15s
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - recovery_isolated
+    # No host ports: inspect via docker compose exec only.
+
+volumes:
+  recovery_clone:
+    external: true
+    name: foundation6-recovery-clone
+
+networks:
+  recovery_isolated:
+    internal: true
