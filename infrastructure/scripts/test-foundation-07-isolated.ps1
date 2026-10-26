@@ -1,5 +1,7 @@
 # Foundation 7 isolated local integration gate. Never targets a linked/cloud project.
+param([ValidateSet('Database','Live','All')][string]$Stage = 'All')
 $ErrorActionPreference = 'Stop'
+$summary = [ordered]@{ timestampUtc = [DateTime]::UtcNow.ToString('o'); stage = $Stage; database = 'not_run'; live = 'not_run'; result = 'FAIL' }
 $root = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path))
 $workdir = 'F:\autolearnpro-foundation7-cli-recovery'
 $project = 'autolearnpro-foundation7-cli-recovery'
@@ -10,6 +12,7 @@ $config = Get-Content (Join-Path $workdir 'supabase/config.toml') -Raw
 if ($config -notmatch 'project_id\s*=\s*"autolearnpro-foundation7-cli-recovery"') { throw 'Refusing unexpected project ID' }
 Push-Location $root
 try {
+  if ($Stage -ne 'Live') {
   Write-Output '[1/7] CLI migration history'
   $migrations = @(Get-ChildItem 'supabase/migrations/*.sql')
   if ($migrations.Count -ne 9) { throw "Expected nine migrations; found $($migrations.Count)" }
@@ -40,6 +43,9 @@ try {
   npm test
   if ($LASTEXITCODE -ne 0) { throw 'npm test failed' }
 
+  $summary.database = 'PASS'
+  }
+  if ($Stage -ne 'Database') {
   Write-Output '[6/7] Live local Auth/approval integration'
   $values = @{}
   $previousPreference = $ErrorActionPreference
@@ -63,8 +69,14 @@ try {
   Write-Output '[7/7] Auth remains responsive after tests'
   $health = Invoke-WebRequest -Uri ($expectedApi + '/auth/v1/health') -UseBasicParsing -TimeoutSec 15
   if ($health.StatusCode -ne 200) { throw 'Post-test Auth health failed' }
-  Write-Output 'FOUNDATION_07_ISOLATED_GATE=PASS'
+  $summary.live = 'PASS'
+  }
+  $summary.result = 'PASS'
+  Write-Output ('FOUNDATION_07_ISOLATED_GATE=' + $summary.result)
 } finally {
+  $report = Join-Path $env:TEMP ('autolearnpro-foundation-07-' + $Stage.ToLowerInvariant() + '-result.json')
+  $summary | ConvertTo-Json | Set-Content -Path $report -Encoding utf8
+  Write-Output ('SANITIZED_REPORT=' + $report)
   Remove-Item Env:ALP_DATABASE_URL,Env:ALP_SUPABASE_URL,Env:ALP_SUPABASE_PUBLISHABLE_KEY,Env:ALP_LOCAL_INTEGRATION -ErrorAction SilentlyContinue
   Pop-Location
 }

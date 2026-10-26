@@ -23,7 +23,7 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
       if (!result.ok) return reply(401, "unauthorized");
       const user = await result.json();
       actor = user.id;
-      if (typeof actor !== "string" || !/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(actor)) return reply(401, "unauthorized");
+      if (typeof actor !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(actor)) return reply(401, "unauthorized");
     } catch { return reply(503, "auth_unavailable"); }
     // Rate limit is committed independently so denied/failed actions still count.
     // Row-level UPSERT serializes concurrent requests across server instances.

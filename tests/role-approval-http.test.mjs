@@ -54,6 +54,22 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   r = await post("/api/roles/decision", { requestId, approve: true, reason: "Verified and approved" }, "forged");
   assert.equal(r.status, 401);
   assert.equal(statements.length, initialCount + 4);
+  // A malformed Auth user ID must be rejected before any SQL operation.
+  const invalidIdentity = createRoleApproval({
+    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
+    fetchImpl: async () => ({ ok: true, json: async () => ({ id: "aaaaaaaa-invalid-4aaa-8aaa-aaaaaaaaaaaa" }) })
+  });
+  const invalidServer = makeServer({ approval: invalidIdentity });
+  invalidServer.listen(0, "127.0.0.1");
+  await once(invalidServer, "listening");
+  t.after(() => invalidServer.close());
+  const beforeInvalid = statements.length;
+  const invalidResponse = await fetch(`http://127.0.0.1:${invalidServer.address().port}/api/roles/request`, {
+    method: "POST", headers: { authorization: "Bearer valid", "content-type": "application/json" },
+    body: JSON.stringify(request)
+  });
+  assert.equal(invalidResponse.status, 401);
+  assert.equal(statements.length, beforeInvalid);
   r = await fetch(base + "/api/roles/request", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
   assert.equal(r.status, 401);
   const disabled = makeServer({ approval: createRoleApproval({}) });
