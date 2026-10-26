@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "validate:foundation": "node infrastructure/scripts/validate-foundation.mjs",
-    "test:runtime": "node --test tests/runtime-health.test.mjs",
+    "test:runtime": "node --test tests/runtime-health.test.mjs tests/role-approval-http.test.mjs",
     "test": "npm run validate:foundation && npm run test:runtime"
   }
 }
