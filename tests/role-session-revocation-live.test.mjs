@@ -7,7 +7,7 @@ import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
 
 test("local Auth session revocation rejects a previously issued approval bearer", { skip: !process.env.ALP_LOCAL_INTEGRATION, timeout: 40000 }, async () => {
   const url=process.env.ALP_SUPABASE_URL, key=process.env.ALP_SUPABASE_PUBLISHABLE_KEY, db=process.env.ALP_DATABASE_URL;
-  assert.ok(url?.startsWith("http://127.0.0.1:55121") && key && db);
+  assert.ok(url?.startsWith("http://127.0.0.1:") && key && db);
   const pool=new pg.Pool({connectionString:db});
   const server=makeServer({approval:createRoleApproval({authUrl:url,publishableKey:key,pool})});
   server.listen(0,"127.0.0.1"); await once(server,"listening");

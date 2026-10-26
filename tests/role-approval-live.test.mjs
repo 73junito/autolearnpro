@@ -9,7 +9,7 @@ test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45
   const supabaseUrl = process.env.ALP_SUPABASE_URL;
   const publicKey = process.env.ALP_SUPABASE_PUBLISHABLE_KEY;
   const databaseUrl = process.env.ALP_DATABASE_URL;
-  assert.ok(supabaseUrl?.startsWith("http://127.0.0.1:55121"));
+  assert.ok(supabaseUrl?.startsWith("http://127.0.0.1:"));
   assert.ok(publicKey && databaseUrl);
   const pool = new pg.Pool({ connectionString: databaseUrl });
   const ids = [];
