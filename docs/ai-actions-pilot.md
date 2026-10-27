@@ -11,7 +11,7 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 ## API request
 - Endpoint: `https://api.cline.bot/api/v1/chat/completions` (OpenAI-compatible chat completions), authenticated with `Authorization: Bearer $CLINE_DEVELOPMENT_KEY`.
 - Body: `model`, a `messages` array (one `system` message plus one `user` message carrying the untrusted metadata), `max_tokens: 1200`, and `stream: false`. No tools, function calling, or code execution are requested.
-- The review text is read from `choices[0].message.content`; an empty or malformed response fails the run without producing a report.
+- The review text is read from `choices[0].message.content`, accepting either the top-level chat-completions object or a successful ClinePass `{ "success": true, "data": { "choices": [...] } }` envelope. Responses with `success` not strictly `true`, non-object `data`, or absent/empty choices fail closed without generating an artifact.
 - On an HTTP failure the run logs the status, the model id, a sanitized provider error code/message (truncated to 200 characters), and a hint. Raw response bodies and credentials are never printed. The same message is emitted as a GitHub Actions `::error::` annotation, so it appears in the run summary without opening the step log.
 
 ## Safe response diagnostics
