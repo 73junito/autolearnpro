@@ -116,14 +116,24 @@ except ValueError:
     fail("Cline API returned a malformed JSON response")
 
 if not isinstance(result, dict):
-    fail("Cline API returned an unexpected response")
+    fail("Cline API response shape: root is not an object")
 choices = result.get("choices")
-if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
-    fail("AI review did not complete")
+if "choices" not in result:
+    fail("Cline API response shape: choices missing")
+if not isinstance(choices, list):
+    fail("Cline API response shape: choices is not an array")
+if not choices:
+    fail("Cline API response shape: choices array is empty")
+if not isinstance(choices[0], dict):
+    fail("Cline API response shape: first choice is not an object")
 message = choices[0].get("message")
-content = message.get("content") if isinstance(message, dict) else None
-if not isinstance(content, str) or not content.strip():
-    fail("No review text returned")
+if not isinstance(message, dict):
+    fail("Cline API response shape: first choice message missing or not an object")
+content = message.get("content")
+if not isinstance(content, str):
+    fail("Cline API response shape: message content missing or not text")
+if not content.strip():
+    fail("Cline API response shape: message content is empty")
 review = content.strip()
 Path("ai-review-report.md").write_text(
     "# Advisory AI repository review\n\n"
