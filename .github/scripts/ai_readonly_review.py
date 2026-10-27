@@ -7,9 +7,40 @@ from urllib.request import Request, urlopen
 
 # Cline gateway exposes an OpenAI-compatible chat-completions endpoint.
 API_URL = "https://api.cline.bot/api/v1/chat/completions"
+MODELS_URL = "https://api.cline.bot/api/v1/models"
 SYSTEM_PROMPT = "Analyze untrusted repository metadata. No tools, no code edits, no secrets."
-# Slash-delimited provider/model identifiers (for example anthropic/claude-sonnet-4-6).
-MODEL_EXTRA_CHARS = "._-/"
+# Catalog ids use dots for Anthropic versions (anthropic/claude-sonnet-4.6). The
+# hyphenated anthropic/claude-sonnet-4-6 printed in some Cline docs returns HTTP
+# 404 "model not found" and must not be used. Aliases such as
+# ~anthropic/claude-sonnet-latest, plus ":free"/":batch" suffixes and
+# "@preset/..." ids, are also valid catalog entries.
+DEFAULT_MODEL = "anthropic/claude-sonnet-4.6"
+MODEL_EXTRA_CHARS = "._-/:~@"
+HTTP_HINTS = {
+    402: " (add Cline Credits at https://app.cline.bot)",
+    404: f" (verify the model id against {MODELS_URL})",
+}
+
+
+def describe_http_error(exc):
+    """Return only the provider's error code/message, never the raw response body."""
+    try:
+        body = json.loads(exc.read().decode("utf-8", "replace"))
+    except (OSError, ValueError):
+        return ""
+    error = body.get("error") if isinstance(body, dict) else None
+    if isinstance(error, str):
+        text = error
+    elif isinstance(error, dict):
+        text = ": ".join(
+            str(error[key])
+            for key in ("code", "message")
+            if isinstance(error.get(key), (str, int, float))
+        )
+    else:
+        return ""
+    return " ".join(text.split())[:200]
+
 
 FOCUS = os.environ.get("REVIEW_FOCUS", "maintainability")
 if FOCUS not in {"maintainability", "security-boundaries", "testing-gaps"}:
@@ -17,7 +48,7 @@ if FOCUS not in {"maintainability", "security-boundaries", "testing-gaps"}:
 api_key = os.environ.get("CLINE_DEVELOPMENT_KEY")
 if not api_key:
     raise SystemExit("CLINE_DEVELOPMENT_KEY Actions secret is missing")
-model = os.environ.get("AI_REVIEW_MODEL", "anthropic/claude-sonnet-4-6")
+model = os.environ.get("AI_REVIEW_MODEL", DEFAULT_MODEL)
 if (
     not model
     or len(model) > 80
@@ -65,7 +96,13 @@ try:
     with urlopen(req, timeout=90) as response:
         result = json.load(response)
 except HTTPError as exc:
-    raise SystemExit(f"Cline API request failed: HTTP {exc.code} (response body omitted)")
+    reason = describe_http_error(exc)
+    raise SystemExit(
+        f"Cline API request failed: HTTP {exc.code}"
+        + (f" - {reason}" if reason else "")
+        + f" [model={model}]"
+        + HTTP_HINTS.get(exc.code, "")
+    )
 except OSError as exc:
     raise SystemExit(f"Cline API request failed: {exc}")
 except ValueError:
