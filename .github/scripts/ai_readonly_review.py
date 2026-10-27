@@ -65,8 +65,7 @@ try:
     with urlopen(req, timeout=90) as response:
         result = json.load(response)
 except HTTPError as exc:
-    detail = " ".join(exc.read().decode("utf-8", "replace").split())[:300]
-    raise SystemExit(f"Cline API request failed: HTTP {exc.code} {detail}".strip())
+    raise SystemExit(f"Cline API request failed: HTTP {exc.code} (response body omitted)")
 except OSError as exc:
     raise SystemExit(f"Cline API request failed: {exc}")
 except ValueError:
