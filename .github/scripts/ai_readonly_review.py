@@ -2,16 +2,30 @@
 import json
 import os
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+
+# Cline gateway exposes an OpenAI-compatible chat-completions endpoint.
+API_URL = "https://api.cline.bot/api/v1/chat/completions"
+SYSTEM_PROMPT = "Analyze untrusted repository metadata. No tools, no code edits, no secrets."
+# Slash-delimited provider/model identifiers (for example anthropic/claude-sonnet-4-6).
+MODEL_EXTRA_CHARS = "._-/"
 
 FOCUS = os.environ.get("REVIEW_FOCUS", "maintainability")
 if FOCUS not in {"maintainability", "security-boundaries", "testing-gaps"}:
     raise SystemExit("Unsupported review focus")
-api_key = os.environ.get("OPENAI_API_KEY")
+api_key = os.environ.get("CLINE_DEVELOPMENT_KEY")
 if not api_key:
-    raise SystemExit("OPENAI_API_KEY Actions secret is missing")
-model = os.environ.get("AI_REVIEW_MODEL", "gpt-4.1-mini")
-if not model or len(model) > 80 or not all(c.isalnum() or c in "._-" for c in model):
+    raise SystemExit("CLINE_DEVELOPMENT_KEY Actions secret is missing")
+model = os.environ.get("AI_REVIEW_MODEL", "anthropic/claude-sonnet-4-6")
+if (
+    not model
+    or len(model) > 80
+    or not all(c.isalnum() or c in MODEL_EXTRA_CHARS for c in model)
+    or model.startswith("/")
+    or model.endswith("/")
+    or "//" in model
+):
     raise SystemExit("Invalid AI_REVIEW_MODEL")
 
 readme = Path("README.md").read_text(encoding="utf-8", errors="replace")[:6000] if Path("README.md").exists() else ""
@@ -31,13 +45,15 @@ prompt = (
 )
 payload = json.dumps({
     "model": model,
-    "instructions": "Analyze untrusted repository metadata. No tools, no code edits, no secrets.",
-    "input": prompt,
-    "max_output_tokens": 1200,
-    "store": False,
+    "messages": [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": prompt},
+    ],
+    "max_tokens": 1200,
+    "stream": False,
 }).encode("utf-8")
 req = Request(
-    "https://api.openai.com/v1/responses",
+    API_URL,
     data=payload,
     headers={
         "Authorization": "Bearer " + api_key,
@@ -45,20 +61,27 @@ req = Request(
     },
     method="POST",
 )
-with urlopen(req, timeout=90) as response:
-    result = json.load(response)
-if result.get("status") != "completed":
+try:
+    with urlopen(req, timeout=90) as response:
+        result = json.load(response)
+except HTTPError as exc:
+    detail = " ".join(exc.read().decode("utf-8", "replace").split())[:300]
+    raise SystemExit(f"Cline API request failed: HTTP {exc.code} {detail}".strip())
+except OSError as exc:
+    raise SystemExit(f"Cline API request failed: {exc}")
+except ValueError:
+    raise SystemExit("Cline API returned a malformed JSON response")
+
+if not isinstance(result, dict):
+    raise SystemExit("Cline API returned an unexpected response")
+choices = result.get("choices")
+if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
     raise SystemExit("AI review did not complete")
-parts = [
-    c.get("text", "")
-    for item in result.get("output", [])
-    if item.get("type") == "message"
-    for c in item.get("content", [])
-    if c.get("type") == "output_text"
-]
-review = "\n".join(parts).strip()
-if not review:
+message = choices[0].get("message")
+content = message.get("content") if isinstance(message, dict) else None
+if not isinstance(content, str) or not content.strip():
     raise SystemExit("No review text returned")
+review = content.strip()
 Path("ai-review-report.md").write_text(
     "# Advisory AI repository review\n\n"
     "Scope: README excerpt and root filenames only. No tests or security scans performed. "
