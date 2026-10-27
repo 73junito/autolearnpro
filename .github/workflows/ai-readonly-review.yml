@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'anthropic/claude-sonnet-4.6' }}
+      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'cline-pass/qwen3.7-plus' }}
     steps:
       - name: Check out default branch
         uses: actions/checkout@v5
