@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'gpt-4.1-mini' }}
+      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'anthropic/claude-sonnet-4-6' }}
     steps:
       - name: Check out default branch
         uses: actions/checkout@v4
@@ -33,15 +33,15 @@ jobs:
           persist-credentials: false
       - name: Check API key is configured
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLINE_DEVELOPMENT_KEY: ${{ secrets.CLINE_DEVELOPMENT_KEY }}
         run: |
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::error::Configure OPENAI_API_KEY in repository Actions secrets before running."
+          if [ -z "$CLINE_DEVELOPMENT_KEY" ]; then
+            echo "::error::Configure CLINE_DEVELOPMENT_KEY in repository Actions secrets before running."
             exit 1
           fi
       - name: Produce advisory AI review
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLINE_DEVELOPMENT_KEY: ${{ secrets.CLINE_DEVELOPMENT_KEY }}
           REVIEW_FOCUS: ${{ inputs.focus }}
         run: python3 .github/scripts/ai_readonly_review.py
       - name: Upload advisory report
