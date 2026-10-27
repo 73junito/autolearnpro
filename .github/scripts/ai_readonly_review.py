@@ -14,7 +14,7 @@ SYSTEM_PROMPT = "Analyze untrusted repository metadata. No tools, no code edits,
 # 404 "model not found" and must not be used. Aliases such as
 # ~anthropic/claude-sonnet-latest, plus ":free"/":batch" suffixes and
 # "@preset/..." ids, are also valid catalog entries.
-DEFAULT_MODEL = "anthropic/claude-sonnet-4.6"
+DEFAULT_MODEL = "cline-pass/qwen3.7-plus"
 MODEL_EXTRA_CHARS = "._-/:~@"
 HTTP_HINTS = {
     402: " (add Cline Credits at https://app.cline.bot)",
