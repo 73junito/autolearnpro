@@ -5,7 +5,7 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 ## Setup
 1. Merge this change only after reviewing the draft PR.
 2. In **Settings → Secrets and variables → Actions**, add a repository secret named `CLINE_DEVELOPMENT_KEY`. Use a development-scoped key only; never add `CLINE_STAGING_KEY` or `CLINE_PRODUCTION_KEY` for this pilot, and never commit or paste a key value into a workflow or conversation.
-3. Optionally define repository variable `AI_REVIEW_MODEL` (default `cline-pass/qwen3.7-plus`). Identifiers use the `provider/model` form from the live catalog at `https://api.cline.bot/api/v1/models`, for example `openai/gpt-4o`; aliases such as `~anthropic/claude-sonnet-latest` and `:free` suffixes are accepted too.
+3. Optionally define repository variable `AI_REVIEW_MODEL` (default `cline-pass/qwen3.7-plus`). Identifiers use the `provider/model` form from the live catalog at `https://api.cline.bot/api/v1/models`, for example `cline-pass/qwen3.7-plus`; aliases such as `~anthropic/claude-sonnet-latest` and `:free` suffixes are accepted too.
 4. Open **Actions → AI Repository Review (Manual, Read-only) → Run workflow**, choose the focus, and inspect the `ai-readonly-review` artifact.
 
 ## API request
@@ -15,8 +15,8 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 - On an HTTP failure the run logs the status, the model id, a sanitized provider error code/message (truncated to 200 characters), and a hint. Raw response bodies and credentials are never printed. The same message is emitted as a GitHub Actions `::error::` annotation, so it appears in the run summary without opening the step log.
 
 ## Troubleshooting
-- `HTTP 404 - model not found`: the model id is not in the live catalog. Anthropic catalog ids use a dot, for example `cline-pass/qwen3.7-plus`; the hyphenated `anthropic/claude-sonnet-4-6` printed in some Cline documentation returns 404. Confirm the id with `curl -s https://api.cline.bot/api/v1/models` before changing the workflow variable.
-- `HTTP 402 - insufficient_credits`: the key's account needs Cline Credits at `app.cline.bot`. This is an account balance issue, not a workflow bug.
+- `HTTP 404 - model not found`: the model id is not in the live catalog. Model ids must match the catalog exactly; the old default `anthropic/claude-sonnet-4-6` returned 404. Confirm the id with `curl -s https://api.cline.bot/api/v1/models` before changing the workflow variable.
+- `HTTP 402`: check whether the API key is associated with the active ClinePass subscription and whether subscription quota is available. For pay-as-you-go models, insufficient credits requires adding credits; this is not necessarily required for eligible `cline-pass/` models.
 - `HTTP 401`: the key is invalid or revoked; rotate `CLINE_DEVELOPMENT_KEY`.
 - `HTTP 429`/`5xx`: transient; rerun the workflow later.
 
@@ -31,4 +31,4 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 - Model recommendations are not verified facts. Human review and Stage 2 acceptance stay mandatory.
 
 ## Operational limits
-GitHub's default branch currently has minimal content; results are correspondingly limited. The local Cline Stage 2 working tree is *not* uploaded. Missing or invalid API keys cause a failed run with no report. API usage may incur cost.
+GitHub's default branch currently has minimal content; results are correspondingly limited. The local Cline Stage 2 working tree is *not* uploaded. Missing or invalid API keys cause a failed run with no report. ClinePass models use subscription quota when the API key is eligible. Verify actual entitlement in the first live run; using another model may incur credit charges.
