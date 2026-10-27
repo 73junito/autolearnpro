@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'anthropic/claude-sonnet-4-6' }}
+      AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL || 'anthropic/claude-sonnet-4.6' }}
     steps:
       - name: Check out default branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
       - name: Check API key is configured
@@ -46,7 +46,7 @@ jobs:
         run: python3 .github/scripts/ai_readonly_review.py
       - name: Upload advisory report
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ai-readonly-review
           path: ai-review-report.md
