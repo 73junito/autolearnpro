@@ -14,6 +14,9 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 - The review text is read from `choices[0].message.content`; an empty or malformed response fails the run without producing a report.
 - On an HTTP failure the run logs the status, the model id, a sanitized provider error code/message (truncated to 200 characters), and a hint. Raw response bodies and credentials are never printed. The same message is emitted as a GitHub Actions `::error::` annotation, so it appears in the run summary without opening the step log.
 
+## Safe response diagnostics
+When the HTTP request succeeds but the response does not contain usable text, the reviewer emits a GitHub Actions error annotation describing only the structural failure: missing or non-array `choices`, empty choices, missing `message`, or missing/empty non-text `content`. It does not log response bodies, generated text, prompt contents, API keys, response metadata values, or arbitrary provider-supplied field names. These annotations help distinguish incompatible response formats without exposing data.
+
 ## Troubleshooting
 - `HTTP 404 - model not found`: the model id is not in the live catalog. Model ids must match the catalog exactly; the old default `anthropic/claude-sonnet-4-6` returned 404. Confirm the id with `curl -s https://api.cline.bot/api/v1/models` before changing the workflow variable.
 - `HTTP 402`: check whether the API key is associated with the active ClinePass subscription and whether subscription quota is available. For pay-as-you-go models, insufficient credits requires adding credits; this is not necessarily required for eligible `cline-pass/` models.
