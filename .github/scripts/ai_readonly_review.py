@@ -117,6 +117,15 @@ except ValueError:
 
 if not isinstance(result, dict):
     fail("Cline API response shape: root is not an object")
+# ClinePass may wrap chat-completions fields in {"success": true, "data": ...}.
+# Only unwrap explicitly successful, well-formed envelopes; never log payloads.
+if "success" in result:
+    if result["success"] is not True:
+        fail("Cline API response reports unsuccessful result")
+    data = result.get("data")
+    if not isinstance(data, dict):
+        fail("Cline API response shape: invalid data envelope")
+    result = data
 choices = result.get("choices")
 if "choices" not in result:
     fail("Cline API response shape: choices missing")
