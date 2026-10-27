@@ -22,6 +22,13 @@ HTTP_HINTS = {
 }
 
 
+def fail(message):
+    """Exit non-zero, surfacing the reason as a GitHub Actions error annotation."""
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        print("::error::" + message.replace("%", "%25"))
+    raise SystemExit(message)
+
+
 def describe_http_error(exc):
     """Return only the provider's error code/message, never the raw response body."""
     try:
@@ -44,10 +51,10 @@ def describe_http_error(exc):
 
 FOCUS = os.environ.get("REVIEW_FOCUS", "maintainability")
 if FOCUS not in {"maintainability", "security-boundaries", "testing-gaps"}:
-    raise SystemExit("Unsupported review focus")
+    fail("Unsupported review focus")
 api_key = os.environ.get("CLINE_DEVELOPMENT_KEY")
 if not api_key:
-    raise SystemExit("CLINE_DEVELOPMENT_KEY Actions secret is missing")
+    fail("CLINE_DEVELOPMENT_KEY Actions secret is missing")
 model = os.environ.get("AI_REVIEW_MODEL", DEFAULT_MODEL)
 if (
     not model
@@ -57,7 +64,7 @@ if (
     or model.endswith("/")
     or "//" in model
 ):
-    raise SystemExit("Invalid AI_REVIEW_MODEL")
+    fail("Invalid AI_REVIEW_MODEL")
 
 readme = Path("README.md").read_text(encoding="utf-8", errors="replace")[:6000] if Path("README.md").exists() else ""
 file_names = sorted(str(p) for p in Path(".").iterdir() if p.name != ".git")
@@ -97,26 +104,26 @@ try:
         result = json.load(response)
 except HTTPError as exc:
     reason = describe_http_error(exc)
-    raise SystemExit(
+    fail(
         f"Cline API request failed: HTTP {exc.code}"
         + (f" - {reason}" if reason else "")
         + f" [model={model}]"
         + HTTP_HINTS.get(exc.code, "")
     )
 except OSError as exc:
-    raise SystemExit(f"Cline API request failed: {exc}")
+    fail(f"Cline API request failed: {exc}")
 except ValueError:
-    raise SystemExit("Cline API returned a malformed JSON response")
+    fail("Cline API returned a malformed JSON response")
 
 if not isinstance(result, dict):
-    raise SystemExit("Cline API returned an unexpected response")
+    fail("Cline API returned an unexpected response")
 choices = result.get("choices")
 if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
-    raise SystemExit("AI review did not complete")
+    fail("AI review did not complete")
 message = choices[0].get("message")
 content = message.get("content") if isinstance(message, dict) else None
 if not isinstance(content, str) or not content.strip():
-    raise SystemExit("No review text returned")
+    fail("No review text returned")
 review = content.strip()
 Path("ai-review-report.md").write_text(
     "# Advisory AI repository review\n\n"

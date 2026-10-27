@@ -12,7 +12,7 @@ This repository workflow is an advisory, manually triggered metadata review. It 
 - Endpoint: `https://api.cline.bot/api/v1/chat/completions` (OpenAI-compatible chat completions), authenticated with `Authorization: Bearer $CLINE_DEVELOPMENT_KEY`.
 - Body: `model`, a `messages` array (one `system` message plus one `user` message carrying the untrusted metadata), `max_tokens: 1200`, and `stream: false`. No tools, function calling, or code execution are requested.
 - The review text is read from `choices[0].message.content`; an empty or malformed response fails the run without producing a report.
-- On an HTTP failure the run logs the status, the model id, a sanitized provider error code/message (truncated to 200 characters), and a hint. Raw response bodies and credentials are never printed.
+- On an HTTP failure the run logs the status, the model id, a sanitized provider error code/message (truncated to 200 characters), and a hint. Raw response bodies and credentials are never printed. The same message is emitted as a GitHub Actions `::error::` annotation, so it appears in the run summary without opening the step log.
 
 ## Troubleshooting
 - `HTTP 404 - model not found`: the model id is not in the live catalog. Anthropic catalog ids use a dot, for example `anthropic/claude-sonnet-4.6`; the hyphenated `anthropic/claude-sonnet-4-6` printed in some Cline documentation returns 404. Confirm the id with `curl -s https://api.cline.bot/api/v1/models` before changing the workflow variable.
