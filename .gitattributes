@@ -1,0 +1,23 @@
+# C3-R37B candidate policy — reviewed byte-sensitive C3 sources.
+# These paths are stored and checked out verbatim, so the SHA-256 fingerprints recorded in the C3 milestone
+# documents survive a clone regardless of core.autocrlf. Do not add `text` rules for these paths.
+infrastructure/c3/**                      -text
+tests/c3-*.test.mjs                       -text
+tests/fixtures/**                         -text
+docs/c3-r2*/**                            -text
+docs/c3-r3*/**                            -text
+apps/catalog/**                           -text
+
+# Scaffold READMEs: their SHA-256 values are recorded in C3-R37A-FILE-INVENTORY.json, so they are byte-sensitive too.
+# The first candidate run proved this omission: without these rules the seven scaffolds were LF-normalised into the
+# blob and one clone could not reproduce the reviewed bytes.
+/apps/classroom/**                        -text
+/apps/simulator/**                        -text
+/packages/**                              -text
+/supabase/functions/**                    -text
+
+# External inputs to the reviewed C3 contracts (root-anchored).
+/infrastructure/cloudflare/worker.mjs     -text
+/infrastructure/cloudflare/wrangler.jsonc -text
+/package.json                             -text
+/package-lock.json                        -text

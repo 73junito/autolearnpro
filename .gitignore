@@ -20,3 +20,13 @@ Thumbs.db
 supabase/.branches/
 supabase/.profiles/
 supabase/.temp/
+
+# C3-R30: `infrastructure/c3/build/` holds build-only SOURCE (toolchain manifest, lockfile, root guard),
+# not generated output. The `build/` rule above targets build artefacts; without this negation the whole
+# C3 tooling package is invisible to git and can never be committed. `node_modules/` remains ignored at any
+# depth by rule 1, so installed dependencies are still excluded.
+!infrastructure/c3/build/
+
+# C3-R37B: four console captures under docs/c3-r36h3/logs/ are reviewed evidence (C3-R37A §3) and must survive the
+# *.log rule above. Scoped to that directory; unrelated logs remain ignored.
+!docs/c3-r36h3/logs/*.log

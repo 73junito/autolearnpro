@@ -1,0 +1,34 @@
+{
+  "schema": "alp-c3-r36g-package-completeness-v1",
+  "builtOn": "windows-development-worktree",
+  "manifest": "docs/c3-r36g/C3-R36G-LINUX-MANIFEST-V2.json",
+  "records": 33,
+  "staged": 33,
+  "hashMismatches": [],
+  "r35Mapping": {
+    "ok": true,
+    "inputs": 9,
+    "roles": [
+      "catalog",
+      "repository",
+      "worker"
+    ],
+    "note": "the staged package satisfies the reviewed R35 mapping unchanged; no validator rule was relaxed"
+  },
+  "testsPresent": [
+    "tests/c3-build-input-contract.test.mjs",
+    "tests/c3-build-provenance.test.mjs",
+    "tests/c3-evidence-rehearsal.test.mjs",
+    "tests/c3-library-generation.test.mjs",
+    "tests/c3-library-reader.test.mjs",
+    "tests/c3-multi-root-snapshot.test.mjs",
+    "tests/c3-offline-evidence-persistence.test.mjs",
+    "tests/c3-offline-evidence.test.mjs",
+    "tests/c3-process-boundary.test.mjs",
+    "tests/c3-recovery.test.mjs",
+    "tests/c3-worker-bundle-feasibility.test.mjs",
+    "tests/fixtures/fs-alter-once.mjs"
+  ],
+  "executed": false,
+  "notClaimed": "Package completeness only. No Linux execution is recorded or implied."
+}

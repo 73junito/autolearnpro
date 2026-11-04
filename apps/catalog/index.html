@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoLearnPro catalog — local prototype skeleton</title>
+    <meta
+      name="description"
+      content="Minimal AutoLearnPro catalog skeleton. A local prototype with no catalog records and no vehicle data."
+    />
+    <!--
+      C3-R34 skeleton. Deliberate properties, each asserted by tests/c3-catalog-skeleton.test.mjs:
+        - no external stylesheet, font, script or model reference
+        - all styling inline, so the page has zero subresource dependencies
+        - no catalog records, no automotive application content, no network calls
+    -->
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #16202a;
+        --muted: #4a5763;
+        --line: #c8d0d8;
+        --surface: #ffffff;
+        --canvas: #eef2f6;
+        --accent: #0b4f8a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 2rem 1.25rem 4rem;
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      main {
+        max-width: 46rem;
+        margin: 0 auto;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 0.5rem;
+        padding: 1.75rem clamp(1rem, 4vw, 2.25rem) 2.25rem;
+      }
+
+      h1 {
+        margin: 0 0 0.25rem;
+        font-size: clamp(1.4rem, 3vw, 1.75rem);
+        line-height: 1.25;
+      }
+
+      .eyebrow {
+        margin: 0 0 1.25rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .notice {
+        margin: 1.5rem 0;
+        padding: 0.9rem 1rem;
+        border-left: 0.25rem solid var(--accent);
+        background: var(--canvas);
+      }
+
+      .notice strong {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+
+      h2 {
+        margin: 2rem 0 0.75rem;
+        font-size: 1.05rem;
+      }
+
+      dl {
+        display: grid;
+        grid-template-columns: minmax(9rem, max-content) 1fr;
+        gap: 0.35rem 1rem;
+        margin: 0;
+      }
+
+      dt {
+        color: var(--muted);
+      }
+
+      dd {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        font-size: 0.9em;
+      }
+
+      :focus-visible {
+        outline: 0.1875rem solid var(--accent);
+        outline-offset: 0.125rem;
+      }
+
+      a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main id="catalog-root">
+      <p class="eyebrow">AutoLearnPro</p>
+      <h1>Catalog application skeleton</h1>
+
+      <div class="notice">
+        <strong>Local prototype — not a released catalog.</strong>
+        <p>
+          This page is the C3-R34 minimum viable application. It exists to prove that the approved framework
+          builds inside the authoritative repository. It contains no catalog records, no course data, no
+          library build evidence and no vehicle-application information.
+        </p>
+      </div>
+
+      <p id="boot-status" role="status">JavaScript has not started. If this text remains, the entry module did not run.</p>
+
+      <h2>What this page is not</h2>
+      <ul>
+        <li>It is not a course catalog — no records are loaded.</li>
+        <li>It is not build or release evidence — no generation, attestation or publication claim is made.</li>
+        <li>It is not automotive data — no assembly, dimension or vehicle-application information is included.</li>
+      </ul>
+
+      <h2>Recorded runtime facts</h2>
+      <dl id="runtime-facts">
+        <dt>Status</dt>
+        <dd id="fact-status">not started</dd>
+        <dt>Build mode</dt>
+        <dd id="fact-mode">unknown</dd>
+        <dt>Catalog data loaded</dt>
+        <dd>none</dd>
+      </dl>
+
+      <noscript>
+        <p>
+          This skeleton requires JavaScript for its status line only. No catalog content depends on it, because
+          no catalog content exists yet.
+        </p>
+      </noscript>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
