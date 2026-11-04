@@ -1,0 +1,60 @@
+{
+  "schema": "alp-c3-r37c-reviewed-evidence-allowlist-v1",
+  "note": "Evidence the C3-R37A retention decision protects but .gitignore hides from `git status`. Listed by exact path with an expected digest and a justification; nothing is included by pattern or by directory.",
+  "exceptions": [
+    {
+      "path": "docs/c3-r36h3/logs/b23-trials-prefix.log",
+      "sha256": "31a77c23b9ffe460fcefc9e9c667da69a131ca186a9ec07f706be2b187d27c33",
+      "ignoredBy": "*.log",
+      "gitDisposition": "tracked-in-integrated-commit",
+      "justification": "14 pre-fix B23 trials (13 pass, 1 timeout with exit=null), the only surviving record of the browser-context hang that C3-R36H.3 fixed."
+    },
+    {
+      "path": "docs/c3-r36h3/logs/b23-trials-postfix.log",
+      "sha256": "0948146bbea2d200e247ac9001c79227d71f2fe16c40ab2514c21a15e5e1859f",
+      "ignoredBy": "*.log",
+      "gitDisposition": "tracked-in-integrated-commit",
+      "justification": "10 post-fix B23 trials, all passing; supports the claim that the fix removed the hang."
+    },
+    {
+      "path": "docs/c3-r36h3/logs/injection-run-postfix-a.log",
+      "sha256": "a3276751d7bf77d2189d5f60df6571877b3d487959d6ff5e0147e602bd2def98",
+      "ignoredBy": "*.log",
+      "gitDisposition": "tracked-in-integrated-commit",
+      "justification": "7/8 injection run whose summary was overwritten in place (B27); the log is the only surviving record of that run."
+    },
+    {
+      "path": "docs/c3-r36h3/logs/injection-run-postfix-b.log",
+      "sha256": "1696586f5e9fbbab8e713d32c6bf1c51e47fb115f47a2d04e8b71d43f12394c3",
+      "ignoredBy": "*.log",
+      "gitDisposition": "tracked-in-integrated-commit",
+      "justification": "The second 7/8 injection run, same reason as run A; both are cited by the C3-R36H.3 record."
+    }
+  ],
+  "excluded": [
+    {
+      "pattern": "node_modules/",
+      "reason": "installed dependencies; reproducible from reviewed lockfiles with the two documented npm ci invocations"
+    },
+    {
+      "pattern": "apps/catalog/dist/",
+      "reason": "generated catalog build output; reproducible byte-for-byte (ce46c185… / 47eff84e…) from the reviewed source"
+    },
+    {
+      "pattern": "infrastructure/c3/build/node_modules/",
+      "reason": "isolated esbuild 0.28.2 toolchain, installed from its own reviewed lockfile"
+    },
+    {
+      "pattern": "docs/c3-r36h*/runs/",
+      "reason": "per-run browser output embedding an ephemeral port and an absolute path (B21); the milestone records carry the verdicts"
+    },
+    {
+      "pattern": "docs/c3-r36h*/gate-*.png, docs/c3-r36h/catalog-*.png duplicates",
+      "reason": "byte-identical screenshot duplicates; one canonical copy per distinct hash is retained (C3-R37A retention decision)"
+    },
+    {
+      "pattern": "*.env, *.pem, *.key, *.dump",
+      "reason": "secret-bearing files; must never be tracked, and the portable verifier fails if any is present"
+    }
+  ]
+}
