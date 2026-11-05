@@ -108,8 +108,8 @@ async function refusesAsync(fn, pattern) {
   });
 }
 
-// Generated build output is not source. pps/catalog/dist is produced by the catalog-build suite (and by
-// ite build at any time), it is git-ignored, and it is legitimately deleted and recreated by another test file
+// Generated build output is not source. the apps/catalog/dist directory is produced by the catalog-build suite (and by
+// vite build at any time), it is git-ignored, and it is legitimately deleted and recreated by another test file
 // that node:test runs in PARALLEL with this one. Including it made this assertion fail whenever that build landed
 // inside the snapshot window (C3-R37E, B32). Every other path under apps/catalog is still compared byte for byte.
 const GENERATED_OUTPUT = [path.join(CATALOG, 'dist')];
