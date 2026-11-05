@@ -108,11 +108,20 @@ async function refusesAsync(fn, pattern) {
   });
 }
 
-function digestTree(dir) {
+// Generated build output is not source. pps/catalog/dist is produced by the catalog-build suite (and by
+// ite build at any time), it is git-ignored, and it is legitimately deleted and recreated by another test file
+// that node:test runs in PARALLEL with this one. Including it made this assertion fail whenever that build landed
+// inside the snapshot window (C3-R37E, B32). Every other path under apps/catalog is still compared byte for byte.
+const GENERATED_OUTPUT = [path.join(CATALOG, 'dist')];
+// Filtered from the top-level comparison for the same reason: the build test may create it mid-window.
+const GENERATED_TOP_LEVEL = ['dist'];
+
+function digestTree(dir, skip = []) {
   const rows = [];
   const visit = (current) => {
     for (const name of fs.readdirSync(current).sort()) {
       const absolute = path.join(current, name);
+      if (skip.includes(absolute)) continue;
       const stats = fs.lstatSync(absolute);
       if (stats.isDirectory()) visit(absolute);
       else rows.push([path.relative(dir, absolute).split(path.sep).join('/'), sha256(fs.readFileSync(absolute)), stats.size]);
@@ -388,13 +397,23 @@ test('15. a failed rehearsal publishes nothing', async (t) => {
 });
 
 test('16. the rehearsal never mutates the source tree', async (t) => {
-  const before = { catalog: digestTree(CATALOG), worker: digestTree(WORKER) };
+  // dist is excluded because it is generated output owned by the catalog-build test, which runs concurrently.
+  // The top-level layout is compared as well, so creating a new directory or file beside the sources still fails.
+  const before = {
+    catalog: digestTree(CATALOG, GENERATED_OUTPUT),
+    catalogTopLevel: fs.readdirSync(CATALOG).filter((name) => !GENERATED_TOP_LEVEL.includes(name)).sort(),
+    worker: digestTree(WORKER)
+  };
   const manifestBefore = sha256(fs.readFileSync(path.join(REPO, 'package.json')));
   const lockBefore = sha256(fs.readFileSync(path.join(REPO, 'package-lock.json')));
 
   await rehearse(workspace(t));
 
-  assert.deepEqual({ catalog: digestTree(CATALOG), worker: digestTree(WORKER) }, before);
+  assert.deepEqual({
+    catalog: digestTree(CATALOG, GENERATED_OUTPUT),
+    catalogTopLevel: fs.readdirSync(CATALOG).filter((name) => !GENERATED_TOP_LEVEL.includes(name)).sort(),
+    worker: digestTree(WORKER)
+  }, before);
   assert.equal(sha256(fs.readFileSync(path.join(REPO, 'package.json'))), manifestBefore);
   assert.equal(sha256(fs.readFileSync(path.join(REPO, 'package-lock.json'))), lockBefore);
 });
