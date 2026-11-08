@@ -1,0 +1,81 @@
+name: Foundation and Academic R1 PR checks
+
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r1-pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foundation-and-academic:
+    name: Foundation / Academic static and unit gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate required foundation structure
+        run: npm run validate:foundation
+      - name: Run runtime test suite (no skipped live tests counted)
+        run: npm run test:runtime
+      - name: Run academic unit test suite
+        run: npm run test:academic
+      - name: Check lint
+        run: npm run lint:oxc
+      - name: Check formatting
+        run: npm run fmt:check
+      - name: Verify migration manifest and R1 filename
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t migrations < <(find supabase/migrations -maxdepth 1 -name '*.sql' -type f | sort)
+          if [[ ${#migrations[@]} -ne 22 ]]; then
+            echo "::error::Expected 22 migration SQL files, found ${#migrations[@]}"
+            exit 1
+          fi
+          test "${migrations[20]}" = "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
+          test "${migrations[21]}" = "supabase/migrations/20261108000000_approval_restricted_executor.sql"
+          sha256sum "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
+          echo "22 ordered migrations verified."
+  r1-live-database:
+    name: R1 restricted executor (disposable database)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install pinned Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.122.0
+      - name: Start a fresh local database with all migrations
+        run: supabase start --exclude studio,logflare,vector,imgproxy,edge-runtime,realtime,storage-api,supavisor,mailpit,postgres-meta
+      - name: Enforce restricted-login R1 live suite (3 required)
+        env:
+          ALP_R1_CI_PROJECT_ID: autolearnpro-foundation6
+          ALP_R1_CI_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:55132/postgres
+        run: node infrastructure/scripts/run-r1-ci-live.mjs
+      - name: Stop and discard disposable local database
+        if: always()
+        run: supabase stop --no-backup || true
