@@ -19,7 +19,19 @@ CREATE ROLE alp_approval_executor NOLOGIN NOINHERIT NOSUPERUSER NOBYPASSRLS
   NOCREATEDB NOCREATEROLE;
 GRANT USAGE ON SCHEMA alp_private TO alp_approval_executor;
 
--- All five routines were previously SECURITY INVOKER, and all original
+-- Ownership transfer requires CREATE on the target schema. Do not leave
+-- this schema-wide privilege available to service_role after the transfer.
+-- Abort if it was already present; never revoke a pre-existing privilege.
+DO $schema_guard$
+BEGIN
+  IF has_schema_privilege('service_role','alp_private','CREATE') THEN
+    RAISE EXCEPTION 'Unexpected preexisting service_role schema CREATE permission';
+  END IF;
+END
+$schema_guard$;
+GRANT CREATE ON SCHEMA alp_private TO service_role;
+
+-- All four routines were previously SECURITY INVOKER, and all original
 -- service_role grants on their dependent tables are retained. These controlled
 -- entrypoints become SECURITY DEFINER owned by service_role (not postgres).
 -- They already SET search_path='' and fully qualify private table references.
@@ -40,6 +52,8 @@ ALTER FUNCTION alp_private.record_approval_security_event(uuid,text)
   OWNER TO service_role;
 ALTER FUNCTION alp_private.record_approval_security_event(uuid,text)
   SECURITY DEFINER;
+
+REVOKE CREATE ON SCHEMA alp_private FROM service_role;
 
 GRANT EXECUTE ON FUNCTION alp_private.submit_role_request(uuid,text,uuid,text)
   TO alp_approval_executor;
