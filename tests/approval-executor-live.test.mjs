@@ -61,6 +61,16 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     await assert.rejects(app.query("SELECT id FROM public.alp_courses LIMIT 1"), /permission denied/i);
     await assert.rejects(app.query("SET ROLE service_role"), /permission denied/i);
     await assert.rejects(app.query("SELECT * FROM alp_private.alp_role_assignments"), /permission denied/i);
+    await assert.rejects(
+      app.query("SELECT alp_private.manage_role($1,$2,$3,$4,$5)", [
+        target, "administrator", "grant", reviewer, "Forged direct elevation blocked"
+      ]),
+      /permission denied/i
+    );
+    await assert.rejects(
+      app.query("INSERT INTO alp_private.alp_role_assignments(user_id,role_name) VALUES($1,'administrator')", [target]),
+      /permission denied/i
+    );
 
     await admin.query(
       "INSERT INTO auth.users(id,email) SELECT x, 'approval-ci-'||x::text||'@example.test' FROM unnest($1::uuid[]) AS x",
