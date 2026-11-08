@@ -50,3 +50,31 @@ jobs:
           test "${migrations[20]}" = "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
           sha256sum "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
           echo "21 ordered migrations verified."
+  r1-live-database:
+    name: R1 restricted executor (disposable database)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install pinned Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.122.0
+      - name: Start a fresh local database with all migrations
+        run: supabase start --exclude studio,logflare,vector,imgproxy,edge-runtime,realtime,storage-api,supavisor,mailpit,postgres-meta
+      - name: Enforce restricted-login R1 live suite (3 required)
+        env:
+          ALP_R1_CI_PROJECT_ID: autolearnpro-foundation6
+          ALP_R1_CI_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:55132/postgres
+        run: node infrastructure/scripts/run-r1-ci-live.mjs
+      - name: Stop and discard disposable local database
+        if: always()
+        run: supabase stop --no-backup || true
