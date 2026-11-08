@@ -1,0 +1,52 @@
+name: Foundation and Academic R1 PR checks
+
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r1-pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foundation-and-academic:
+    name: Foundation / Academic static and unit gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Validate required foundation structure
+        run: npm run validate:foundation
+      - name: Run runtime test suite (no skipped live tests counted)
+        run: npm run test:runtime
+      - name: Run academic unit test suite
+        run: npm run test:academic
+      - name: Check lint
+        run: npm run lint:oxc
+      - name: Check formatting
+        run: npm run fmt:check
+      - name: Verify migration manifest and R1 filename
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t migrations < <(find supabase/migrations -maxdepth 1 -name '*.sql' -type f | sort)
+          if [[ ${#migrations[@]} -ne 21 ]]; then
+            echo "::error::Expected 21 migration SQL files, found ${#migrations[@]}"
+            exit 1
+          fi
+          test "${migrations[20]}" = "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
+          sha256sum "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
+          echo "21 ordered migrations verified."
