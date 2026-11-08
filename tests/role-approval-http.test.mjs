@@ -44,7 +44,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   assert.equal((await r.json()).requestId, requestId);
   const submitted = statements.find(s => s.sql.includes("submit_role_request"));
   assert.deepEqual(submitted.params, [target, "instructor", actor, request.reason]);
-  assert.ok(statements.some(s => s.sql === "SET LOCAL ROLE service_role"));
+  assert.ok(statements.some(s => s.sql === "SET LOCAL ROLE alp_approval_executor"));
   r = await post("/api/roles/decision", { requestId, approve: true, reason: "Verified and approved" });
   assert.equal(r.status, 200);
   const decided = statements.find(s => s.sql.includes("decide_role_request"));

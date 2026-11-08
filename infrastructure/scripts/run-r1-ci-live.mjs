@@ -22,12 +22,13 @@ if (
 }
 const admin = new Client({ connectionString: dbUrl, connectionTimeoutMillis: 5000 });
 let createdLogin = false;
+let createdApprovalLogin = false;
 let createdMarker = false;
 let result = 2;
 try {
   await admin.connect();
   const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-  if (history.rows[0]?.n !== 21) throw new Error("Exactly 21 applied migrations required");
+  if (history.rows[0]?.n !== 22) throw new Error("Exactly 21 applied migrations required");
   const role = await admin.query("SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_academic_executor'");
   if (role.rowCount !== 1 || role.rows[0].rolsuper || role.rows[0].rolbypassrls) {
     throw new Error("Restricted executor role is absent or privileged");
@@ -63,7 +64,7 @@ try {
   const app = new URL(dbUrl);
   app.username = "alp_r1_ci_login";
   app.password = password;
-  console.log("R1 CI: 21 migrations; restricted login and scratch marker verified");
+  console.log("R1 CI: 22 migrations; restricted login and scratch marker verified");
   const child = spawnSync(process.execPath, ["infrastructure/scripts/run-r1-live.mjs"], {
     stdio: "inherit",
     env: {
@@ -78,6 +79,35 @@ try {
   if (child.error) throw child.error;
   result = child.status ?? 2;
   if (result === 0) {
+    const approvalPassword = randomBytes(32).toString("hex");
+    await admin.query(
+      `CREATE ROLE alp_approval_ci_login LOGIN NOINHERIT NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE PASSWORD '${approvalPassword}'`
+    );
+    createdApprovalLogin = true;
+    await admin.query(
+      "GRANT alp_approval_executor TO alp_approval_ci_login WITH SET TRUE, INHERIT FALSE"
+    );
+    const approvalUrl = new URL(dbUrl);
+    approvalUrl.username = "alp_approval_ci_login";
+    approvalUrl.password = approvalPassword;
+    const approval = spawnSync(process.execPath, [
+      "--test", "tests/approval-executor-live.test.mjs"
+    ], {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        ALP_APPROVAL_CI_ADMIN_URL: dbUrl,
+        ALP_APPROVAL_CI_APP_URL: approvalUrl.toString(),
+        ALP_R1_EXPECTED_MARKER: token,
+        ALP_APPROVAL_CI_REQUIRE: "1",
+      },
+      timeout: 180000,
+    });
+    if (approval.error) throw approval.error;
+    if (approval.status !== 0) throw new Error("Restricted approval executor live gate failed");
+    console.log("Approval CI: restricted login and authorization integration passed");
+  }
+  if (result === 0) {
     const fixtures = await admin.query(
       `SELECT count(*)::int AS n FROM auth.users WHERE id IN
        ('11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222',
@@ -88,6 +118,10 @@ try {
     console.log("R1 CI: 3 live tests passed and fixed fixture users cleaned");
   }
 } finally {
+  if (createdApprovalLogin) {
+    await admin.query("REVOKE alp_approval_executor FROM alp_approval_ci_login");
+    await admin.query("DROP ROLE alp_approval_ci_login");
+  }
   if (createdLogin) {
     await admin.query("REVOKE alp_academic_executor FROM alp_r1_ci_login");
     await admin.query("DROP ROLE alp_r1_ci_login");
