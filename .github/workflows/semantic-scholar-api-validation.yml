@@ -1,12 +1,6 @@
 name: Semantic Scholar Adapter Live Validation
 
 on:
-  push:
-    branches:
-      - validation/semantic-scholar-api-20261111
-    paths:
-      - '.github/workflows/semantic-scholar-api-validation.yml'
-      - 'infrastructure/research-validation/**'
   workflow_dispatch:
 
 permissions:
