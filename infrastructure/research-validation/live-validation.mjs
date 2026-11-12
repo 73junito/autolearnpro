@@ -13,7 +13,7 @@ assert(!SEARCH_FIELDS.includes('abstract') && !SEARCH_FIELDS.includes('openAcces
 const coordinator = createSharedCoordinator({ state: createMemoryState() });
 const limiter = createCoordinatedLimiter({ coordinator });
 const client = createSemanticScholarClient({
-  apiKey: key, limiter, timeoutMs: 15000, maxRetries: 0
+  apiKey: key, limiter, timeoutMs: 15000, maxRetries: 2
 });
 assert.equal(client.configured, true);
 function checkResult(result, name) {
@@ -29,6 +29,8 @@ try {
     assert.deepEqual(withheldKeysPresent(paper), []);
     assert(typeof paper.paperId === 'string' && paper.paperId.length > 1);
   }
+  // Leave generous headroom for provider-side limits shared with other callers.
+  await new Promise(resolve => setTimeout(resolve, 10000));
   const lookup = await client.getPaper({ paperId: search.results[0].paperId });
   checkResult(lookup, 'LOOKUP');
   assert(lookup.paper && lookup.paper.paperId === search.results[0].paperId);
