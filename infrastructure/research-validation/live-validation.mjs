@@ -10,10 +10,16 @@ if (typeof key !== 'string' || !key.trim()) {
 }
 // Do not print the key or any upstream response body.
 assert(!SEARCH_FIELDS.includes('abstract') && !SEARCH_FIELDS.includes('openAccessPdf'));
-const coordinator = createSharedCoordinator({ state: createMemoryState() });
+// Conservative spacing below the 1 request/second key-wide ceiling.
+// This isolated runner cannot coordinate with other services sharing the same key.
+// Do not run it concurrently with any other Semantic Scholar consumer.
+const coordinator = createSharedCoordinator({
+  state: createMemoryState(),
+  minimumSpacingMs: 3000
+});
 const limiter = createCoordinatedLimiter({ coordinator });
 const client = createSemanticScholarClient({
-  apiKey: key, limiter, timeoutMs: 15000, maxRetries: 2
+  apiKey: key, limiter, timeoutMs: 15000, maxRetries: 0
 });
 assert.equal(client.configured, true);
 function checkResult(result, name) {
@@ -29,8 +35,6 @@ try {
     assert.deepEqual(withheldKeysPresent(paper), []);
     assert(typeof paper.paperId === 'string' && paper.paperId.length > 1);
   }
-  // Leave generous headroom for provider-side limits shared with other callers.
-  await new Promise(resolve => setTimeout(resolve, 10000));
   const lookup = await client.getPaper({ paperId: search.results[0].paperId });
   checkResult(lookup, 'LOOKUP');
   assert(lookup.paper && lookup.paper.paperId === search.results[0].paperId);
@@ -40,6 +44,7 @@ try {
 } catch (error) {
   // Deliberately no exception stack or upstream payload in CI logs.
   console.error('RESULT=FAIL');
+  console.error('NOTE=HTTP_429_REQUIRES_KEY_WIDE_COORDINATION_OR_PROVIDER_QUOTA_CHECK');
   console.error('FAILURE=' + (error?.message?.split(':')[0] || 'validation_error'));
   process.exitCode = 1;
 }
