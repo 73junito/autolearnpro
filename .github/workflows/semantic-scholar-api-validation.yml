@@ -25,6 +25,8 @@ jobs:
           node --check infrastructure/research-validation/lib/research-contract.mjs
           node --check infrastructure/research-validation/lib/research-rate-limiter.mjs
           node --check infrastructure/research-validation/live-validation.mjs
+      - name: Verify global reservation and 429 fail-fast behavior without network access
+        run: node --test infrastructure/research-validation/coordination.test.mjs
       - name: Perform authenticated metadata-only search and lookup
         env:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
