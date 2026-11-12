@@ -1,0 +1,33 @@
+name: Semantic Scholar Adapter Offline Validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: semantic-scholar-adapter-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact committed validation code
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Validate adapter syntax
+        run: |
+          node --check infrastructure/research-validation/lib/semantic-scholar.mjs
+          node --check infrastructure/research-validation/lib/research-contract.mjs
+          node --check infrastructure/research-validation/lib/research-rate-limiter.mjs
+          node --check infrastructure/research-validation/coordination.test.mjs
+      - name: Verify shared reservations and HTTP 429 fail-fast without provider traffic
+        run: node --test infrastructure/research-validation/coordination.test.mjs
+# SECURITY: Never inject SEMANTIC_SCHOLAR_API_KEY here. Direct CI calls bypass
+# the dedicated deployed Durable Object and cannot meet the key-wide quota.
+# Remote E2E requests must go through autolearnpro-api-staging with coordinated
+# reservations, not a standalone client.
