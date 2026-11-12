@@ -1,0 +1,37 @@
+name: Semantic Scholar Adapter Live Validation
+
+on:
+  push:
+    branches:
+      - validation/semantic-scholar-api-20261111
+    paths:
+      - '.github/workflows/semantic-scholar-api-validation.yml'
+      - 'infrastructure/research-validation/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: semantic-scholar-adapter-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out exact committed validation code
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Validate adapter syntax
+        run: |
+          node --check infrastructure/research-validation/lib/semantic-scholar.mjs
+          node --check infrastructure/research-validation/lib/research-contract.mjs
+          node --check infrastructure/research-validation/lib/research-rate-limiter.mjs
+          node --check infrastructure/research-validation/live-validation.mjs
+      - name: Perform authenticated metadata-only search and lookup
+        env:
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+        run: node infrastructure/research-validation/live-validation.mjs
