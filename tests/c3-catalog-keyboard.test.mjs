@@ -83,6 +83,38 @@ const activeId = (page) => page.evaluate(() => {
   return node && node.id ? node.id : `(none:${node ? node.tagName : 'null'})`;
 });
 
+// A no-keyboard-trap check must observe what the *application* does with Tab, not whether the browser keeps
+// focus on the only focusable control. Browsers legitimately differ there: with one focusable control
+// Chromium moves document.activeElement to the document, while Firefox leaves it on that control. Neither is
+// a trap. A trap is the page cancelling Tab (preventDefault) or focus entering a hidden dialog.
+// This probe listens on `window` in the bubble phase — after any document-level application handler — so
+// `event.defaultPrevented` reflects whether the application intercepted the key.
+async function installTabProbe(page) {
+  await page.evaluate(() => {
+    window.__alpTabProbe = { presses: 0, prevented: 0 };
+    window.__alpTabProbeHandler = (event) => {
+      if (event.key !== 'Tab') return;
+      window.__alpTabProbe.presses += 1;
+      if (event.defaultPrevented) window.__alpTabProbe.prevented += 1;
+    };
+    window.addEventListener('keydown', window.__alpTabProbeHandler);
+  });
+}
+
+const readTabProbe = (page) => page.evaluate(() => ({ ...window.__alpTabProbe }));
+
+// Removal is best-effort inside a finally block so a failing assertion can never leave a probe behind for
+// later checks.
+async function removeTabProbe(page) {
+  await page.evaluate(() => {
+    if (window.__alpTabProbeHandler) {
+      window.removeEventListener('keydown', window.__alpTabProbeHandler);
+      delete window.__alpTabProbeHandler;
+    }
+    delete window.__alpTabProbe;
+  });
+}
+
 async function runKeyboardScenario(page, origin, serverLog) {
   await navigateSettled(page, `${origin}/`, { serverLog, readyFlag: 'catalogShell', quietMs: 300, budgetMs: 10000 });
 
@@ -134,16 +166,41 @@ async function runKeyboardScenario(page, origin, serverLog) {
   assert.equal(await page.evaluate(() => document.getElementById('about-panel').hidden), true);
   assert.equal(await activeId(page), 'about-open', 'focus is restored after keyboard dismissal');
 
-  // 7. No keyboard trap: repeated Tab always moves focus and cycles through the controls.
-  const seen = new Set();
-  for (let step = 0; step < 4; step += 1) {
-    const before = await activeId(page);
-    await page.keyboard.press('Tab');
-    const after = await activeId(page);
-    assert.notEqual(after, before, 'focus must always move on Tab — no keyboard trap');
-    seen.add(after);
+  // 7. No keyboard trap, checked where a trap is actually observable — never by demanding that every Tab
+  //    press change document.activeElement, which no browser guarantees.
+  //    (a) The application must not cancel Tab. A page-level handler that prevents the default on Tab is a
+  //        real trap in every engine, regardless of how many controls exist.
+  //    (b) With the dialog closed only the trigger is focusable, so native Tab may keep focus on it (Firefox)
+  //        or move it to the document (Chromium). Either is legitimate; the hidden dismiss control must never
+  //        become reachable, and the trigger must remain reachable afterwards.
+  let probe;
+  await installTabProbe(page);
+  try {
+    for (let step = 0; step < 4; step += 1) {
+      await page.keyboard.press('Tab');
+      assert.notEqual(await activeId(page), 'about-close', 'a hidden dialog control must never receive focus');
+    }
+    probe = await readTabProbe(page);
+    assert.equal(probe.presses, 4, 'the probe observed every Tab press');
+    assert.equal(probe.prevented, 0, 'no application handler may cancel Tab — that would be a keyboard trap');
+  } finally {
+    await removeTabProbe(page);
   }
-  assert.ok(seen.has('about-open'), 'the traversal cycles back through the trigger');
+  assert.equal(await page.evaluate(() => typeof window.__alpTabProbe), 'undefined', 'the Tab probe is removed before later checks');
+
+  //    (c) With the dialog open there are two real controls, so traversal must work in both directions. This
+  //        is the meaningful no-trap proof: focus can reach both controls and move back again.
+  if ((await activeId(page)) !== 'about-open') await page.keyboard.press('Tab');
+  assert.equal(await activeId(page), 'about-open', 'the trigger stays reachable after free Tab traversal');
+  await page.keyboard.press('Enter');
+  assert.equal(await activeId(page), 'about-close', 'Enter reopens the overlay from the keyboard');
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await activeId(page), 'about-open', 'Shift+Tab moves backwards between the real controls');
+  await page.keyboard.press('Tab');
+  assert.equal(await activeId(page), 'about-close', 'Tab moves forwards between the real controls');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(() => document.getElementById('about-panel').hidden), true, 'Escape still dismisses');
+  assert.equal(await activeId(page), 'about-open', 'focus is restored after Escape');
 
   // 8. axe-core: zero WCAG A/AA violations on the exercised page state.
   if (AXE && fs.existsSync(AXE)) {
@@ -156,6 +213,46 @@ async function runKeyboardScenario(page, origin, serverLog) {
   } else if (STRICT) {
     assert.fail('R36H_REQUIRED_COVERAGE: axe-core unavailable; accessibility check cannot run');
   }
+
+  // 9. Negative control: the detection must actually reject a deliberately trapped Tab, and must not fire on
+  //    clean navigation. Both measurements use the same probe, so the check discriminates instead of merely
+  //    recording that preventDefault() was called somewhere.
+  await page.evaluate(() => {
+    window.__alpTrap = (event) => {
+      if (event.key === 'Tab') event.preventDefault();
+    };
+    document.addEventListener('keydown', window.__alpTrap);
+  });
+  let trapProbe;
+  await installTabProbe(page);
+  try {
+    await page.keyboard.press('Tab');
+    trapProbe = await readTabProbe(page);
+  } finally {
+    await removeTabProbe(page);
+    await page.evaluate(() => {
+      document.removeEventListener('keydown', window.__alpTrap);
+      delete window.__alpTrap;
+    });
+  }
+  assert.equal(trapProbe.presses, 1, 'the probe observed the trapped Tab press');
+  assert.ok(trapProbe.prevented >= 1, 'a deliberate keyboard trap must be rejected by the detection');
+
+  let cleanProbe;
+  await installTabProbe(page);
+  try {
+    await page.keyboard.press('Tab');
+    cleanProbe = await readTabProbe(page);
+  } finally {
+    await removeTabProbe(page);
+  }
+  assert.equal(cleanProbe.presses, 1, 'the probe observed the control Tab press');
+  assert.equal(cleanProbe.prevented, 0, 'clean navigation must not be reported as a trap');
+  assert.equal(
+    await page.evaluate(() => typeof window.__alpTabProbe === 'undefined' && typeof window.__alpTrap === 'undefined'),
+    true,
+    'all probes and trap handlers are removed'
+  );
 }
 
 for (const channel of SELECTED_CHANNELS) {
