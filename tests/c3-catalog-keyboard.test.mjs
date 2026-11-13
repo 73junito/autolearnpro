@@ -173,11 +173,16 @@ for (const channel of SELECTED_CHANNELS) {
         return;
       }
       server = await serve(fixture.dist);
+      // Chromium-only switches must not be passed to Firefox or WebKit; WebKit rejects
+      // `--no-first-run` outright ("Cannot parse arguments"). Give each engine only what it accepts.
+      const launchArgs = channel.engine === 'chromium'
+        ? ['--no-first-run', '--disable-extensions', '--disable-sync']
+        : [];
       browser = await pw[channel.engine].launch({
         executablePath: channel.executable,
         headless: true,
         timeout: 30000,
-        args: ['--no-first-run', '--disable-extensions', '--disable-sync']
+        args: launchArgs
       });
       const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
       const page = await context.newPage();

@@ -14,11 +14,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Keep every tool-controlled temp/cache/artifact path inside the workspace.
-  TEMP: ${{ github.workspace }}/_local/temp
-  TMP: ${{ github.workspace }}/_local/temp
-  TMPDIR: ${{ github.workspace }}/_local/temp
+  # The npm cache is tooling state, not a build output root, so a workspace-local cache is fine.
   npm_config_cache: ${{ github.workspace }}/_local/build/npm-cache
+  # TEMP/TMP/TMPDIR are set to $RUNNER_TEMP (outside the checkout) per job below, because the
+  # `runner` context is not available in workflow-level env and a workspace-local temp root trips
+  # R35_OUTPUT_INSIDE_SOURCE_ROOT in the build/provenance tests.
 
 jobs:
   unit-and-integration:
@@ -30,7 +30,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: npm ci --ignore-scripts
       - run: npm ci --prefix infrastructure/c3/build
       - name: Deterministic findings digest (B21)
@@ -55,7 +60,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: npm ci --ignore-scripts
       - run: npm ci --prefix infrastructure/c3/build
       - name: Build input contract pins
@@ -69,6 +79,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - name: .gitattributes is present in the checkout
         run: test -f .gitattributes
       - name: reviewed byte-sensitive paths are marked -text
@@ -98,7 +114,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - name: Clean install reproduces the committed lockfile
         run: |
           set -e
@@ -123,7 +144,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: npm ci --ignore-scripts
       - run: npx --yes playwright@1.64.1 install --with-deps chromium
       - name: "Navigation stability trials (strict: missing chromium fails, not skips)"
@@ -147,7 +173,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: npm ci --ignore-scripts
       - run: npx --yes playwright@1.64.1 install --with-deps ${{ matrix.browser }}
       - name: Keyboard, focus, Escape and axe checks (${{ matrix.browser }}, strict coverage)
@@ -173,7 +204,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: mkdir -p _local/temp _local/build/npm-cache
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: npm ci --ignore-scripts
       - name: Foundation validator and root tests
         run: |
