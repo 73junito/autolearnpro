@@ -32,11 +32,15 @@ const WORKER = path.join(REPO, 'infrastructure', 'cloudflare');
 const CONTRACT = path.join(REPO, 'infrastructure', 'c3', 'build', 'build-input-contract.mjs');
 
 // Fingerprints of the reviewed source this milestone must not change. Updating these is a deliberate act.
+// C3-R37H R5 (2026-11-06): `apps/catalog/index.html` and `apps/catalog/src/main.js` changed deliberately for the
+// accessibility remediation (dismissible dialog with Escape dismissal and focus restoration, reduced-motion
+// support, status announcements). Old -> new digests are recorded in
+// _local/evidence/c3-remediation-review/C3-CHANGE-MANIFEST.json. No other pin was touched.
 const PINNED = Object.freeze({
   'apps/catalog/package.json': 'effd027830259cee7de19fca64b1def730c9cd325c9c1e6c5372a2b8840eaf29',
-  'apps/catalog/index.html': 'a1d340cc27c4edfc4c16715ee498884eb910f47f8580fe8f0278bb0fb9d612a0',
+  'apps/catalog/index.html': '883ea04f3d4d93f4bba25e3576a0adf93760fde001775e28a804f89f386ab100',
   'apps/catalog/vite.config.js': '47ed28141b710657b267d98e39dea5eb6ba7a5b1ce770aece8f8f6710919f820',
-  'apps/catalog/src/main.js': '04876dc917197177a3c00982131f7d3b5d0bb64fdaddf563a80db5b230780974',
+  'apps/catalog/src/main.js': '93c5b5e32f6050cf1801747eaa4c48f38efbe6a4ac975fb2078480c7e680e535',
   'infrastructure/cloudflare/worker.mjs': '261732ecb9accae4830a725edaf3d6ac0609ee7a373714e1efde3310235b4e8e',
   'infrastructure/cloudflare/wrangler.jsonc': 'df6486888a42317d8c94d9a46f3f5adb05d742b52be1ee8cf8077ffa647f4c58',
 });

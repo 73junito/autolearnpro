@@ -26,6 +26,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+import { waitForRequestsSettled } from './navigation-readiness.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(here, '..', '..', '..');
@@ -199,11 +200,14 @@ async function runChecks(origin, chromium, serverLog) {
   page.on('requestfailed', (request) => requestFailures.push({ url: request.url(), type: request.resourceType(), error: request.failure()?.errorText ?? null }));
 
   const checks = {};
-  await page.goto(`${origin}/`, { waitUntil: 'load' });
+  // B23 (R37H R2): navigation readiness is observable, not timed. The old `waitForTimeout(750)` settle sleep was
+  // a race with the favicon-after-load request and the source of the intermittent navigation timeout: the gate
+  // evaluated console errors before that request could arrive. Every wait below has a named budget, and the
+  // settle step now waits for server-side request quiescence; budget expiry is an explicit reported failure
+  // (R37H_READINESS_TIMEOUT), never a silently relaxed assertion or a raised timeout.
+  await page.goto(`${origin}/`, { waitUntil: 'load', timeout: 30000 });
   await page.waitForFunction(() => document.documentElement.dataset.catalogShell === 'started', null, { timeout: 10000 });
-  // A short settle window: Chrome requests /favicon.ico AFTER the load event, and the C3-R36H harness evaluated
-  // console errors before that request could arrive. That timing gap is why the defect was intermittent.
-  await page.waitForTimeout(750);
+  const settle = await waitForRequestsSettled(serverLog, { quietMs: 400, budgetMs: 10000 });
 
   const sameOrigin = requests.filter((request) => request.url.startsWith(origin));
   const external = requests.filter((request) => !request.url.startsWith(origin));
@@ -269,8 +273,11 @@ async function runChecks(origin, chromium, serverLog) {
   checks.statusMessage = (statusFacts.found && statusFacts.role === 'status' && statusFacts.text.length > 0 && !statusFacts.text.includes('has not started'))
     ? pass(statusFacts) : fail('status message is not exposed or not live', statusFacts);
 
-  // Keyboard and focus visibility — NOT TESTABLE on a page with no operable controls.
+  // Keyboard and focus visibility. NOT TESTABLE on a page with no operable controls (the fixture pages); on a
+  // page that HAS focusable elements these are real checks: Tab must traverse every focusable in DOM order with
+  // no keyboard trap, and a :focus-visible rule must be declared to render the focus indicator.
   const focusables = await page.evaluate(() => [...document.querySelectorAll('a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])')]
+    .filter((node) => !node.closest('[hidden]') && node.getClientRects().length > 0)
     .map((node) => `${node.tagName.toLowerCase()}${node.id ? `#${node.id}` : ''}`));
   const focusRule = await page.evaluate(() => {
     let rule = null;
@@ -281,14 +288,34 @@ async function runChecks(origin, chromium, serverLog) {
     }
     return rule;
   });
-  checks.keyboard = notTestable(
-    focusables.length === 0 ? 'no focusable element exists, so keyboard traversal cannot be demonstrated' : 'not exercised in this milestone',
-    { focusableCount: focusables.length, focusables }
-  );
-  checks.focusVisible = notTestable(
-    focusRule === null ? 'no :focus-visible rule declared' : 'a rule is declared but nothing can receive focus to render it',
-    { ruleDeclared: focusRule !== null, rule: focusRule }
-  );
+  if (focusables.length === 0) {
+    checks.keyboard = notTestable('no focusable element exists, so keyboard traversal cannot be demonstrated', { focusableCount: 0, focusables });
+    checks.focusVisible = notTestable(
+      focusRule === null ? 'no :focus-visible rule declared' : 'a rule is declared but nothing can receive focus to render it',
+      { ruleDeclared: focusRule !== null, rule: focusRule }
+    );
+  } else {
+    // Real Tab key events — no synthetic focus assignment, no arbitrary waits between presses.
+    const traversal = [];
+    let trapped = false;
+    for (let step = 0; step <= focusables.length + 1; step += 1) {
+      await page.keyboard.press('Tab');
+      const active = await page.evaluate(() => {
+        const node = document.activeElement;
+        return node && node !== document.body ? `${node.tagName.toLowerCase()}${node.id ? `#${node.id}` : ''}` : '(body)';
+      });
+      if (traversal.length > 0 && active === traversal[traversal.length - 1]) { trapped = true; break; }
+      traversal.push(active);
+    }
+    const visited = new Set(traversal);
+    const missed = focusables.filter((name) => !visited.has(name));
+    checks.keyboard = (!trapped && missed.length === 0)
+      ? pass({ traversal, focusableCount: focusables.length, method: 'real Tab key events in DOM order; repeated presses never stalled' })
+      : fail(trapped ? 'keyboard trap: focus did not move on Tab' : 'Tab traversal skipped focusable elements', { traversal, missed, focusables });
+    checks.focusVisible = focusRule !== null
+      ? pass({ ruleDeclared: true, rule: focusRule, focusableCount: focusables.length })
+      : fail('focusable elements exist but no :focus-visible rule is declared', { ruleDeclared: false });
+  }
 
   // axe — ZERO violations of ANY impact. Incomplete evaluations are recorded separately.
   await page.addScriptTag({ path: AXE });
@@ -351,7 +378,7 @@ async function runChecks(origin, chromium, serverLog) {
   writeExclusive('gate-1280.png', await page.screenshot({ fullPage: true }));
 
   const browserVersion = context.browser()?.version() ?? null;
-  return { checks, browserVersion, observed: { requests: requests.length, responses: responses.length } };
+  return { checks, browserVersion, observed: { requests: requests.length, responses: responses.length, settle } };
   } finally {
     try { await context.close(); } catch { /* the browser may already be gone */ }
     try { fs.rmSync(profile, { recursive: true, force: true }); } catch { /* the profile may already be gone */ }

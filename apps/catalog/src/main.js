@@ -32,6 +32,37 @@ if (status) status.textContent = `Catalog shell started (build mode: ${runtime.m
 if (factStatus) factStatus.textContent = 'started';
 if (factMode) factMode.textContent = runtime.mode;
 
+// R5 accessibility: the details panel is a dismissible overlay operated entirely from the keyboard.
+// Enter/Space on the trigger opens it (native button activation), Escape closes it, and focus returns to the
+// control that opened it. Focus indicators come from the declared :focus-visible rule; tab order is the DOM
+// order, and no element takes positive tabindex. Text reaches the page through textContent only.
+const aboutOpen = document.getElementById('about-open');
+const aboutPanel = document.getElementById('about-panel');
+const aboutClose = document.getElementById('about-close');
+const aboutLive = document.getElementById('about-live');
+
+if (aboutOpen && aboutPanel && aboutClose) {
+  let opener = null;
+  const openPanel = () => {
+    opener = document.activeElement;
+    aboutPanel.hidden = false;
+    aboutOpen.setAttribute('aria-expanded', 'true');
+    aboutClose.focus();
+    if (aboutLive) aboutLive.textContent = 'Prototype details opened.';
+  };
+  const closePanel = () => {
+    aboutPanel.hidden = true;
+    aboutOpen.setAttribute('aria-expanded', 'false');
+    (opener ?? aboutOpen).focus();
+    if (aboutLive) aboutLive.textContent = 'Prototype details closed.';
+  };
+  aboutOpen.addEventListener('click', openPanel);
+  aboutClose.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !aboutPanel.hidden) closePanel();
+  });
+}
+
 document.documentElement.dataset.catalogShell = 'started';
 
 /**
