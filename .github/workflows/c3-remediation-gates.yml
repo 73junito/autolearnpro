@@ -126,7 +126,7 @@ jobs:
       - run: mkdir -p _local/temp _local/build/npm-cache
       - run: npm ci --ignore-scripts
       - run: npx --yes playwright@1.64.1 install --with-deps chromium
-      - name: Navigation stability trials (strict: missing chromium fails, not skips)
+      - name: "Navigation stability trials (strict: missing chromium fails, not skips)"
         run: node --test --test-reporter=tap tests/c3-browser-stability.test.mjs | tee _local/temp/b23.tap
 
   cross-browser-a11y:
