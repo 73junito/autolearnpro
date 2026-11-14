@@ -45,7 +45,7 @@ function snapshot(root) {
   return out.sort((a, b) => String(a[1]).localeCompare(String(b[1])));
 }
 
-test('1. dependency boundary: exact pins, private package, no root dependencies', () => {
+test('1. dependency boundary: exact pins, private package, strict root allowlist', () => {
   const pkg = readJson(path.join(BUILD_DIR, 'package.json'));
   const rootPkg = readJson('package.json');
 
@@ -57,9 +57,25 @@ test('1. dependency boundary: exact pins, private package, no root dependencies'
     assert.equal(typeof spec, 'string', `${name} must be a declared dependency`);
     assert.match(spec, /^\d+\.\d+\.\d+$/, `${name} must be pinned exactly, saw ${spec}`);
   }
-  // The authoritative root stays dependency-free.
-  assert.equal(rootPkg.dependencies ?? null, null);
-  assert.equal(rootPkg.devDependencies ?? null, null);
+  // The authoritative root may carry ONLY the reviewed developer tooling pinned by the C3 composition
+  // (R11 cross-browser harness + R15 tooling reconciliation): exact names and exact versions, nothing else.
+  // R36H originally kept playwright-core/axe-core outside the root; the composition deliberately superseded
+  // that by vendoring the reviewed pins at the root so CI is self-contained. Runtime dependencies stay banned.
+  const EXPECTED_ROOT_DEV_DEPENDENCIES = {
+    'axe-core': '4.14.0',
+    'oxfmt': '0.76.0',
+    'oxlint': '1.91.0',
+    'playwright-core': '1.64.1'
+  };
+  assert.equal(rootPkg.dependencies ?? null, null, 'the root must declare no runtime dependencies');
+  assert.equal(rootPkg.optionalDependencies ?? null, null, 'no optional root dependencies');
+  assert.equal(rootPkg.peerDependencies ?? null, null, 'no peer root dependencies');
+  assert.equal(rootPkg.bundledDependencies ?? null, null, 'no bundled root dependencies');
+  assert.deepEqual(
+    Object.entries(rootPkg.devDependencies ?? {}).sort(([a], [b]) => a.localeCompare(b)),
+    Object.entries(EXPECTED_ROOT_DEV_DEPENDENCIES).sort(([a], [b]) => a.localeCompare(b)),
+    'root devDependencies must be exactly the reviewed, exactly-pinned test tooling'
+  );
   // And the build package is deliberately not a workspace of the root project.
   const workspaces = rootPkg.workspaces ?? [];
   assert.equal(workspaces.some((glob) => BUILD_DIR.startsWith(glob.replace('/*', '') + '/')), false);

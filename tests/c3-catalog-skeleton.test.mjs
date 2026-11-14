@@ -22,6 +22,29 @@ const DIST = path.join(APP, 'dist');
 const VITE_BIN = path.join(root, 'node_modules', 'vite', 'bin', 'vite.js');
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+
+// The C3 composition (R11 harness + R15 reconciliation) added exactly four reviewed, exactly-pinned
+// developer tools at the root. That deliberately supersedes R34's "dependency-free root" rule — R36H had kept
+// playwright-core/axe-core outside the repository — with a strict allowlist: any extra name, any version
+// drift, or any runtime dependency still fails the contract.
+const ROOT_DEV_DEPENDENCIES = Object.freeze({
+  'axe-core': '4.14.0',
+  'oxfmt': '0.76.0',
+  'oxlint': '1.91.0',
+  'playwright-core': '1.64.1'
+});
+
+function assertRootDependencyContract(rootPkg) {
+  assert.equal(rootPkg.dependencies ?? null, null, 'the root must declare no runtime dependencies');
+  assert.equal(rootPkg.optionalDependencies ?? null, null, 'no optional root dependencies');
+  assert.equal(rootPkg.peerDependencies ?? null, null, 'no peer root dependencies');
+  assert.equal(rootPkg.bundledDependencies ?? null, null, 'no bundled root dependencies');
+  assert.deepEqual(
+    Object.entries(rootPkg.devDependencies ?? {}).sort(([a], [b]) => a.localeCompare(b)),
+    Object.entries(ROOT_DEV_DEPENDENCIES).sort(([a], [b]) => a.localeCompare(b)),
+    'root devDependencies must be exactly the reviewed, exactly-pinned test tooling'
+  );
+}
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 const rel = (file) => path.relative(root, file).split(path.sep).join('/');
 
@@ -114,15 +137,19 @@ test('3. the catalog is a valid workspace member, and the root contract is untou
   const rootPkg = readJson(path.join(root, 'package.json'));
 
   assert.deepEqual(rootPkg.workspaces, ['apps/*', 'packages/*']);
-  // C3-R34 added no root dependency and no root script.
-  assert.equal(rootPkg.dependencies ?? null, null);
-  assert.equal(rootPkg.devDependencies ?? null, null);
+  // C3-R34 added no root script. The composition later added exactly four reviewed, exactly-pinned developer
+  // tools; the allowlist below still forbids anything else, any version drift, and every runtime dependency.
+  assertRootDependencyContract(rootPkg);
   assert.deepEqual(Object.keys(rootPkg.scripts).sort(), [
     'test', 'test:approval:live', 'test:runtime', 'validate:foundation'
   ]);
 
   const lock = readJson(path.join(root, 'package-lock.json'));
   assert.equal(lock.lockfileVersion, 3);
+  // The lockfile must agree with the manifest about the root tooling: a manifest/lock drift is a contract
+  // break even when the versions themselves are approved.
+  assert.deepEqual(lock.packages[''].devDependencies, rootPkg.devDependencies, 'the lockfile must record exactly the manifest root devDependencies');
+  assert.equal(lock.packages[''].dependencies ?? null, null, 'the root lock entry must declare no runtime dependencies');
   assert.deepEqual(lock.packages[APP_REL]?.dependencies, { three: '0.180.0' });
   assert.deepEqual(lock.packages[APP_REL]?.devDependencies, { vite: '7.3.7' });
   assert.deepEqual(lock.packages['node_modules/@autolearnpro/catalog'], { resolved: 'apps/catalog', link: true });
