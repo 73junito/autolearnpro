@@ -1,0 +1,225 @@
+name: C3-R37H Remediation Gates
+
+# Validation only. No deployment, no secret access, no production credentials. Firefox and WebKit coverage is
+# executed here (locally those browsers are unavailable and their runs are recorded as PENDING).
+on:
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c3-remediation-gates
+  cancel-in-progress: false
+
+env:
+  # The npm cache is tooling state, not a build output root, so a workspace-local cache is fine.
+  npm_config_cache: ${{ github.workspace }}/_local/build/npm-cache
+  # TEMP/TMP/TMPDIR are set to $RUNNER_TEMP (outside the checkout) per job below, because the
+  # `runner` context is not available in workflow-level env and a workspace-local temp root trips
+  # R35_OUTPUT_INSIDE_SOURCE_ROOT in the build/provenance tests.
+
+jobs:
+  unit-and-integration:
+    name: C3 unit and integration tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+      - run: npm ci --prefix infrastructure/c3/build
+      - name: Deterministic findings digest (B21)
+        run: node --test tests/c3-canonical-findings.test.mjs
+      - name: Evidence overwrite protection (B27)
+        run: node --test tests/c3-report-writer.test.mjs
+      - name: Cleanup and interruption recovery (B26)
+        run: node --test tests/c3-run-cleanup.test.mjs
+      - name: Accessibility contract (B14/B19/B20)
+        run: node --test tests/c3-catalog-accessibility.test.mjs
+      - name: Snapshot versioning and reviewable diffs (B14/B19/B20)
+        run: node --test tests/c3-catalog-snapshot.test.mjs
+      - name: Full C3 suite
+        run: node --test
+
+  source-provenance:
+    name: Source provenance and input contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+      - run: npm ci --prefix infrastructure/c3/build
+      - name: Build input contract pins
+        run: node --test tests/c3-build-input-contract.test.mjs
+      - name: Build provenance
+        run: node --test tests/c3-build-provenance.test.mjs
+
+  attributes-and-line-endings:
+    name: Git attributes and byte reproducibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - name: .gitattributes is present in the checkout
+        run: test -f .gitattributes
+      - name: reviewed byte-sensitive paths are marked -text
+        run: |
+          set -e
+          for p in infrastructure/c3/build/package.json tests/c3-build-input-contract.test.mjs apps/catalog/index.html package.json package-lock.json; do
+            v=$(git check-attr text -- "$p" | awk '{print $3}')
+            echo "$p -> $v"
+            test "$v" = "unset"
+          done
+      - name: checked-out bytes equal committed blobs for -text paths
+        run: |
+          set -e
+          for p in infrastructure/c3/build/package.json apps/catalog/index.html package-lock.json; do
+            blob=$(git rev-parse "HEAD:$p")
+            work=$(git hash-object "$p")
+            echo "$p blob=$blob work=$work"
+            test "$blob" = "$work"
+          done
+
+  dependency-integrity:
+    name: Dependency integrity (Node 22 / npm 10)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - name: Clean install reproduces the committed lockfile
+        run: |
+          set -e
+          before=$(sha256sum package-lock.json | awk '{print $1}')
+          npm ci --ignore-scripts
+          after=$(sha256sum package-lock.json | awk '{print $1}')
+          echo "before=$before after=$after"
+          test "$before" = "$after"
+      - name: Approved toolchain pins are intact
+        run: |
+          node -e "const p=require('./package.json');if(p.devDependencies.oxlint!=='1.91.0'||p.devDependencies.oxfmt!=='0.76.0')process.exit(1)"
+
+  browser-stability:
+    name: Browser navigation stability (B23)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      R36H_REQUIRE_BROWSERS: '1'
+      R36H_PWCORE: ${{ github.workspace }}/node_modules/playwright-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+      - run: npx --yes playwright@1.64.1 install --with-deps chromium
+      - name: "Navigation stability trials (strict: missing chromium fails, not skips)"
+        run: node --test --test-reporter=tap tests/c3-browser-stability.test.mjs | tee _local/temp/b23.tap
+
+  cross-browser-a11y:
+    name: Keyboard accessibility (${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    env:
+      R36H_REQUIRE_BROWSERS: '1'
+      R36H_ENGINE: ${{ matrix.browser }}
+      R36H_PWCORE: ${{ github.workspace }}/node_modules/playwright-core
+      R36H_AXE: ${{ github.workspace }}/node_modules/axe-core/axe.min.js
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+      - run: npx --yes playwright@1.64.1 install --with-deps ${{ matrix.browser }}
+      - name: Keyboard, focus, Escape and axe checks (${{ matrix.browser }}, strict coverage)
+        run: |
+          set -uo pipefail
+          node --test --test-reporter=tap tests/c3-catalog-keyboard.test.mjs | tee "_local/temp/kc-${MATRIX_BROWSER}.tap"
+          passes=$(awk '/^# pass /{print $3}' "_local/temp/kc-${MATRIX_BROWSER}.tap" | tail -1)
+          skips=$(awk '/^# skipped /{print $3}' "_local/temp/kc-${MATRIX_BROWSER}.tap" | tail -1)
+          fails=$(awk '/^# fail /{print $3}' "_local/temp/kc-${MATRIX_BROWSER}.tap" | tail -1)
+          echo "engine=$MATRIX_BROWSER pass=${passes:-0} fail=${fails:-0} skip=${skips:-0}"
+          if [ "${passes:-0}" -lt 1 ]; then echo "::error::no keyboard test executed for $MATRIX_BROWSER (engine never launched)"; exit 1; fi
+          if [ "${skips:-0}" -ne 0 ]; then echo "::error::$MATRIX_BROWSER checks were skipped; strict coverage requires execution"; exit 1; fi
+          if [ "${fails:-0}" -ne 0 ]; then echo "::error::$MATRIX_BROWSER checks failed"; exit 1; fi
+        env:
+          MATRIX_BROWSER: ${{ matrix.browser }}
+
+  combined-regression:
+    name: Foundation 7/R1 and Meshy regression (read-only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare workspace and external temp dir
+        run: |
+          mkdir -p _local/temp _local/build/npm-cache
+          echo "TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          echo "TMPDIR=$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+      - name: Foundation validator and root tests
+        run: |
+          npm run validate:foundation
+          npm run test:runtime
+      - name: Meshy checkpoint and asset-validation tests (when present)
+        run: |
+          if [ -d meshy-studio ] && [ -f meshy-studio/package.json ]; then
+            npm ci --prefix meshy-studio --ignore-scripts
+            npm test --prefix meshy-studio
+          else
+            echo "meshy-studio not part of this checkout; recorded as PENDING in the combined-integration run"
+          fi

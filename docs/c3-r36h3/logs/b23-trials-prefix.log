@@ -1,0 +1,15 @@
+PASS              trial  1  exit=1  17527ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  2  exit=1  13760ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+TIMEOUT           trial  3  exit=null  180012ms  failed=[]  R36H3_HARNESS_EXCEPTION:page.goto: Timeout 30000ms exceeded.
+PASS              trial  4  exit=1  22072ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  5  exit=1  19343ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  6  exit=1  20938ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  7  exit=1  39985ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  8  exit=1  19696ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial  9  exit=1  31815ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 10  exit=1  19023ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 11  exit=1  53837ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 12  exit=1  16927ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 13  exit=1  8232ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 14  exit=1  15469ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS              trial 15  exit=1  9958ms  failed=[consoleErrors]  R36H3_REQUIRED_CHECK_FAILED:consoleErrors

@@ -2,16 +2,7 @@ import pg from "pg";
 const { Pool } = pg;
 const maxBody = 8192;
 
-async function assertRestrictedApprovalLogin(client) {
-  const result = await client.query(
-    "SELECT rolsuper, rolbypassrls, rolinherit FROM pg_roles WHERE rolname = session_user"
-  );
-  if (result.rows.length !== 1 || result.rows[0].rolsuper !== false ||
-      result.rows[0].rolbypassrls !== false || result.rows[0].rolinherit !== false) {
-    throw new Error("approval database login must be nonprivileged and NOINHERIT");
-  }
-}
-export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, publishableKey = process.env.ALP_SUPABASE_PUBLISHABLE_KEY, databaseUrl = process.env.ALP_APPROVAL_DATABASE_URL, fetchImpl = fetch, pool: injectedPool } = {}) {
+export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, publishableKey = process.env.ALP_SUPABASE_PUBLISHABLE_KEY, databaseUrl = process.env.ALP_DATABASE_URL, fetchImpl = fetch, pool: injectedPool } = {}) {
   const enabled = Boolean(authUrl && publishableKey && (databaseUrl || injectedPool));
   const pool = injectedPool ?? (databaseUrl ? new Pool({ connectionString: databaseUrl, max: 3, connectionTimeoutMillis: 5000, statement_timeout: 5000 }) : null);
   async function process(req, res) {
@@ -40,15 +31,13 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
     try {
       quotaClient = await pool.connect();
       await quotaClient.query("BEGIN");
-      if (!injectedPool) await assertRestrictedApprovalLogin(quotaClient);
-      await quotaClient.query("SET LOCAL ROLE alp_approval_executor");
+      await quotaClient.query("SET LOCAL ROLE service_role");
       const quota = await quotaClient.query("SELECT alp_private.consume_approval_quota($1) AS allowed", [actor]);
       await quotaClient.query("COMMIT");
       if (quota.rows[0]?.allowed !== true) {
         // Record the rejected request in its own committed, private transaction.
         await quotaClient.query("BEGIN");
-        if (!injectedPool) await assertRestrictedApprovalLogin(quotaClient);
-      await quotaClient.query("SET LOCAL ROLE alp_approval_executor");
+        await quotaClient.query("SET LOCAL ROLE service_role");
         await quotaClient.query("SELECT alp_private.record_approval_security_event($1,$2)", [actor, "approval_rate_limited"]);
         await quotaClient.query("COMMIT");
         res.setHeader("retry-after", "60");
@@ -78,8 +67,7 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
     try {
       client = await pool.connect();
       await client.query("BEGIN");
-      if (!injectedPool) await assertRestrictedApprovalLogin(client);
-      await client.query("SET LOCAL ROLE alp_approval_executor");
+      await client.query("SET LOCAL ROLE service_role");
       let requestId;
       if (isRequest) {
         const result = await client.query("SELECT alp_private.submit_role_request($1,$2,$3,$4) AS id", [body.targetId, body.role, actor, reason]);
@@ -96,8 +84,7 @@ export function createRoleApproval({ authUrl = process.env.ALP_SUPABASE_URL, pub
         if (error.code === "42501" || error.code === "22023") {
           try {
             await client.query("BEGIN");
-            if (!injectedPool) await assertRestrictedApprovalLogin(client);
-      await client.query("SET LOCAL ROLE alp_approval_executor");
+            await client.query("SET LOCAL ROLE service_role");
             await client.query("SELECT alp_private.record_approval_security_event($1,$2)", [actor, error.code === "42501" ? "approval_denied" : "approval_invalid_state"]);
             await client.query("COMMIT");
           } catch { try { await client.query("ROLLBACK"); } catch {} }

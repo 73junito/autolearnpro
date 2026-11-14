@@ -1,0 +1,114 @@
+{
+  "schema": "alp-c3-r36h2-failure-injection-v1",
+  "runtime": {
+    "node": "v22.23.1",
+    "platform": "win32"
+  },
+  "durationMs": 59677,
+  "cases": [
+    {
+      "case": "clean (real catalog)",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "failedChecks": [],
+      "expectedFailed": [],
+      "reason": null,
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "unexpected 404",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [
+        "consoleErrors",
+        "network"
+      ],
+      "expectedFailed": [
+        "network"
+      ],
+      "reason": "R36H2_REQUIRED_CHECK_FAILED:consoleErrors,network",
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "uncaught page error",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [
+        "noPageErrors"
+      ],
+      "expectedFailed": [
+        "noPageErrors"
+      ],
+      "reason": "R36H2_REQUIRED_CHECK_FAILED:noPageErrors",
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "console error not attributable to a classified resource",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "expectedFailed": [
+        "consoleErrors"
+      ],
+      "reason": "R36H2_REQUIRED_CHECK_FAILED:consoleErrors",
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "axe WCAG A/AA violation (image without alternative text)",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [
+        "axe"
+      ],
+      "expectedFailed": [
+        "axe"
+      ],
+      "reason": "R36H2_REQUIRED_CHECK_FAILED:axe",
+      "worstImpact": "serious/critical",
+      "ok": true
+    },
+    {
+      "case": "layout failure at a narrow viewport",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [
+        "zoom200",
+        "narrowViewport"
+      ],
+      "expectedFailed": [
+        "narrowViewport"
+      ],
+      "reason": "R36H2_REQUIRED_CHECK_FAILED:zoom200,narrowViewport",
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "missing build output",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [],
+      "expectedFailed": [],
+      "reason": "R36H_DIST_NOT_BUILT:C:\\Users\\rod63\\AppData\\Local\\Temp\\c3r36h2-case-6-FRjopi\\no-dist",
+      "worstImpact": null,
+      "ok": true
+    },
+    {
+      "case": "browser launch failure",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "failedChecks": [],
+      "expectedFailed": [],
+      "reason": "R36H2_HARNESS_EXCEPTION:browserType.launchPersistentContext: Failed to launch chromium because executable doesn't exist at C:\\Users\\rod63\\AppData\\Local\\Temp\\r36h1-no-such-browser.exe",
+      "worstImpact": null,
+      "ok": true
+    }
+  ],
+  "allExpectationsMet": true,
+  "note": "Each case isolates one defect. A clean run must exit 0; every injected failure must exit 1 with the named check in verdict.failed."
+}

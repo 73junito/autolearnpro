@@ -1,0 +1,197 @@
+{
+  "schema": "alp-c3-r36f-manifest-verification-v1",
+  "verifiedOn": "windows-development-worktree",
+  "manifest": {
+    "path": "docs/c3-r36e/C3-R36E-LINUX-MANIFEST.json",
+    "sha256": "931c6f1df39726b03b3bc71dcf4850f62300025c5244808ac9f0cda639b17eb7",
+    "declaredRecords": 28,
+    "declaredExecuted": false
+  },
+  "summary": {
+    "records": 28,
+    "matched": 28,
+    "altered": [],
+    "missing": [],
+    "unlistedCount": 0,
+    "unlisted": []
+  },
+  "transfer": {
+    "payloadTarSha256": "f8db4c6a42db21f67aed96b926f635121bb170a97dcde647558db9cd1471ff1d",
+    "payloadBytes": 78073,
+    "remoteHost": "ubuntu-server (172.29.133.229)",
+    "remoteWorkspace": "~/c3r36f-20261104",
+    "remoteVerifyCommand": "sha256sum -c SHA256SUMS --quiet",
+    "remoteVerifyExit": 0,
+    "remoteFileCount": 30
+  },
+  "files": [
+    {
+      "path": "infrastructure/c3/build/README.md",
+      "expected": "7e4e473ad0e8df7a4d230bac2c941a4fe640cb579bddafeded81ea88cc349daa",
+      "actual": "7e4e473ad0e8df7a4d230bac2c941a4fe640cb579bddafeded81ea88cc349daa",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/build-input-contract.mjs",
+      "expected": "8fc0b8ccfb7df46fdc60cfbb3da34d608dcbb212b8f6bcf435100ecb2ad3edf8",
+      "actual": "8fc0b8ccfb7df46fdc60cfbb3da34d608dcbb212b8f6bcf435100ecb2ad3edf8",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/build-root-guard.mjs",
+      "expected": "40d856d5941f9a18e213540810e65c8124445ea484a4e1b7e986b758b326cd3c",
+      "actual": "40d856d5941f9a18e213540810e65c8124445ea484a4e1b7e986b758b326cd3c",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-envelope.mjs",
+      "expected": "47f2a7770c519fbb9fbd9b88fc7cae34d5a2082fe6cc5f713ea7452d687ace70",
+      "actual": "47f2a7770c519fbb9fbd9b88fc7cae34d5a2082fe6cc5f713ea7452d687ace70",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-producer.cli.mjs",
+      "expected": "d1155d89e8c03ffb84ad4456a15c9885545d9bc347fe19975975c0b0136e3db7",
+      "actual": "d1155d89e8c03ffb84ad4456a15c9885545d9bc347fe19975975c0b0136e3db7",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-rehearsal.mjs",
+      "expected": "3348843f91441cbd4cb2eead1944ac9cd70bdae81e51428908333894adb1a769",
+      "actual": "3348843f91441cbd4cb2eead1944ac9cd70bdae81e51428908333894adb1a769",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-verifier.cli.mjs",
+      "expected": "d9d14620873117273d9ae647cd001bf3b43946eb1292738f84c58efaacbac48e",
+      "actual": "d9d14620873117273d9ae647cd001bf3b43946eb1292738f84c58efaacbac48e",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/offline-evidence-r22.mjs",
+      "expected": "49c03288d21cee1cc917ac578207a93d801248e06a89ddcee1c5dd9fadbc0b1a",
+      "actual": "49c03288d21cee1cc917ac578207a93d801248e06a89ddcee1c5dd9fadbc0b1a",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/package-lock.json",
+      "expected": "aee38b5df3b732c96ba9aa86f926e2be56f1219f517175e0738f602a926b0149",
+      "actual": "aee38b5df3b732c96ba9aa86f926e2be56f1219f517175e0738f602a926b0149",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/package.json",
+      "expected": "b33b1db8bb9ac557e8655f7eddb22cc07656982cc3b53cd2a3b2a365f14f3384",
+      "actual": "b33b1db8bb9ac557e8655f7eddb22cc07656982cc3b53cd2a3b2a365f14f3384",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/source-snapshot.mjs",
+      "expected": "47656cf695608057e1daa955670280a8f665b06a4d6dfcc35de98bf2bbe0ef03",
+      "actual": "47656cf695608057e1daa955670280a8f665b06a4d6dfcc35de98bf2bbe0ef03",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/build/worker-bundle.mjs",
+      "expected": "75528944152e61cec1424f0558da4b658752cac7137ce1ccc6615f735947da2d",
+      "actual": "75528944152e61cec1424f0558da4b658752cac7137ce1ccc6615f735947da2d",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/library/build-provenance-r21.mjs",
+      "expected": "0e36970ca8b2d5a56c82b59bd22e84bba242a1907d08a99868c6aaadc92fc70e",
+      "actual": "0e36970ca8b2d5a56c82b59bd22e84bba242a1907d08a99868c6aaadc92fc70e",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/library/library-generation-r20.mjs",
+      "expected": "7003b7b34e8320e367af752dbe15c45b8c8725fcacc15fd750eab6a432e0dfb3",
+      "actual": "7003b7b34e8320e367af752dbe15c45b8c8725fcacc15fd750eab6a432e0dfb3",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/library/library-pair-reader.mjs",
+      "expected": "820b4d3b4964487a7e9af520e8d8091ae60e95f90718072c8c5ec4eb8b9af6bc",
+      "actual": "820b4d3b4964487a7e9af520e8d8091ae60e95f90718072c8c5ec4eb8b9af6bc",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/library/library-pair-recovery.mjs",
+      "expected": "c23777a227a8e45769034a7b852d7d48742a2a11cea173d17005aadd97d2bce4",
+      "actual": "c23777a227a8e45769034a7b852d7d48742a2a11cea173d17005aadd97d2bce4",
+      "match": true
+    },
+    {
+      "path": "infrastructure/c3/library/target-policy.mjs",
+      "expected": "b07ff9a988cf99cf4a0946934d335b6caf13023d1e42d8fcd44582c2dbdb595c",
+      "actual": "b07ff9a988cf99cf4a0946934d335b6caf13023d1e42d8fcd44582c2dbdb595c",
+      "match": true
+    },
+    {
+      "path": "tests/c3-offline-evidence.test.mjs",
+      "expected": "337f756c9e90960642b67b7708f6d956e38e483ca83b917397f94bd359359b6d",
+      "actual": "337f756c9e90960642b67b7708f6d956e38e483ca83b917397f94bd359359b6d",
+      "match": true
+    },
+    {
+      "path": "tests/c3-build-provenance.test.mjs",
+      "expected": "30fe55451581ece1cecba135f6cce073d793b3fb7dcc5decbb711d83df63c9d5",
+      "actual": "30fe55451581ece1cecba135f6cce073d793b3fb7dcc5decbb711d83df63c9d5",
+      "match": true
+    },
+    {
+      "path": "tests/c3-library-reader.test.mjs",
+      "expected": "3b2e9979bf79a9dc49100dc0b78848fe9d989f7881077ba4bd8d7565c5f1e352",
+      "actual": "3b2e9979bf79a9dc49100dc0b78848fe9d989f7881077ba4bd8d7565c5f1e352",
+      "match": true
+    },
+    {
+      "path": "tests/c3-recovery.test.mjs",
+      "expected": "c7fa0c200a8da219b9948da80e1b41aadf9edf9b610479ce08e7d3e13e2cd80b",
+      "actual": "c7fa0c200a8da219b9948da80e1b41aadf9edf9b610479ce08e7d3e13e2cd80b",
+      "match": true
+    },
+    {
+      "path": "tests/c3-library-generation.test.mjs",
+      "expected": "fe53cf6034fea16630df18528998a5b096437142fa8e07b87d0e3a08cbbe3929",
+      "actual": "fe53cf6034fea16630df18528998a5b096437142fa8e07b87d0e3a08cbbe3929",
+      "match": true
+    },
+    {
+      "path": "tests/c3-process-boundary.test.mjs",
+      "expected": "e45e9b33e564e6ba98d4a6efb461e36bc15766216ede5bd9b16b307837b91966",
+      "actual": "e45e9b33e564e6ba98d4a6efb461e36bc15766216ede5bd9b16b307837b91966",
+      "match": true
+    },
+    {
+      "path": "tests/c3-evidence-rehearsal.test.mjs",
+      "expected": "f0179407e9a00034795549e2076e377df96b1aeeccf9893bafc63f34472d824f",
+      "actual": "f0179407e9a00034795549e2076e377df96b1aeeccf9893bafc63f34472d824f",
+      "match": true
+    },
+    {
+      "path": "tests/c3-multi-root-snapshot.test.mjs",
+      "expected": "7025534fc2faeee7a905c4b64ceaf84690e592b6c52e63be38d3a37924afca38",
+      "actual": "7025534fc2faeee7a905c4b64ceaf84690e592b6c52e63be38d3a37924afca38",
+      "match": true
+    },
+    {
+      "path": "tests/c3-worker-bundle-feasibility.test.mjs",
+      "expected": "c92f6a9e1228e14a8b98adb0a0840d1663ab1a9fadc063fc539594861400d653",
+      "actual": "c92f6a9e1228e14a8b98adb0a0840d1663ab1a9fadc063fc539594861400d653",
+      "match": true
+    },
+    {
+      "path": "tests/c3-offline-evidence-persistence.test.mjs",
+      "expected": "15b4b744e08f82bfcf4926bbcac8086716fdb343f0161dbbefd28c87a4373b47",
+      "actual": "15b4b744e08f82bfcf4926bbcac8086716fdb343f0161dbbefd28c87a4373b47",
+      "match": true
+    },
+    {
+      "path": "tests/fixtures/fs-alter-once.mjs",
+      "expected": "2fcc9af855fbd1af160373f5aa5bbd8bb19ac319c2797866e5ec0f5c3a76860f",
+      "actual": "2fcc9af855fbd1af160373f5aa5bbd8bb19ac319c2797866e5ec0f5c3a76860f",
+      "match": true
+    }
+  ]
+}

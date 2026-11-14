@@ -1,0 +1,13 @@
+node22 v22.23.4
+npm 10.9.9
+c3-recovery exit=0 # pass 39 # fail 0 # skipped 0 
+c3-library-reader exit=0 # pass 15 # fail 0 # skipped 0 
+c3-library-generation exit=0 # pass 13 # fail 0 # skipped 0 
+c3-build-provenance exit=0 # pass 15 # fail 0 # skipped 0 
+c3-offline-evidence exit=0 # pass 14 # fail 0 # skipped 0 
+c3-build-input-contract exit=0 # pass 12 # fail 0 # skipped 0 
+c3-multi-root-snapshot exit=0 # pass 15 # fail 0 # skipped 0 
+c3-worker-bundle-feasibility exit=0 # pass 13 # fail 0 # skipped 0 
+c3-offline-evidence-persistence exit=0 # pass 18 # fail 0 # skipped 0 
+c3-evidence-rehearsal exit=0 # pass 18 # fail 0 # skipped 0 
+c3-process-boundary exit=0 # pass 19 # fail 0 # skipped 0 

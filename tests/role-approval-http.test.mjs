@@ -26,10 +26,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
     authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
     fetchImpl: async () => valid ? { ok: true, json: async () => ({ id: actor }) } : { ok: false }
   });
-  // Inert academic stub: makeServer() would otherwise construct a real academic
-  // service from ambient ALP_* variables, creating a live pg pool inside a unit test.
-  const inertAcademic = { process: async () => {}, close: () => {} };
-  const server = makeServer({ approval, academic: inertAcademic });
+  const server = makeServer({ approval });
   server.listen(0, "127.0.0.1");
   await once(server, "listening");
   t.after(() => server.close());
@@ -44,7 +41,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   assert.equal((await r.json()).requestId, requestId);
   const submitted = statements.find(s => s.sql.includes("submit_role_request"));
   assert.deepEqual(submitted.params, [target, "instructor", actor, request.reason]);
-  assert.ok(statements.some(s => s.sql === "SET LOCAL ROLE alp_approval_executor"));
+  assert.ok(statements.some(s => s.sql === "SET LOCAL ROLE service_role"));
   r = await post("/api/roles/decision", { requestId, approve: true, reason: "Verified and approved" });
   assert.equal(r.status, 200);
   const decided = statements.find(s => s.sql.includes("decide_role_request"));
@@ -62,7 +59,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
     authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
     fetchImpl: async () => ({ ok: true, json: async () => ({ id: "aaaaaaaa-invalid-4aaa-8aaa-aaaaaaaaaaaa" }) })
   });
-  const invalidServer = makeServer({ approval: invalidIdentity, academic: inertAcademic });
+  const invalidServer = makeServer({ approval: invalidIdentity });
   invalidServer.listen(0, "127.0.0.1");
   await once(invalidServer, "listening");
   t.after(() => invalidServer.close());
@@ -75,13 +72,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   assert.equal(statements.length, beforeInvalid);
   r = await fetch(base + "/api/roles/request", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
   assert.equal(r.status, 401);
-  // Explicitly unconfigured: passing null must win over any ambient ALP_* values.
-  // Relying on createRoleApproval({}) here made this assertion fail whenever the
-  // shell exported a complete ALP_* set (gap G1).
-  const disabled = makeServer({
-    approval: createRoleApproval({ authUrl: null, publishableKey: null, databaseUrl: null }),
-    academic: inertAcademic
-  });
+  const disabled = makeServer({ approval: createRoleApproval({}) });
   disabled.listen(0, "127.0.0.1");
   await once(disabled, "listening");
   t.after(() => disabled.close());

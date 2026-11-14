@@ -1,0 +1,91 @@
+{
+  "schema": "alp-c3-r27-linux-rerun-manifest-v1",
+  "purpose": "Files required to rerun the three C3 security suites on Ubuntu after the C3-R27 symlink fixture correction.",
+  "generatedOn": "windows-development-worktree",
+  "workspace": "F:/autolearnpro-c3-r25-integration",
+  "changedSincePreviousTransfer": [
+    {
+      "path": "tests/c3-library-reader.test.mjs",
+      "reason": "Fixture defect: writePair() occupied the symlink destination, so symlinkSync failed with EEXIST and a broad catch reported it as a missing platform capability. The file is now removed before linking and only EPERM/EACCES/ENOSYS/ENOTSUP/EOPNOTSUPP skip.",
+      "previousSha256Prefix": "7cb35449f85dbb90",
+      "newSha256": "3b2e9979bf79a9dc49100dc0b78848fe9d989f7881077ba4bd8d7565c5f1e352"
+    }
+  ],
+  "unchangedSincePreviousTransfer": true,
+  "files": [
+    {
+      "path": "infrastructure/c3/library/library-pair-recovery.mjs",
+      "sha256": "c23777a227a8e45769034a7b852d7d48742a2a11cea173d17005aadd97d2bce4",
+      "neededBy": [
+        "c3-recovery",
+        "c3-library-reader",
+        "c3-library-generation"
+      ]
+    },
+    {
+      "path": "infrastructure/c3/library/library-pair-reader.mjs",
+      "sha256": "820b4d3b4964487a7e9af520e8d8091ae60e95f90718072c8c5ec4eb8b9af6bc",
+      "neededBy": [
+        "c3-library-reader",
+        "c3-library-generation"
+      ]
+    },
+    {
+      "path": "infrastructure/c3/library/target-policy.mjs",
+      "sha256": "b07ff9a988cf99cf4a0946934d335b6caf13023d1e42d8fcd44582c2dbdb595c",
+      "neededBy": [
+        "c3-library-generation"
+      ]
+    },
+    {
+      "path": "infrastructure/c3/library/library-generation-r20.mjs",
+      "sha256": "7003b7b34e8320e367af752dbe15c45b8c8725fcacc15fd750eab6a432e0dfb3",
+      "neededBy": [
+        "c3-library-generation"
+      ]
+    },
+    {
+      "path": "tests/c3-recovery.test.mjs",
+      "sha256": "c7fa0c200a8da219b9948da80e1b41aadf9edf9b610479ce08e7d3e13e2cd80b",
+      "neededBy": [
+        "c3-recovery"
+      ]
+    },
+    {
+      "path": "tests/c3-library-reader.test.mjs",
+      "sha256": "3b2e9979bf79a9dc49100dc0b78848fe9d989f7881077ba4bd8d7565c5f1e352",
+      "neededBy": [
+        "c3-library-reader"
+      ]
+    },
+    {
+      "path": "tests/c3-library-generation.test.mjs",
+      "sha256": "fe53cf6034fea16630df18528998a5b096437142fa8e07b87d0e3a08cbbe3929",
+      "neededBy": [
+        "c3-library-generation"
+      ]
+    }
+  ],
+  "expectedLinuxResults": {
+    "c3-recovery": {
+      "tests": 39,
+      "pass": 39,
+      "fail": 0,
+      "skipped": 0
+    },
+    "c3-library-reader": {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "skipped": 0
+    },
+    "c3-library-generation": {
+      "tests": 13,
+      "pass": 13,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "acceptance": "C3-R27 must report 15 passed, 0 failed, 0 skipped on Linux. If the symlink case still skips, the skip message now names the OS error code, which identifies whether it is a genuine capability limit rather than a fixture fault.",
+  "notClaimed": "Linux execution has NOT been performed by this worktree. These are expectations, not results."
+}

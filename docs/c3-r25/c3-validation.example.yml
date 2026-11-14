@@ -1,0 +1,98 @@
+# C3-R25 REVIEW TEMPLATE ONLY — not installed under .github/workflows.
+# This template intentionally FAILS while C3 source is not integrated: the "Reject absent C3
+# integration" step below is a fail-closed assertion, not a placeholder.
+#
+# Before installation a human must:
+#   1. confirm both action SHAs below against the upstream repositories (provenance is recorded inline);
+#   2. approve the module mapping in C3-R25-ARCHITECTURE-INTEGRATION-MAPPING.md;
+#   3. confirm protected-branch review exists — GitHub currently reports NO branch protection,
+#      NO rulesets and NO environments on this repository, so nothing would gate a merge.
+name: C3 candidate evidence validation (PROPOSAL)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: c3-candidate-validation
+  cancel-in-progress: false
+jobs:
+  validate-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      # The pinning guard previously ran here, BEFORE checkout, where the workflow file does not yet
+      # exist in the runner workspace (it silently inspected nothing). It now runs after checkout,
+      # as the step named "Guard — every action pinned to an immutable ref" below.
+
+      - name: Checkout committed revision
+        # actions/checkout v4 — SHA resolved 2026-11-04 via GitHub API ref tags/v4 → commit.
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Node 22
+        # actions/setup-node v4 — SHA resolved 2026-11-04 via GitHub API ref tags/v4 → commit.
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+
+      # The guard runs AFTER checkout, because before checkout the workflow file does not exist in
+      # the runner workspace and any attempt to inspect it silently inspects nothing.
+      #
+      # RESIDUAL GAP, stated rather than hidden: the two steps above have already executed when this
+      # runs, so this is a DRIFT DETECTOR for future edits, not a pre-execution trust anchor for
+      # actions/checkout or actions/setup-node. The authoritative controls are: human review of those
+      # two SHAs, running this same script offline before installation, and (recommended but not
+      # enabled) the repository setting `sha_pinning_required: true`. Do not claim more than that.
+      - name: Guard — every action pinned to an immutable ref
+        run: sh docs/c3-r25/tools/verify-action-pinning.sh .github/workflows/c3-validation.yml
+
+      - name: Assert checkout is clean before validating
+        run: |
+          test -d .git
+          test -z "$(git status --porcelain)" || { echo "::error::working tree not clean"; exit 1; }
+          node --version && npm --version
+
+      - name: Install parent monorepo dependencies (deterministic)
+        run: npm ci --ignore-scripts
+
+      # CHECK 1 — foundation architecture
+      - name: Validate existing foundation
+        run: npm run validate:foundation
+
+      # CHECK 2 — clean-checkout reproducibility.
+      # In CI the checkout is already fresh, so CHECK 1 above IS the reproducibility proof; it fails
+      # for any directory Git cannot recreate. The guard step keeps that from being a false pass.
+      - name: Confirm foundation validator covers committed tree only
+        run: |
+          node -e "const fs=require('fs');const src=fs.readFileSync('infrastructure/scripts/validate-foundation.mjs','utf8');if(!/missing\.length/.test(src))process.exit(1);console.log('validator still fails closed on missing directories')"
+
+      # Fail-closed: this step is expected to FAIL until C3 source is integrated.
+      - name: Reject absent C3 integration
+        run: |
+          test -f docs/web-first-architecture-review/shared-contract-c3/c3-r24/run-c3r24.mjs
+          node -e "if(!require('./package.json').scripts['verify:c3-staging'])process.exit(1)"
+
+      # CHECKS 3-7 — module compatibility, library-generation integrity, catalog/Worker build
+      # consistency, artifact SHA-256 evidence, trusted provenance. All delegated to one reviewed
+      # entry point so the workflow cannot drift from the ported test set:
+      #   3. reviewed C3 module compatibility   → ported unit tests
+      #   4. library-generation integrity       → R20 generation verification
+      #   5. catalog/Worker build consistency   → R21 pair verification
+      #   6. artifact SHA-256 evidence          → R22 evidence verification
+      #   7. trusted provenance requirements    → R23 gate refuses unverified claims
+      - name: Verify reviewed C3 modules (ONLY AFTER APPROVED PORT)
+        run: npm run verify:c3-staging
+
+      # CHECK 8 — deployment prohibition
+      - name: Assert no deploy or publish path exists
+        run: |
+          node -e "const s=require('./package.json').scripts||{};const bad=Object.entries(s).filter(([k,v])=>/deploy|publish|wrangler\s+deploy/i.test(v));if(bad.length){console.error('deploy-capable scripts present',bad);process.exit(1)}console.log('no deploy-capable script')"
+          # A disabled job is defence in depth, never the sole control.
+          # POSIX classes, not \s: this is grep -E, not JavaScript.
+          git grep -nE '^[[:space:]]*run:.*(wrangler[[:space:]]+deploy|vercel[[:space:]]+deploy|git[[:space:]]+push)' -- . ':!docs/c3-r25' && { echo "::error::deploy command found in tracked files"; exit 1; } || echo "no deploy commands in tracked files"
+
+      - name: Final release gate
+        if: ${{ false }}
+        run: echo "NO_DEPLOYMENT_ALLOWED"

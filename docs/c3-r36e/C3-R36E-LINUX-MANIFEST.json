@@ -1,0 +1,152 @@
+{
+  "schema": "alp-c3-r36e-linux-manifest-v1",
+  "purpose": "Files required to run the outstanding Linux symlink verification (R31) and the R35-R36E link/junction cases on Ubuntu with Node 22. Nothing here is a Linux result.",
+  "generatedOn": "windows-development-worktree",
+  "workspace": "F:/autolearnpro-c3-r25-integration",
+  "executed": false,
+  "notClaimed": "Linux execution has NOT been performed. These are transfer hashes, not results.",
+  "nodeRequirement": ">=22 <23",
+  "toolchainNote": "Do not reuse Windows node_modules. Install the isolated toolchain inside the transferred tree with npm ci --ignore-scripts in infrastructure/c3/build.",
+  "files": [
+    {
+      "path": "infrastructure/c3/build/README.md",
+      "sha256": "7e4e473ad0e8df7a4d230bac2c941a4fe640cb579bddafeded81ea88cc349daa",
+      "bytes": 3103
+    },
+    {
+      "path": "infrastructure/c3/build/build-input-contract.mjs",
+      "sha256": "8fc0b8ccfb7df46fdc60cfbb3da34d608dcbb212b8f6bcf435100ecb2ad3edf8",
+      "bytes": 16814
+    },
+    {
+      "path": "infrastructure/c3/build/build-root-guard.mjs",
+      "sha256": "40d856d5941f9a18e213540810e65c8124445ea484a4e1b7e986b758b326cd3c",
+      "bytes": 3975
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-envelope.mjs",
+      "sha256": "47f2a7770c519fbb9fbd9b88fc7cae34d5a2082fe6cc5f713ea7452d687ace70",
+      "bytes": 20348
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-producer.cli.mjs",
+      "sha256": "d1155d89e8c03ffb84ad4456a15c9885545d9bc347fe19975975c0b0136e3db7",
+      "bytes": 2521
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-rehearsal.mjs",
+      "sha256": "3348843f91441cbd4cb2eead1944ac9cd70bdae81e51428908333894adb1a769",
+      "bytes": 10202
+    },
+    {
+      "path": "infrastructure/c3/build/evidence-verifier.cli.mjs",
+      "sha256": "d9d14620873117273d9ae647cd001bf3b43946eb1292738f84c58efaacbac48e",
+      "bytes": 3816
+    },
+    {
+      "path": "infrastructure/c3/build/offline-evidence-r22.mjs",
+      "sha256": "49c03288d21cee1cc917ac578207a93d801248e06a89ddcee1c5dd9fadbc0b1a",
+      "bytes": 9790
+    },
+    {
+      "path": "infrastructure/c3/build/package-lock.json",
+      "sha256": "aee38b5df3b732c96ba9aa86f926e2be56f1219f517175e0738f602a926b0149",
+      "bytes": 34677
+    },
+    {
+      "path": "infrastructure/c3/build/package.json",
+      "sha256": "b33b1db8bb9ac557e8655f7eddb22cc07656982cc3b53cd2a3b2a365f14f3384",
+      "bytes": 406
+    },
+    {
+      "path": "infrastructure/c3/build/source-snapshot.mjs",
+      "sha256": "47656cf695608057e1daa955670280a8f665b06a4d6dfcc35de98bf2bbe0ef03",
+      "bytes": 17798
+    },
+    {
+      "path": "infrastructure/c3/build/worker-bundle.mjs",
+      "sha256": "75528944152e61cec1424f0558da4b658752cac7137ce1ccc6615f735947da2d",
+      "bytes": 11103
+    },
+    {
+      "path": "infrastructure/c3/library/build-provenance-r21.mjs",
+      "sha256": "0e36970ca8b2d5a56c82b59bd22e84bba242a1907d08a99868c6aaadc92fc70e",
+      "bytes": 7532
+    },
+    {
+      "path": "infrastructure/c3/library/library-generation-r20.mjs",
+      "sha256": "7003b7b34e8320e367af752dbe15c45b8c8725fcacc15fd750eab6a432e0dfb3",
+      "bytes": 8013
+    },
+    {
+      "path": "infrastructure/c3/library/library-pair-reader.mjs",
+      "sha256": "820b4d3b4964487a7e9af520e8d8091ae60e95f90718072c8c5ec4eb8b9af6bc",
+      "bytes": 6006
+    },
+    {
+      "path": "infrastructure/c3/library/library-pair-recovery.mjs",
+      "sha256": "c23777a227a8e45769034a7b852d7d48742a2a11cea173d17005aadd97d2bce4",
+      "bytes": 7743
+    },
+    {
+      "path": "infrastructure/c3/library/target-policy.mjs",
+      "sha256": "b07ff9a988cf99cf4a0946934d335b6caf13023d1e42d8fcd44582c2dbdb595c",
+      "bytes": 3968
+    },
+    {
+      "path": "tests/c3-offline-evidence.test.mjs",
+      "sha256": "337f756c9e90960642b67b7708f6d956e38e483ca83b917397f94bd359359b6d",
+      "bytes": 12939
+    },
+    {
+      "path": "tests/c3-build-provenance.test.mjs",
+      "sha256": "30fe55451581ece1cecba135f6cce073d793b3fb7dcc5decbb711d83df63c9d5",
+      "bytes": 14374
+    },
+    {
+      "path": "tests/c3-library-reader.test.mjs",
+      "sha256": "3b2e9979bf79a9dc49100dc0b78848fe9d989f7881077ba4bd8d7565c5f1e352",
+      "bytes": 11634
+    },
+    {
+      "path": "tests/c3-recovery.test.mjs",
+      "sha256": "c7fa0c200a8da219b9948da80e1b41aadf9edf9b610479ce08e7d3e13e2cd80b",
+      "bytes": 14564
+    },
+    {
+      "path": "tests/c3-library-generation.test.mjs",
+      "sha256": "fe53cf6034fea16630df18528998a5b096437142fa8e07b87d0e3a08cbbe3929",
+      "bytes": 16526
+    },
+    {
+      "path": "tests/c3-process-boundary.test.mjs",
+      "sha256": "e45e9b33e564e6ba98d4a6efb461e36bc15766216ede5bd9b16b307837b91966",
+      "bytes": 19774
+    },
+    {
+      "path": "tests/c3-evidence-rehearsal.test.mjs",
+      "sha256": "f0179407e9a00034795549e2076e377df96b1aeeccf9893bafc63f34472d824f",
+      "bytes": 19937
+    },
+    {
+      "path": "tests/c3-multi-root-snapshot.test.mjs",
+      "sha256": "7025534fc2faeee7a905c4b64ceaf84690e592b6c52e63be38d3a37924afca38",
+      "bytes": 22396
+    },
+    {
+      "path": "tests/c3-worker-bundle-feasibility.test.mjs",
+      "sha256": "c92f6a9e1228e14a8b98adb0a0840d1663ab1a9fadc063fc539594861400d653",
+      "bytes": 18169
+    },
+    {
+      "path": "tests/c3-offline-evidence-persistence.test.mjs",
+      "sha256": "15b4b744e08f82bfcf4926bbcac8086716fdb343f0161dbbefd28c87a4373b47",
+      "bytes": 17649
+    },
+    {
+      "path": "tests/fixtures/fs-alter-once.mjs",
+      "sha256": "2fcc9af855fbd1af160373f5aa5bbd8bb19ac319c2797866e5ec0f5c3a76860f",
+      "bytes": 1141
+    }
+  ]
+}
