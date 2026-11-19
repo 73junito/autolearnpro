@@ -57,6 +57,23 @@ jobs:
           sha256sum "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
           sha256sum "supabase/migrations/20261114202924_worker_restricted_login_roles_passwordless.sql" | grep -q "^7b74ddab411d93d83b5d48a1d23e2dab82c3b25e25dcedd4c3bb528ef919b0f1 "
           echo "27 ordered migrations verified."
+  r7-workerd-runtime:
+    name: R7 Cloudflare workerd local runtime (source-only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned test dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Run real workerd isolation and fail-closed tests
+        run: node --test tests/d02e-r7-workerd-runtime.test.mjs
+
   r1-live-database:
     name: R1 restricted executor (disposable database)
     runs-on: ubuntu-latest

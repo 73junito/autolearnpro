@@ -24,9 +24,12 @@
     "fmt:check": "oxfmt --check apps/web/src/academic.mjs apps/web/src/server.mjs infrastructure/scripts/check-integration-readiness.mjs infrastructure/scripts/run-r1-live.mjs",
     "fmt:academic": "oxfmt --write apps/web/src/academic.mjs apps/web/src/server.mjs",
     "test:d02c:synthetic": "node --test tests/d02c-approval-negative.test.mjs",
-    "test:d02e:synthetic": "node --test tests/d02e-workers-adapter.test.mjs tests/d02e-migration-lineage.test.mjs"
+    "test:d02e:synthetic": "node --test tests/d02e-workers-adapter.test.mjs tests/d02e-migration-lineage.test.mjs",
+    "test:workerd": "node --test tests/d02e-r7-workerd-runtime.test.mjs"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
+    "miniflare": "4.20260730.0",
     "oxfmt": "0.76.0",
     "oxlint": "1.91.0"
   }
