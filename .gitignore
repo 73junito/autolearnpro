@@ -5,3 +5,6 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# C3 catalog local Vite build output
+apps/catalog/dist/
