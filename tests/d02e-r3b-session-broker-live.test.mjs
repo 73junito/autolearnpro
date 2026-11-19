@@ -99,3 +99,73 @@ test(
     }
   },
 );
+
+test(
+  "R3C row lock blocks concurrent session deletion until approval transaction commits",
+  {
+    skip: !REQUIRE,
+    timeout: 45000,
+  },
+  async () => {
+    const admin = new pg.Client({ connectionString: ADMIN });
+    const approval = new pg.Client({ connectionString: APP });
+    const actor = "0be4c02a-acba-4e5f-9d29-2b34f49afc08";
+    const session = "c8e2494a-3f69-4d82-ae15-1d5591b9c50f";
+    await admin.connect();
+    await approval.connect();
+    let began = false;
+    try {
+      await admin.query("INSERT INTO auth.users(id,email) VALUES ($1,'r3c-atomic@example.test')", [
+        actor,
+      ]);
+      await admin.query("INSERT INTO auth.sessions(id,user_id) VALUES($1,$2)", [session, actor]);
+      await approval.query("BEGIN");
+      began = true;
+      await approval.query("SET LOCAL ROLE alp_approval_executor");
+      const result = await approval.query(
+        "SELECT alp_private.lock_approval_actor_session($1,$2) AS locked",
+        [actor, session],
+      );
+      assert.equal(result.rows[0]?.locked, true);
+      await admin.query("BEGIN");
+      await admin.query("SET LOCAL lock_timeout = '200ms'");
+      await assert.rejects(
+        admin.query("DELETE FROM auth.sessions WHERE id=$1", [session]),
+        (error) => error.code === "55P03",
+      );
+      await admin.query("ROLLBACK");
+      // Session lock is still held while the signed operation would run.
+      const held = await approval.query("SELECT current_user AS role");
+      assert.equal(held.rows[0]?.role, "alp_approval_executor");
+      await approval.query("COMMIT");
+      began = false;
+      await admin.query("DELETE FROM auth.sessions WHERE id=$1", [session]);
+      await approval.query("BEGIN");
+      began = true;
+      await approval.query("SET LOCAL ROLE alp_approval_executor");
+      const revoked = await approval.query(
+        "SELECT alp_private.lock_approval_actor_session($1,$2) AS locked",
+        [actor, session],
+      );
+      assert.equal(revoked.rows[0]?.locked, false);
+      await approval.query("ROLLBACK");
+      began = false;
+    } finally {
+      if (began)
+        try {
+          await approval.query("ROLLBACK");
+        } catch {}
+      try {
+        await admin.query("ROLLBACK");
+      } catch {}
+      try {
+        await admin.query("DELETE FROM auth.sessions WHERE id=$1", [session]);
+      } catch {}
+      try {
+        await admin.query("DELETE FROM auth.users WHERE id=$1", [actor]);
+      } catch {}
+      await approval.end();
+      await admin.end();
+    }
+  },
+);
