@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "workstream": "ALP-D02-E-R8C",
+  "status": "ACTIVATION_BLOCKED",
+  "authorizedToApply": false,
+  "releaseAllowed": false,
+  "repository": "73junito/autolearnpro",
+  "observedUtcDate": "2026-11-19",
+  "observedMainSha": "24924670926bd35825ed80116461ae6a5c4999c1",
+  "liveObservations": {
+    "mainProtected": false,
+    "ruleset": {
+      "id": 26665434,
+      "name": "protect-main-foundation",
+      "enforcement": "disabled",
+      "requiredApprovingReviewCount": 0,
+      "hasRequiredStatusChecks": false,
+      "bypassActorCount": 0
+    },
+    "repositoryCollaborators": {
+      "count": 1,
+      "adminLogin": "73junito",
+      "independentReviewerAvailable": false
+    },
+    "githubActions": {
+      "defaultWorkflowPermissions": "read",
+      "canApprovePullRequestReviews": false,
+      "allowedActions": "all",
+      "shaPinningRequired": false
+    },
+    "deploymentEnvironments": 0,
+    "verifiedChecks": [
+      {
+        "context": "Foundation / Academic static and unit gates",
+        "conclusion": "success",
+        "app": "github-actions"
+      },
+      {
+        "context": "R7 Cloudflare workerd local runtime (source-only)",
+        "conclusion": "success",
+        "app": "github-actions"
+      },
+      {
+        "context": "R1 restricted executor (disposable database)",
+        "conclusion": "success",
+        "app": "github-actions"
+      }
+    ],
+    "excludedChecks": [
+      {
+        "context": "Supabase Preview",
+        "conclusion": "skipped",
+        "app": "supabase"
+      }
+    ]
+  },
+  "activationBlockers": [
+    "Independent reviewer with confirmed repository access is not available in observed collaborator list",
+    "Main branch ruleset is disabled and requires explicit separate owner authorization",
+    "Approved administrator recovery/lockout procedure has not been demonstrated"
+  ],
+  "requiredOwnerDecisions": [
+    "Grant and verify a trusted independent reviewer with appropriate repository access, or retain activation HOLD",
+    "Approve an administrative recovery plan and separate ruleset activation GO",
+    "Approve the exact required CI check contexts and source-app provenance"
+  ],
+  "postApprovalPreflight": [
+    "Reinspect GitHub collaborators and confirm a distinct authorized reviewer can approve",
+    "Reinspect active rulesets and effective branch protection, checking for conflicting organization rules",
+    "Validate current required check contexts and GitHub Actions app source",
+    "Capture current rule JSON for restoration and get signed release decision",
+    "Apply only the approved ruleset change through authorized GitHub API",
+    "Read back effective protection, reviews, checks and no-bypass configuration",
+    "Verify a test PR cannot merge without review or when a required check fails"
+  ],
+  "scope": "Read-only snapshot. No GitHub settings, IAM, secrets, Cloudflare or Supabase resources modified."
+}

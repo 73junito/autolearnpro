@@ -44,6 +44,8 @@ jobs:
         run: npm run check:r8a-governance
       - name: Check proposed R8B branch protection does not imply authority
         run: npm run check:r8b-protection
+      - name: Preserve R8C activation blocker and reviewer preflight
+        run: npm run check:r8c-preflight
       - name: Verify migration manifest and R1 filename
         shell: bash
         run: |
