@@ -1,0 +1,102 @@
+{
+  "schema": "alp-c3-r36h2-output-safety-v1",
+  "runtime": {
+    "node": "v22.23.1",
+    "platform": "win32"
+  },
+  "cases": [
+    {
+      "name": "missing output configuration fails closed",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_REQUIRED:set R36H2_OUT to an existing empty directory owned by the caller",
+        "docsUnchanged": true
+      }
+    },
+    {
+      "name": "mistyped variable is reported by name (F-5)",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_VARIABLE_MISNAMED:set R36H2_OUT (found R36H_OUT; that name is not honoured)"
+      }
+    },
+    {
+      "name": "missing destination directory is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_MISSING:C:\\Users\\rod63\\AppData\\Local\\Temp\\r36h2-missing-1793840181075"
+      }
+    },
+    {
+      "name": "occupied destination is refused and preserved",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_NOT_EMPTY:C:\\Users\\rod63\\AppData\\Local\\Temp\\r36h2-occupied-XR2CI0",
+        "occupantUnchanged": true
+      }
+    },
+    {
+      "name": "reviewed evidence directory is forbidden",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_FORBIDDEN:docs/c3-r36h1 — inside the repository; only docs/c3-r36h2/runs/<name> is authorised"
+      }
+    },
+    {
+      "name": "application source directory is forbidden",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_FORBIDDEN:apps/catalog — inside the repository; only docs/c3-r36h2/runs/<name> is authorised"
+      }
+    },
+    {
+      "name": "a file is not accepted as a destination",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H2_OUTPUT_NOT_DIRECTORY:C:\\Users\\rod63\\AppData\\Local\\Temp\\r36h2-file-1793840181689.txt"
+      }
+    },
+    {
+      "name": "exception mid-run exits nonzero, cleans artefacts, and reports",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "files": [
+          "gate-results.json"
+        ],
+        "reason": "R36H2_HARNESS_EXCEPTION:browserType.launchPersistentContext: Failed to launch chromium bec"
+      }
+    },
+    {
+      "name": "clean run writes only into the caller directory",
+      "ok": true,
+      "detail": {
+        "exit": 0,
+        "files": [
+          "gate-1280.png",
+          "gate-360.png",
+          "gate-results.json",
+          "gate-zoom200.png"
+        ],
+        "verdictPass": true,
+        "sha256": "d094b114b6e8644db05cfd91787c795290d4f5671fd6c9b0296dec62f400d731"
+      }
+    },
+    {
+      "name": "C3-R36H.1 results are untouched by this suite",
+      "ok": true,
+      "detail": {
+        "before": "fe5e89a46bc65273",
+        "after": "fe5e89a46bc65273"
+      }
+    }
+  ],
+  "allExpectationsMet": true
+}

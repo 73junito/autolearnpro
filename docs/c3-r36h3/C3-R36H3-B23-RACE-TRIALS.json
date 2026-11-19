@@ -1,0 +1,118 @@
+{
+  "schema": "alp-c3-r36h3-b23-race-trials-v1",
+  "fixture": "console error not attributable to a classified resource (C3-R36H.2 injection case 4)",
+  "trials": 10,
+  "tally": {
+    "PASS": 10
+  },
+  "durationMs": {
+    "min": 7864,
+    "max": 28802,
+    "median": 12816
+  },
+  "navigationBudgetMs": 30000,
+  "budgetRaised": false,
+  "deterministicInIsolation": true,
+  "records": [
+    {
+      "trial": 1,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 12516,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 2,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 17586,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 3,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 9430,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 4,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 7864,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 5,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 12816,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 6,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 13515,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 7,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 12421,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 8,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 9043,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 9,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 13139,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    },
+    {
+      "trial": 10,
+      "outcome": "PASS",
+      "exitCode": 1,
+      "durationMs": 28802,
+      "failedChecks": [
+        "consoleErrors"
+      ],
+      "reason": "R36H3_REQUIRED_CHECK_FAILED:consoleErrors"
+    }
+  ]
+}

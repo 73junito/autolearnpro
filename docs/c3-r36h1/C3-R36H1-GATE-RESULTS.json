@@ -1,0 +1,199 @@
+{
+  "schema": "alp-c3-r36h1-browser-gate-v1",
+  "runtime": {
+    "node": "v22.23.1",
+    "platform": "win32"
+  },
+  "browser": {
+    "executable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "version": "156.0.8078.80",
+    "headless": true,
+    "profile": "temporary, deleted after the run"
+  },
+  "target": {
+    "origin": "http://127.0.0.1:52585",
+    "dist": "apps/catalog/dist"
+  },
+  "optionalBrowserResources": [
+    "/favicon.ico"
+  ],
+  "requiredChecks": [
+    "pageLoads",
+    "noPageErrors",
+    "consoleErrors",
+    "network",
+    "headings",
+    "language",
+    "statusMessage",
+    "axe",
+    "zoom200",
+    "narrowViewport",
+    "noFitmentClaims",
+    "prototypeIdentified"
+  ],
+  "checks": {
+    "pageLoads": {
+      "ok": true,
+      "status": "pass",
+      "title": "AutoLearnPro catalog — local prototype skeleton"
+    },
+    "noPageErrors": {
+      "ok": true,
+      "status": "pass"
+    },
+    "network": {
+      "ok": true,
+      "status": "pass",
+      "serverLog": [
+        {
+          "method": "GET",
+          "path": "/",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/assets/catalog-Bj3CNR8H.js",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/favicon.ico",
+          "status": 404
+        }
+      ],
+      "optionalBrowserResources": [
+        {
+          "path": "/favicon.ico",
+          "status": 404,
+          "classification": "browser-initiated optional resource"
+        }
+      ],
+      "requestedPaths": [
+        "/",
+        "/assets/catalog-Bj3CNR8H.js",
+        "/favicon.ico"
+      ]
+    },
+    "consoleErrors": {
+      "ok": true,
+      "status": "pass",
+      "count": 1,
+      "classified": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "attributedTo": [
+        "/favicon.ico (404)"
+      ],
+      "basis": "every console error is the resource-load failure of a request the server itself recorded as a classified optional browser resource"
+    },
+    "headings": {
+      "ok": true,
+      "status": "pass",
+      "nodes": [
+        {
+          "level": 1,
+          "text": "Catalog application skeleton"
+        },
+        {
+          "level": 2,
+          "text": "What this page is not"
+        },
+        {
+          "level": 2,
+          "text": "Recorded runtime facts"
+        }
+      ],
+      "h1Count": 1,
+      "skipped": false
+    },
+    "language": {
+      "ok": true,
+      "status": "pass",
+      "lang": "en"
+    },
+    "statusMessage": {
+      "ok": true,
+      "status": "pass",
+      "found": true,
+      "role": "status",
+      "text": "Catalog shell started (build mode: production). No catalog records are loaded."
+    },
+    "keyboard": {
+      "ok": null,
+      "status": "notTestable",
+      "reason": "no focusable element exists, so keyboard traversal cannot be demonstrated",
+      "focusableCount": 0,
+      "focusables": []
+    },
+    "focusVisible": {
+      "ok": null,
+      "status": "notTestable",
+      "reason": "a rule is declared but nothing can receive focus to render it",
+      "ruleDeclared": true,
+      "rule": "outline: 0.1875rem solid var(--accent); outline-offset: 0.125rem;"
+    },
+    "axe": {
+      "ok": true,
+      "status": "pass",
+      "violations": 0,
+      "passes": 13,
+      "incomplete": [],
+      "incompleteNote": "incomplete items are automated evaluations needing human judgment; they are not passes",
+      "conformanceClaimed": false,
+      "contrastNote": "color-contrast is evaluated automatically only; no manual visual inspection or pixel measurement was made"
+    },
+    "zoom200": {
+      "ok": true,
+      "status": "pass",
+      "essentialPresent": true,
+      "horizontalOverflow": false,
+      "method": "halved CSS viewport at the same window size, approximating 200% browser zoom"
+    },
+    "narrowViewport": {
+      "ok": true,
+      "status": "pass",
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "noFitmentClaims": {
+      "ok": true,
+      "status": "pass",
+      "scanned": "rendered text"
+    },
+    "prototypeIdentified": {
+      "ok": true,
+      "status": "pass"
+    }
+  },
+  "observed": {
+    "requests": 2,
+    "responses": 2
+  },
+  "verdict": {
+    "pass": true,
+    "requiredCount": 12,
+    "passed": [
+      "pageLoads",
+      "noPageErrors",
+      "consoleErrors",
+      "network",
+      "headings",
+      "language",
+      "statusMessage",
+      "axe",
+      "zoom200",
+      "narrowViewport",
+      "noFitmentClaims",
+      "prototypeIdentified"
+    ],
+    "failed": [],
+    "notTestable": [
+      "keyboard",
+      "focusVisible"
+    ],
+    "note": "notTestable checks are excluded from the verdict and are never counted as accessibility success"
+  },
+  "conformanceClaimed": false,
+  "exitCode": 0,
+  "reason": null
+}

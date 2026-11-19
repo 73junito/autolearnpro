@@ -1,0 +1,117 @@
+{
+  "schema": "alp-c3-r25-dependency-graph-v1",
+  "generatedFrom": "F:/autolearnpro-meshy-staging",
+  "reviewedManifestEntries": 7,
+  "reachableLocalModules": 7,
+  "unreviewedLocalModules": [],
+  "externalImports": [
+    "esbuild",
+    "node:child_process",
+    "node:crypto",
+    "node:fs",
+    "node:os",
+    "node:path",
+    "node:url",
+    "vite"
+  ],
+  "completeGraph": true,
+  "modules": [
+    {
+      "path": "lib/assets/build-evidence-r22.mjs",
+      "sha256": "262d6ecbac5da4e8963cfdd88ce6813a57acc6a1c46061171cfe732733f91ece",
+      "bytes": 6279,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>",
+        "lib/assets/ci-readiness-r24.mjs",
+        "lib/assets/release-evidence-gate-r23.mjs"
+      ],
+      "localImports": [
+        "lib/assets/library-pair-reader.mjs",
+        "lib/assets/library-generation-r20.mjs",
+        "lib/assets/build-provenance-r21.mjs"
+      ]
+    },
+    {
+      "path": "lib/assets/build-provenance-r21.mjs",
+      "sha256": "68aee3121c28b3d00a6371645856c4b246ee8a5f3626ea13e05bbf4a7cc3db0c",
+      "bytes": 3117,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>",
+        "lib/assets/build-evidence-r22.mjs"
+      ],
+      "localImports": [
+        "lib/assets/library-generation-r20.mjs",
+        "lib/assets/library-pair-recovery.mjs"
+      ]
+    },
+    {
+      "path": "lib/assets/ci-readiness-r24.mjs",
+      "sha256": "6223539ca78fa35d0bbf58e446940436c8278d8dba5df2f90e8a2eddf4fe84db",
+      "bytes": 3072,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>"
+      ],
+      "localImports": [
+        "lib/assets/build-evidence-r22.mjs"
+      ]
+    },
+    {
+      "path": "lib/assets/library-generation-r20.mjs",
+      "sha256": "0bbca48e29988e4642f91dac6c9dd3d6026567d37983f69f3cfd1e3a702b03a0",
+      "bytes": 5178,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>",
+        "lib/assets/build-evidence-r22.mjs",
+        "lib/assets/build-provenance-r21.mjs"
+      ],
+      "localImports": [
+        "lib/assets/library-pair-reader.mjs",
+        "lib/assets/library-pair-recovery.mjs"
+      ]
+    },
+    {
+      "path": "lib/assets/library-pair-reader.mjs",
+      "sha256": "9cd129391dd4e5af567836cacaf4957c6902362d9327bb54f19ff4017bc72c39",
+      "bytes": 2988,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>",
+        "lib/assets/build-evidence-r22.mjs",
+        "lib/assets/library-generation-r20.mjs"
+      ],
+      "localImports": [
+        "lib/assets/library-pair-recovery.mjs"
+      ]
+    },
+    {
+      "path": "lib/assets/library-pair-recovery.mjs",
+      "sha256": "eb9bac60dfb23d630888538484ee01e0711be2d76ab1d441740e7ffa17336e3c",
+      "bytes": 4030,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>",
+        "lib/assets/build-provenance-r21.mjs",
+        "lib/assets/library-generation-r20.mjs",
+        "lib/assets/library-pair-reader.mjs"
+      ],
+      "localImports": []
+    },
+    {
+      "path": "lib/assets/release-evidence-gate-r23.mjs",
+      "sha256": "bb4d12bd18cb6e8c2231ec63e1c56b761df7172b6e9549815fdd94c7017667ce",
+      "bytes": 3977,
+      "inReviewedManifest": true,
+      "importedBy": [
+        "<manifest>"
+      ],
+      "localImports": [
+        "lib/assets/build-evidence-r22.mjs"
+      ]
+    }
+  ],
+  "missing": []
+}

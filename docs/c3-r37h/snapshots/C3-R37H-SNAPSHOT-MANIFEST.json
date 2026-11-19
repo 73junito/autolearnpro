@@ -1,0 +1,25 @@
+{
+  "snapshotVersion": "v1",
+  "controlledState": "chromium headless (system Chrome) viewport 1280x900; catalog prototype default state after R5; vite production build of apps/catalog; gate run c3r36h3-178e80665edb",
+  "capturedFor": "C3-R37H remediation R5 (B14/B19/B20)",
+  "approved": false,
+  "reviewStatus": "pending-review",
+  "note": "Captured by docs/c3-r36h3/tools/browser-gate.mjs (12/12 required checks passed). Baselines are never auto-approved; changes must produce reviewable diffs via docs/c3-r37h/tools/snapshot-compare.mjs.",
+  "entries": [
+    {
+      "file": "gate-1280.png",
+      "sha256": "1026559077920a0aca7c3e8364a96804f6df8a9a9c2d1521b01f0eced67538ef",
+      "bytes": 48247
+    },
+    {
+      "file": "gate-zoom200.png",
+      "sha256": "af3542cae45e4ef719ccb871b334c8fc622ff583e4be3ba7ac32fa33e8afedf2",
+      "bytes": 46018
+    },
+    {
+      "file": "gate-360.png",
+      "sha256": "f49926fb30d00918ad5459968601385b7ddb40b9f90b91d718c0bb788f5e771a",
+      "bytes": 43043
+    }
+  ]
+}

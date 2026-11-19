@@ -1,0 +1,10 @@
+PASS  clean (real catalog)  exit=0 (want 0)  failed=[]  reason=-
+FAIL  unexpected 404  exit=1 (want 1)  failed=[]  reason=R36H3_HARNESS_EXCEPTION:page.goto: Timeout 30000ms exceeded.
+PASS  uncaught page error  exit=1 (want 1)  failed=[noPageErrors]  reason=R36H3_REQUIRED_CHECK_FAILED:noPageErrors
+PASS  console error not attributable to a classified resource  exit=1 (want 1)  failed=[consoleErrors]  reason=R36H3_REQUIRED_CHECK_FAILED:consoleErrors
+PASS  axe WCAG A/AA violation (image without alternative text)  exit=1 (want 1)  failed=[axe]  reason=R36H3_REQUIRED_CHECK_FAILED:axe
+PASS  layout failure at a narrow viewport  exit=1 (want 1)  failed=[zoom200,narrowViewport]  reason=R36H3_REQUIRED_CHECK_FAILED:zoom200,narrowViewport
+PASS  missing build output  exit=1 (want 1)  failed=[]  reason=R36H_DIST_NOT_BUILT:C:\Users\rod63\AppData\Local\Temp\c3r36h3-case-6-wQsJLT\no-dist
+PASS  browser launch failure  exit=1 (want 1)  failed=[]  reason=R36H3_HARNESS_EXCEPTION:browserType.launchPersistentContext: Failed to launch chromium because executable doesn't exist at C:\Users\rod63\AppData\Local\Temp\r36h1-no-such-browser.exe
+
+ALL_EXPECTATIONS_MET=false  file=F:\autolearnpro-c3-r25-integration\docs\c3-r36h3\C3-R36H3-FAILURE-INJECTION.json  sha256=4bac03048ee283b44c359385cb7fab3acc173bc281bcaeb67b55e2755730f1dc

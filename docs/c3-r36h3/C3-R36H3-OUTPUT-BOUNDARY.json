@@ -1,0 +1,133 @@
+{
+  "schema": "alp-c3-r36h3-output-boundary-v1",
+  "runtime": {
+    "node": "v22.23.1",
+    "platform": "win32"
+  },
+  "cases": [
+    {
+      "name": "missing output configuration fails closed",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_REQUIRED:set R36H3_OUT to an owned temporary directory or",
+        "docsUnchanged": true
+      }
+    },
+    {
+      "name": "superseded variable name is reported, not honoured",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_VARIABLE_MISNAMED:set R36H3_OUT (found R36H2_OUT; that name is not "
+      }
+    },
+    {
+      "name": "missing destination is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_MISSING:C:\\Users\\rod63\\AppData\\Local\\Temp\\c3r36"
+      }
+    },
+    {
+      "name": "occupied destination is refused and preserved",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_NOT_EMPTY:C:\\Users\\rod63\\AppData\\Local\\Temp\\c3r",
+        "occupantUnchanged": true
+      }
+    },
+    {
+      "name": "C3-R36H.1 evidence directory is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_FORBIDDEN:docs/c3-r36h1 — only docs/c3-r36h3/runs/<name> is authori"
+      }
+    },
+    {
+      "name": "repository docs root is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_FORBIDDEN:docs — only docs/c3-r36h3/runs/<name>"
+      }
+    },
+    {
+      "name": "unowned temporary subdirectory is refused (B24)",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_NOT_OWNED:arbitrary-def7f259 — a temporary destination mu"
+      }
+    },
+    {
+      "name": "a directory nested below the temp root is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_NOT_AUTHORISED:C:\\Users\\rod63\\AppData\\Local\\Temp\\c3r36h3-"
+      }
+    },
+    {
+      "name": "drive root is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_NOT_AUTHORISED:F:\\ — outside the repository and"
+      }
+    },
+    {
+      "name": "invalid run directory name is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_RUN_NAME_INVALID:Not_A_Valid_Name — must match /^[a-z0-9]"
+      }
+    },
+    {
+      "name": "junction into the repository is refused",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_SYMLINK:C:\\Users\\rod63\\AppData\\Local\\Temp\\c3r36h3-90abd60"
+      }
+    },
+    {
+      "name": "a file is not accepted as a destination",
+      "ok": true,
+      "detail": {
+        "exit": 1,
+        "reason": "R36H3_OUTPUT_NOT_DIRECTORY:C:\\Users\\rod63\\AppData\\Local\\Temp"
+      }
+    },
+    {
+      "name": "clean run into an owned temp directory passes",
+      "ok": true,
+      "detail": {
+        "exit": 0,
+        "files": [
+          "gate-1280.png",
+          "gate-360.png",
+          "gate-results.json",
+          "gate-zoom200.png"
+        ],
+        "authorisedAs": "owned-temporary",
+        "verdictPass": true
+      }
+    },
+    {
+      "name": "C3-R36H.1 and C3-R36H.2 files are untouched",
+      "ok": true,
+      "detail": {
+        "h1Files": 8,
+        "h2Files": 3,
+        "h1Same": true,
+        "h2Same": true
+      }
+    }
+  ],
+  "allExpectationsMet": true
+}

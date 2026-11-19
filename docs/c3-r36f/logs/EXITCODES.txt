@@ -1,0 +1,12 @@
+c3-recovery exit=0
+c3-library-reader exit=0
+c3-library-generation exit=0
+c3-build-provenance exit=0
+c3-offline-evidence exit=0
+c3-build-input-contract exit=1
+c3-multi-root-snapshot exit=1
+c3-worker-bundle-feasibility exit=1
+c3-offline-evidence-persistence exit=1
+c3-evidence-rehearsal exit=1
+c3-process-boundary exit=1
+node v24.22.2

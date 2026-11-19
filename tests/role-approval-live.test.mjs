@@ -5,7 +5,7 @@ import pg from "pg";
 import { makeServer } from "../apps/web/src/server.mjs";
 import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
 
-test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45000, skip: !process.env.ALP_LOCAL_INTEGRATION }, async () => {
+test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45000, skip: !process.env.ALP_LOCAL_INTEGRATION }, async t => {
   const supabaseUrl = process.env.ALP_SUPABASE_URL;
   const publicKey = process.env.ALP_SUPABASE_PUBLISHABLE_KEY;
   const databaseUrl = process.env.ALP_DATABASE_URL;

@@ -1,0 +1,118 @@
+{
+  "schema": "alp-c3-r36h-browser-verification-v1",
+  "runtime": {
+    "node": "v22.23.1",
+    "platform": "win32"
+  },
+  "browser": {
+    "executable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "engine": "Chromium",
+    "version": "156.0.8078.80",
+    "headless": true,
+    "userDataDir": "temporary, created per run"
+  },
+  "target": {
+    "origin": "http://127.0.0.1:54612",
+    "dist": "apps/catalog/dist",
+    "files": [
+      "assets",
+      "index.html",
+      "assets/catalog-Bj3CNR8H.js"
+    ]
+  },
+  "checks": {
+    "pageLoads": {
+      "ok": true,
+      "title": "AutoLearnPro catalog — local prototype skeleton"
+    },
+    "noUncaughtErrors": {
+      "ok": true,
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    },
+    "requests": {
+      "ok": true,
+      "count": 2,
+      "sameOrigin": [
+        "/",
+        "/assets/catalog-Bj3CNR8H.js"
+      ],
+      "external": []
+    },
+    "headings": {
+      "nodes": [
+        {
+          "level": 1,
+          "text": "Catalog application skeleton"
+        },
+        {
+          "level": 2,
+          "text": "What this page is not"
+        },
+        {
+          "level": 2,
+          "text": "Recorded runtime facts"
+        }
+      ],
+      "h1Count": 1,
+      "skipped": false,
+      "ok": true
+    },
+    "language": {
+      "ok": true,
+      "lang": "en"
+    },
+    "statusMessage": {
+      "ok": true,
+      "role": "status",
+      "text": "Catalog shell started (build mode: production). No catalog records are loaded.",
+      "ariaLive": null
+    },
+    "keyboard": {
+      "ok": true,
+      "focusableCount": 0,
+      "focusables": [],
+      "note": "no interactive controls exist, so keyboard traversal is vacuously satisfied — this is an absence, not a designed property",
+      "focusVisibleRuleDeclared": true,
+      "focusVisibleRule": "outline: 0.1875rem solid var(--accent); outline-offset: 0.125rem;"
+    },
+    "axe": {
+      "ok": true,
+      "engine": "axe-core, tags wcag2a / wcag2aa / wcag21a / wcag21aa",
+      "violations": [],
+      "seriousOrCritical": 0,
+      "incomplete": [],
+      "passes": 13,
+      "conformanceClaimed": false
+    },
+    "zoom200": {
+      "ok": true,
+      "essentialPresent": true,
+      "horizontalOverflow": false,
+      "method": "halved CSS viewport at the same window size, which approximates 200% browser zoom"
+    },
+    "narrowViewport": {
+      "ok": true,
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "noFitmentClaims": {
+      "ok": true,
+      "scanned": "rendered text"
+    },
+    "prototypeIdentified": {
+      "ok": true,
+      "matchedPrototype": true,
+      "matchedNotReleased": true
+    }
+  },
+  "screenshots": [
+    "catalog-1280.png",
+    "catalog-zoom200.png",
+    "catalog-360.png"
+  ],
+  "conformanceClaimed": false,
+  "note": "Automated findings are not WCAG conformance. Human-judgment items are enumerated in the milestone record."
+}

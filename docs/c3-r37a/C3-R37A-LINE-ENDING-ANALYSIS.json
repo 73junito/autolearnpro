@@ -1,0 +1,212 @@
+{
+  "schema": "alp-c3-r37a-line-ending-analysis-v1",
+  "configuration": {
+    "coreAutocrlf": "true",
+    "coreEol": "(unset)",
+    "gitattributesPresent": false
+  },
+  "trackedFiles": [
+    {
+      "path": "package.json",
+      "worktreeBytes": 779,
+      "worktreeCrlfPairs": 20,
+      "worktreeSha256": "ac8d0bec1e87459b7c779eca70f9ff0c7b021ecf0855f2d576ed09c9b9bfb4ad",
+      "blobBytes": 759,
+      "blobSha": "524e5d651ac00bb8b6615d3ce9dbe69bd6fbe787",
+      "sizeDeltaBytes": 20,
+      "deltaExplainedByCrlf": true,
+      "substantiveDeltaBytes": 0
+    },
+    {
+      "path": "infrastructure/cloudflare/worker.mjs",
+      "worktreeBytes": 613,
+      "worktreeCrlfPairs": 14,
+      "worktreeSha256": "261732ecb9accae4830a725edaf3d6ac0609ee7a373714e1efde3310235b4e8e",
+      "blobBytes": 599,
+      "blobSha": "f8062306dc45e0305fc68e41692b2bf962390043",
+      "sizeDeltaBytes": 14,
+      "deltaExplainedByCrlf": true,
+      "substantiveDeltaBytes": 0
+    },
+    {
+      "path": "infrastructure/cloudflare/wrangler.jsonc",
+      "worktreeBytes": 366,
+      "worktreeCrlfPairs": 15,
+      "worktreeSha256": "df6486888a42317d8c94d9a46f3f5adb05d742b52be1ee8cf8077ffa647f4c58",
+      "blobBytes": 351,
+      "blobSha": "f015a0ce4855c1071d0c524b7af7990f3e5e7153",
+      "sizeDeltaBytes": 15,
+      "deltaExplainedByCrlf": true,
+      "substantiveDeltaBytes": 0
+    },
+    {
+      "path": "package-lock.json",
+      "worktreeBytes": 42451,
+      "worktreeCrlfPairs": 1307,
+      "worktreeSha256": "f805b6f77f392467bd583fc4605e633313e51b20e3a617f47b1dd99bdfe4fb92",
+      "blobBytes": 6029,
+      "blobSha": "d9ae0da5e6c3ff22cdf52f1ae6c6e941daed08ff",
+      "sizeDeltaBytes": 36422,
+      "deltaExplainedByCrlf": false,
+      "substantiveDeltaBytes": 35115
+    },
+    {
+      "path": "README.md",
+      "worktreeBytes": 898,
+      "worktreeCrlfPairs": 17,
+      "worktreeSha256": "5d86b78345af81efcc36338472a2260cf8fbbe1464a190125098ed9d329c3fa0",
+      "blobBytes": 881,
+      "blobSha": "a46050c2ba434b7855a752bd8fa0288ad268daa3",
+      "sizeDeltaBytes": 17,
+      "deltaExplainedByCrlf": true,
+      "substantiveDeltaBytes": 0
+    },
+    {
+      "path": ".npmrc",
+      "worktreeBytes": 61,
+      "worktreeCrlfPairs": 4,
+      "worktreeSha256": "4ff492190308beaf8c0e5d23ee53d933bc15d4d4630229e3ab8b3e13537d8033",
+      "blobBytes": 57,
+      "blobSha": "8fe8f00e0b9fdd54b5616ab94146547a4da61481",
+      "sizeDeltaBytes": 4,
+      "deltaExplainedByCrlf": true,
+      "substantiveDeltaBytes": 0
+    }
+  ],
+  "experiment": {
+    "sourceSha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718",
+    "sourceBytes": 21,
+    "report": [
+      {
+        "scenario": "A-status-quo",
+        "attributes": null,
+        "committedBytes": 21,
+        "blobBytes": 18,
+        "blobCrlf": 0,
+        "checkouts": {
+          "autocrlf=false": {
+            "bytes": 18,
+            "crlf": 0,
+            "sha256": "66663af9c7aa341431a8ee2ff27b72abd06c9218f517bb6fef948e4803c19e03"
+          },
+          "autocrlf=true": {
+            "bytes": 21,
+            "crlf": 3,
+            "sha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718"
+          }
+        }
+      },
+      {
+        "scenario": "B-text-auto-lf",
+        "attributes": "* text=auto eol=lf\n",
+        "committedBytes": 21,
+        "blobBytes": 18,
+        "blobCrlf": 0,
+        "checkouts": {
+          "autocrlf=false": {
+            "bytes": 18,
+            "crlf": 0,
+            "sha256": "66663af9c7aa341431a8ee2ff27b72abd06c9218f517bb6fef948e4803c19e03"
+          },
+          "autocrlf=true": {
+            "bytes": 18,
+            "crlf": 0,
+            "sha256": "66663af9c7aa341431a8ee2ff27b72abd06c9218f517bb6fef948e4803c19e03"
+          }
+        }
+      },
+      {
+        "scenario": "C-text-off-all",
+        "attributes": "* -text\n",
+        "committedBytes": 21,
+        "blobBytes": 21,
+        "blobCrlf": 3,
+        "checkouts": {
+          "autocrlf=false": {
+            "bytes": 21,
+            "crlf": 3,
+            "sha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718"
+          },
+          "autocrlf=true": {
+            "bytes": 21,
+            "crlf": 3,
+            "sha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718"
+          }
+        }
+      },
+      {
+        "scenario": "D-text-off-scoped",
+        "attributes": "sample.mjs -text\n*.json -text\n",
+        "committedBytes": 21,
+        "blobBytes": 21,
+        "blobCrlf": 3,
+        "checkouts": {
+          "autocrlf=false": {
+            "bytes": 21,
+            "crlf": 3,
+            "sha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718"
+          },
+          "autocrlf=true": {
+            "bytes": 21,
+            "crlf": 3,
+            "sha256": "96e4d66c5a42d171e8aa107059eacaf52d3c2c095cbba1316b590a7392497718"
+          }
+        }
+      }
+    ]
+  },
+  "scenarioOutcomes": [
+    {
+      "scenario": "A-status-quo",
+      "win": {
+        "bytes": 21,
+        "crlf": 3,
+        "reproducesReviewedBytes": true
+      },
+      "posix": {
+        "bytes": 18,
+        "crlf": 0,
+        "reproducesReviewedBytes": false
+      }
+    },
+    {
+      "scenario": "B-text-auto-eol-lf",
+      "win": {
+        "bytes": 18,
+        "crlf": 0,
+        "reproducesReviewedBytes": false
+      },
+      "posix": {
+        "bytes": 18,
+        "crlf": 0,
+        "reproducesReviewedBytes": false
+      }
+    },
+    {
+      "scenario": "C-text-off-all",
+      "win": {
+        "bytes": 21,
+        "crlf": 3,
+        "reproducesReviewedBytes": true
+      },
+      "posix": {
+        "bytes": 21,
+        "crlf": 3,
+        "reproducesReviewedBytes": true
+      }
+    },
+    {
+      "scenario": "D-text-off-scoped",
+      "win": {
+        "bytes": 21,
+        "crlf": 3,
+        "reproducesReviewedBytes": true
+      },
+      "posix": {
+        "bytes": 21,
+        "crlf": 3,
+        "reproducesReviewedBytes": true
+      }
+    }
+  ]
+}

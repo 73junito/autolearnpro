@@ -1,0 +1,57 @@
+{
+  "schema": "alp-c3-r37d-carry-policy-v1",
+  "note": "Exact paths permitted to differ between the verified commit and HEAD for the C3-R37F chain. A directory prefix is never authorisation. This file does not list itself; the trust anchor covers its bytes.",
+  "supersedes": "docs/c3-r37e/C3-R37E-CARRY-POLICY.json",
+  "reviewedChain": {
+    "target": "2209761f3f7a24480fd43b110e4acd71adb7e499",
+    "head": "fa89629272f80c2b9774159f4bc343964f014fab"
+  },
+  "carry": [
+    {
+      "path": "docs/c3-r37c/C3-R37C-INTEGRATION-MANIFEST.json",
+      "changeType": "A",
+      "sha256": "5578d2e5a849cdbab27c4d4a12258966515799e6b3734223789deb2e140dbdb4",
+      "kind": "manifest-data",
+      "purpose": "content inventory of the verified commit; it cannot live inside the commit it describes"
+    },
+    {
+      "path": "docs/c3-r37d/C3-R37D-CARRY-POLICY.json",
+      "changeType": "A",
+      "sha256": "e298a7f1f3b08c961fccbc97e40c88f827adc1ac22ce8ba44c14f666ca2f9f3b",
+      "kind": "verification-policy",
+      "purpose": "C3-R37D carry policy, retained as reviewed history"
+    },
+    {
+      "path": "docs/c3-r37d/tools/build-carry-policy.mjs",
+      "changeType": "A",
+      "sha256": "58cde04bcc0c6e0ca7d5d5e023963ec57320016d5686968542c870c8826eeac0",
+      "kind": "verification-policy",
+      "purpose": "generator for the C3-R37D policy and anchor"
+    },
+    {
+      "path": "docs/c3-r37d/tools/portable-verify.mjs",
+      "changeType": "A",
+      "sha256": "3c812947cce0d9a2b8c56e313574f35a3a8647140ff581f2db8e435ba5d9747c",
+      "kind": "verifier-code",
+      "purpose": "the verification implementation that must itself be anchored"
+    },
+    {
+      "path": "docs/c3-r37e/C3-R37E-CARRY-POLICY.json",
+      "changeType": "A",
+      "sha256": "7117fcbcc9924ed04e9d94fd35b6f04c64e22661df7982a89c02e13ed4de97a1",
+      "kind": "verification-policy",
+      "purpose": "C3-R37E carry policy, retained as reviewed history"
+    },
+    {
+      "path": "tests/c3-evidence-rehearsal.test.mjs",
+      "changeType": "M",
+      "sha256": "780a887cf7ddea451c0331f66a123b66d21a27b7f99956c4f18d13bdaef5a6b2",
+      "kind": "test-code",
+      "purpose": "B32 fix plus the B33 comment correction; comment text only in the successor commit"
+    }
+  ],
+  "selfExcluded": {
+    "path": "docs/c3-r37f/C3-R37F-CARRY-POLICY.json",
+    "reason": "a file cannot contain its own digest; the anchor covers the policy bytes"
+  }
+}
