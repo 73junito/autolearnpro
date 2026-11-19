@@ -169,6 +169,23 @@ try {
     if (r2.error) throw r2.error;
     if (r2.status !== 0) throw new Error("R2 restricted transaction live gate failed");
     console.log("D02-E-R2 CI: restricted Worker transaction integration passed");
+    const r7b = spawnSync(process.execPath, [
+      "--test", "tests/d02e-r7b-hyperdrive-live.test.mjs"
+    ], {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        ALP_R7B_CI_REQUIRE: "1",
+        ALP_R7B_CI_PROJECT_ID: expectedProject,
+        ALP_R7B_CI_ADMIN_URL: dbUrl,
+        ALP_R7B_CI_APP_URL: r2Url.toString(),
+        ALP_R7B_CI_ATTESTATION_KEY: attestationKey,
+      },
+      timeout: 180000,
+    });
+    if (r7b.error) throw r7b.error;
+    if (r7b.status !== 0) throw new Error("R7B real workerd Hyperdrive transport gate failed");
+    console.log("D02-E-R7B CI: local workerd Hyperdrive restricted transaction suite passed");
     const r3b = spawnSync(process.execPath, [
       "--test", "tests/d02e-r3b-session-broker-live.test.mjs"
     ], {
