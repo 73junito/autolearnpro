@@ -42,6 +42,8 @@ jobs:
         run: node infrastructure/scripts/c3-build-sample.mjs --check
       - name: Test C3-R40 provenance and tampering controls
         run: node --test tests/c3-catalog-provenance.test.mjs
+      - name: Verify C3-R41 Ed25519 synthetic-development approval boundary
+        run: node --test tests/c3-catalog-signed-approval.test.mjs
       - name: Run academic unit test suite
         run: npm run test:academic
       - name: Check lint
