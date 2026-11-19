@@ -87,6 +87,12 @@ async function snapshot(client) {
              WHERE oid='alp_private.verify_approval_attestation(text,uuid,text[],bigint,uuid,text)'::regprocedure
            ) AS signer_owner
   `);
+  const definers = await client.query(`
+    SELECT p.oid::regprocedure::text AS signature, pg_get_userbyid(p.proowner) AS owner
+    FROM pg_proc p JOIN pg_namespace n ON n.oid=p.pronamespace
+    WHERE n.nspname='alp_private' AND p.prosecdef
+    ORDER BY 1
+  `);
   const roles = await client.query(
     "SELECT rolname,rolcanlogin,rolsuper,rolbypassrls,rolinherit FROM pg_roles WHERE rolname IN ('alp_approval_executor','alp_approval_worker_login','alp_academic_executor','alp_academic_worker_login') ORDER BY rolname",
   );
@@ -100,6 +106,7 @@ async function snapshot(client) {
     nonceCount: nonces.rowCount,
     security: security.rows[0],
     roles: roles.rows,
+    definers: definers.rows,
   };
 }
 try {
@@ -131,6 +138,11 @@ try {
   assert.equal(baseline.security.executor_rotate, false);
   assert.equal(baseline.security.signer_owner, "service_role");
   assert.equal(baseline.roles.length, 4);
+  assert.ok(baseline.definers.length > 0);
+  assert.ok(
+    baseline.definers.every((x) => ["postgres", "service_role"].includes(x.owner)),
+    "R4 encountered an unapproved private function owner; refuse automatic repair",
+  );
 
   const archive = command("docker", [
     "exec",
@@ -164,6 +176,7 @@ try {
       "--exit-on-error",
       "--single-transaction",
       "--no-password",
+      "--no-owner",
     ],
     saved,
   );
@@ -172,6 +185,14 @@ try {
   targetUrl.pathname = "/" + restoredName;
   targetClient = new pg.Client({ connectionString: targetUrl.toString() });
   await targetClient.connect();
+  // The Supabase cluster postgres login cannot SET ROLE supabase_admin;
+  // restore owner-independent objects first, then independently restore
+  // the *exact* original security-definer ownership of private approval RPCs.
+  for (const definer of baseline.definers) {
+    if (definer.owner === "service_role") {
+      await targetClient.query(`ALTER FUNCTION ${definer.signature} OWNER TO service_role`);
+    }
+  }
   const recovered = await snapshot(targetClient);
   assert.deepEqual(
     recovered,

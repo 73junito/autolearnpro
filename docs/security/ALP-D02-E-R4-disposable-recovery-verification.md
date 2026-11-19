@@ -10,7 +10,8 @@ This drill validates a full PostgreSQL logical archive and clean restoration of 
 disposable Supabase project's database into a distinct, initially empty database
 named `alp_r4_recovered` on the **same isolated GitHub Actions PostgreSQL
 container**. It does NOT test cloud infrastructure disaster recovery, physical
-WAL recovery, point-in-time restoration, independent-cluster/global-role restore,
+WAL recovery, point-in-time restoration, independent-cluster/global-role restore and exact ownership for all
+Supabase-managed schemas,
 or decrypting an encrypted production backup.
 
 The drill is inserted *after* all existing R1/R2/R3B/R3C/R3D integration tests,
@@ -40,7 +41,12 @@ All checks must pass before taking any archival or recovery action.
    Check the archive SHA-256 before restore.
 5. Create a new clean database `alp_r4_recovered TEMPLATE template0`;
    restore with the matching container `pg_restore --exit-on-error
-   --single-transaction`, including object ownership and ACLs.
+   --single-transaction --no-owner`, retaining ACLs. Supabase's
+   non-superuser `postgres` login cannot automatically adopt certain
+   built-in schema owners such as `supabase_admin`. Independently reset
+   **all private approval SECURITY DEFINER function owners** from a
+   source-catalog allowlist (`postgres` or `service_role`), rejecting
+   unexpected owners rather than silently escalating rights.
 6. Verify exact correspondence of ordered migration history, secret
    digest, revoked key status, nonce replay evidence, audit events,
    role properties, restricted grants and original `service_role`
