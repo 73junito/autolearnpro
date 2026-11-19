@@ -5,6 +5,12 @@
 **Accountability:** Sole owner/operator; independent institutional acceptance remains unassigned  
 **Change scope:** Documentation only. No schema, deployment, DNS, secrets, or production data mutations.
 
+## Project scope boundary
+
+This review is exclusively for **AutoLearnPro/TorqueMind**. The Cloudflare Worker named `village-strong` belongs to a separate project and is explicitly **OUT OF SCOPE**. Do not use, inspect further, modify, route traffic to, bind credentials from, or otherwise depend on `village-strong` for AutoLearnPro/TorqueMind. Its presence in the shared Cloudflare account is not evidence of AutoLearnPro architecture or deployment readiness.
+
+Only AutoLearnPro/TorqueMind resources may be considered in this project's infrastructure inventory. The existing `autolearnpro-api-staging` Worker remains an AutoLearnPro candidate whose exact academic API role must be established before any changes.
+
 ## Evidence baseline (read-only, 2026-11-18)
 
 - Source: `apps/web/src/role-approval.mjs` and `apps/web/src/academic.mjs` on `main`.
@@ -15,7 +21,7 @@
 - `submit_role_request`, `decide_role_request`, `consume_approval_quota`, and `record_approval_security_event` are `SECURITY DEFINER` functions owned by `service_role`, callable by designated executor roles, not by `anon` or `authenticated`.
 - These functions currently rely on caller-provided actor UUID arguments; an executor session can potentially supply an arbitrary actor UUID. An ordinary `set_config('request.jwt.claim.sub', ...)` is also caller writable and is **not** a trusted credential on its own.
 - `decide_role_request` rejects self-approval and administrator elevation, and checks administrator role assignments. Its review-identity argument is not itself cryptographically bound to an authenticated caller.
-- Cloudflare lists `autolearnpro-api-staging`, but the mapping to academic foundation routes remains unverified; no academic API hostname mappings were found in the inspected account.
+- Cloudflare lists `autolearnpro-api-staging`; its mapping to academic foundation routes remains unverified. No academic API hostname mappings were found in the inspected account. The separate `village-strong` Worker is excluded from this project's scope and must not be used.
 
 ## Security invariant and threat boundary
 
@@ -65,7 +71,7 @@
 - Never run direct actor-substitution probes against institutional or real student accounts.
 - Capture commit SHA, Node/npm versions, sanitized test output, migration IDs, database-role grants, and test environment identifiers. Do not log tokens, database connection strings, or student data.
 - D02-C acceptance requires both a passing relevant negative-test suite and an explicit decision on the direct-executor trust model. Tests that reveal a gap are valid evidence, not grounds for silently weakening checks.
-- Pending mapping: identify whether `autolearnpro-api-staging` is a research API or academic foundation Worker before altering routes or bindings.
+- Before altering AutoLearnPro routes or bindings, identify the exact role of `autolearnpro-api-staging`. Do not use `village-strong` for any part of this work.
 
 ## Release gates
 
