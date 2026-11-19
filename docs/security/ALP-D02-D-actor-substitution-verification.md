@@ -1,8 +1,8 @@
 # ALP-D02-D — Restricted Executor Actor-Substitution Negative Control
 
-**Status:** SECURITY GAP OPEN — TEST-FIRST / REVIEW HOLD  
-**Date:** 2026-11-18  
-**Repository:** `73junito/autolearnpro`  
+**Status:** SECURITY GAP OPEN — TEST-FIRST / REVIEW HOLD
+**Date:** 2026-11-18
+**Repository:** `73junito/autolearnpro`
 **Deployment:** NOT AUTHORIZED
 
 ## Objective
@@ -51,6 +51,6 @@ When the schema is corrected in an approved disposable test environment, the D02
 - Eight institutional compliance blockers remain open.
 - Production / student-data onboarding remains NO-GO.
 
-**Owner-operated development:** GO for this test-only proposal.  
-**Merge:** HOLD while intentionally failing trust-boundary control is unresolved.  
+**Owner-operated development:** GO for this test-only proposal.
+**Merge:** HOLD while intentionally failing trust-boundary control is unresolved.
 **Production:** NO-GO.
