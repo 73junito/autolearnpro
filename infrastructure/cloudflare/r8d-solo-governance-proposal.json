@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "workstream": "ALP-D02-E-R8D",
+  "status": "SOLO_GOVERNANCE_PROPOSED_UNAPPLIED",
+  "authorizedToApply": false,
+  "releaseAllowed": false,
+  "repository": "73junito/autolearnpro",
+  "branch": "main",
+  "supersedesPolicy": "ALP-D02-E-R8B",
+  "supersedesReviewerBlocker": "ALP-D02-E-R8C",
+  "operatingModel": {
+    "humanMaintainers": 1,
+    "owner": "73junito",
+    "aiReviewRole": "advisory-only",
+    "prRequired": true,
+    "approvingHumanReviewsRequired": 0,
+    "manualSourceMergeAllowedOnlyAfterRequiredChecks": true,
+    "productionDeploymentSeparateGo": true
+  },
+  "observedGitHub": {
+    "observedDate": "2026-11-19",
+    "observedMainSha": "73867c33cca4fa0f172a29d9cc2ef8108ad594ae",
+    "protected": false,
+    "rulesetId": 26665434,
+    "rulesetEnforcement": "disabled",
+    "observedCollaboratorLogins": [
+      "73junito"
+    ]
+  },
+  "proposedRuleset": {
+    "name": "protect-main-foundation",
+    "target": "branch",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "include": [
+          "~DEFAULT_BRANCH"
+        ],
+        "exclude": []
+      }
+    },
+    "bypass_actors": [],
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": false,
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "required_status_checks": [
+            {
+              "context": "Foundation / Academic static and unit gates",
+              "integration_id": null
+            },
+            {
+              "context": "R7 Cloudflare workerd local runtime (source-only)",
+              "integration_id": null
+            },
+            {
+              "context": "R1 restricted executor (disposable database)",
+              "integration_id": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "excludedCheck": "Supabase Preview",
+  "activationPreconditions": [
+    "Receive a separate explicit GO to change GitHub ruleset 26665434, not just source PR merge authorization",
+    "Reinspect latest main, current GitHub Actions job identity and ruleset API schema",
+    "Verify ruleset editor privileges and an owner-controlled recovery runbook",
+    "Capture access-restricted before-state for rollback and verify permissions to restore it",
+    "Require successful three CI checks and resolve review conversations before each source merge",
+    "Confirm activating a zero-review PR rule can be enforced on the repository plan without bypassing CI"
+  ],
+  "postActivationVerification": [
+    "GET ruleset 26665434 reports active and default-branch scope with no bypass actors",
+    "GET branch main reports protected true and effective required checks",
+    "Test disposable pull request: zero approvals permitted only after three passing required checks",
+    "Test failed or missing required CI blocks merge; deletion and non-fast-forward blocked by policy",
+    "Reconcile dated R8A/R8B/R8C snapshot evidence and update security decision records only after observed success"
+  ],
+  "limitations": "Source-only candidate. No collaborator invitation, ruleset PATCH, Cloudflare action, hosted Supabase migration or production release."
+}

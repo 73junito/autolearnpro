@@ -46,6 +46,8 @@ jobs:
         run: npm run check:r8b-protection
       - name: Preserve R8C activation blocker and reviewer preflight
         run: npm run check:r8c-preflight
+      - name: Validate R8D solo-maintainer governance proposal stays unapplied
+        run: npm run check:r8d-solo
       - name: Verify migration manifest and R1 filename
         shell: bash
         run: |
