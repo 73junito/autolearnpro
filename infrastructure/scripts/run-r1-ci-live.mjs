@@ -28,7 +28,7 @@ let result = 2;
 try {
   await admin.connect();
   const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-  if (history.rows[0]?.n !== 22) throw new Error("Exactly 21 applied migrations required");
+  if (history.rows[0]?.n !== 23) throw new Error("Exactly 23 applied migrations required");
   const role = await admin.query("SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_academic_executor'");
   if (role.rowCount !== 1 || role.rows[0].rolsuper || role.rows[0].rolbypassrls) {
     throw new Error("Restricted executor role is absent or privileged");
@@ -39,6 +39,7 @@ try {
   if (login.rowCount) throw new Error("CI login already present; refusing reused database");
 
   const token = randomUUID();
+  const attestationKey = randomBytes(32).toString("hex");
   const password = randomBytes(32).toString("hex");
   await admin.query("CREATE SCHEMA alp_verification");
   createdMarker = true;
@@ -46,6 +47,8 @@ try {
   await admin.query("CREATE TABLE alp_verification.marker(token text NOT NULL)");
   await admin.query("REVOKE ALL ON alp_verification.marker FROM PUBLIC");
   await admin.query("INSERT INTO alp_verification.marker(token) VALUES($1)", [token]);
+  // CI-only signer secret. Never print it or write it to repository files.
+  await admin.query("INSERT INTO alp_private.alp_approval_attestation_keys(key_id,key_bytes) VALUES(1,decode($1,'hex'))", [attestationKey]);
   // Password is generated locally for this disposable CI database. Never log it.
   await admin.query(
     `CREATE ROLE alp_r1_ci_login LOGIN NOINHERIT NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE PASSWORD '${password}'`
@@ -64,7 +67,7 @@ try {
   const app = new URL(dbUrl);
   app.username = "alp_r1_ci_login";
   app.password = password;
-  console.log("R1 CI: 22 migrations; restricted login and scratch marker verified");
+  console.log("R1 CI: 23 migrations; restricted login and scratch marker verified");
   const child = spawnSync(process.execPath, ["infrastructure/scripts/run-r1-live.mjs"], {
     stdio: "inherit",
     env: {
@@ -100,6 +103,7 @@ try {
         ALP_APPROVAL_CI_APP_URL: approvalUrl.toString(),
         ALP_R1_EXPECTED_MARKER: token,
         ALP_APPROVAL_CI_REQUIRE: "1",
+        ALP_APPROVAL_ATTESTATION_KEY: attestationKey,
       },
       timeout: 180000,
     });

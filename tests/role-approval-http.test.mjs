@@ -7,6 +7,7 @@ import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
 const actor = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 const target = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
 const requestId = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+const TEST_KEY = "a".repeat(64);
 test("role approval HTTP: fail closed, verified actor, and negative paths", async t => {
   const statements = [];
   const pool = {
@@ -23,7 +24,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   };
   let valid = true;
   const approval = createRoleApproval({
-    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
+    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool, attestationKey: TEST_KEY,
     fetchImpl: async () => valid ? { ok: true, json: async () => ({ id: actor }) } : { ok: false }
   });
   // Inert academic stub: makeServer() would otherwise construct a real academic
@@ -43,12 +44,12 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   assert.equal(r.status, 201);
   assert.equal((await r.json()).requestId, requestId);
   const submitted = statements.find(s => s.sql.includes("submit_role_request"));
-  assert.deepEqual(submitted.params, [target, "instructor", actor, request.reason]);
+  assert.deepEqual(submitted.params.slice(0, 4), [target, "instructor", actor, request.reason]);
   assert.ok(statements.some(s => s.sql === "SET LOCAL ROLE alp_approval_executor"));
   r = await post("/api/roles/decision", { requestId, approve: true, reason: "Verified and approved" });
   assert.equal(r.status, 200);
   const decided = statements.find(s => s.sql.includes("decide_role_request"));
-  assert.deepEqual(decided.params, [requestId, actor, true, "Verified and approved"]);
+  assert.deepEqual(decided.params.slice(0, 4), [requestId, actor, true, "Verified and approved"]);
   const initialCount = statements.length;
   r = await post("/api/roles/request", { ...request, actorId: target });
   assert.equal(r.status, 400);
@@ -59,7 +60,7 @@ test("role approval HTTP: fail closed, verified actor, and negative paths", asyn
   assert.equal(statements.length, initialCount + 4);
   // A malformed Auth user ID must be rejected before any SQL operation.
   const invalidIdentity = createRoleApproval({
-    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
+    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool, attestationKey: TEST_KEY,
     fetchImpl: async () => ({ ok: true, json: async () => ({ id: "aaaaaaaa-invalid-4aaa-8aaa-aaaaaaaaaaaa" }) })
   });
   const invalidServer = makeServer({ approval: invalidIdentity, academic: inertAcademic });

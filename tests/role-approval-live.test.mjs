@@ -13,7 +13,7 @@ test("live local Supabase Auth and PostgreSQL approval lifecycle", { timeout: 45
   assert.ok(publicKey && databaseUrl);
   const pool = new pg.Pool({ connectionString: databaseUrl });
   const ids = [];
-  const server = makeServer({ approval: createRoleApproval({ authUrl: supabaseUrl, publishableKey: publicKey, pool }) });
+  const server = makeServer({ approval: createRoleApproval({ authUrl: supabaseUrl, publishableKey: publicKey, pool, attestationKey: process.env.ALP_APPROVAL_ATTESTATION_KEY }) });
   server.listen(0, "127.0.0.1");
   await once(server, "listening");
   const base = `http://127.0.0.1:${server.address().port}`;

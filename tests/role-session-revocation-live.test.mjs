@@ -9,7 +9,7 @@ test("local Auth session revocation rejects a previously issued approval bearer"
   const url=process.env.ALP_SUPABASE_URL, key=process.env.ALP_SUPABASE_PUBLISHABLE_KEY, db=process.env.ALP_DATABASE_URL;
   assert.ok(url?.startsWith("http://127.0.0.1:") && key && db);
   const pool=new pg.Pool({connectionString:db});
-  const server=makeServer({approval:createRoleApproval({authUrl:url,publishableKey:key,pool})});
+  const server=makeServer({approval:createRoleApproval({authUrl:url,publishableKey:key,pool,attestationKey:process.env.ALP_APPROVAL_ATTESTATION_KEY})});
   server.listen(0,"127.0.0.1"); await once(server,"listening");
   let id;
   try {

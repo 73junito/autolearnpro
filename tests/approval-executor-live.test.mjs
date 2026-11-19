@@ -48,7 +48,7 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     const marker = await admin.query("SELECT token FROM alp_verification.marker");
     assert.equal(marker.rows[0]?.token, MARKER, "scratch marker must match before any writes");
     const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-    assert.equal(history.rows[0]?.n, 22);
+    assert.equal(history.rows[0]?.n, 23);
     const role = await admin.query(
       "SELECT rolcanlogin, rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_approval_executor'"
     );
@@ -71,6 +71,24 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
       app.query("INSERT INTO alp_private.alp_role_assignments(user_id,role_name) VALUES($1,'administrator')", [target]),
       /permission denied/i
     );
+
+    // A forged/guessed attestation cannot authorize a restricted executor.
+    const invalidProof = await app.connect();
+    try {
+      await invalidProof.query("BEGIN");
+      await invalidProof.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        invalidProof.query(
+          "SELECT alp_private.submit_role_request_signed($1,$2,$3,$4,$5,$6,$7)",
+          [target, "instructor", outsider, "D02D forged proof must fail",
+           Math.floor(Date.now() / 1000), crypto.randomUUID(), "0".repeat(64)]
+        ),
+        /attestation|permission denied/i
+      );
+    } finally {
+      await invalidProof.query("ROLLBACK");
+      invalidProof.release();
+    }
 
     await admin.query(
       "INSERT INTO auth.users(id,email) SELECT x, 'approval-ci-'||x::text||'@example.test' FROM unnest($1::uuid[]) AS x",
@@ -113,6 +131,7 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     const approval = createRoleApproval({
       authUrl: "http://127.0.0.1:1", publishableKey: "ci-only",
       databaseUrl: APP, fetchImpl,
+      attestationKey: process.env.ALP_APPROVAL_ATTESTATION_KEY,
     });
     server = makeServer({
       approval, academic: { process() {}, async close() {} },

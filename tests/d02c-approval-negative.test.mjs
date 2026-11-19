@@ -40,6 +40,7 @@ function createHarness({ verify, failConnect = false, failSqlCode = null } = {})
     authUrl: "https://synthetic-auth.invalid",
     publishableKey: "synthetic-public-key",
     pool,
+    attestationKey: "a".repeat(64),
     fetchImpl: verify ?? (async (_url, options) => {
       const token = options.headers.authorization;
       const id = token === "Bearer token-a" ? A : token === "Bearer token-b" ? B : null;
@@ -106,14 +107,14 @@ test("D02-C C05/C06: verified bearer determines SQL actor, not request JSON", as
   const submitted = await post("/api/roles/request", "Bearer token-a");
   assert.equal(submitted.status, 201);
   const submit = harness.statements.find(s => s.sql.includes("submit_role_request"));
-  assert.deepEqual(submit?.params, [B, "student", A, reason]);
+  assert.deepEqual(submit?.params.slice(0, 4), [B, "student", A, reason]);
 
   const decided = await post("/api/roles/decision", "Bearer token-b", {
     requestId: REQUEST_ID, approve: false, reason
   });
   assert.equal(decided.status, 200);
   const decide = harness.statements.find(s => s.sql.includes("decide_role_request"));
-  assert.deepEqual(decide?.params, [REQUEST_ID, B, false, reason]);
+  assert.deepEqual(decide?.params.slice(0, 4), [REQUEST_ID, B, false, reason]);
 });
 
 test("D02-C C15: database unavailable returns generic 503 without SQL error details", async t => {
