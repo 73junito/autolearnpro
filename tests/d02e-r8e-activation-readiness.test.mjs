@@ -75,3 +75,8 @@ test("R8E proposal validation stays zero-review, three-check, release HOLD", () 
   y.authorizedToApply = true;
   assert.match(assessR8e(clone(), y).join(" "), /proposal drifted/);
 });
+
+// Temporary R8F negative control. MUST be removed before merge.
+test("R8F intentionally failing branch protection negative control", () => {
+  assert.fail("R8F negative control: required CI must block this PR");
+});
