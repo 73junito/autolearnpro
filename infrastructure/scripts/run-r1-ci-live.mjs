@@ -29,7 +29,7 @@ let result = 2;
 try {
   await admin.connect();
   const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-  if (history.rows[0]?.n !== 25) throw new Error("Exactly 25 applied migrations required");
+  if (history.rows[0]?.n !== 26) throw new Error("Exactly 26 applied migrations required");
   // D02-E-R1: exact recovered hosted-only migration must be applied
   // before the D02-D signer migration, with no generated passwords.
   const recovered = await admin.query(
@@ -104,7 +104,7 @@ try {
   const app = new URL(dbUrl);
   app.username = "alp_r1_ci_login";
   app.password = password;
-  console.log("R1 CI: 25 migrations; restricted login and scratch marker verified");
+  console.log("R1 CI: 26 migrations; restricted login and scratch marker verified");
   const child = spawnSync(process.execPath, ["infrastructure/scripts/run-r1-live.mjs"], {
     stdio: "inherit",
     env: {

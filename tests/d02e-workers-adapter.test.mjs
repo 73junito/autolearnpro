@@ -35,6 +35,7 @@ function harness({
   key = KEY,
   session = "active",
   enableGuard = true,
+  lockAllowed = true,
 } = {}) {
   const sql = [];
   const calls = [];
@@ -57,6 +58,8 @@ function harness({
             error.code = databaseError;
             throw error;
           }
+          if (statement.includes("lock_approval_actor_session"))
+            return { rows: [{ locked: lockAllowed }] };
           if (statement.includes("consume_approval_quota_signed"))
             return { rows: [{ allowed: quotaAllowed }] };
           if (statement.includes("submit_role_request_signed")) return { rows: [{ id: REQUEST }] };
@@ -234,4 +237,37 @@ test("R3 trusted verifier called before quota and again before mutation", async 
     { actor: A, sessionId: SESSION },
     { actor: A, sessionId: SESSION },
   ]);
+});
+
+test("R3C atomic session row lock precedes submit and decision inside each transaction", async () => {
+  const h = harness();
+  assert.equal((await h.post("/api/roles/request")).status, 201);
+  assert.equal(
+    (
+      await h.post("/api/roles/decision", AUTH, {
+        requestId: REQUEST,
+        approve: true,
+        reason,
+      })
+    ).status,
+    200,
+  );
+  const sequence = h.sql.map((x) => x.statement);
+  const locks = sequence.flatMap((statement, i) =>
+    statement.includes("lock_approval_actor_session") ? [i] : [],
+  );
+  assert.equal(locks.length, 2);
+  assert.deepEqual(h.sql[locks[0]].params, [A, SESSION]);
+  assert.deepEqual(h.sql[locks[1]].params, [A, SESSION]);
+  assert.ok(locks[0] < sequence.findIndex((s) => s.includes("submit_role_request_signed")));
+  assert.ok(locks[1] < sequence.findIndex((s) => s.includes("decide_role_request_signed")));
+});
+
+test("R3C rejected atomic lock prevents signed approval mutation", async () => {
+  const h = harness({ lockAllowed: false });
+  const r = await h.post("/api/roles/request");
+  assert.equal(r.status, 403);
+  assert.deepEqual(await r.json(), { error: "forbidden" });
+  assert.ok(h.sql.some((s) => s.statement.includes("lock_approval_actor_session")));
+  assert.ok(!h.sql.some((s) => s.statement.includes("submit_role_request_signed")));
 });

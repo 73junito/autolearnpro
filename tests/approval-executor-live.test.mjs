@@ -49,7 +49,7 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     const marker = await admin.query("SELECT token FROM alp_verification.marker");
     assert.equal(marker.rows[0]?.token, MARKER, "scratch marker must match before any writes");
     const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-    assert.equal(history.rows[0]?.n, 25);
+    assert.equal(history.rows[0]?.n, 26);
     const role = await admin.query(
       "SELECT rolcanlogin, rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_approval_executor'"
     );

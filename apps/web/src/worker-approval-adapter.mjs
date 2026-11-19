@@ -110,6 +110,21 @@ export function createWorkerApprovalHandler({
     return tx.query(sql, [...params, ...proof]);
   }
 
+  // Session row lock and signed mutation MUST use the SAME database
+  // transaction/client. A concurrent session UPDATE/DELETE cannot commit
+  // between the lock acquisition and the privileged write's commit.
+  async function assertSessionLocked(tx, { actor, sessionId }) {
+    const locked = await tx.query(
+      "SELECT alp_private.lock_approval_actor_session($1::uuid,$2::uuid) AS locked",
+      [actor, sessionId],
+    );
+    if (locked?.rows?.[0]?.locked !== true || locked.rows.length !== 1) {
+      const error = new Error("verified approval session no longer active");
+      error.code = "42501";
+      throw error;
+    }
+  }
+
   async function verifyBearer(value) {
     if (typeof value !== "string" || !/^Bearer \S+$/.test(value)) return { status: 401 };
     try {
@@ -204,28 +219,30 @@ export function createWorkerApprovalHandler({
       try {
         let result;
         if (isRequest) {
-          result = await db.withTransaction((tx) =>
-            signedQuery(
+          result = await db.withTransaction(async (tx) => {
+            await assertSessionLocked(tx, identity);
+            return signedQuery(
               tx,
               "submit",
               actor,
               [body.targetId, body.role, body.reason],
               "SELECT alp_private.submit_role_request_signed($1,$2,$3,$4,$5,$6,$7) AS id",
               [body.targetId, body.role, actor, body.reason],
-            ),
-          );
+            );
+          });
           return json(201, { requestId: result.rows[0].id });
         }
-        await db.withTransaction((tx) =>
-          signedQuery(
+        await db.withTransaction(async (tx) => {
+          await assertSessionLocked(tx, identity);
+          return signedQuery(
             tx,
             "decide",
             actor,
             [body.requestId, body.approve, body.reason],
             "SELECT alp_private.decide_role_request_signed($1,$2,$3,$4,$5,$6,$7)",
             [body.requestId, actor, body.approve, body.reason],
-          ),
-        );
+          );
+        });
         return json(200, { status: "recorded" });
       } catch (error) {
         if (error?.code === "42501" || error?.code === "22023") {
