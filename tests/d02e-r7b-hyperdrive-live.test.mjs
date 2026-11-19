@@ -59,10 +59,10 @@ test(
         target: "es2022",
         bundle: true,
         external: ["node:*"],
-        conditions: ["workerd", "worker", "browser", "import"],
+        conditions: ["workerd", "worker", "browser"],
         logLevel: "silent",
         banner: {
-          js: "import { createRequire as __r7bCreateRequire } from 'node:module'; const require = __r7bCreateRequire(import.meta.url);",
+          js: "import { createRequire as __r7bCreateRequire } from 'node:module'; import { EventEmitter as __r7bEventEmitter } from 'node:events'; const __r7bRequire=__r7bCreateRequire('file:///r7b-probe.mjs'); const require=(name)=>name==='events'||name==='node:events'?{EventEmitter:__r7bEventEmitter}:__r7bRequire(name);",
         },
       });
       runtime = new Miniflare({
