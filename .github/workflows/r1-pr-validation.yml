@@ -43,8 +43,8 @@ jobs:
         run: |
           set -euo pipefail
           mapfile -t migrations < <(find supabase/migrations -maxdepth 1 -name '*.sql' -type f | sort)
-          if [[ ${#migrations[@]} -ne 26 ]]; then
-            echo "::error::Expected 26 migration SQL files, found ${#migrations[@]}"
+          if [[ ${#migrations[@]} -ne 27 ]]; then
+            echo "::error::Expected 27 migration SQL files, found ${#migrations[@]}"
             exit 1
           fi
           test "${migrations[20]}" = "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
@@ -53,9 +53,10 @@ jobs:
           test "${migrations[23]}" = "supabase/migrations/20261119011728_approval_actor_attestation_boundary.sql"
           test "${migrations[24]}" = "supabase/migrations/20261119024102_approval_active_session_broker.sql"
           test "${migrations[25]}" = "supabase/migrations/20261119030236_approval_atomic_session_lock.sql"
+          test "${migrations[26]}" = "supabase/migrations/20261119032011_approval_key_lifecycle.sql"
           sha256sum "supabase/migrations/20261107000000_executor_private_actor_policy_r2.sql"
           sha256sum "supabase/migrations/20261114202924_worker_restricted_login_roles_passwordless.sql" | grep -q "^7b74ddab411d93d83b5d48a1d23e2dab82c3b25e25dcedd4c3bb528ef919b0f1 "
-          echo "26 ordered migrations verified."
+          echo "27 ordered migrations verified."
   r1-live-database:
     name: R1 restricted executor (disposable database)
     runs-on: ubuntu-latest
