@@ -17,7 +17,7 @@ test("per-actor local throttle blocks seventh attempt before database access", a
     async end() {}
   };
   const approval = createRoleApproval({
-    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool,
+    authUrl: "http://127.0.0.1:1", publishableKey: "public-test-key", pool, attestationKey: "a".repeat(64),
     fetchImpl: async () => ({ ok: true, json: async () => ({ id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" }) })
   });
   const server = makeServer({ approval });

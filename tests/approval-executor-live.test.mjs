@@ -4,6 +4,7 @@ import { once } from "node:events";
 import pg from "pg";
 import { makeServer } from "../apps/web/src/server.mjs";
 import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
+import { signApprovalOperation } from "../apps/web/src/approval-attestation.mjs";
 
 const ADMIN = process.env.ALP_APPROVAL_CI_ADMIN_URL;
 const APP = process.env.ALP_APPROVAL_CI_APP_URL;
@@ -48,7 +49,7 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     const marker = await admin.query("SELECT token FROM alp_verification.marker");
     assert.equal(marker.rows[0]?.token, MARKER, "scratch marker must match before any writes");
     const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-    assert.equal(history.rows[0]?.n, 22);
+    assert.equal(history.rows[0]?.n, 23);
     const role = await admin.query(
       "SELECT rolcanlogin, rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_approval_executor'"
     );
@@ -72,14 +73,99 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
       /permission denied/i
     );
 
+    // A forged/guessed attestation cannot authorize a restricted executor.
+    const invalidProof = await app.connect();
+    try {
+      await invalidProof.query("BEGIN");
+      await invalidProof.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        invalidProof.query(
+          "SELECT alp_private.submit_role_request_signed($1,$2,$3,$4,$5,$6,$7)",
+          [target, "instructor", outsider, "D02D forged proof must fail",
+           Math.floor(Date.now() / 1000), crypto.randomUUID(), "0".repeat(64)]
+        ),
+        /attestation|permission denied/i
+      );
+    } finally {
+      await invalidProof.query("ROLLBACK");
+      invalidProof.release();
+    }
+
     await admin.query(
       "INSERT INTO auth.users(id,email) SELECT x, 'approval-ci-'||x::text||'@example.test' FROM unnest($1::uuid[]) AS x",
       [ids]
     );
+    // D02-D: cryptographic proof is bound to the actual actor and operation;
+    // the same valid proof may not be replayed after a committed transaction.
+    const proofClient = await app.connect();
+    try {
+      const key = process.env.ALP_APPROVAL_ATTESTATION_KEY;
+      const replayProof = signApprovalOperation(key, "quota", requester);
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      const quota = await proofClient.query(
+        "SELECT alp_private.consume_approval_quota_signed($1,$2,$3,$4) AS allowed",
+        [requester, ...replayProof]
+      );
+      assert.equal(quota.rows[0]?.allowed, true);
+      await proofClient.query("COMMIT");
+
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        proofClient.query(
+          "SELECT alp_private.consume_approval_quota_signed($1,$2,$3,$4)",
+          [requester, ...replayProof]
+        ),
+        /replayed approval attestation/i
+      );
+      await proofClient.query("ROLLBACK");
+
+      const probeReason = "D02D cross actor proof must fail";
+      const boundProof = signApprovalOperation(key, "submit", requester,
+        [target, "instructor", probeReason]);
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        proofClient.query(
+          "SELECT alp_private.submit_role_request_signed($1,$2,$3,$4,$5,$6,$7)",
+          [target, "instructor", outsider, probeReason, ...boundProof]
+        ),
+        /approval attestation mismatch/i
+      );
+    } finally {
+      await proofClient.query("ROLLBACK");
+      proofClient.release();
+    }
+
     await admin.query(
       "INSERT INTO alp_private.alp_role_assignments(user_id,role_name) VALUES ($1,'administrator')",
       [reviewer]
     );
+
+    // D02-D negative control: a restricted database connection must NOT
+    // impersonate another actor merely by supplying a UUID argument.
+    //
+    // Runs ONLY after the scratch marker and expected migration count are
+    // verified above. The function call is rolled back even on failure.
+    // CURRENT EXPECTATION: this should fail on the existing SECURITY DEFINER
+    // implementation; retain the red result until trusted binding is designed.
+    const spoofClient = await app.connect();
+    try {
+      await spoofClient.query("BEGIN");
+      await spoofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        spoofClient.query(
+          "SELECT alp_private.submit_role_request($1,$2,$3,$4)",
+          [target, "instructor", outsider, "D02D unauthorized actor substitution probe"]
+        ),
+        /permission denied|unauthorized|actor mismatch|invalid identity/i,
+        "D02-D: direct executor actor substitution unexpectedly accepted"
+      );
+    } finally {
+      await spoofClient.query("ROLLBACK");
+      spoofClient.release();
+    }
     const fetchImpl = async (_url, options) => {
       const token = options.headers.authorization.replace("Bearer ", "");
       return ids.includes(token)
@@ -89,6 +175,7 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
     const approval = createRoleApproval({
       authUrl: "http://127.0.0.1:1", publishableKey: "ci-only",
       databaseUrl: APP, fetchImpl,
+      attestationKey: process.env.ALP_APPROVAL_ATTESTATION_KEY,
     });
     server = makeServer({
       approval, academic: { process() {}, async close() {} },

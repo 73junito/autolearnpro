@@ -39,6 +39,7 @@ test("env isolation: explicit configuration enables the approval service despite
     const configured = createRoleApproval({
       authUrl: "http://127.0.0.1:1",
       publishableKey: "explicit-key",
+      attestationKey: "a".repeat(64),
       pool: { connect: async () => { throw new Error("must not connect"); }, end: async () => {} }
     });
     assert.equal(configured.enabled, true);
@@ -47,6 +48,16 @@ test("env isolation: explicit configuration enables the approval service despite
       if (v !== undefined) process.env[k] = v;
     }
   }
+});
+
+test("D02-D: approval service fails closed if signing key is missing", () => {
+  const approval = createRoleApproval({
+    authUrl: "http://127.0.0.1:1",
+    publishableKey: "test-only",
+    pool: { connect: async () => { throw new Error("unexpected connection"); }, end: async () => {} },
+    attestationKey: null
+  });
+  assert.equal(approval.enabled, false);
 });
 
 test("env isolation: injected pool is not opened from ambient values", () => {
