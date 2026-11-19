@@ -28,7 +28,43 @@ let result = 2;
 try {
   await admin.connect();
   const history = await admin.query("SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations");
-  if (history.rows[0]?.n !== 23) throw new Error("Exactly 23 applied migrations required");
+  if (history.rows[0]?.n !== 24) throw new Error("Exactly 24 applied migrations required");
+  // D02-E-R1: exact recovered hosted-only migration must be applied
+  // before the D02-D signer migration, with no generated passwords.
+  const recovered = await admin.query(
+    "SELECT version FROM supabase_migrations.schema_migrations WHERE version IN ($1,$2) ORDER BY version",
+    ["20261114202924", "20261119011728"]
+  );
+  if (recovered.rowCount !== 2 ||
+      recovered.rows[0].version !== "20261114202924" ||
+      recovered.rows[1].version !== "20261119011728") {
+    throw new Error("Missing or misordered combined-history migrations");
+  }
+  const workerRoles = await admin.query(`
+    SELECT worker.rolname AS login_role, worker.rolcanlogin, worker.rolinherit,
+           worker.rolsuper, worker.rolbypassrls,
+           owner.rolname AS executor_role, membership.inherit_option,
+           membership.set_option, membership.admin_option,
+           (SELECT rolpassword IS NULL FROM pg_authid WHERE oid = worker.oid) AS passwordless
+    FROM pg_roles worker
+    LEFT JOIN pg_auth_members membership ON membership.member = worker.oid
+    LEFT JOIN pg_roles owner ON owner.oid = membership.roleid
+    WHERE worker.rolname IN ('alp_academic_worker_login','alp_approval_worker_login')
+    ORDER BY worker.rolname
+  `);
+  const expectedRoles = new Map([
+    ["alp_academic_worker_login", "alp_academic_executor"],
+    ["alp_approval_worker_login", "alp_approval_executor"],
+  ]);
+  if (workerRoles.rowCount !== 2 ||
+      workerRoles.rows.some((r) => !expectedRoles.has(r.login_role) ||
+        expectedRoles.get(r.login_role) !== r.executor_role ||
+        r.rolcanlogin !== true || r.rolinherit !== false ||
+        r.rolsuper !== false || r.rolbypassrls !== false ||
+        r.inherit_option !== false || r.set_option !== true ||
+        r.admin_option !== false || r.passwordless !== true)) {
+    throw new Error("Recovered worker-login migration violates restricted role contract");
+  }
   const role = await admin.query("SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname='alp_academic_executor'");
   if (role.rowCount !== 1 || role.rows[0].rolsuper || role.rows[0].rolbypassrls) {
     throw new Error("Restricted executor role is absent or privileged");
@@ -67,7 +103,7 @@ try {
   const app = new URL(dbUrl);
   app.username = "alp_r1_ci_login";
   app.password = password;
-  console.log("R1 CI: 23 migrations; restricted login and scratch marker verified");
+  console.log("R1 CI: 24 migrations; restricted login and scratch marker verified");
   const child = spawnSync(process.execPath, ["infrastructure/scripts/run-r1-live.mjs"], {
     stdio: "inherit",
     env: {
