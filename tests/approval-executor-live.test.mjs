@@ -80,6 +80,30 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
       "INSERT INTO alp_private.alp_role_assignments(user_id,role_name) VALUES ($1,'administrator')",
       [reviewer]
     );
+
+    // D02-D negative control: a restricted database connection must NOT
+    // impersonate another actor merely by supplying a UUID argument.
+    //
+    // Runs ONLY after the scratch marker and expected migration count are
+    // verified above. The function call is rolled back even on failure.
+    // CURRENT EXPECTATION: this should fail on the existing SECURITY DEFINER
+    // implementation; retain the red result until trusted binding is designed.
+    const spoofClient = await app.connect();
+    try {
+      await spoofClient.query("BEGIN");
+      await spoofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        spoofClient.query(
+          "SELECT alp_private.submit_role_request($1,$2,$3,$4)",
+          [target, "instructor", outsider, "D02D unauthorized actor substitution probe"]
+        ),
+        /permission denied|unauthorized|actor mismatch|invalid identity/i,
+        "D02-D: direct executor actor substitution unexpectedly accepted"
+      );
+    } finally {
+      await spoofClient.query("ROLLBACK");
+      spoofClient.release();
+    }
     const fetchImpl = async (_url, options) => {
       const token = options.headers.authorization.replace("Bearer ", "");
       return ids.includes(token)
