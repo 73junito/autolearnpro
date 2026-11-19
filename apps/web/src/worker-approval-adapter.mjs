@@ -1,4 +1,5 @@
 import { hasValidAttestationKey, signWorkerApproval } from "./approval-attestation-worker.mjs";
+import { verifiedBearerSession } from "./approval-session-claims.mjs";
 
 // D02-E source-only Cloudflare Workers adapter.
 // The database port is deliberately injected. This is NOT a deployed Worker:
@@ -93,13 +94,15 @@ export function createWorkerApprovalHandler({
   db,
   fetchImpl = fetch,
   signOperation = signWorkerApproval,
+  checkSession,
 } = {}) {
   const enabled = Boolean(
     authUrl &&
     publishableKey &&
     hasValidAttestationKey(attestationKey) &&
     db &&
-    typeof db.withTransaction === "function",
+    typeof db.withTransaction === "function" &&
+    typeof checkSession === "function",
   );
 
   async function signedQuery(tx, operation, actor, args, sql, params) {
@@ -118,7 +121,14 @@ export function createWorkerApprovalHandler({
       if (!response.ok) return { status: 401 };
       const user = await response.json();
       if (!UUID.test(user?.id)) return { status: 401 };
-      return { actor: user.id };
+      const bearer = value.slice(7);
+      const identity = verifiedBearerSession(bearer, user.id);
+      if (!identity) return { status: 401 };
+      // A validated JWT can remain unexpired after logout; require
+      // an independent trusted check of the current session record.
+      const active = await checkSession(identity);
+      if (active !== true) return { status: 401 };
+      return { ...identity, status: 200 };
     } catch {
       return { status: 503 };
     }
@@ -180,6 +190,16 @@ export function createWorkerApprovalHandler({
       if (!parsed.body) return json(parsed.status, { error: parsed.error });
       if (!validatedBody(path, parsed.body)) return json(400, { error: "invalid_fields" });
       const body = parsed.body;
+      // Recheck after the quota transaction, before the privileged write.
+      try {
+        if (
+          (await checkSession({ actor: identity.actor, sessionId: identity.sessionId })) !== true
+        ) {
+          return json(401, { error: "unauthorized" });
+        }
+      } catch {
+        return json(503, { error: "auth_unavailable" });
+      }
       const isRequest = path.endsWith("/request");
       try {
         let result;
