@@ -36,6 +36,8 @@ jobs:
         run: npm run build --workspace @autolearnpro/catalog
       - name: Enforce C3 catalog accessibility boundary
         run: node --test tests/c3-catalog-accessibility.test.mjs
+      - name: Enforce C3-R39 catalog data contract and integrity
+        run: node --test tests/c3-catalog-data-contract.test.mjs
       - name: Run academic unit test suite
         run: npm run test:academic
       - name: Check lint
