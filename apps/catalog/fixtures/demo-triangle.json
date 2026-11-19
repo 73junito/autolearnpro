@@ -1,0 +1,22 @@
+{
+  "fixtureVersion": 1,
+  "id": "demo-triangle",
+  "title": "Synthetic triangle demonstration",
+  "positions": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ]
+}
