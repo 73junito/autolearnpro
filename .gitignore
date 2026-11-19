@@ -1,4 +1,6 @@
 node_modules/
+.r7b-workerd-*/
+.r7-workerd-*/
 .env
 .env.*
 !.env.example
