@@ -24,6 +24,7 @@ const admin = new Client({ connectionString: dbUrl, connectionTimeoutMillis: 500
 let createdLogin = false;
 let createdApprovalLogin = false;
 let createdMarker = false;
+let r2PasswordAssigned = false;
 let result = 2;
 try {
   await admin.connect();
@@ -146,6 +147,28 @@ try {
     if (approval.error) throw approval.error;
     if (approval.status !== 0) throw new Error("Restricted approval executor live gate failed");
     console.log("Approval CI: restricted login and authorization integration passed");
+    // Only the disposable CI instance may temporarily authenticate this
+    // recovered passwordless role. Restore PASSWORD NULL in finally.
+    const r2Password = randomBytes(32).toString("hex");
+    await admin.query(`ALTER ROLE alp_approval_worker_login PASSWORD '${r2Password}'`);
+    r2PasswordAssigned = true;
+    const r2Url = new URL(dbUrl);
+    r2Url.username = "alp_approval_worker_login";
+    r2Url.password = r2Password;
+    const r2 = spawnSync(process.execPath, [
+      "--test", "tests/d02e-r2-worker-postgres-live.test.mjs"
+    ], {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        ALP_R2_CI_REQUIRE: "1",
+        ALP_R2_CI_DATABASE_URL: r2Url.toString(),
+      },
+      timeout: 180000,
+    });
+    if (r2.error) throw r2.error;
+    if (r2.status !== 0) throw new Error("R2 restricted transaction live gate failed");
+    console.log("D02-E-R2 CI: restricted Worker transaction integration passed");
   }
   if (result === 0) {
     const fixtures = await admin.query(
@@ -158,6 +181,9 @@ try {
     console.log("R1 CI: 3 live tests passed and fixed fixture users cleaned");
   }
 } finally {
+  if (r2PasswordAssigned) {
+    await admin.query("ALTER ROLE alp_approval_worker_login PASSWORD NULL");
+  }
   if (createdApprovalLogin) {
     await admin.query("REVOKE alp_approval_executor FROM alp_approval_ci_login");
     await admin.query("DROP ROLE alp_approval_ci_login");
