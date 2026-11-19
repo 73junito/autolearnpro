@@ -1,0 +1,20 @@
+{
+  "evidenceVersion": 1,
+  "status": "unsigned-synthetic-no-publication-authority",
+  "generator": "infrastructure/scripts/c3-build-sample.mjs",
+  "generatorSha256": "e000a0108b770f2d8a2854ecf90afbe5b185eef6bf7b7914b78b3af43d66091f",
+  "source": "apps/catalog/fixtures/demo-triangle.json",
+  "sourceSha256": "ee27173ae2e25c2474a25c9313f141326ba06b335e48a6e44f2abed2ad38e9b3",
+  "artifacts": [
+    {
+      "path": "apps/catalog/sample/assets/demonstration/demo-triangle.glb",
+      "sha256": "0400704d512b2f97073972e3201e13c1dbb4910ba6ee9c016310f0995e9b1650",
+      "byteLength": 460
+    },
+    {
+      "path": "apps/catalog/sample/catalog-manifest.json",
+      "sha256": "4ba5b81fc414c64fb243b76902c48ef0210ed5585e498740b7bfd33ddda2d0c7",
+      "byteLength": 433
+    }
+  ]
+}

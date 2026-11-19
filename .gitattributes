@@ -1,0 +1,5 @@
+apps/catalog/fixtures/*.json text eol=lf
+apps/catalog/sample/*.json text eol=lf
+apps/catalog/sample/**/*.glb binary
+infrastructure/scripts/c3-build-sample.mjs text eol=lf
+tests/c3-catalog-provenance.test.mjs text eol=lf
