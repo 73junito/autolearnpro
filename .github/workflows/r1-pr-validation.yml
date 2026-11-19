@@ -40,6 +40,8 @@ jobs:
         run: npm run fmt:check
       - name: Enforce R8 source-only release HOLD and no deployment permissions
         run: npm run check:r8-release-hold
+      - name: Verify R8A GitHub governance observation stays HOLD
+        run: npm run check:r8a-governance
       - name: Verify migration manifest and R1 filename
         shell: bash
         run: |
