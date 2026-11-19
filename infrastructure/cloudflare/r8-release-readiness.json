@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "review": "ALP-D02-E-R8",
+  "state": "SOURCE_ONLY_HOLD",
+  "deploymentAllowed": false,
+  "cloudflareCli": "cf",
+  "sourceEntrypoint": "apps/web/src/worker-approval-entrypoint.mjs",
+  "runtime": {
+    "compatibilityDateValidated": "2026-08-06",
+    "compatibilityFlags": [
+      "nodejs_compat"
+    ],
+    "hostedRuntimeValidated": false
+  },
+  "bindings": [
+    {
+      "name": "SUPABASE_AUTH_URL",
+      "kind": "runtime-config",
+      "requirement": "HTTPS only in deployed Worker; no userinfo or embedded credentials",
+      "verified": false
+    },
+    {
+      "name": "SUPABASE_PUBLISHABLE_KEY",
+      "kind": "publishable-key",
+      "requirement": "public key only; never service_role or secret API key",
+      "verified": false
+    },
+    {
+      "name": "APPROVAL_ATTESTATION_KEY",
+      "kind": "worker-secret",
+      "requirement": "non-exportable Worker secret; rotation and revocation tested in hosted staging",
+      "verified": false
+    },
+    {
+      "name": "APPROVAL_HYPERDRIVE",
+      "kind": "hyperdrive",
+      "requirement": "restricted alp_approval_worker_login; validated TLS and managed credential rotation",
+      "verified": false
+    }
+  ],
+  "requiredEvidence": [
+    {
+      "id": "cloudflare_account_scoping",
+      "verified": false,
+      "description": "Dedicated staging and production targets, IAM permissions, and named responsible approver"
+    },
+    {
+      "id": "hosted_hyperdrive_tls",
+      "verified": false,
+      "description": "Independent hosted Hyperdrive connection, encrypted transport and certificate trust verified"
+    },
+    {
+      "id": "restricted_login_provisioning",
+      "verified": false,
+      "description": "Remote passwordless-by-default login provisioned through restricted approved process"
+    },
+    {
+      "id": "worker_secret_provisioning",
+      "verified": false,
+      "description": "Authorized secret binding lifecycle, emergency revoke, and no secrets in source or CI logs"
+    },
+    {
+      "id": "hosted_gotrue_integration",
+      "verified": false,
+      "description": "Hosted staging auth origin, session lock and signed approval verified end-to-end"
+    },
+    {
+      "id": "observability",
+      "verified": false,
+      "description": "Worker logs and traces enabled in target config with sensitive fields redacted"
+    },
+    {
+      "id": "rollback_rehearsal",
+      "verified": false,
+      "description": "Canary, rollback, and fail-closed outage rehearsal in staging"
+    },
+    {
+      "id": "managed_supabase_recovery",
+      "verified": false,
+      "description": "Independent managed Supabase full restore/PITR evidence, measured RTO and RPO"
+    },
+    {
+      "id": "explicit_security_go",
+      "verified": false,
+      "description": "Independent security review and written separate release authorization"
+    }
+  ],
+  "sourceOnlyEvidence": {
+    "r7cCiRun": "https://github.com/73junito/autolearnpro/actions/runs/44461453205",
+    "r7bCiRun": "https://github.com/73junito/autolearnpro/actions/runs/44460213430",
+    "scope": "Local workerd and disposable Supabase, not hosted-cloud readiness"
+  },
+  "disallowedInRepo": [
+    "wrangler.toml",
+    "wrangler.json",
+    "wrangler.jsonc",
+    "cloudflare.config.ts"
+  ],
+  "notes": "R8 is a release evidence contract, not a deployment configuration. Do not create deployment manifests, secrets or hosted resources until separately approved."
+}

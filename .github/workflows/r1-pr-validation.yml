@@ -38,6 +38,8 @@ jobs:
         run: npm run lint:oxc
       - name: Check formatting
         run: npm run fmt:check
+      - name: Enforce R8 source-only release HOLD and no deployment permissions
+        run: npm run check:r8-release-hold
       - name: Verify migration manifest and R1 filename
         shell: bash
         run: |
