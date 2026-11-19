@@ -184,6 +184,25 @@ try {
     if (r3b.error) throw r3b.error;
     if (r3b.status !== 0) throw new Error("R3B active-session broker live gate failed");
     console.log("D02-E-R3B CI: restricted active-session broker integration passed");
+    // Real GoTrue test must run BEFORE R3D rotates the original key,
+    // so it can exercise the actual signed quota and restricted Worker handler.
+    const r6 = spawnSync(process.execPath, [
+      "--test", "tests/d02e-r6-gotrue-revocation-live.test.mjs"
+    ], {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        ALP_R6_CI_REQUIRE: "1",
+        ALP_R6_CI_PROJECT_ID: expectedProject,
+        ALP_R6_CI_DATABASE_URL: dbUrl,
+        ALP_R6_CI_WORKER_DATABASE_URL: r2Url.toString(),
+        ALP_R6_CI_ATTESTATION_KEY: attestationKey,
+      },
+      timeout: 180000,
+    });
+    if (r6.error) throw r6.error;
+    if (r6.status !== 0) throw new Error("R6 real GoTrue revocation gate failed");
+    console.log("D02-E-R6 CI: actual GoTrue session revocation blocks restricted approval");
     const r3d = spawnSync(process.execPath, [
       "--test", "tests/d02e-r3d-key-lifecycle-live.test.mjs"
     ], {
