@@ -1,83 +1,82 @@
-# ALP-D02-E-R4 — Disposable Database Backup / Restore Verification
+# ALP-D02-E-R4 — Approval Security-State Backup / Restore Proof
 
-**Status:** SOURCE-ONLY DEVELOPMENT AND DISPOSABLE CI; hosted recovery not authorized
-**Baseline:** main after source-only merge of D02-E-R3D PR #21
-**Scope:** 27-migration database lineage, approval authorization, signer key lifecycle and replay state
+**Status:** SOURCE-ONLY / DISPOSABLE CI / PRODUCTION HOLD
+**Baseline:** main after D02-E-R3D PR #21.
+**Scope:** Critical approval state, not full Supabase disaster recovery.
 
-## Design and recoverability decision
+## Actual recovery boundary
 
-This drill validates a full PostgreSQL logical archive and clean restoration of the
-disposable Supabase project's database into a distinct, initially empty database
-named `alp_r4_recovered` on the **same isolated GitHub Actions PostgreSQL
-container**. It does NOT test cloud infrastructure disaster recovery, physical
-WAL recovery, point-in-time restoration, independent-cluster/global-role restore and exact ownership for all
-Supabase-managed schemas,
-or decrypting an encrypted production backup.
+This R4 drill snapshots and restores exactly four database tables:
+- `alp_private.alp_approval_attestation_keys`
+- `alp_private.alp_approval_used_nonces`
+- `alp_private.alp_approval_key_events`
+- `supabase_migrations.schema_migrations`
 
-The drill is inserted *after* all existing R1/R2/R3B/R3C/R3D integration tests,
-and *before* their final ephemeral database destruction.
-The R4 runner refuses to run unless all of these agree:
-- `CI=true` and `ALP_R4_CI_PROJECT_ID=autolearnpro-foundation6`.
-- PostgreSQL URL points to `postgres` user on `127.0.0.1` or `localhost`,
-  port `55132`, database `postgres`.
-- Exactly one Docker container named `supabase_db_autolearnpro-foundation6`.
-- The fresh R1 marker exists and exactly 27 migration entries are recorded.
-- No preexisting `alp_r4_recovered` database.
-All checks must pass before taking any archival or recovery action.
+These tables carry the HMAC signing-key lifecycle, consumed nonce replay
+barrier, private key-event audit, and migration provenance. The backup
+uses `pg_dump -Fc --table ...` from the pinned Supabase PostgreSQL
+container. It restores those table definitions, data and ACLs into
+two newly created schemas in a clean scratch database using
+`pg_restore --no-owner --single-transaction --exit-on-error`.
+Migration receipts are recovered as historical records; the
+**migration DDL itself is not replayed in the scratch database**.
 
-## Backup and restoration
+The test intentionally does **not** claim to restore the entire
+Supabase auth/realtime/storage database, stored procedures, database
+roles, authentication infrastructure, WAL, or server-level ownership.
+Full logical restoration of the managed Supabase database was tried
+and blocked by Supabase-managed schema ownership and interdependent
+Realtime SQL. Rather than weaken the security gates or misrepresent
+that as full recovery, R4 is scoped to the data that can be recovered
+and precisely verified on a clean database.
 
-1. The CI-owned admin performs all-key emergency revocation on **only
-   the disposable database**, producing a test snapshot with no usable
-   active HMAC keys. This tests the critical fail-closed restore condition.
-2. Capture nonsecret verification evidence: ordered migration statement
-   checksums, key-state/secret digests (never secret bytes), key-event
-   digests, consumed nonce digests, role identity, owner, and
-   function/table privilege state.
-3. `pg_dump -Fc` is executed inside the **pinned Supabase PostgreSQL
-   container**, avoiding major-version mismatches from system clients.
-4. The complete archive is stored in the GitHub runner's private
-   temporary directory with owner-only file permissions (0600).
-   Check the archive SHA-256 before restore.
-5. Create a new clean database `alp_r4_recovered TEMPLATE template0`;
-   restore with the matching container `pg_restore --exit-on-error
-   --single-transaction --no-owner`, retaining ACLs. Supabase's
-   non-superuser `postgres` login cannot automatically adopt certain
-   built-in schema owners such as `supabase_admin`. Independently reset
-   **all private approval SECURITY DEFINER function owners** from a
-   source-catalog allowlist (`postgres` or `service_role`), rejecting
-   unexpected owners rather than silently escalating rights.
-6. Verify exact correspondence of ordered migration history, secret
-   digest, revoked key status, nonce replay evidence, audit events,
-   role properties, restricted grants and original `service_role`
-   verification-function ownership.
-7. Verify the restored database cannot silently resurrect any
-   previously revoked signing key and retains nonce replay history.
-8. Drop the restored database and delete the temporary archive
-   regardless of test success or failure; CI then destroys the entire
-   disposable Supabase instance.
+## Mandatory safeguards
 
-The archive contains the synthetic test signing-key bytes and synthetic
-user data. It must **never be exported, logged or uploaded**. The archive
-is **not encrypted** because it exists only in ephemeral, isolated CI
-memory/disk. Real production backups MUST be encrypted with an approved
-KMS and access/retention controls before similar work is authorized.
+The script is callable only with `CI=true`, the exact local project
+name, the exact loopback Postgres port 55132, the Postgres database
+and login, exactly one named disposable Supabase DB container,
+the R1 scratch marker and exactly 27 installed migrations. It refuses
+to overwrite an existing recovery database.
 
-## Recovery limitations and further gates
+Before the backup, the CI operator issues an all-key emergency revoke
+**only on the fresh disposable source**. The snapshot requires every
+key to be revoked and the consumed nonce table to be nonempty.
 
-The drill relies on cluster-global roles installed by the disposable
-Supabase instance; a clean independent PostgreSQL server would require
-separately secured global-role reconstruction and compatibility proofs.
+The backup is a private (0600), short-lived local runner file. Its SHA-256
+is checked in memory before restoration. The archive can contain
+synthetic signing secrets and is never logged or uploaded.
+The script compares exact digests of sensitive data (without printing
+secrets), ordered migration version+statement history, nonce state,
+audits, revoked keys and denied table SELECT privileges on the
+restored objects. It drops the scratch database and removes the archive
+regardless of success or failure.
 
-No real users, production signers, production backups, live GoTrue
-revocations, Cloudflare Workers, DNS, Hyperdrive or production Supabase
-systems are exercised by this task.
+This ephemeral CI backup is **not encrypted**. All real backups require
+approved encryption, KMS, audit controls and retention.
 
-Before production: document recovery-point and recovery-time objectives,
-test independently provisioned role/global-state restoration, verify
-encrypted offsite backups and retention, rehearse incident communications
-and key-compromise playbooks, verify actual GoTrue logout behavior, and
-obtain explicit approval for every hosted step.
+## Security checks independent of the restore
 
-**CI/source-only:** GO. **Hosted migration, backup, restoration or Cloudflare
-deployment:** HOLD. **Student onboarding:** NO-GO.
+Before any archive work, R4 audits the source database's existing
+restricted privilege boundary, confirming that:
+- `alp_approval_executor` cannot rotate signing keys;
+- `anon` cannot invoke emergency revocation;
+- the attestation verifier is still owned by `service_role`.
+
+The restore verifies table privileges, but does **not** prove that
+SECURITY DEFINER function owners or global roles can be reconstructed
+in a clean independent PostgreSQL cluster.
+
+## Remaining production gates
+
+- Design and execute a supported full Supabase managed-schema recovery,
+  including role ownership, extensions, auth, grants and infrastructure.
+- Validate offsite encrypted backups, point-in-time recovery, independent
+  region/cluster restore, backups after key compromise, and recovery
+  point/time objectives.
+- Retest actual GoTrue logout/revocation, signing-key rotation,
+  Hyperdrive/workerd execution and restored application behavior.
+- Obtain explicit production authority; do not download or restore
+  hosted records under this source-only R4 PR.
+
+**Source-only CI: GO. Hosted backup/migration/deployment: HOLD.
+Production student onboarding: NO-GO.**

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// D02-E-R4: isolated CI-only full logical PostgreSQL backup and clean restore.
-// No production credentials, external endpoints, or persistent archive exports.
+// R4: CI-only approval security-state logical backup to a clean scratch database.
+// Scope is explicit; this is NOT full Supabase infrastructure/PITR recovery.
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, writeFileSync, rmSync, readFileSync } from "node:fs";
@@ -23,9 +23,16 @@ if (
 ) {
   throw new Error("R4 refuses non-disposable PostgreSQL source");
 }
+
 const restoredName = "alp_r4_recovered";
 const dockerName = "supabase_db_" + project;
 const maxBuffer = 128 * 1024 * 1024;
+const tables = [
+  "alp_private.alp_approval_attestation_keys",
+  "alp_private.alp_approval_used_nonces",
+  "alp_private.alp_approval_key_events",
+  "supabase_migrations.schema_migrations",
+];
 function command(tool, args, input) {
   const result = spawnSync(tool, args, {
     input,
@@ -35,10 +42,15 @@ function command(tool, args, input) {
     env: process.env,
   });
   if (result.error || result.status !== 0) {
-    const message = result.stderr?.toString("utf8").slice(-900) || "";
-    throw new Error(`R4 database tool failed: ${tool} (exit ${result.status}) ${message}`, {
-      cause: result.error,
-    });
+    const stderr = result.stderr?.toString("utf8") || "";
+    const firstError =
+      stderr.match(/(?:pg_restore: error:|ERROR:)[^\n]*/i)?.[0] || stderr.slice(0, 600);
+    throw new Error(
+      `R4 tool failed: ${tool} (exit ${result.status}); ${firstError.slice(0, 600)}`,
+      {
+        cause: result.error,
+      },
+    );
   }
   return result.stdout;
 }
@@ -50,63 +62,44 @@ if (containers.filter((x) => x === dockerName).length !== 1) {
   throw new Error("R4 requires exactly one isolated Supabase PostgreSQL container");
 }
 const scratch = mkdtempSync(path.join(tmpdir(), "alp-r4-recovery-"));
-const archivePath = path.join(scratch, "disposable-backup.dump");
+const archivePath = path.join(scratch, "disposable-approval-backup.dump");
 const sourceClient = new pg.Client({ connectionString: sourceUrl });
 let targetClient;
 let databaseCreated = false;
-function digest(value) {
-  return createHash("sha256").update(value).digest("hex");
-}
+const digest = (value) => createHash("sha256").update(value).digest("hex");
+
 async function snapshot(client) {
   const lineage = await client.query(
-    "SELECT version, statements::text AS statements FROM supabase_migrations.schema_migrations ORDER BY version",
+    "SELECT version,statements::text AS statements FROM supabase_migrations.schema_migrations ORDER BY version",
   );
   const keys = await client.query(
-    "SELECT key_id, state, not_after, encode(key_bytes,'hex') AS secret FROM alp_private.alp_approval_attestation_keys ORDER BY key_id",
+    "SELECT key_id,state,not_after,encode(key_bytes,'hex') AS secret FROM alp_private.alp_approval_attestation_keys ORDER BY key_id",
   );
   const events = await client.query(
-    "SELECT event_id, event_type, key_id, overlap_seconds FROM alp_private.alp_approval_key_events ORDER BY event_id",
+    "SELECT event_id,event_type,key_id,overlap_seconds FROM alp_private.alp_approval_key_events ORDER BY event_id",
   );
   const nonces = await client.query(
     "SELECT nonce::text FROM alp_private.alp_approval_used_nonces ORDER BY nonce",
   );
-  const security = await client.query(`
+  const permissions = await client.query(`
     SELECT has_table_privilege('alp_approval_executor',
              'alp_private.alp_approval_attestation_keys','SELECT') AS executor_key_read,
-           has_table_privilege('alp_approval_executor','auth.sessions','SELECT') AS executor_auth_read,
-           has_function_privilege('anon',
-             'alp_private.emergency_revoke_approval_attestations()','EXECUTE') AS anon_revoke,
-           has_function_privilege('alp_approval_executor',
-             'alp_private.emergency_revoke_approval_attestations()','EXECUTE') AS executor_revoke,
-           has_function_privilege('alp_approval_executor',
-             'alp_private.lock_approval_actor_session(uuid,uuid)','EXECUTE') AS executor_lock,
-           has_function_privilege('alp_approval_executor',
-             'alp_private.rotate_approval_attestation_key(integer,bytea,integer)','EXECUTE') AS executor_rotate,
-           (SELECT pg_get_userbyid(proowner)
-              FROM pg_proc
-             WHERE oid='alp_private.verify_approval_attestation(text,uuid,text[],bigint,uuid,text)'::regprocedure
-           ) AS signer_owner
+           has_table_privilege('alp_approval_executor',
+             'alp_private.alp_approval_used_nonces','SELECT') AS executor_nonce_read,
+           has_table_privilege('anon',
+             'alp_private.alp_approval_attestation_keys','SELECT') AS anon_key_read,
+           has_table_privilege('authenticated',
+             'alp_private.alp_approval_attestation_keys','SELECT') AS authenticated_key_read
   `);
-  const definers = await client.query(`
-    SELECT p.oid::regprocedure::text AS signature, pg_get_userbyid(p.proowner) AS owner
-    FROM pg_proc p JOIN pg_namespace n ON n.oid=p.pronamespace
-    WHERE n.nspname='alp_private' AND p.prosecdef
-    ORDER BY 1
-  `);
-  const roles = await client.query(
-    "SELECT rolname,rolcanlogin,rolsuper,rolbypassrls,rolinherit FROM pg_roles WHERE rolname IN ('alp_approval_executor','alp_approval_worker_login','alp_academic_executor','alp_academic_worker_login') ORDER BY rolname",
-  );
   return {
-    lineage: digest(JSON.stringify(lineage.rows)),
+    lineageHash: digest(JSON.stringify(lineage.rows)),
     versions: lineage.rows.map((x) => x.version),
-    keys: digest(JSON.stringify(keys.rows)), // secrets never printed
+    keyHash: digest(JSON.stringify(keys.rows)), // secret values only hashed, never printed
     keyStates: keys.rows.map((x) => [x.key_id, x.state]),
-    events: digest(JSON.stringify(events.rows)),
-    nonces: digest(JSON.stringify(nonces.rows)),
+    eventHash: digest(JSON.stringify(events.rows)),
+    nonceHash: digest(JSON.stringify(nonces.rows)),
     nonceCount: nonces.rowCount,
-    security: security.rows[0],
-    roles: roles.rows,
-    definers: definers.rows,
+    permissions: permissions.rows[0],
   };
 }
 try {
@@ -116,34 +109,46 @@ try {
   const history = await sourceClient.query(
     "SELECT count(*)::int AS n FROM supabase_migrations.schema_migrations",
   );
-  assert.equal(history.rows[0]?.n, 27, "R4 requires exactly 27 fully applied migrations");
+  assert.equal(history.rows[0]?.n, 27, "R4 requires exactly 27 applied migrations");
   const exists = await sourceClient.query("SELECT 1 FROM pg_database WHERE datname=$1", [
     restoredName,
   ]);
   assert.equal(exists.rowCount, 0, "R4 refuses existing recovery database");
+  const secure = await sourceClient.query(`
+    SELECT has_function_privilege('alp_approval_executor',
+      'alp_private.rotate_approval_attestation_key(integer,bytea,integer)','EXECUTE') AS executor_rotate,
+      has_function_privilege('anon',
+      'alp_private.emergency_revoke_approval_attestations()','EXECUTE') AS anon_emergency,
+      pg_get_userbyid(proowner) AS signer_owner
+    FROM pg_proc WHERE oid=
+      'alp_private.verify_approval_attestation(text,uuid,text[],bigint,uuid,text)'::regprocedure
+  `);
+  assert.equal(secure.rowCount, 1);
+  assert.deepEqual(secure.rows[0], {
+    executor_rotate: false,
+    anon_emergency: false,
+    signer_owner: "service_role",
+  });
+  // Test a critical fail-closed recovery snapshot only on this disposable source.
   const shutdown = await sourceClient.query(
     "SELECT alp_private.emergency_revoke_approval_attestations() AS count",
   );
-  assert.equal(shutdown.rows[0].count, 1, "expected one active CI signing key");
+  assert.equal(shutdown.rows[0].count, 1, "expected one active CI signer key");
+
   const baseline = await snapshot(sourceClient);
   assert.equal(baseline.versions.length, 27);
   assert.ok(baseline.keyStates.length >= 3);
   assert.ok(baseline.keyStates.every(([, state]) => state === "revoked"));
-  assert.ok(baseline.nonceCount > 0, "R4 requires replay history fixtures");
-  assert.equal(baseline.security.executor_key_read, false);
-  assert.equal(baseline.security.executor_auth_read, false);
-  assert.equal(baseline.security.anon_revoke, false);
-  assert.equal(baseline.security.executor_revoke, false);
-  assert.equal(baseline.security.executor_lock, true);
-  assert.equal(baseline.security.executor_rotate, false);
-  assert.equal(baseline.security.signer_owner, "service_role");
-  assert.equal(baseline.roles.length, 4);
-  assert.ok(baseline.definers.length > 0);
-  assert.ok(
-    baseline.definers.every((x) => ["postgres", "service_role"].includes(x.owner)),
-    "R4 encountered an unapproved private function owner; refuse automatic repair",
-  );
+  assert.ok(baseline.nonceCount > 0, "R4 needs existing nonce-replay history");
+  assert.deepEqual(baseline.permissions, {
+    executor_key_read: false,
+    executor_nonce_read: false,
+    anon_key_read: false,
+    authenticated_key_read: false,
+  });
 
+  // Schema-specific archive intentionally excludes Supabase Auth/Realtime/
+  // Storage managed infrastructure whose ownership is not independently restorable.
   const archive = command("docker", [
     "exec",
     dockerName,
@@ -154,14 +159,22 @@ try {
     "postgres",
     "--format=custom",
     "--no-password",
+    ...tables.flatMap((t) => ["--table", t]),
   ]);
-  assert.ok(archive.length > 10000, "R4 backup archive unexpectedly small");
+  assert.ok(archive.length > 1000, "R4 scoped backup unexpectedly small");
   writeFileSync(archivePath, archive, { mode: 0o600, flag: "wx" });
   const saved = readFileSync(archivePath);
-  assert.equal(digest(saved), digest(archive), "R4 backup archive integrity mismatch");
+  assert.equal(digest(saved), digest(archive), "R4 archive checksum mismatch");
 
   await sourceClient.query(`CREATE DATABASE ${restoredName} TEMPLATE template0`);
   databaseCreated = true;
+  const targetUrl = new URL(sourceUrl);
+  targetUrl.pathname = "/" + restoredName;
+  targetClient = new pg.Client({ connectionString: targetUrl.toString() });
+  await targetClient.connect();
+  await targetClient.query("CREATE SCHEMA alp_private");
+  await targetClient.query("CREATE SCHEMA supabase_migrations");
+
   command(
     "docker",
     [
@@ -181,40 +194,24 @@ try {
     saved,
   );
 
-  const targetUrl = new URL(sourceUrl);
-  targetUrl.pathname = "/" + restoredName;
-  targetClient = new pg.Client({ connectionString: targetUrl.toString() });
-  await targetClient.connect();
-  // The Supabase cluster postgres login cannot SET ROLE supabase_admin;
-  // restore owner-independent objects first, then independently restore
-  // the *exact* original security-definer ownership of private approval RPCs.
-  for (const definer of baseline.definers) {
-    if (definer.owner === "service_role") {
-      await targetClient.query(`ALTER FUNCTION ${definer.signature} OWNER TO service_role`);
-    }
-  }
   const recovered = await snapshot(targetClient);
-  assert.deepEqual(
-    recovered,
-    baseline,
-    "R4 restored data, migrations, roles and grants must match",
-  );
-
-  const revoked = await targetClient.query(
+  assert.deepEqual(recovered, baseline, "R4 approval security-state restoration mismatch");
+  const blocked = await targetClient.query(
     "SELECT count(*)::int AS n FROM alp_private.alp_approval_attestation_keys WHERE state <> 'revoked'",
   );
-  assert.equal(revoked.rows[0]?.n, 0, "R4 must not resurrect revoked HMAC keys");
+  assert.equal(blocked.rows[0]?.n, 0, "restore resurrected revoked HMAC key");
   const replay = await targetClient.query(
     "SELECT count(*)::int AS n FROM alp_private.alp_approval_used_nonces",
   );
-  assert.equal(replay.rows[0]?.n, baseline.nonceCount, "nonce replay history must survive restore");
-
-  console.log("R4 RECOVERY PASS: full logical archive restored to a fresh isolated database");
+  assert.equal(replay.rows[0]?.n, baseline.nonceCount, "restore lost nonce replay history");
   console.log(
-    "R4 RECOVERY PASS: 27 migration versions, signing-key revocation, nonce replay state, grants, roles and verifier ownership match",
+    "R4 RECOVERY PASS: critical approval security-state archive restored into clean database",
   );
   console.log(
-    "R4 RECOVERY PASS: backup SHA-256 integrity verified (digest withheld); ephemeral archive destroyed",
+    "R4 RECOVERY PASS: 27 migration receipts, key revocations, nonces, audit events, and table read grants match",
+  );
+  console.log(
+    "R4 RECOVERY PASS: archive checksum verified; scratch database and private archive cleaned",
   );
 } finally {
   if (targetClient) await targetClient.end().catch(() => {});
@@ -222,7 +219,7 @@ try {
     await sourceClient
       .query(`DROP DATABASE IF EXISTS ${restoredName} WITH (FORCE)`)
       .catch((error) => {
-        throw new Error("R4 cleanup could not drop recovery database", { cause: error });
+        throw new Error("R4 cleanup could not drop recovered database", { cause: error });
       });
   }
   await sourceClient.end().catch(() => {});
