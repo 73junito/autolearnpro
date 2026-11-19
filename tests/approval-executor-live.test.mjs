@@ -4,6 +4,7 @@ import { once } from "node:events";
 import pg from "pg";
 import { makeServer } from "../apps/web/src/server.mjs";
 import { createRoleApproval } from "../apps/web/src/role-approval.mjs";
+import { signApprovalOperation } from "../apps/web/src/approval-attestation.mjs";
 
 const ADMIN = process.env.ALP_APPROVAL_CI_ADMIN_URL;
 const APP = process.env.ALP_APPROVAL_CI_APP_URL;
@@ -94,6 +95,49 @@ test("R1 dedicated approval executor: authorization and narrow privileges", {
       "INSERT INTO auth.users(id,email) SELECT x, 'approval-ci-'||x::text||'@example.test' FROM unnest($1::uuid[]) AS x",
       [ids]
     );
+    // D02-D: cryptographic proof is bound to the actual actor and operation;
+    // the same valid proof may not be replayed after a committed transaction.
+    const proofClient = await app.connect();
+    try {
+      const key = process.env.ALP_APPROVAL_ATTESTATION_KEY;
+      const replayProof = signApprovalOperation(key, "quota", requester);
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      const quota = await proofClient.query(
+        "SELECT alp_private.consume_approval_quota_signed($1,$2,$3,$4) AS allowed",
+        [requester, ...replayProof]
+      );
+      assert.equal(quota.rows[0]?.allowed, true);
+      await proofClient.query("COMMIT");
+
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        proofClient.query(
+          "SELECT alp_private.consume_approval_quota_signed($1,$2,$3,$4)",
+          [requester, ...replayProof]
+        ),
+        /replayed approval attestation/i
+      );
+      await proofClient.query("ROLLBACK");
+
+      const probeReason = "D02D cross actor proof must fail";
+      const boundProof = signApprovalOperation(key, "submit", requester,
+        [target, "instructor", probeReason]);
+      await proofClient.query("BEGIN");
+      await proofClient.query("SET LOCAL ROLE alp_approval_executor");
+      await assert.rejects(
+        proofClient.query(
+          "SELECT alp_private.submit_role_request_signed($1,$2,$3,$4,$5,$6,$7)",
+          [target, "instructor", outsider, probeReason, ...boundProof]
+        ),
+        /approval attestation mismatch/i
+      );
+    } finally {
+      await proofClient.query("ROLLBACK");
+      proofClient.release();
+    }
+
     await admin.query(
       "INSERT INTO alp_private.alp_role_assignments(user_id,role_name) VALUES ($1,'administrator')",
       [reviewer]
