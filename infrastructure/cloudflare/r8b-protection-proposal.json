@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "workstream": "ALP-D02-E-R8B",
+  "status": "PROPOSED_UNAPPLIED",
+  "authorizedToApply": false,
+  "repository": "73junito/autolearnpro",
+  "branch": "main",
+  "targetRulesetId": 26665434,
+  "expectedObservedEnforcement": "disabled",
+  "checkEvidence": {
+    "observedCommit": "7acb02d73143f612d6d048ac6ff926bbc25cddc4",
+    "source": "GitHub REST GET /repos/73junito/autolearnpro/commits/{sha}/check-runs",
+    "githubApp": "github-actions",
+    "excludedCheck": {
+      "name": "Supabase Preview",
+      "reason": "skipped; not one of the three source-security gates"
+    }
+  },
+  "proposedRuleset": {
+    "name": "protect-main-foundation",
+    "target": "branch",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "include": [
+          "~DEFAULT_BRANCH"
+        ],
+        "exclude": []
+      }
+    },
+    "bypass_actors": [],
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 1,
+          "dismiss_stale_reviews_on_push": true,
+          "require_code_owner_review": false,
+          "require_last_push_approval": true,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "required_status_checks": [
+            {
+              "context": "Foundation / Academic static and unit gates",
+              "integration_id": null
+            },
+            {
+              "context": "R7 Cloudflare workerd local runtime (source-only)",
+              "integration_id": null
+            },
+            {
+              "context": "R1 restricted executor (disposable database)",
+              "integration_id": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "approvalPreconditions": [
+    "An independent reviewer with repository access is confirmed and can satisfy the approving review",
+    "Repository admin or authorized ruleset editor confirms ruleset capabilities and no lockout",
+    "Each exact required check re-observed on the current head using authenticated GitHub API",
+    "Allowed merge strategy and stale-review dismissal accepted by repository owner",
+    "Rollback operator and emergency recovery procedure rehearsed without touching production",
+    "Explicit written GO to apply repository ruleset 26665434; source PR merge is not authorization"
+  ],
+  "postActivationEvidence": [
+    "Fresh GET ruleset returns active, exact required checks, one independent approving review, no bypass actors",
+    "Fresh GET branch/main returns protected=true and reports effective rules for main",
+    "Positive/negative tests: green PR with second-party approval mergeable; unsigned/unapproved PR blocked",
+    "Failed CI, force-push and deletion are blocked; rollback remains controlled",
+    "R8 and R8A release governance documents reconciled with fresh observed facts"
+  ],
+  "notes": "This is a proposal. DO NOT send this object to GitHub API without separate explicit user authorization and updated live preflight."
+}
