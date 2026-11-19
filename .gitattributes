@@ -3,3 +3,5 @@ apps/catalog/sample/*.json text eol=lf
 apps/catalog/sample/**/*.glb binary
 infrastructure/scripts/c3-build-sample.mjs text eol=lf
 tests/c3-catalog-provenance.test.mjs text eol=lf
+apps/catalog/src/lib/catalog-approval.js text eol=lf
+tests/c3-catalog-signed-approval.test.mjs text eol=lf
