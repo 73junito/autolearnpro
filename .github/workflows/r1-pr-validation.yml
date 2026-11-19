@@ -32,6 +32,10 @@ jobs:
         run: npm run validate:foundation
       - name: Run runtime test suite (no skipped live tests counted)
         run: npm run test:runtime
+      - name: Build C3 catalog shell (source-only)
+        run: npm run build --workspace @autolearnpro/catalog
+      - name: Enforce C3 catalog accessibility boundary
+        run: node --test tests/c3-catalog-accessibility.test.mjs
       - name: Run academic unit test suite
         run: npm run test:academic
       - name: Check lint
