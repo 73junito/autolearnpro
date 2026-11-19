@@ -48,6 +48,8 @@ jobs:
         run: npm run check:r8c-preflight
       - name: Validate R8D solo-maintainer governance proposal stays unapplied
         run: npm run check:r8d-solo
+      - name: Verify R8E source-only activation readiness snapshot
+        run: npm run check:r8e-readiness
       - name: Verify migration manifest and R1 filename
         shell: bash
         run: |
