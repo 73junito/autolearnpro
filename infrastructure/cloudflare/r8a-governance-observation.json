@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "review": "ALP-D02-E-R8A",
+  "status": "GOVERNANCE_HOLD",
+  "releaseAllowed": false,
+  "repository": "73junito/autolearnpro",
+  "branch": "main",
+  "observedAtUtc": "2026-11-19",
+  "observedMainSha": "73f3e18c66a6c80e0e0f37a47370757cb0b47bdf",
+  "observations": {
+    "mainProtected": false,
+    "classicBranchProtection": "absent",
+    "repositoryRuleset": {
+      "id": 26665434,
+      "name": "protect-main-foundation",
+      "enforcement": "disabled",
+      "includesDefaultBranch": true,
+      "requiredApprovingReviewCount": 0,
+      "requiresStatusChecks": false,
+      "requiredReviewThreadResolution": true,
+      "forbidsDeletionWhenEnabled": true,
+      "forbidsForcePushWhenEnabled": true
+    },
+    "actions": {
+      "enabled": true,
+      "allowedActions": "all",
+      "shaPinningRequired": false,
+      "defaultWorkflowPermissions": "read",
+      "canApprovePullRequestReviews": false
+    },
+    "environments": {
+      "count": 0
+    }
+  },
+  "requiredBeforeRelease": [
+    "enable-enforced-main-protection",
+    "require-independent-approving-review",
+    "require-status-checks-for-all-three-jobs",
+    "forbid-force-push-and-deletion",
+    "ensure-admin-bypass-policy-reviewed",
+    "restrict-actions-and-pin-trusted-actions",
+    "create-protected-staging-and-production-environments",
+    "authorize-credential-and-secret-provisioning",
+    "perform-hosted-TLS-and-recovery-validation",
+    "record-separate-production-go"
+  ],
+  "scope": "Read-only GitHub API observations at the observed date; not a prospective guarantee. No GitHub repository settings changed."
+}
