@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "workstream": "ALP-D02-E-R8E",
+  "status": "READ_ONLY_PRE_ACTIVATION",
+  "repository": "73junito/autolearnpro",
+  "observedDate": "2026-11-19",
+  "mainSha": "169310a663787089dd1946311366a03a51248679",
+  "checkRunHead": "6a29a0cbc3a2e9a8bf204252c6b97c7c7958080e",
+  "branch": {
+    "name": "main",
+    "protected": false
+  },
+  "ruleset": {
+    "id": 26665434,
+    "name": "protect-main-foundation",
+    "target": "branch",
+    "enforcement": "disabled",
+    "conditions": {
+      "ref_name": {
+        "include": [
+          "~DEFAULT_BRANCH"
+        ],
+        "exclude": []
+      }
+    },
+    "bypass_actors": [],
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "required_review_thread_resolution": true,
+          "require_last_push_approval": false
+        }
+      }
+    ]
+  },
+  "effectiveRules": [],
+  "collaborators": [
+    {
+      "login": "73junito",
+      "role_name": "admin"
+    }
+  ],
+  "ownerPermission": {
+    "permission": "admin",
+    "user": {
+      "login": "73junito"
+    }
+  },
+  "actionsWorkflow": {
+    "default_workflow_permissions": "read",
+    "can_approve_pull_request_reviews": false
+  },
+  "checkRuns": [
+    {
+      "name": "Foundation / Academic static and unit gates",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "slug": "github-actions"
+      }
+    },
+    {
+      "name": "R7 Cloudflare workerd local runtime (source-only)",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "slug": "github-actions"
+      }
+    },
+    {
+      "name": "R1 restricted executor (disposable database)",
+      "status": "completed",
+      "conclusion": "success",
+      "app": {
+        "slug": "github-actions"
+      }
+    },
+    {
+      "name": "Supabase Preview",
+      "status": "completed",
+      "conclusion": "skipped",
+      "app": {
+        "slug": "supabase"
+      }
+    }
+  ],
+  "authorizedToApply": false,
+  "productionReleaseAllowed": false
+}
