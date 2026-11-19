@@ -220,6 +220,23 @@ try {
     if (r6.error) throw r6.error;
     if (r6.status !== 0) throw new Error("R6 real GoTrue revocation gate failed");
     console.log("D02-E-R6 CI: actual GoTrue session revocation blocks restricted approval");
+    const r7c = spawnSync(process.execPath, [
+      "--test", "tests/d02e-r7c-workerd-approval-live.test.mjs"
+    ], {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        ALP_R7C_CI_REQUIRE: "1",
+        ALP_R7C_CI_PROJECT_ID: expectedProject,
+        ALP_R7C_CI_ADMIN_URL: dbUrl,
+        ALP_R7C_CI_LOGIN_URL: r2Url.toString(),
+        ALP_R7C_CI_ATTESTATION_KEY: attestationKey,
+      },
+      timeout: 180000,
+    });
+    if (r7c.error) throw r7c.error;
+    if (r7c.status !== 0) throw new Error("R7C workerd real GoTrue approval end-to-end gate failed");
+    console.log("D02-E-R7C CI: local workerd GoTrue signed approval and revocation passed");
     const r3d = spawnSync(process.execPath, [
       "--test", "tests/d02e-r3d-key-lifecycle-live.test.mjs"
     ], {
