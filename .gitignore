@@ -8,3 +8,4 @@ node_modules/
 
 # C3 catalog local Vite build output
 apps/catalog/dist/
+apps/catalog/dist-viewer/
