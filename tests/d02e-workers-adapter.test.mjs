@@ -12,12 +12,40 @@ const KEY = "a".repeat(64);
 const A = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 const B = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
 const REQUEST = "cccccccc-cccc-4ccc-8ccc-cccccccccccc";
+const SESSION = "dddddddd-dddd-4ddd-8ddd-dddddddddddd";
+const TOKEN = [
+  "eyJhbGciOiJIUzI1NiJ9",
+  Buffer.from(
+    JSON.stringify({
+      sub: A,
+      session_id: SESSION,
+      exp: 4102444800,
+      iat: 1795000000,
+    }),
+  ).toString("base64url"),
+  "synthetic",
+].join(".");
+const AUTH = "Bearer " + TOKEN;
 const reason = "Synthetic instructor | é";
 
-function harness({ auth = "ok", databaseError = null, quotaAllowed = true, key = KEY } = {}) {
+function harness({
+  auth = "ok",
+  databaseError = null,
+  quotaAllowed = true,
+  key = KEY,
+  session = "active",
+  enableGuard = true,
+} = {}) {
   const sql = [];
   const calls = [];
   let transactions = 0;
+  const sessionChecks = [];
+  const checkSession = async (identity) => {
+    sessionChecks.push(identity);
+    if (session === "error") throw Error("session lookup unavailable");
+    if (session === "revoke-after-first") return sessionChecks.length === 1;
+    return session === "active";
+  };
   const db = {
     async withTransaction(callback) {
       transactions++;
@@ -40,7 +68,7 @@ function harness({ auth = "ok", databaseError = null, quotaAllowed = true, key =
   const fetchImpl = async (_url, options) => {
     calls.push(options.headers.authorization);
     if (auth === "network") throw Error("synthetic unavailable");
-    if (auth === "bad" || options.headers.authorization !== "Bearer valid") return { ok: false };
+    if (auth === "bad" || options.headers.authorization !== AUTH) return { ok: false };
     return { ok: true, json: async () => ({ id: A }) };
   };
   const handler = createWorkerApprovalHandler({
@@ -49,8 +77,9 @@ function harness({ auth = "ok", databaseError = null, quotaAllowed = true, key =
     attestationKey: key,
     db,
     fetchImpl,
+    checkSession: enableGuard ? checkSession : undefined,
   });
-  const post = (path, token = "Bearer valid", body = { targetId: B, role: "instructor", reason }) =>
+  const post = (path, token = AUTH, body = { targetId: B, role: "instructor", reason }) =>
     handler.fetch(
       new Request("https://worker.invalid" + path, {
         method: "POST",
@@ -63,6 +92,7 @@ function harness({ auth = "ok", databaseError = null, quotaAllowed = true, key =
     post,
     sql,
     calls,
+    sessionChecks,
     get transactions() {
       return transactions;
     },
@@ -117,7 +147,7 @@ test("D02-E verified actor controls signed submit and decision", async () => {
   const mutation = h.sql.find((s) => s.statement.includes("submit_role_request_signed"));
   assert.deepEqual(mutation.params.slice(0, 4), [B, "instructor", A, reason]);
   assert.equal(mutation.params[6].length, 64);
-  const decision = await h.post("/api/roles/decision", "Bearer valid", {
+  const decision = await h.post("/api/roles/decision", AUTH, {
     requestId: REQUEST,
     approve: false,
     reason,
@@ -130,7 +160,7 @@ test("D02-E verified actor controls signed submit and decision", async () => {
 
 test("D02-E actorId injection and unknown JSON keys reject without mutation", async () => {
   const h = harness();
-  const response = await h.post("/api/roles/request", "Bearer valid", {
+  const response = await h.post("/api/roles/request", AUTH, {
     targetId: B,
     role: "student",
     reason,
@@ -160,11 +190,48 @@ test("D02-E permission errors deny and record event without disclosing SQL", asy
 
 test("D02-E oversized request is rejected before mutation", async () => {
   const h = harness();
-  const response = await h.post("/api/roles/request", "Bearer valid", {
+  const response = await h.post("/api/roles/request", AUTH, {
     targetId: B,
     role: "student",
     reason: "X".repeat(9000),
   });
   assert.equal(response.status, 413);
   assert.equal(h.sql.filter((s) => s.statement.includes("submit_role_request_signed")).length, 0);
+});
+
+test("R3 Worker refuses activation without trusted active-session verifier", async () => {
+  const h = harness({ enableGuard: false });
+  assert.equal(h.handler.enabled, false);
+  assert.equal((await h.post("/api/roles/request")).status, 503);
+  assert.equal(h.transactions, 0);
+});
+
+test("R3 revoked or unknown session is rejected before quota and mutation", async () => {
+  const h = harness({ session: "revoked" });
+  assert.equal((await h.post("/api/roles/request")).status, 401);
+  assert.equal(h.transactions, 0);
+  assert.deepEqual(h.sessionChecks, [{ actor: A, sessionId: SESSION }]);
+});
+
+test("R3 session-verifier outage denies service without touching database", async () => {
+  const h = harness({ session: "error" });
+  assert.equal((await h.post("/api/roles/request")).status, 503);
+  assert.equal(h.transactions, 0);
+});
+
+test("R3 revocation between quota and mutation blocks privileged write", async () => {
+  const h = harness({ session: "revoke-after-first" });
+  assert.equal((await h.post("/api/roles/request")).status, 401);
+  assert.equal(h.transactions, 1);
+  assert.equal(h.sessionChecks.length, 2);
+  assert.ok(!h.sql.some((s) => /submit_role_request_signed/.test(s.statement)));
+});
+
+test("R3 trusted verifier called before quota and again before mutation", async () => {
+  const h = harness();
+  assert.equal((await h.post("/api/roles/request")).status, 201);
+  assert.deepEqual(h.sessionChecks, [
+    { actor: A, sessionId: SESSION },
+    { actor: A, sessionId: SESSION },
+  ]);
 });
