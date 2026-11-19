@@ -213,7 +213,7 @@ try {
     });
     if (r4.error) throw r4.error;
     if (r4.status !== 0) throw new Error("R4 disposable recovery verification failed");
-    console.log("D02-E-R4 CI: full backup and clean recovery passed");
+    console.log("D02-E-R4 CI: scoped approval security-state backup and clean restore passed");
   }
   if (result === 0) {
     const fixtures = await admin.query(
