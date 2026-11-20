@@ -23,5 +23,6 @@ apps/catalog/src/lib/camera-controls.js text eol=lf
 apps/catalog/src/lib/bind-camera-controls.js text eol=lf
 tests/c3-r50-camera-controls.test.mjs text eol=lf
 tests/browser/c3-r50-camera-controls.spec.mjs text eol=lf
+tests/browser/c3-r51-accessibility.spec.mjs text eol=lf
 tests/c3-r49-build-boundary.test.mjs text eol=lf
 tests/browser/c3-r49-indexed-cube.spec.mjs text eol=lf
