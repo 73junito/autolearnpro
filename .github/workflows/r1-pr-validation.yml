@@ -52,6 +52,22 @@ jobs:
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
         run: npx playwright test --config playwright.c3-r43.config.mjs
+      - name: Provision disposable Mesa/Xvfb for C3-R45 Firefox Linux diagnosis
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb mesa-utils libgl1-mesa-dri
+      - name: Require C3-R45 Firefox WebGL pixels on virtual software display (no deployment)
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GALLIUM_DRIVER: llvmpipe
+          MOZ_ENABLE_WAYLAND: '0'
+          C3_R45_FIREFOX_HEADFUL: '1'
+          C3_R45_REQUIRE_FIREFOX_PIXELS: '1'
+        run: |
+          xvfb-run -a -s '-screen 0 1280x1024x24' bash -eu -c '
+            glxinfo -B
+            npx playwright test --config playwright.c3-r43.config.mjs --project firefox --grep "actual rendered triangle"
+          '
       - name: Run academic unit test suite
         run: npm run test:academic
       - name: Check lint

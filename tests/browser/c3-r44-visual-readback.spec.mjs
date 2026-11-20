@@ -14,7 +14,9 @@ test('actual rendered triangle changes framebuffer pixels; fallback is recorded,
     });
     console.log('C3-R44 VISUAL '+JSON.stringify({browserName,outcome:'FAIL_CLOSED_NO_RENDER',probe}));
     await expect(page.locator('#viewer-surface canvas')).toHaveCount(0);
-    if(browserName !== 'firefox') throw Error('Rendered framebuffer required for '+browserName);
+    if(browserName !== 'firefox' || process.env.C3_R45_REQUIRE_FIREFOX_PIXELS === '1') {
+      throw Error('Rendered framebuffer required for ' + browserName + ' (C3-R45 strict pixel gate)');
+    }
     test.info().annotations.push({type:'visual-not-certified',description:'Firefox fallback: no actual rendered pixels'});
     return;
   }
