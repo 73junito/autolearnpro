@@ -22,7 +22,12 @@ export async function mount(target, { verifiedBytes } = {}) {
   let renderer;
   let material;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'low-power',
+      preserveDrawingBuffer: true // R44: local-only visual readback; no production renderer
+    });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(2, globalThis.devicePixelRatio || 1));
     renderer.domElement.setAttribute('aria-hidden', 'true');

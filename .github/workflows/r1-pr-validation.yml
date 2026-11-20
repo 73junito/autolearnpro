@@ -50,7 +50,7 @@ jobs:
         run: node --test tests/c3-synthetic-viewer.test.mjs tests/c3-viewer-local-boundary.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
-      - name: Run isolated C3-R43 real-browser acceptance (no deployment)
+      - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
         run: npx playwright test --config playwright.c3-r43.config.mjs
       - name: Run academic unit test suite
         run: npm run test:academic
