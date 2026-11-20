@@ -20,7 +20,7 @@ const digest=(bytes)=>createHash('sha256').update(bytes).digest('hex');
 // The base directory is separately injected for negative tests only, never through CLI.
 export function readEvidence(reference,{root=repoRoot}={}){
   requireValue(typeof reference==='string' &&
-    /^docs\/c3-r54\/evidence\/[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)*\/[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*$/.test(reference),
+    /^docs\/c3-r54\/evidence\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*$/.test(reference),
     'unsafe or unscoped evidence path');
   const base=path.resolve(root);
   requireValue(fs.lstatSync(base).isDirectory() && !fs.lstatSync(base).isSymbolicLink(),'invalid repository root');
