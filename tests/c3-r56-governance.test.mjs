@@ -90,7 +90,7 @@ test('hash chain, ordering, duplicate event IDs and source revision are enforced
     assert.throws(()=>validateGovernance(m,r,duplicate,{root}),/duplicated custody event/);
     const wrongRevision=copy(g);
     const event=wrongRevision.events[1];
-    const {digest:discard,...unsigned}=event;
+    const unsigned=Object.fromEntries(Object.entries(event).filter(([key])=>key!=='digest'));
     wrongRevision.events[1]=sealEvent({...unsigned,sourceCommit:'b'.repeat(40)});
     assert.throws(()=>validateGovernance(m,r,wrongRevision,{root}),/test revision changed/);
   });
