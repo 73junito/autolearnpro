@@ -16,8 +16,9 @@ concurrency:
 jobs:
   foundation-and-academic:
     name: Foundation / Academic static and unit gates
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # Use supported LTS image for deterministic Playwright apt dependencies.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
