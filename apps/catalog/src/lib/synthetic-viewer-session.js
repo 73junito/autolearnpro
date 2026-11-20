@@ -9,7 +9,8 @@ export class SyntheticViewerError extends Error {
 }
 const fail = (message) => { throw new SyntheticViewerError(message); };
 
-export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer }) {
+export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer, onFault = () => {} }) {
+  if (typeof onFault !== 'function') fail('fault callback must be a function');
   if (typeof readAsset !== 'function' || typeof loadRenderer !== 'function') {
     fail('explicit reader and renderer loader required');
   }
@@ -17,6 +18,13 @@ export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer
   let inflight = null;
   let stop = null;
   const report = () => state;
+  function fault(reason) {
+    if (state === 'disposed' || state === 'error') return;
+    state = 'error';
+    const release = stop;
+    stop = null;
+    try { release?.(); } finally { onFault(reason); }
+  }
   async function start(target) {
     if (state === 'disposed') fail('viewer session disposed');
     if (state === 'ready') return;
@@ -42,9 +50,13 @@ export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer
       const renderer = await loadRenderer();
       if (state === 'disposed') return;
       if (typeof renderer?.mount !== 'function') fail('renderer module missing mount');
-      const teardown = await renderer.mount(target, { record: verified.records[0], verifiedBytes });
+      const teardown = await renderer.mount(target, {
+        record: verified.records[0], verifiedBytes,
+        onContextLost: () => fault('WebGL context lost')
+      });
       if (typeof teardown !== 'function') fail('renderer requires cleanup function');
       if (state === 'disposed') { teardown(); return; }
+      if (state === 'error') { teardown(); return; }
       stop = teardown;
       state = 'ready';
     })().catch((error) => {

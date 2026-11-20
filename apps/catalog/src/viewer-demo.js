@@ -27,7 +27,16 @@ function newSession() {
       if (!response.ok) throw Error('local synthetic asset unavailable');
       return new Uint8Array(await response.arrayBuffer());
     },
-    loadRenderer: () => import('./viewer-engine.js')
+    loadRenderer: () => import('./viewer-engine.js'),
+    onFault: () => {
+      if (session?.status !== 'error') return;
+      session.dispose();
+      session = null;
+      close.disabled = true;
+      start.disabled = false;
+      announce('WebGL context lost. Viewer closed; verify the synthetic asset again to retry.');
+      start.focus();
+    }
   });
 }
 start.addEventListener('click', async () => {
