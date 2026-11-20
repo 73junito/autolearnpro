@@ -79,5 +79,9 @@ export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer
     stop = null;
     if (release) release();
   }
-  return Object.freeze({ start, dispose, get status() { return report(); } });
+  function control(action) {
+    if(state!=='ready' || typeof stop?.control!=='function') fail('camera controls unavailable');
+    return stop.control(action);
+  }
+  return Object.freeze({ start, dispose, control, get status() { return report(); } });
 }

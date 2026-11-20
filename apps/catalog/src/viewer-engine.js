@@ -4,6 +4,7 @@
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { initialCameraState, nextCameraState } from './lib/camera-controls.js';
 
 export async function mount(target, { verifiedBytes, onContextLost = () => {},
   expectedVertices = 3, expectedTriangles = 1 } = {}) {
@@ -29,13 +30,18 @@ export async function mount(target, { verifiedBytes, onContextLost = () => {},
   let renderer = null, material = null, observer = null, canvas = null;
   let closed = false;
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20);
-  if (expectedVertices === 8 && expectedTriangles === 12) {
-    camera.position.set(2.6, 2.0, 5.0);
-    camera.lookAt(0, 0, 0);
-  } else {
-    camera.position.set(0.5, 0.5, 3);
-    camera.lookAt(0.5, 0.5, 0);
+  const indexed = expectedVertices === 8 && expectedTriangles === 12;
+  const center = indexed ? new THREE.Vector3(0,0,0) : new THREE.Vector3(0.5,0.5,0);
+  let cameraState = initialCameraState(indexed);
+  function placeCamera() {
+    const az = cameraState.azimuth * Math.PI / 180;
+    const el = cameraState.elevation * Math.PI / 180;
+    const d = cameraState.distance;
+    camera.position.set(center.x + d*Math.sin(az)*Math.cos(el),
+      center.y + d*Math.sin(el),center.z + d*Math.cos(az)*Math.cos(el));
+    camera.lookAt(center);
   }
+  placeCamera();
 
   function dimensions() {
     const width = Math.max(200, Math.min(760, target.clientWidth || 480));
@@ -88,6 +94,13 @@ export async function mount(target, { verifiedBytes, onContextLost = () => {},
       });
       observer.observe(target);
     }
+    cleanup.control = (action) => {
+      if (closed) throw Error('viewer is closed');
+      cameraState = nextCameraState(cameraState, action, indexed);
+      placeCamera();
+      draw();
+      return cameraState;
+    };
     return cleanup;
   } catch (error) {
     cleanup();

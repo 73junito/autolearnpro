@@ -25,9 +25,19 @@
       <button id="viewer-start" type="button">Verify and show synthetic triangle</button>
       <button id="viewer-stop" type="button" disabled>Close viewer</button>
     </p>
+    <fieldset id="viewer-camera-controls" disabled aria-label="3D camera controls">
+      <legend>3D view controls</legend>
+      <button type="button" data-camera-action="left">Rotate left</button>
+      <button type="button" data-camera-action="right">Rotate right</button>
+      <button type="button" data-camera-action="up">Tilt up</button>
+      <button type="button" data-camera-action="down">Tilt down</button>
+      <button type="button" data-camera-action="zoom-in">Zoom in</button>
+      <button type="button" data-camera-action="zoom-out">Zoom out</button>
+      <button type="button" data-camera-action="reset">Reset view</button>
+    </fieldset>
     <p id="viewer-status" role="status" aria-live="polite">Viewer not started. No asset loaded.</p>
     <div id="viewer-surface" role="img" aria-label="Static synthetic triangle visualization. The image is educational geometry only."></div>
-    <p>No rotation, tracking, student data, or live database connection is used.</p>
+    <p>Camera controls are bounded and keyboard accessible; no tracking, student data, or live database connection is used.</p>
   </main>
   <script type="module" src="./src/viewer-demo.js"></script>
 </body>

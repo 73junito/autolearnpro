@@ -65,5 +65,9 @@ export function createIndexedCubeSession({ readAsset, loadRenderer, onFault=()=>
     status='disposed';
     const stop=cleanup;cleanup=null;stop?.();
   }
-  return Object.freeze({start,dispose,get status(){return status;}});
+  function control(action) {
+    if(status!=='ready' || typeof cleanup?.control!=='function') throw Error('camera controls unavailable');
+    return cleanup.control(action);
+  }
+  return Object.freeze({start,dispose,control,get status(){return status;}});
 }

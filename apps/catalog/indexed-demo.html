@@ -20,6 +20,16 @@ button {padding:.5rem 1rem;margin-right:.75rem;font:inherit}
 <p>Eight vertices, 12 indexed triangles. GLB bytes and geometry are verified before Three.js loads.</p>
 <button type="button" id="indexed-start">Verify and render indexed cube</button>
 <button type="button" id="indexed-stop" disabled>Close indexed viewer</button>
+    <fieldset id="indexed-camera-controls" disabled aria-label="3D camera controls">
+      <legend>3D view controls</legend>
+      <button type="button" data-camera-action="left">Rotate left</button>
+      <button type="button" data-camera-action="right">Rotate right</button>
+      <button type="button" data-camera-action="up">Tilt up</button>
+      <button type="button" data-camera-action="down">Tilt down</button>
+      <button type="button" data-camera-action="zoom-in">Zoom in</button>
+      <button type="button" data-camera-action="zoom-out">Zoom out</button>
+      <button type="button" data-camera-action="reset">Reset view</button>
+    </fieldset>
 <p role="status" aria-live="polite" id="indexed-status">Indexed cube not started.</p>
 <div id="indexed-surface" role="img" aria-label="Static synthetic indexed cube, test geometry only"></div>
 </main><script type="module" src="./src/indexed-demo.js"></script></body></html>
