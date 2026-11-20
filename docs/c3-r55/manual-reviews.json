@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R55",
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "reviews": [],
+  "note": "No human reviewer attestations recorded. Automated CI does not grant testing signoff or release."
+}
