@@ -50,6 +50,8 @@ jobs:
         run: node --test tests/c3-synthetic-viewer.test.mjs tests/c3-viewer-local-boundary.test.mjs
       - name: Verify C3-R46 viewer fault and disposal contracts
         run: node --test tests/c3-viewer-lifecycle.test.mjs
+      - name: Enforce C3-R47 synthetic viewer bundle and asset budgets
+        run: node --test tests/c3-viewer-budgets.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
