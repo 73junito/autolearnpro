@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R56",
+  "scope": "development-only-synthetic-viewers",
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "registry": [],
+  "events": [],
+  "note": "No identities, submissions, reviews or manual tests have been authenticated. Records require independent human verification; CI cannot confer identity or release authority."
+}
