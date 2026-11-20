@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R53",
+  "scope": "development-only-synthetic-viewers",
+  "releaseStatus": "HOLD",
+  "surfaces": [
+    "/viewer-demo.html",
+    "/indexed-demo.html"
+  ],
+  "requiredBrowsers": [
+    "chromium",
+    "firefox",
+    "webkit"
+  ],
+  "mandatoryAutomated": [
+    {
+      "id": "axe-wcag-a-aa",
+      "source": "tests/browser/c3-r52-a11y-audit.spec.mjs",
+      "title": "C3-R52 WCAG-oriented axe audit:",
+      "requiredStandard": true,
+      "requiredStrictFirefox": true
+    },
+    {
+      "id": "focus-reflow-reduced-motion",
+      "source": "tests/browser/c3-r52-a11y-audit.spec.mjs",
+      "title": "C3-R52 focus-visible, reduced motion and narrow viewport:",
+      "requiredStandard": true,
+      "requiredStrictFirefox": false
+    },
+    {
+      "id": "keyboard-live-announcements",
+      "source": "tests/browser/c3-r51-accessibility.spec.mjs",
+      "title": "C3-R51 keyboard semantics and live-region behavior:",
+      "requiredStandard": true,
+      "requiredStrictFirefox": true
+    },
+    {
+      "id": "focus-context-loss",
+      "source": "tests/browser/c3-r51-accessibility.spec.mjs",
+      "title": "C3-R51 focus is recovered and controls fail closed after GPU loss:",
+      "requiredStandard": true,
+      "requiredStrictFirefox": false
+    },
+    {
+      "id": "bounded-camera",
+      "source": "tests/browser/c3-r50-camera-controls.spec.mjs",
+      "title": "C3-R50 accessible bounded controls:",
+      "requiredStandard": true,
+      "requiredStrictFirefox": true
+    }
+  ],
+  "manualAcceptance": [
+    {
+      "id": "nvda-windows-firefox",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "nvda-windows-chromium",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "voiceover-macos-safari",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "mobile-voiceover-talkback",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "zoom-200-400-high-contrast",
+      "status": "NOT_TESTED"
+    },
+    {
+      "id": "assistive-tech-error-recovery",
+      "status": "NOT_TESTED"
+    }
+  ],
+  "note": "No manual assistive-technology test is asserted completed. Automated success does not certify WCAG or authorize deployment."
+}
