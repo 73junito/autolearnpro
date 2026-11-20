@@ -42,6 +42,10 @@ jobs:
         run: node infrastructure/scripts/c3-build-sample.mjs --check
       - name: Test C3-R40 provenance and tampering controls
         run: node --test tests/c3-catalog-provenance.test.mjs
+      - name: Verify C3-R48 deterministic indexed-mesh fixture (no publication)
+        run: node infrastructure/scripts/c3-build-complexity-fixture.mjs --check
+      - name: Enforce C3-R48 synthetic GLB geometry and viewer admission budgets
+        run: node --test tests/c3-synthetic-geometry-budget.test.mjs tests/c3-geometry-viewer-boundary.test.mjs
       - name: Verify C3-R41 Ed25519 synthetic-development approval boundary
         run: node --test tests/c3-catalog-signed-approval.test.mjs
       - name: Build isolated C3-R42 synthetic viewer (not deployable)
