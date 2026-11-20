@@ -20,6 +20,8 @@ export default defineConfig({
     { name: 'chromium', use: { ...devices['Desktop Chrome'], launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-webgl'] } } },
     { name: 'firefox', use: {
       ...devices['Desktop Firefox'],
+      // Only R45 Xvfb validation opts into a visible Firefox process on a virtual display.
+      headless: process.env.C3_R45_FIREFOX_HEADFUL === '1' ? false : true,
       // Linux CI requires a software-friendly context; never disable asset integrity.
       firefoxUserPrefs: {
         'webgl.disabled': false,
