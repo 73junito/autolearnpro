@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {CUBE_SHA256} from '../apps/catalog/src/lib/indexed-cube-session.js';
+const root=new URL('../',import.meta.url);
+const file=p=>readFileSync(new URL(p,root));
+const cube=file('tests/fixtures/c3-r48-synthetic-cube.glb');
+const dist=new URL('../apps/catalog/dist-viewer/',import.meta.url);
+const listed=readdirSync(new URL('assets/',dist));
+test('indexed cube stays in test fixtures and detached isolated viewer build only',()=>{
+  assert.equal(createHash('sha256').update(cube).digest('hex'),CUBE_SHA256);
+  assert.equal(cube.length,748);
+  assert.ok(listed.some(s=>/^c3-r48-synthetic-cube-[\w-]+\.glb$/.test(s)));
+  assert.ok(file('apps/catalog/dist-viewer/indexed-demo.html').toString().includes('noindex, nofollow'));
+  assert.ok(!file('apps/catalog/index.html').toString().includes('indexed-demo'));
+  assert.ok(!file('apps/catalog/src/main.js').toString().includes('indexed-cube'));
+  assert.ok(!file('apps/catalog/dist/index.html').toString().includes('indexed'));
+  assert.ok(!readdirSync(new URL('../apps/catalog/dist/assets/',import.meta.url)).some(s=>s.includes('cube')));
+  const publishedManifest=JSON.parse(file('apps/catalog/sample/catalog-manifest.json'));
+  assert.ok(publishedManifest.assets.every(asset=>!asset.path.includes('cube')));
+});
+test('the indexed viewer has no remote resources or automatic load on page entry',()=>{
+  const page=file('apps/catalog/indexed-demo.html').toString();
+  const entry=file('apps/catalog/src/indexed-demo.js').toString();
+  assert.match(page,/name="robots" content="noindex, nofollow"/);
+  assert.match(page,/role="status" aria-live="polite"/);
+  assert.match(entry,/credentials:'omit'/);
+  assert.match(entry,/url.origin!==location.origin/);
+  assert.match(entry,/import\('\.\/viewer-engine\.js'\)/);
+  assert.doesNotMatch(entry,/window\.onload|document\.addEventListener\('DOMContentLoaded'/);
+});

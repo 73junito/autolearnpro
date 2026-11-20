@@ -10,6 +10,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 580,
     outDir: fileURLToPath(new URL('dist-viewer/', import.meta.url)),
     emptyOutDir: true,
-    rollupOptions: { input: { 'synthetic-viewer-test': fileURLToPath(new URL('viewer-demo.html', import.meta.url)) } }
+    rollupOptions: { input: {
+      'synthetic-viewer-test': fileURLToPath(new URL('viewer-demo.html', import.meta.url)),
+      'indexed-cube-dev-test': fileURLToPath(new URL('indexed-demo.html', import.meta.url))
+    } }
   }
 });

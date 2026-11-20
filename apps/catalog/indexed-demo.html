@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Indexed cube — local geometry validation test</title>
+<style>
+:root { color-scheme:light; font-family:system-ui,sans-serif }
+body {max-width:52rem;margin:0 auto;padding:1.5rem;line-height:1.6}
+button {padding:.5rem 1rem;margin-right:.75rem;font:inherit}
+:focus-visible {outline:3px solid #0b4f8a;outline-offset:3px}
+#indexed-surface {min-height:220px;background:#f0f3f7;border:1px solid #99a8b7}
+#indexed-surface canvas {max-width:100%;height:auto!important;display:block}
+@media(prefers-reduced-motion:reduce) {* {animation:none!important;transition:none!important}}
+</style>
+</head><body><main>
+<h1>Indexed cube — isolated synthetic test</h1>
+<p><strong>Development-only validation. Not an automotive component or released catalog record.</strong></p>
+<p>Eight vertices, 12 indexed triangles. GLB bytes and geometry are verified before Three.js loads.</p>
+<button type="button" id="indexed-start">Verify and render indexed cube</button>
+<button type="button" id="indexed-stop" disabled>Close indexed viewer</button>
+<p role="status" aria-live="polite" id="indexed-status">Indexed cube not started.</p>
+<div id="indexed-surface" role="img" aria-label="Static synthetic indexed cube, test geometry only"></div>
+</main><script type="module" src="./src/indexed-demo.js"></script></body></html>
