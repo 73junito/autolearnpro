@@ -3,6 +3,7 @@
  * Three.js renderer. This does NOT imply R41 approval or publication authority.
  */
 import { loadVerifiedCatalog } from './catalog-contract.js';
+import { validateSyntheticGeometry } from './synthetic-geometry-budget.js';
 
 export class SyntheticViewerError extends Error {
   constructor(message) { super(message); this.name = 'SyntheticViewerError'; }
@@ -46,6 +47,12 @@ export function createSyntheticViewerSession({ manifest, readAsset, loadRenderer
         fail('only the fixed synthetic triangle is supported');
       }
       if (state === 'disposed') return;
+      // R48: SHA-256/size are necessary but insufficient: verify GLB structure,
+      // vertex/index bounds and geometry budget before importing Three.js.
+      const geometry = validateSyntheticGeometry(verifiedBytes);
+      if (geometry.vertexCount !== 3 || geometry.triangleCount !== 1) {
+        fail('viewer demo only permits the approved synthetic triangle shape');
+      }
       state = 'loading';
       const renderer = await loadRenderer();
       if (state === 'disposed') return;

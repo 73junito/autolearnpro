@@ -10,3 +10,8 @@ apps/catalog/src/viewer-demo.js text eol=lf
 apps/catalog/src/viewer-engine.js text eol=lf
 tests/c3-synthetic-viewer.test.mjs text eol=lf
 tests/c3-viewer-local-boundary.test.mjs text eol=lf
+apps/catalog/src/lib/synthetic-geometry-budget.js text eol=lf
+infrastructure/scripts/c3-build-complexity-fixture.mjs text eol=lf
+tests/c3-synthetic-geometry-budget.test.mjs text eol=lf
+tests/c3-geometry-viewer-boundary.test.mjs text eol=lf
+tests/fixtures/c3-r48-synthetic-cube.glb binary
