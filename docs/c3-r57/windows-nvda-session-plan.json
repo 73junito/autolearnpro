@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R57",
+  "scope": "development-only-synthetic-viewers",
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "sessionStatus": "NOT_STARTED",
+  "origin": "http://127.0.0.1:4178",
+  "surfaces": [
+    "/viewer-demo.html",
+    "/indexed-demo.html"
+  ],
+  "testCases": [
+    "nvda-windows-firefox",
+    "nvda-windows-chromium"
+  ],
+  "sourceCommit": null,
+  "windowsBuild": null,
+  "architecture": null,
+  "nodeVersion": null,
+  "nvdaVersion": null,
+  "firefoxVersion": null,
+  "chromiumVersion": null,
+  "manualChecks": [
+    "source revision",
+    "Windows and browser versions",
+    "NVDA installed and enabled",
+    "live spoken control names",
+    "keyboard navigation and focus",
+    "live announcements and error recovery",
+    "independent human reviewer"
+  ],
+  "note": "Preflight template only. Real Windows screen reader actions must be completed by a human, not CI."
+}
