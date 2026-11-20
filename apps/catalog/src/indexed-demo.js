@@ -1,12 +1,14 @@
 /** C3-R49 isolated, non-published indexed cube demo. */
 import cubeAsset from '../../../tests/fixtures/c3-r48-synthetic-cube.glb?url';
 import {createIndexedCubeSession, CUBE_PATH} from './lib/indexed-cube-session.js';
+import {bindCameraControls} from './lib/bind-camera-controls.js';
 const start=document.getElementById('indexed-start');
 const stop=document.getElementById('indexed-stop');
 const status=document.getElementById('indexed-status');
 const target=document.getElementById('indexed-surface');
 let session=null;
 const announce=message=>{status.textContent=message;};
+const cameraControls=bindCameraControls(document.getElementById('indexed-camera-controls'),()=>session,announce);
 function newSession(){
   return createIndexedCubeSession({
     readAsset:async(path)=>{
@@ -21,7 +23,7 @@ function newSession(){
     onFault:()=>{
       if(session?.status!=='error') return;
       session.dispose(); session=null;
-      stop.disabled=true; start.disabled=false;
+      stop.disabled=true; cameraControls.disable(); start.disabled=false;
       announce('Indexed cube WebGL context lost. Reverify to retry.');
       start.focus();
     }
@@ -35,17 +37,17 @@ start.addEventListener('click',async()=>{
   try {
     await current.start(target);
     if(session!==current) return;
-    stop.disabled=false;
+    stop.disabled=false; cameraControls.enable();
     announce('Indexed cube rendered — synthetic development test only.');
   } catch {
     if(session!==current) return;
-    current.dispose();session=null;start.disabled=false;
+    current.dispose();session=null;start.disabled=false;cameraControls.disable();
     announce('Indexed cube unavailable: integrity, geometry, or WebGL validation failed.');
   }
 });
 stop.addEventListener('click',()=>{
   session?.dispose();session=null;
-  stop.disabled=true;start.disabled=false;
+  stop.disabled=true;cameraControls.disable();start.disabled=false;
   announce('Indexed cube viewer closed. No catalog asset published.');
   start.focus();
 });

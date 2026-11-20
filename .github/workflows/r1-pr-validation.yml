@@ -58,6 +58,8 @@ jobs:
         run: node --test tests/c3-viewer-budgets.test.mjs
       - name: Enforce C3-R49 indexed GLB session and parser hardening
         run: node --test tests/c3-indexed-cube-session.test.mjs tests/c3-r49-parser-hardening.test.mjs tests/c3-r49-build-boundary.test.mjs
+      - name: Verify C3-R50 deterministic camera controls and limits
+        run: node --test tests/c3-r50-camera-controls.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
@@ -76,7 +78,7 @@ jobs:
         run: |
           xvfb-run -a -s '-screen 0 1280x1024x24' bash -eu -c '
             glxinfo -B
-            npx playwright test --config playwright.c3-r43.config.mjs --project firefox --grep "actual rendered triangle|indexed cube is opt-in"
+            npx playwright test --config playwright.c3-r43.config.mjs --project firefox --grep "actual rendered triangle|indexed cube is opt-in|C3-R50 accessible bounded controls"
           '
       - name: Run academic unit test suite
         run: npm run test:academic

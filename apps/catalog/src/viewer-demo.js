@@ -6,6 +6,7 @@
 import manifestText from '../sample/catalog-manifest.json?raw';
 import assetUrl from '../sample/assets/demonstration/demo-triangle.glb?url';
 import { createSyntheticViewerSession } from './lib/synthetic-viewer-session.js';
+import { bindCameraControls } from './lib/bind-camera-controls.js';
 
 const start = document.getElementById('viewer-start');
 const close = document.getElementById('viewer-stop');
@@ -16,6 +17,7 @@ const parsed = JSON.parse(manifestText);
 let session = null;
 let active = false;
 function announce(message) { status.textContent = message; }
+const cameraControls = bindCameraControls(document.getElementById('viewer-camera-controls'), () => session, announce);
 function newSession() {
   return createSyntheticViewerSession({
     manifest: parsed,
@@ -33,6 +35,7 @@ function newSession() {
       session.dispose();
       session = null;
       close.disabled = true;
+      cameraControls.disable();
       start.disabled = false;
       announce('WebGL context lost. Viewer closed; verify the synthetic asset again to retry.');
       start.focus();
@@ -50,12 +53,14 @@ start.addEventListener('click', async () => {
     await current.start(surface);
     if (session !== current) return;
     close.disabled = false;
+    cameraControls.enable();
     announce('Synthetic triangle rendered. Development demonstration only; no publication approval.');
   } catch {
     if (session === current) {
       current.dispose();
       session = null;
       start.disabled = false;
+      cameraControls.disable();
       announce('Viewer unavailable: integrity, loading, or WebGL verification failed. Nothing was displayed.');
     }
   } finally { active = false; }
@@ -64,6 +69,7 @@ close.addEventListener('click', () => {
   session?.dispose();
   session = null;
   close.disabled = true;
+  cameraControls.disable();
   start.disabled = false;
   announce('Viewer closed. No catalog data is published.');
   start.focus();
