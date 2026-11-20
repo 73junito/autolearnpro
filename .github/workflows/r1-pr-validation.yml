@@ -73,6 +73,10 @@ jobs:
         run: |
           node infrastructure/scripts/c3-r55-evidence-integrity.mjs --check
           node --test tests/c3-r55-evidence-integrity.test.mjs
+      - name: Enforce C3-R56 accessibility governance and evidence custody (HOLD only)
+        run: |
+          node infrastructure/scripts/c3-r56-governance.mjs --check
+          node --test tests/c3-r56-governance.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
