@@ -9,12 +9,14 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:viewer:dev": "vite build --config vite.viewer.config.js"
+    "build:viewer:dev": "vite build --config vite.viewer.config.js",
+    "preview:viewer:dev": "vite preview --config vite.viewer.config.js --host 127.0.0.1 --port 4178 --strictPort"
   },
   "dependencies": {
     "three": "0.180.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.1",
     "vite": "7.3.7"
   }
 }

@@ -9,3 +9,5 @@ node_modules/
 # C3 catalog local Vite build output
 apps/catalog/dist/
 apps/catalog/dist-viewer/
+_local/r43-playwright-results/
+playwright-report/
