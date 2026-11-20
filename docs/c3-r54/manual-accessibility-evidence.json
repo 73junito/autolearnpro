@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R54",
+  "scope": "development-only-synthetic-viewers",
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "basedOn": "C3-R53",
+  "surfaces": [
+    "/viewer-demo.html",
+    "/indexed-demo.html"
+  ],
+  "checks": [
+    {
+      "id": "nvda-windows-firefox",
+      "platform": "Windows",
+      "browser": "Firefox",
+      "assistiveTechnology": "NVDA",
+      "status": "NOT_TESTED",
+      "evidence": []
+    },
+    {
+      "id": "nvda-windows-chromium",
+      "platform": "Windows",
+      "browser": "Chromium",
+      "assistiveTechnology": "NVDA",
+      "status": "NOT_TESTED",
+      "evidence": []
+    },
+    {
+      "id": "voiceover-macos-safari",
+      "platform": "macOS",
+      "browser": "Safari",
+      "assistiveTechnology": "VoiceOver",
+      "status": "NOT_TESTED",
+      "evidence": []
+    },
+    {
+      "id": "mobile-voiceover-talkback",
+      "platform": "iOS and Android",
+      "browser": "Safari and Chrome",
+      "assistiveTechnology": "VoiceOver and TalkBack",
+      "status": "NOT_TESTED",
+      "evidence": []
+    },
+    {
+      "id": "zoom-200-400-high-contrast",
+      "platform": "Desktop and mobile",
+      "browser": "Supported browsers",
+      "assistiveTechnology": "Keyboard, zoom and high contrast",
+      "status": "NOT_TESTED",
+      "evidence": []
+    },
+    {
+      "id": "assistive-tech-error-recovery",
+      "platform": "Applicable platforms",
+      "browser": "Supported browsers",
+      "assistiveTechnology": "Keyboard and screen reader",
+      "status": "NOT_TESTED",
+      "evidence": []
+    }
+  ],
+  "note": "This is a test plan, not proof of human testing; automated checks cannot grant manual authorization or release."
+}
