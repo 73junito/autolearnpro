@@ -15,3 +15,9 @@ infrastructure/scripts/c3-build-complexity-fixture.mjs text eol=lf
 tests/c3-synthetic-geometry-budget.test.mjs text eol=lf
 tests/c3-geometry-viewer-boundary.test.mjs text eol=lf
 tests/fixtures/c3-r48-synthetic-cube.glb binary
+apps/catalog/src/lib/indexed-cube-session.js text eol=lf
+apps/catalog/src/indexed-demo.js text eol=lf
+tests/c3-indexed-cube-session.test.mjs text eol=lf
+tests/c3-r49-parser-hardening.test.mjs text eol=lf
+tests/c3-r49-build-boundary.test.mjs text eol=lf
+tests/browser/c3-r49-indexed-cube.spec.mjs text eol=lf

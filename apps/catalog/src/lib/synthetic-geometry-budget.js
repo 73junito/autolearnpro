@@ -113,9 +113,11 @@ export function validateSyntheticGeometry(raw) {
     }
   }
   let triangles, indices;
+  const triangleIndices=[];
   if (primitive.indices === undefined) {
     if (gltf.accessors.length !== 1 || views.length !== 1 || vertices%3) fail('invalid non-indexed geometry');
     triangles=vertices/3; indices=vertices;
+    for(let i=0;i<vertices;i++) triangleIndices.push(i);
   } else {
     if (primitive.indices !== 1 || gltf.accessors.length !== 2 || views.length !== 2) fail('invalid index accessor');
     const idx=gltf.accessors[1];
@@ -125,9 +127,23 @@ export function validateSyntheticGeometry(raw) {
         views[1].target!==34963 || indices%3 || views[1].length !== indices*2 ||
         views[1].offset%2) fail('unsupported index buffer');
     const binOffset=20 + chunks[0].content.length + 8 + views[1].offset;
-    for(let i=0;i<indices;i++) if(dv.getUint16(binOffset + i*2,true)>=vertices) fail('index out of vertex range');
+    for(let i=0;i<indices;i++) {
+      const index=dv.getUint16(binOffset + i*2,true);
+      if(index>=vertices) fail('index out of vertex range');
+      triangleIndices.push(index);
+    }
     triangles=indices/3;
   }
   assertInteger(triangles,1,SYNTHETIC_GEOMETRY_LIMITS.maxTriangles,'triangle count');
+  // R49: a face with repeated vertices or near-zero surface area cannot
+  // masquerade as a valid indexed triangle in the synthetic test profile.
+  for(let i=0;i<triangleIndices.length;i+=3) {
+    const a=triangleIndices[i],b=triangleIndices[i+1],c=triangleIndices[i+2];
+    if(a===b||a===c||b===c) fail('degenerate repeated triangle index');
+    const ab=[0,1,2].map(k=>positions[b*3+k]-positions[a*3+k]);
+    const ac=[0,1,2].map(k=>positions[c*3+k]-positions[a*3+k]);
+    const cross=[ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]];
+    if(cross.reduce((sum,n)=>sum+n*n,0)<=1e-12) fail('zero-area or degenerate triangle');
+  }
   return Object.freeze({byteLength:bytes.length,vertexCount:vertices,triangleCount:triangles,indexCount:indices,primitiveCount:1});
 }

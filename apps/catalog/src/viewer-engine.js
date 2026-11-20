@@ -5,7 +5,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-export async function mount(target, { verifiedBytes, onContextLost = () => {} } = {}) {
+export async function mount(target, { verifiedBytes, onContextLost = () => {},
+  expectedVertices = 3, expectedTriangles = 1 } = {}) {
   if (!(verifiedBytes instanceof Uint8Array)) throw Error('verified binary GLB required');
   if (!target || typeof target.appendChild !== 'function') throw Error('viewer target required');
   if (typeof onContextLost !== 'function') throw Error('context-loss callback required');
@@ -14,8 +15,13 @@ export async function mount(target, { verifiedBytes, onContextLost = () => {} } 
   if (!gltf.scene || !gltf.scene.children.length) throw Error('verified GLB has no scene');
   const meshes = [];
   gltf.scene.traverse(node => { if (node.isMesh) meshes.push(node); });
-  if (meshes.length !== 1 || meshes[0].geometry.getAttribute('position')?.count !== 3) {
-    throw Error('synthetic GLB must contain one three-vertex mesh');
+  if (meshes.length !== 1 || meshes[0].geometry.getAttribute('position')?.count !== expectedVertices) {
+    throw Error('synthetic GLB has unexpected mesh vertex count');
+  }
+  const geometry = meshes[0].geometry;
+  const indexCount = geometry.index?.count ?? geometry.getAttribute('position').count;
+  if (indexCount !== expectedTriangles * 3 || (expectedVertices === 8 && !geometry.index)) {
+    throw Error('synthetic GLB has unexpected triangle count or missing index data');
   }
 
   const mesh = meshes[0];
@@ -23,8 +29,13 @@ export async function mount(target, { verifiedBytes, onContextLost = () => {} } 
   let renderer = null, material = null, observer = null, canvas = null;
   let closed = false;
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20);
-  camera.position.set(0.5, 0.5, 3);
-  camera.lookAt(0.5, 0.5, 0);
+  if (expectedVertices === 8 && expectedTriangles === 12) {
+    camera.position.set(2.6, 2.0, 5.0);
+    camera.lookAt(0, 0, 0);
+  } else {
+    camera.position.set(0.5, 0.5, 3);
+    camera.lookAt(0.5, 0.5, 0);
+  }
 
   function dimensions() {
     const width = Math.max(200, Math.min(760, target.clientWidth || 480));
