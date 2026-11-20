@@ -31,7 +31,9 @@ test('viewer entry imports Three lazily after integrity boundary, not at boot', 
   assert.match(entry,/url\.origin !== location\.origin/);
   assert.doesNotMatch(entry,/import \* as THREE/);
   assert.match(engine,/GLTFLoader/);
-  assert.match(engine,/parseAsync\(verifiedBytes/);
+  assert.match(engine,/parseAsync\(Uint8Array\.from\(verifiedBytes\)\.buffer/);
+  assert.match(engine,/renderer\.render\(gltf\.scene, camera\)/);
+  assert.doesNotMatch(engine,/new THREE\.BufferGeometry|Float32BufferAttribute/);
 });
 test('separate build output cannot overwrite production catalog dist', () => {
   assert.match(devVite,/dist-viewer\//);
