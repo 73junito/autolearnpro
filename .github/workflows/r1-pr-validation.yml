@@ -78,7 +78,7 @@ jobs:
         run: |
           xvfb-run -a -s '-screen 0 1280x1024x24' bash -eu -c '
             glxinfo -B
-            npx playwright test --config playwright.c3-r43.config.mjs --project firefox --grep "actual rendered triangle|indexed cube is opt-in|C3-R50 accessible bounded controls|C3-R51 keyboard semantics"
+            npx playwright test --config playwright.c3-r43.config.mjs --project firefox --grep "actual rendered triangle|indexed cube is opt-in|C3-R50 accessible bounded controls|C3-R51 keyboard semantics|C3-R52 WCAG-oriented axe audit"
           '
       - name: Run academic unit test suite
         run: npm run test:academic
