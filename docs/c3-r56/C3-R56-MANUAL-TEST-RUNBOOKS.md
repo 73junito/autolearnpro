@@ -1,5 +1,7 @@
 # C3-R56 — Human accessibility test execution and evidence governance
 
+**Current C3-R75 project policy:** Sole human developer/maintainer/tester/reviewer; **no independent second person is required for internal development or R66 owner-only review**. This R56 document describes a **separate, optional legacy formal independent-review evidence pathway**, not a staffing prerequisite for development PRs. See `docs/c3-r75/SOLE-HUMAN-DEVELOPMENT-POLICY.md`. The existing separate R56 data validation continues to detect forged formal review claims and its empty ledger does not imply verified manual accessibility acceptance.
+
 **Authorization:** Development and testing ONLY. Production publication, Cloudflare Workers deployment, hosted Supabase changes, DNS updates, signing authority and real automotive models remain **HOLD**. No accessibility certification is claimed.
 
 ## 1. Human roles and custody

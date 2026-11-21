@@ -1,5 +1,7 @@
 # C3-R55 — Manual evidence integrity and independent human review
 
+**Current C3-R75 project policy:** One human owner is the only developer, maintainer, tester and reviewer. A second independent human is **not required for internal development**. The R55 independent-review path below is optional and applies only if the owner separately seeks formal independent evidence acceptance; its current empty ledger must remain truthful. The R66 sole-owner internal review operates separately. See `docs/c3-r75/SOLE-HUMAN-DEVELOPMENT-POLICY.md`.
+
 **Scope:** development-only synthetic viewers. **Release stays HOLD; certification NOT_CERTIFIED; manualAuthorization NOT_GRANTED.** No Cloudflare Workers production deployment, DNS, hosted Supabase modifications, real vehicle geometry, release or signing authority.
 
 ## A–B: Actual file integrity and boundaries
