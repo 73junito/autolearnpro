@@ -1,3 +1,6 @@
+# C3-R75: One human owner is the developer/maintainer/tester/reviewer.
+# AI output is advisory tooling, NOT an independent human review or a second approver.
+# No second human is required for internal development; production remains HOLD.
 name: AI Repository Review (Manual, Read-only)
 
 on:
