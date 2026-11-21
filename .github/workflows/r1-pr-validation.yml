@@ -65,19 +65,19 @@ jobs:
         run: |
           node infrastructure/scripts/c3-r53-accessibility-evidence.mjs --check
           node --test tests/c3-r53-accessibility-evidence.test.mjs
-      - name: Enforce C3-R54 manual evidence protocol (NOT_TESTED, HOLD only)
+      - name: Enforce C3-R54 legacy formal manual evidence protocol (NOT_TESTED, HOLD only)
         run: |
           node infrastructure/scripts/c3-r54-manual-evidence.mjs --check
           node --test tests/c3-r54-manual-evidence.test.mjs
-      - name: Enforce C3-R55 evidence file hashes and independent human review (HOLD only)
+      - name: Validate optional legacy R55 formal independent-review evidence integrity (not required for sole-owner development; HOLD)
         run: |
           node infrastructure/scripts/c3-r55-evidence-integrity.mjs --check
           node --test tests/c3-r55-evidence-integrity.test.mjs
-      - name: Enforce C3-R56 accessibility governance and evidence custody (HOLD only)
+      - name: Validate optional legacy R56 formal independent-custody ledger (not required for sole-owner development; HOLD)
         run: |
           node infrastructure/scripts/c3-r56-governance.mjs --check
           node --test tests/c3-r56-governance.test.mjs
-      - name: Enforce C3-R57 isolated Windows NVDA session preflight plan (NOT_STARTED, HOLD only)
+      - name: Enforce C3-R57 historical NVDA session preflight schema (HOLD only)
         run: |
           node infrastructure/scripts/c3-r57-windows-preflight.mjs --check
           node --test tests/c3-r57-windows-preflight.test.mjs
@@ -85,6 +85,10 @@ jobs:
         run: |
           node infrastructure/scripts/c3-r66-owner-review.mjs --check
           node --test tests/c3-r66-owner-review.test.mjs
+      - name: Enforce C3-R75 sole human developer/maintainer/tester/reviewer policy (No second human reviewer required for internal development; SOLE_OWNER_NOT_INDEPENDENT; HOLD)
+        run: |
+          node infrastructure/scripts/c3-r75-sole-human-workflow.mjs --check
+          node --test tests/c3-r75-sole-human-workflow.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)

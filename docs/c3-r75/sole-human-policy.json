@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R75",
+  "scope": "internal-development-only",
+  "humanDeveloperCount": 1,
+  "humanMaintainerCount": 1,
+  "humanTesterCount": 1,
+  "humanReviewerCount": 1,
+  "reviewMode": "SOLE_OWNER_NOT_INDEPENDENT",
+  "secondHumanReviewerRequired": false,
+  "independentHumanVerificationRequiredForDevelopment": false,
+  "legacyR55R56": "OPTIONAL_SEPARATE_FORMAL_EVIDENCE_PATH",
+  "ownerEvidenceStatus": "PARTIAL_ATTESTED_NOT_FORMALLY_COMPLETE",
+  "r54FormalCasesCompleted": 0,
+  "r66FormalOwnerReviewsCompleted": 0,
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "note": "The sole human owner may develop, test and self-review internal synthetic viewer changes. Automated CI supplements, but does not impersonate, a human. Legacy R55/R56 independent ledgers are optional for development and must never be falsified; their separate review semantics remain unchanged if formally used. This policy neither waives GitHub protections nor certifies accessibility or authorizes production release."
+}
