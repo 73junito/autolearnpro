@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R66",
+  "scope": "development-only-synthetic-viewers",
+  "reviewMode": "SOLE_OWNER_NOT_INDEPENDENT",
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "entries": [],
+  "note": "Internal owner-only development review. An empty ledger is not evidence of completed testing or review; this schema does not assert independent review, certification, or authorization to release."
+}
