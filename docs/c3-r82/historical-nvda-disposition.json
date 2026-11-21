@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "milestone": "C3-R82",
+  "scope": "internal-development-historical-evidence-metadata-only",
+  "historicalDisposition": "CLOSED_WITH_DISCLOSED_LIMITATIONS",
+  "ownerReviewMode": "SOLE_OWNER_NOT_INDEPENDENT",
+  "secondHumanRequiredForDevelopment": false,
+  "historicalFormalManualAcceptance": "NOT_COMPLETED",
+  "historicalNativeSpeechCompleteness": "NOT_VERIFIED",
+  "evidence": [
+    {
+      "id": "triangle-owner-identified-raw",
+      "kind": "OWNER_IDENTIFIED_ORIGINAL_SPEECH_TEXT",
+      "status": "BYTES_VERIFIED_PARTIAL_OPEN_RENDER_ONLY",
+      "bytes": 4228,
+      "sha256": "bd83e823a7c18b19c8afb8aa520ea15dda85a9e10ed0d354274e5b2e5bcb3e4a",
+      "location": "PRIVATE_LOCAL_OWNER_CUSTODY_NOT_REPOSITORY"
+    },
+    {
+      "id": "triangle-conversation-derivative",
+      "kind": "OWNER_ATTESTED_CONVERSATION_DERIVATIVE",
+      "status": "CAMERA_SEQUENCE_NOT_CORROBORATED_BY_RAW_FILE",
+      "bytes": 8844,
+      "sha256": "a4d309287db120306b8597d00856d5baae40b276d0c20888a031f22fb685fe7e",
+      "location": "PRIVATE_LOCAL_OWNER_CUSTODY_NOT_REPOSITORY"
+    },
+    {
+      "id": "indexed-cube-conversation-derivative",
+      "kind": "OWNER_ATTESTED_CONVERSATION_DERIVATIVE",
+      "status": "SEPARATE_NATIVE_ORIGINAL_NOT_LOCATED",
+      "bytes": 10726,
+      "sha256": "b5f0ed15326246f7c931351f7d74fed92547d4a4cff6cd5dc12985117bae24c2",
+      "location": "PRIVATE_LOCAL_OWNER_CUSTODY_NOT_REPOSITORY"
+    }
+  ],
+  "manualOnlyGaps": [
+    "UNVERIFIED_NVDA_SPEECH_AT_CAMERA_BOUNDS",
+    "UNVERIFIED_ACTUAL_ENTER_SPACE_KEY_SEQUENCES",
+    "UNVERIFIED_NVDA_POST_CLOSE_FOCUS_AND_REOPEN",
+    "UNVERIFIED_NVDA_ERROR_AND_RETRY_SPEECH",
+    "UNVERIFIED_HISTORICAL_SESSION_TO_SOURCE_BUILD"
+  ],
+  "engineeringVerification": {
+    "kind": "BROWSER_ONLY_NOT_NATIVE_NVDA",
+    "mergedMainAtClosure": "d8f62198bf2439963a07d2313c815af12d030400",
+    "ciRun": "https://github.com/73junito/autolearnpro/actions/runs/44863938265",
+    "status": "SUCCESS_3_OF_3"
+  },
+  "r54FormalCompletionAtClosure": 0,
+  "r66OwnerEntriesAtClosure": 0,
+  "releaseStatus": "HOLD",
+  "certification": "NOT_CERTIFIED",
+  "manualAuthorization": "NOT_GRANTED",
+  "closureNote": "Historical evidence discovery is closed; future testing, if explicitly requested, targets only missing actual screen-reader observations. No source-build provenance, missing keypresses, independent review, or certification is invented."
+}
