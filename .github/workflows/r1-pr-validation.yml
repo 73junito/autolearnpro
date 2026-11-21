@@ -81,6 +81,10 @@ jobs:
         run: |
           node infrastructure/scripts/c3-r57-windows-preflight.mjs --check
           node --test tests/c3-r57-windows-preflight.test.mjs
+      - name: Enforce C3-R66 sole-owner internal review boundary (no independent claim; HOLD only)
+        run: |
+          node infrastructure/scripts/c3-r66-owner-review.mjs --check
+          node --test tests/c3-r66-owner-review.test.mjs
       - name: Provision disposable Chromium, Firefox and WebKit for C3-R43
         run: npx playwright install --with-deps chromium firefox webkit
       - name: Run C3-R43/R44 browser rendering and pixel-readback acceptance (no deployment)
